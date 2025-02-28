@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite configfailurepolicy="continue" parallel="none" name="Failed suite [Suite]" verbose="0">
+  <listeners>
+    <listener class-name="atu.testng.reports.listeners.ATUReportsListener"/>
+    <listener class-name="atu.testng.reports.listeners.ConfigurationListener"/>
+    <listener class-name="atu.testng.reports.listeners.MethodListener"/>
+  </listeners>
+  <test name="Test">
+    <classes>
+      <class name="commonMethods.Testcases">
+        <methods>
+          <include name="TC_Proforma_Service_Creation_PC01"/>
+          <include name="TC_Proforma_Service_Creation_PC02"/>
+          <include name="TC_Proforma_Service_Creation_PC04"/>
+          <include name="TC_Proforma_Service_Creation_PC03"/>
+          <include name="TC_Service_Creation_SC01"/>
+          <include name="TC_Service_Creation_SC02"/>
+          <include name="TC_Service_Creation_SC03"/>
+          <include name="TC_Service_Creation_SC04"/>
+          <include name="TC_Service_Creation_SC05"/>
+          <include name="TC_Proforma_Service_Creation_PC05"/>
+          <include name="TC_Proforma_Service_Creation_PC06"/>
+          <include name="TC_Proforma_Service_Creation_PC07"/>
+          <include name="TC_Proforma_Service_Creation_PC08"/>
+          <include name="TC_Service_Creation_SC06"/>
+          <include name="TC_Service_Creation_SC07"/>
+          <include name="TC_Proforma_Service_Creation_PC09"/>
+          <include name="TC_Long_Term_Creation_LT01"/>
+          <include name="TC_Long_Term_Creation_LT02"/>
+          <include name="TC_Long_Term_Creation_LT03"/>
+          <include name="TC_Long_Term_Creation_LT04"/>
+          <include name="TC_Long_Term_Creation_LT05"/>
+          <include name="TC_Long_Term_Creation_LT06"/>
+          <include name="TC_Long_Term_Creation_LT07"/>
+          <include name="TC_Long_Term_Creation_LT08"/>
+          <include name="TC_Long_Term_Creation_LT09_LT10"/>
+          <include name="TC_Long_Term_Creation_LT11"/>
+          <include name="TC_Long_Term_Creation_LT12"/>
+          <include name="TC_Long_Term_Creation_LT13"/>
+          <include name="TC_Long_Term_Creation_LT14"/>
+          <include name="TC_Long_Term_Creation_LT15"/>
+          <include name="TC_Long_Term_Creation_LT16"/>
+          <include name="TC_Long_Term_Creation_LT17"/>
+          <include name="TC_Coastal_Schedule_CS09"/>
+          <include name="TC_Coastal_Schedule_CS10"/>
+          <include name="TC_Coastal_Schedule_CS11"/>
+          <include name="TC_Coastal_Schedule_CS12"/>
+          <include name="TC_Coastal_Schedule_CS13"/>
+          <include name="TC_Coastal_Schedule_CS15"/>
+          <include name="TC_Coastal_Schedule_CS17"/>
+          <include name="TC_Coastal_Schedule_CS16"/>
+          <include name="TC_Coastal_Schedule_CS08"/>
+          <include name="TC_Coastal_Schedule_CS04"/>
+          <include name="TC_Coastal_Schedule_CS05"/>
+          <include name="TC_Coastal_Schedule_CS07"/>
+          <include name="TC_Coastal_Schedule_CS03"/>
+          <include name="TC_Coastal_Schedule_CS14"/>
+          <include name="TC_Coastal_Schedule_CS02"/>
+          <include name="TC_Coastal_Schedule_CS06"/>
+          <include name="TC_Coastal_Schedule_CS01"/>
+          <include name="TC_Coastal_Schedule_CS01_2"/>
+        </methods>
+      </class> <!-- commonMethods.Testcases -->
+    </classes>
+  </test> <!-- Test -->
+  <test parallel="none" name="Test(failed)">
+    <classes>
+      <class name="commonMethods.Testcases">
+        <methods>
+          <include name="aftertest"/>
+          <include name="TC_Coastal_Schedule_CS03"/>
+          <include name="Extentreport"/>
+          <include name="Teardown"/>
+          <include name="TC_Long_Term_Creation_LT01"/>
+          <include name="TC_Coastal_Schedule_CS02"/>
+          <include name="getDataFromConfig"/>
+          <include name="TC_Coastal_Schedule_CS04"/>
+        </methods>
+      </class> <!-- commonMethods.Testcases -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
