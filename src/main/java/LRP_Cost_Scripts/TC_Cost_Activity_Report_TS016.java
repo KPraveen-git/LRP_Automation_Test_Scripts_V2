@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.ArrayList;
 import java.util.List;

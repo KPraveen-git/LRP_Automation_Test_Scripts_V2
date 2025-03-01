@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -39,8 +39,6 @@ public class TC_Cost_Activity_Report_TS014 extends Keywords{
 		String Predictable_table_Headers = data.get("Predictable_table_Headers");
 		
 		String Activity_Not_Remove_Popup = data.get("Activity_Not_Remove_Popup");
-		String Row_Select_Popup = data.get("Row_Select_Popup");
-
 		
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
@@ -167,9 +165,9 @@ public class TC_Cost_Activity_Report_TS014 extends Keywords{
 			waitForElement(driver, Predicatble_ConditionFilter_CAR);
 			click(driver,Predicatble_ConditionFilter_CAR);
 			
-			boolean selctedColumn=false;
 			for(int i=0;i<Activity_names_Expense.size();i++) {
-				
+				boolean selctedColumn=false;
+
 				waitForElement(driver, Activity_Name_CAR);
 				clear(driver,Activity_Name_CAR);
 				sendKeys(driver, Activity_Name_CAR, Activity_names_Expense.get(i));
@@ -186,53 +184,39 @@ public class TC_Cost_Activity_Report_TS014 extends Keywords{
 				clear(driver,ContractNo_Filter_Input_CAR);
 				sendKeys(driver, ContractNo_Filter_Input_CAR, Activity_Contract_Expense.get(i));
 				
+				String checkbox=String.format(Select_CheckBox_Predictable_CAR, Activity_names_Expense.get(i));
 				if(isdisplayed(driver, Predictable_Grid_Cell_CAR)) {
-					String checkbox=String.format(Select_CheckBox_Predictable_CAR, Activity_names_Expense.get(i));
 					jsClick(driver, checkbox);
 					selctedColumn=true;
 				}
 				
-			}
-			Step_Start(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
-			waitForElement(driver, Predictable_Remove_btn_CAR);
-			click(driver,Predictable_Remove_btn_CAR);
-			Step_End(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
+				if(selctedColumn) {
+					Step_Start(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
+					waitForElement(driver, Predictable_Remove_btn_CAR);
+					click(driver,Predictable_Remove_btn_CAR);
+					Step_End(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
 
-			Step_Start(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
-			if(selctedColumn) {
-				waitForElement(driver, popup_Message);
-				String Popup_Text_Act=getText(driver, popup_Message);
-				
-				if(Popup_Text_Act.equals(Row_Select_Popup)) {
-					waitForElement(driver, popup_Message_Ok_Button);
-					click(driver,popup_Message_Ok_Button);
-				}else if(Popup_Text_Act.equals(Activity_Not_Remove_Popup)) {
-					System.out.println("Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
-					Extent_pass(driver, "Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
-				}else {
-					System.out.println("Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
-					Extent_fail(driver, "Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
-				}
-
-				waitForElement(driver, popup_Message_Ok_Button);
-				click(driver,popup_Message_Ok_Button);
-			}else {
-				if(isdisplayed(driver, popup_Message)) {
+					Step_Start(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
+					
 					waitForElement(driver, popup_Message);
 					String Popup_Text_Act=getText(driver, popup_Message);
 					
-					if(Popup_Text_Act.equals(Row_Select_Popup)) {
-						waitForElement(driver, popup_Message_Ok_Button);
-						click(driver,popup_Message_Ok_Button);
+				    if(Popup_Text_Act.equals(Activity_Not_Remove_Popup)) {
+						System.out.println("Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
+						Extent_pass(driver, "Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
 					}else {
 						System.out.println("Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
 						Extent_fail(driver, "Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
 					}
-				}
-			}
-			
-			Step_End(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
 
+					waitForElement(driver, popup_Message_Ok_Button);
+					click(driver,popup_Message_Ok_Button);
+					elementnotvisible(driver, popup_Message_Ok_Button);
+					jsClick(driver, checkbox);
+					Step_End(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
+				}
+				
+			}
 		}
 		Step_End(15, ".Select the Predictable reporting tab and search the Head in the AG grid and select the activity", test, test1);
 
@@ -267,9 +251,8 @@ public class TC_Cost_Activity_Report_TS014 extends Keywords{
 		waitForElement(driver, Condition_UnPredictable_CAR);
 		click(driver,Condition_UnPredictable_CAR);
 		
-		boolean selctedColumn=false;
 		for(int i=0;i<Activity_names_Expense.size();i++) {
-			
+			boolean selctedColumn=false;
 			waitForElement(driver, Activity_Name_CAR);
 			clear(driver,Activity_Name_CAR);
 			sendKeys(driver, Activity_Name_CAR, Activity_names_Expense.get(i));
@@ -292,49 +275,38 @@ public class TC_Cost_Activity_Report_TS014 extends Keywords{
 				selctedColumn=true;
 			}
 				
-		}
-		Step_End(16, "Click on the Unpredictable reporting tab and search the Head in the AG grid and select the activity", test, test1);
-		Step_Start(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
-		waitForElement(driver, Unpredicatble_Remove_btn_CAR);
-		click(driver,Unpredicatble_Remove_btn_CAR);
-		Step_End(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
-
-		Step_Start(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
-		
-		if(selctedColumn) {
-			waitForElement(driver, popup_Message);
-			String Popup_Text_Act=getText(driver, popup_Message);
+			Step_End(16, "Click on the Unpredictable reporting tab and search the Head in the AG grid and select the activity", test, test1);
 			
-			if(Popup_Text_Act.equals(Row_Select_Popup)) {
-				waitForElement(driver, popup_Message_Ok_Button);
-				click(driver,popup_Message_Ok_Button);
-			}else if(Popup_Text_Act.equals(Activity_Not_Remove_Popup)) {
-				System.out.println("Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
-				Extent_pass(driver, "Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
-			}else {
-				System.out.println("Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
-				Extent_fail(driver, "Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
-			}
+			if(selctedColumn) {
+				Step_Start(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
+				waitForElement(driver, Unpredicatble_Remove_btn_CAR);
+				click(driver,Unpredicatble_Remove_btn_CAR);
+				Step_End(17, "Click on the Remove button which is available at the bottom of the AG grid.", test, test1);
 
-			waitForElement(driver, popup_Message_Ok_Button);
-			click(driver,popup_Message_Ok_Button);
-		}else {
-			if(isdisplayed(driver, popup_Message)) {
+				Step_Start(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
+				
 				waitForElement(driver, popup_Message);
 				String Popup_Text_Act=getText(driver, popup_Message);
 				
-				if(Popup_Text_Act.equals(Row_Select_Popup)) {
-					waitForElement(driver, popup_Message_Ok_Button);
-					click(driver,popup_Message_Ok_Button);
+				if(Popup_Text_Act.equals(Activity_Not_Remove_Popup)) {
+					System.out.println("Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
+					Extent_pass(driver, "Popup Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
 				}else {
 					System.out.println("Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act);
 					Extent_fail(driver, "Popup Not Matched  ||   Expected : "+Activity_Not_Remove_Popup+"   ||   Actual   : "+Popup_Text_Act, test, test1);
 				}
+
+				waitForElement(driver, popup_Message_Ok_Button);
+				click(driver,popup_Message_Ok_Button);
+				
+				elementnotvisible(driver, popup_Message_Ok_Button);
+				jsClick(driver, checkbox);
+				Step_End(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
+
 			}
+			
 		}
 		
-		Step_End(18, "Check whether the system prompts the information message as \"Expense is approved for some selected Equipment type / Equipment Status. Cannot change / remove\" along with the OK button.", test, test1);
-
 		Extent_completed(tc_Name, test, test1);		
 
 		

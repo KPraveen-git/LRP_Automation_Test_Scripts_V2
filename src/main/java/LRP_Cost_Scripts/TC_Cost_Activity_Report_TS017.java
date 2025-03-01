@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,6 @@ public class TC_Cost_Activity_Report_TS017 extends Keywords{
 		String Change_Expensive_Value = data.get("Change_Expensive_Value");
 		String User_Updated_Popup = data.get("User_Updated_Popup");
 
-		
 		Extent_Start(tc_Name, test, test1);
 		
 		navigateUrl(driver, url);

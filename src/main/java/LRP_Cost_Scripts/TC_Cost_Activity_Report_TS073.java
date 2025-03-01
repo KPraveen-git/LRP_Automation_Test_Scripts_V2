@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +36,12 @@ public class TC_Cost_Activity_Report_TS073 extends Keywords{
 		String Arrival_Date_Condition = data.get("Arrival_Date_Condition");
 		String Arrival_Date_Value = data.get("Arrival_Date_Value");
 		
+		String Service_Header = data.get("Service_Header");
+		String Vessel_Header = data.get("Vessel_Header");
+		String Port_Header = data.get("Port_Header");
+		String Terminal_Header = data.get("Terminal_Header");
+		String Arrival_Date_Header = data.get("Arrival_Date_Header");
+		
 		String Activity_Quantity_values = data.get("Activity_Quantity_values");
 		String Activity_details_Condition = data.get("Activity_details_Condition");
 		String Select_Activity_Value = data.get("Select_Activity_Value");
@@ -43,6 +49,9 @@ public class TC_Cost_Activity_Report_TS073 extends Keywords{
 		String Vendor_Code_Select = data.get("Vendor_Code_Select");
 		String Activity_Amount_List = data.get("Activity_Amount_List");
 		String Activity_Saved_Popup = data.get("Activity_Saved_Popup");
+		
+		String Equipement_Header = data.get("Equipement_Header");
+		String Vendor_Code_Header = data.get("Vendor_Code_Header");
 		
 		String Select_Activity_To_Approve = data.get("Select_Activity_To_Approve");
 		String Submitted_popup_text = data.get("Submitted_popup_text");
@@ -83,31 +92,31 @@ public class TC_Cost_Activity_Report_TS073 extends Keywords{
 		Step_Start(4, "Click on the Service search button and select the required service code.   ", test, test1);
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Service_Code);
+		twoColumnSearchWindow(driver,Service_Header,Service_details_Codition,Service_Code);
 		Step_End(4, "Click on the Service search button and select the required service code.   ", test, test1);
 		
 		Step_Start(5, "Click on the Vessel search button and select the required vessel code.  ", test, test1);
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Vessel_Code);
+		twoColumnSearchWindow(driver,Vessel_Header,Service_details_Codition,Vessel_Code);
 		Step_End(5, "Click on the Vessel search button and select the required vessel code.  ", test, test1);
 		
 		Step_Start(6, "Click on the Port search button and select the required port code.", test, test1);
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Port_Code);
+		twoColumnSearchWindow(driver,Port_Header,Service_details_Codition,Port_Code);
 		Step_End(6, "Click on the Port search button and select the required port code.", test, test1);
 		
 		Step_Start(7, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Terminal_Code);
+		twoColumnSearchWindow(driver,Terminal_Header,Service_details_Codition,Terminal_Code);
 		Step_End(7, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		
 		Step_Start(8, ".Click on the Arrival date search button and select the required date.", test, test1);
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, Arrival_Date_Value);
+		twoColumnSearchWindow(driver,Arrival_Date_Header,Arrival_Date_Condition,Arrival_Date_Value);
 		Step_End(8, ".Click on the Arrival date search button and select the required date.", test, test1);
 		
 		Step_Start(9, "Click on the Show button ", test, test1);
@@ -173,7 +182,7 @@ public class TC_Cost_Activity_Report_TS073 extends Keywords{
 			Step_End(15, "Click on the Eqp. type button and system will list down the activities in new window", test, test1);
 
 			Step_Start(16, ".Select the required Equipment type and click on the select button", test, test1);
-			selectValue(driver, Activity_details_Condition, EqpTypeList.get(i));
+			twoColumnSearchWindow(driver,Equipement_Header,Activity_details_Condition,EqpTypeList.get(i));
 			Step_End(16, ".Select the required Equipment type and click on the select button", test, test1);
 
 			Step_Start(17, "Check whether the equipment type is set in the activity and click on the vendor code button,system will listdown the vendor details in new window", test, test1);
@@ -193,7 +202,7 @@ public class TC_Cost_Activity_Report_TS073 extends Keywords{
 			Step_End(17, "Check whether the equipment type is set in the activity and click on the vendor code button,system will listdown the vendor details in new window", test, test1);
 
 			Step_Start(18, "Select the required vendor code", test, test1);
-			selectValue(driver, Activity_details_Condition, Vendor_Code_List.get(i));
+			twoColumnSearchWindow(driver,Vendor_Code_Header,Activity_details_Condition,Vendor_Code_List.get(i));
 			Step_End(18, "Select the required vendor code", test, test1);
 
 			Step_Start(19, "Enter the required amount by selecting each activity one by one", test, test1);
