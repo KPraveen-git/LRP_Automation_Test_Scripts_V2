@@ -57,6 +57,10 @@ public class TC_Rate_Request_SC22 extends Keywords{
 		tService=data.get("T_Service");
 		TOS=data.get("TOS_Option");
 		String Eqp_Quantity_Input =data.get("Eqp_Quantity_Input");
+		String Customer_code_Value2 = data.get("Customer_code_Value2");
+		String Customer_code_Value3 = data.get("Customer_code_Value3");
+		String Cust_code2 = data.get("Cust_code2");
+		String Cust_code3 = data.get("Cust_code3");
 		
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
@@ -66,51 +70,22 @@ public class TC_Rate_Request_SC22 extends Keywords{
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		//Login
-		waitForElement(driver, Username_input);
-		click(driver, Username_input);
-		waitForElement(driver, Username_input);
-		sendKeys(driver, Username_input, user_Name);
-		waitForElement(driver, APassword_input);
-		click(driver, APassword_input);
-		waitForElement(driver, APassword_input);
-		sendKeys(driver, APassword_input, pass_word);
-		waitForElement(driver, ALogin);
-		click(driver, ALogin);
-		if (isDisplayed(driver, home_Page)) {
-			System.out.println("*****User Logged in Successfully*****");
-			Extent_pass(driver, "*****User Logged in Successfully*****", test,test1);
-		}else {
-			System.out.println("*****User Unable to Logged in*****");
-			Extent_fail(driver, "*****User Unable to Login*****", test,test1);
-		}
+		LRP_Login(driver, user_Name, pass_word);
+		
+	
+		
 		//Switch User
-		waitForElement(driver, Switch_Profile);
-		click(driver,Switch_Profile);
-		waitForElement(driver, agency_Code_Filter);
-		sendKeys(driver, agency_Code_Filter, agencyUser);
-		waitForElement(driver, select_Agency);
-		click(driver, select_Agency);
-		waitForElement(driver, Switch_Profile_Button);
-		click(driver, Switch_Profile_Button);
-
-		waitForElement(driver, Module_SearchR);
-		click(driver,Module_SearchR);
-		waitForElement(driver, Module_SearchR);
-		sendKeys(driver, Module_SearchR, Field_Names);
-		waitForElement(driver, Rate_Request );
-		click(driver, Rate_Request );
-		waitForElement(driver, Rate_Request_Page);
-		if(isDisplayed(driver, Rate_Request_Page)) {
-			System.out.println("*****Rate Request Module is Dispalyed*****");
-			Extent_pass(driver, "*****Rate Request Module is Dispalyed*****", test,test1);
-		}else {
-			System.out.println("*****Rate Request Module is not Dispalyed");
-			Extent_fail(driver, "*****Rate Request Module is not Dispalyed*****", test,test1);
-		}
+		SwitchProfile(driver, agencyUser);
+		
+		//Module search
+		moduleNavigate(driver, Field_Names);
 		Step_Start(1, "Click on the new button in the toolbar", test, test1);
 
-		waitForElement(driver, Rate_Newbutton);
-		click(driver,Rate_Newbutton);
+
+		if(isdisplayed(driver, Rate_Newbutton)&&isElementEnabled(driver, Rate_Newbutton)) {
+			waitForElement(driver, Rate_Newbutton);
+			click(driver, Rate_Newbutton);
+		}
 
 		Step_End(1, "Click on the new button in the toolbar", test, test1);
 		waitForElement(driver, tService_Dropdown);
@@ -135,27 +110,28 @@ public class TC_Rate_Request_SC22 extends Keywords{
 
 		waitForElement(driver, Customer_Name_search_button);
 		click(driver, Customer_Name_search_button);
-		waitForElement(driver, Customer_Code_Select_dropdown);
-		click(driver, Customer_Code_Select_dropdown);
-		selectByText(driver, Customer_Code_Select_dropdown, Customer_Code);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-		sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-		click(driver, CustomerSearch_Frame_SearchButton);
+		
+		globalValueSearchWindow1(driver, Condition_Value, Customer_Code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
+		
+		
+		
+	
 		waitForDisplay(driver, pop_up_exp);
 		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 		}else {
-			waitForElement(driver, Customer_Select);
-			doubleClick(driver, Customer_Select);
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
+			waitForElement(driver, SelectButton);
+			click(driver, SelectButton);
 
-			Step_End(2, "Enter the customer name", test, test1);
 			waitForDisplay(driver, CustName_ExitBtn);
 			if(isDisplayed(driver, CustName_ExitBtn)) {
 				waitForElement(driver, CustName_ExitBtn);
 				click(driver, CustName_ExitBtn);
+			
 			}
 			Step_Start(3, "Enter the origin", test, test1);
 
@@ -213,40 +189,24 @@ public class TC_Rate_Request_SC22 extends Keywords{
 
 			Step_End(8, "Enter the Gross Weight", test, test1);
 			// Selecting the From Date
-			StringBuilder day = new StringBuilder();
-			StringBuilder month = new StringBuilder();
-			StringBuilder year = new StringBuilder();
+		
 			waitForElement(driver, Dateclick);
 			if (DatePicker.equalsIgnoreCase("Yes")) {
-				click(driver, Dateclick);
-				datePicker(From_date, day, month, year);
-				waitForElement(driver, Month_DD);
-				selectByText(driver, Month_DD,month.toString());
-				waitForElement(driver, Year_DD);
-				selectByText(driver, Year_DD,year.toString());
-				String date_select =String.format(Rate_Request_Loactors.date_select, day);
-				waitForElement(driver, date_select);
-				click(driver, date_select);
+				selectDatePicker(driver, Dateclick, From_date);
 			} else {
 				waitForElement(driver, Dateclick);
 				clearAndType(driver, Dateclick, From_date);
 			}
-			waitForElement(driver, Dateclick1);
-			if (DatePicker.equalsIgnoreCase("Yes")) {
-				click(driver, Dateclick1);
-				datePicker(To_date, day, month, year);
-				waitForElement(driver, Month_DD);
-				selectByText(driver, Month_DD,month.toString());
-				waitForElement(driver, Year_DD);
-				selectByText(driver, Year_DD,year.toString());
-				String date_select =String.format(Rate_Request_Loactors.date_select, day);
-				waitForElement(driver, date_select);
-				click(driver, date_select);
-			} else {
-				waitForElement(driver, Dateclick1);
-				clearAndType(driver, Dateclick1, To_date);
-			}
-
+			// Selecting the to Date
+			Extent_call(test, test1, "selecting TO date");
+			// Selecting the to Date
+					waitForElement(driver, Dateclick1);
+					if (DatePicker.equalsIgnoreCase("Yes")) {
+						selectDatePicker(driver, Dateclick1, To_date);
+					} else {
+						waitForElement(driver, Dateclick1);
+						clearAndType(driver, Dateclick1, To_date);
+					}
 			//checkboxs
 			checkBox(driver, DG_checkbox, DG_checkboxs);
 			checkBox(driver, oog_checkbox, OOG_checkbox);
@@ -258,14 +218,19 @@ public class TC_Rate_Request_SC22 extends Keywords{
 			waitForElement(driver, onCarriageLocator);
 			click(driver, onCarriageLocator);
 
-			waitForElement(driver, Exp_Days);
-			sendKeys(driver, Exp_Days, Exp_Det_Days_Input);
-			waitForElement(driver, Imp_Days);
-			sendKeys(driver, Imp_Days, Imp_Det_Days_Input);
-			waitForElement(driver, Exp_Demurage);
-			sendKeys(driver, Exp_Demurage, Exp_Demmurage_Input);
-			waitForElement(driver, Imp_Demurage);
-			sendKeys(driver, Imp_Demurage, Imp_Demmurage_Input);
+			waitForDisplay(driver, Exp_Days);
+			if(isdisplayed(driver, Exp_Days)&&isElementAccessible(driver, Exp_Days)) {
+				clearAndType(driver, Exp_Days, Exp_Det_Days_Input);
+			}
+			if(isdisplayed(driver, Imp_Days)&&isElementAccessible(driver, Imp_Days)) {
+				clearAndType(driver, Imp_Days, Imp_Det_Days_Input);
+			}
+			if(isdisplayed(driver, Exp_Demurage)&&isElementAccessible(driver, Exp_Demurage)) {
+				clearAndType(driver, Exp_Demurage, Exp_Demmurage_Input);
+			}
+			if(isdisplayed(driver, Imp_Demurage)&&isElementAccessible(driver, Imp_Demurage)) {
+				clearAndType(driver, Imp_Demurage, Imp_Demmurage_Input);
+			}
 			Step_Start(9, "Click routing", test, test1);
 			waitForElement(driver, Routing_Button);
 			click(driver, Routing_Button);
@@ -335,7 +300,9 @@ public class TC_Rate_Request_SC22 extends Keywords{
 			waitForElement(driver, reqNo_Textfield);
 			String reqno=getAttribute(driver, reqNo_Textfield, "value");
 			System.out.println(reqno);
-
+			waitForElement(driver, Mail_Cancel_button);
+			click(driver, Mail_Cancel_button);
+			
 			if(Do_You_Want_Delete.equalsIgnoreCase("Yes")) {
 				Extent_call(test, test1, "Rate request Delete Started");
 
@@ -343,10 +310,7 @@ public class TC_Rate_Request_SC22 extends Keywords{
 				click(driver, close_Tab);	
 
 				//delete the rate request
-				waitForElement(driver, Module_SearchR);
-				sendKeys(driver, Module_SearchR, module2);	
-				waitForElement(driver, SRR_Gate);
-				click(driver, SRR_Gate);
+				moduleNavigate(driver, module2);
 
 
 				waitForElement(driver, srrGate_Tab);

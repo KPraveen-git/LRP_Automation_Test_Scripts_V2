@@ -1,6 +1,6 @@
 package locators;
 
-public interface Ems_Contract_Registration_Locators extends EMS_Gate_Locators {
+public interface Ems_Contract_Registration_Locators extends EMS_Gate_Locators{
 	
 	//sc11_I
 		public static String contype_opt ="contype_opt>//ul//*[text()='%s']";

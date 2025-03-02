@@ -40,6 +40,16 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_06 extends Keywords {
 		String ware_House_Type_Select = Data.get("Ware_House_Type_Select");
 		String dropdown_Condition = Data.get("Dropdown_Condition");
 		String merchantPopup =Data.get("MerchantPopup");
+		String PLD_Input =Data.get("PLD_Input");
+		String PLD_Search =Data.get("PLD_Search");
+		String PLA_Input =Data.get("PLA_Input");
+		String PLA_Search =Data.get("PLA_Search");
+		String Address1_Search =Data.get("Address1_Search");
+		String Address1_Input =Data.get("Address1_Input");
+		String Address2_Search =Data.get("Address2_Search");
+		String Address2_Input =Data.get("Address2_Input");
+	
+
 
 		navigateUrl(driver, URL);
 
@@ -80,31 +90,19 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_06 extends Keywords {
 
 			Step_End(2, "Click add(+) button in BookNo field.", test, test1);
 
-			click(driver, type_Select1);
-			selectByText(driver, type_Select1, field_select);
-			waitForDisplay(driver, globalSearch_Condition_Dropdown1);
-			click(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
-			
 			Step_Start(3, "Paste book number and click search button.", test, test1);
 
-			sendKeys(driver, globalSearch_InputTextfield1, data1);
+			Step_Start(4, "Select the book number", test, test1);
 
-			click(driver, globalSearch_Frame_SearchButton);
+			globalValueSearchWindow(driver, dropdown_Condition, field_select, data1, PLA_Search, PLA_Input, PLD_Search, PLD_Input);
 			
 			
 			Step_End(3, "Paste book number and click search button.", test, test1);
 
-			Step_Start(4, "Select the book number", test, test1);
 
-			waitForElement(driver, retrieved_Value_Select);
-			click(driver, retrieved_Value_Select);
-			
-			waitForElement(driver, Aselectbutton1);
-			click(driver, Aselectbutton1);
-
+		
 			Step_End(4, "Select the book number", test, test1);
-
+			
 		}
 
 		Step_Start(5, "system will display 'Selected Booking is a Merchant. Do you want to proceed?', click yes.", test,
@@ -157,31 +155,20 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_06 extends Keywords {
 		Step_End(8, "click all in the box.", test, test1);
 
 		Step_Start(9, "click search icon in the warehouse field.", test, test1);
-
+		Step_Start(9, "click search icon in the warehouse field.", test, test1);
 		waitForElement(driver, Add_ware_house);
 		click(driver, Add_ware_house);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, ware_House_Type_Select);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
-
+		
 		Step_End(9, "click search icon in the warehouse field.", test, test1);
+
 		Step_Start(10, "enter % in warehouse name.", test, test1);
-
-		sendKeys(driver, globalSearch_InputTextfield1, Ware_House_number);
-
-		click(driver, globalSearch_Frame_SearchButton);
-
-		Step_End(10, "enter % in warehouse name.", test, test1);
-
 		Step_Start(11, "click on the warehouse and click select button.", test, test1);
 
-		waitForElement(driver, retrieved_Value_Select);
-		click(driver, retrieved_Value_Select);
+		globalValueSearchWindow(driver, dropdown_Condition, ware_House_Type_Select, Ware_House_number, Address1_Search, Address1_Input, Address2_Search, Address2_Input);
 
-		waitForElement(driver, Aselectbutton1);
-		click(driver, Aselectbutton1);
+		
+		Step_End(10, "enter % in warehouse name.", test, test1);
+
 
 		Step_End(11, "click on the warehouse and click select button.", test, test1);
 		Step_Start(12, "click add button.", test, test1);

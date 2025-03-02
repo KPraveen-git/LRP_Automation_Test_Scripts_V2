@@ -34,6 +34,8 @@ public class TC_Cost_Activity_Report_TS022 extends Keywords {
 		String Sub_Activity = data.get("Sub_Activity");
 		String PrivilegeHeaders = data.get("PrivilegeHeaders");
 		String Expected_Privileges = data.get("Expected_Privileges");
+		String Username_Header = data.get("Username_Header");
+		String Agency = data.get("Agency");
 
 		Extent_Start(tc_Name, test, test1);
 
@@ -42,6 +44,8 @@ public class TC_Cost_Activity_Report_TS022 extends Keywords {
 		Step_Start(1, "login to the application", test, test1);
 
 		LRP_Login(driver, username, password);
+		
+		SwitchProfile(driver, Agency);
 
 		Step_End(1, "login to the application", test, test1);
 
@@ -59,7 +63,7 @@ public class TC_Cost_Activity_Report_TS022 extends Keywords {
 		waitForElement(driver, ULS_UserSearch);
 		click(driver, ULS_UserSearch);
 
-		selectValue(driver, User_Condition, username);
+		twoColumnSearchWindow(driver, Username_Header, User_Condition, username);
 
 		Step_End(3, "Click on the global search option.Enter the required username and click on the select option",
 				test, test1);
@@ -153,35 +157,17 @@ public class TC_Cost_Activity_Report_TS022 extends Keywords {
 		Step_End(9, "Check whether the system opens the search window", test, test1);
 
 		Step_Start(10, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(11, "Then click on the search button", test, test1);
+		Step_Start(12, "System will show the CAR No", test, test1);
+		Step_Start(13, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
 
 		Step_End(10, "Enter the required CAR No. in the CAR No search field", test, test1);
 
-		Step_Start(11, "Then click on the search button", test, test1);
-
-		click(driver, globalSearch_Frame_SearchButton);
-
 		Step_End(11, "Then click on the search button", test, test1);
 
-		Step_Start(12, "System will show the CAR No", test, test1);
-
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
 		Step_End(12, "System will show the CAR No", test, test1);
-
-		Step_Start(13, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
-
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
-
-		waitInvisible(driver, SelectButton);
 
 		Step_End(13, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 

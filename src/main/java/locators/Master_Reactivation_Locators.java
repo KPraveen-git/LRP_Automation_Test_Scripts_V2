@@ -1,6 +1,6 @@
 package locators;
 
-public interface Master_Reactivation_Locators extends Equipment_Profile_Locators{
+public interface Master_Reactivation_Locators extends Movement_Entry_Locators{
 	public static String Master_Reactivation_New_Button="Master_Reactivation_New_Button>//div[contains(@id,'tblComponent')]//button[contains(@id,'btnTblNew')]";
 	public static String ID_Popup_Yes_Button = "ID_Popup_Yes_Button>//h2//following::button[text()='Yes']";
 	public static String ID_Popup_No_Button = "ID_Popup_No_Button>//h2//following::button[text()='No']";

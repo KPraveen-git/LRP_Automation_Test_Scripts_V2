@@ -30,6 +30,7 @@ public class TC_Cost_Activity_Report_TS010 extends Keywords {
 		String Filter_Columns = data.get("Filter_Columns");
 		String Activity = data.get("Activity");
 		String Updated_Popup = data.get("Updated_Popup");
+		String Agency = data.get("Agency");
 
 		Extent_Start(tc_Name, test, test1);
 
@@ -40,12 +41,8 @@ public class TC_Cost_Activity_Report_TS010 extends Keywords {
 		navigateUrl(driver, url);
 
 		LRP_Login(driver, username, password);
-
-		Step_End(1,
-				"Once login to the application and click on switch profile option and select for the required agency",
-				test, test1);
-
-		Step_Start(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
+		
+		SwitchProfile(driver, Agency);
 
 		verifyMainMenu(driver);
 
@@ -76,32 +73,19 @@ public class TC_Cost_Activity_Report_TS010 extends Keywords {
 
 		Step_Start(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		click(driver, globalSearch_Frame_SearchButton);
-
-		Step_End(6, "Then click on the search button", test, test1);
 
 		Step_Start(7, "System will show the CAR No", test, test1);
 
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
-		Step_End(7, "System will show the CAR No", test, test1);
-
 		Step_Start(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
+
+		Step_End(6, "Then click on the search button", test, test1);
+
+		Step_End(7, "System will show the CAR No", test, test1);
 
 		Step_End(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
@@ -147,6 +131,7 @@ public class TC_Cost_Activity_Report_TS010 extends Keywords {
 		for (String column : columnnames) {
 
 			waitForElement(driver, Misc_FilterInput);
+			clear(driver, Misc_FilterInput);
 			sendKeys(driver, Misc_FilterInput, column);
 
 			jsClick(driver, Misc_FilterDeselect);

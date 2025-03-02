@@ -64,6 +64,23 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 			String chasis_pickup_Search_data=TDN_SC_05.get("chasis_pickup_Search_data");
 			String chasis_drop_Search_data=TDN_SC_05.get("chasis_drop_Search_data");
 			String loadStatus=TDN_SC_05.get("LoadStatus");
+			String PLD_Input =TDN_SC_05.get("PLD_Input");
+			String PLD_Search =TDN_SC_05.get("PLD_Search");
+			String PLA_Input =TDN_SC_05.get("PLA_Input");
+			String PLA_Search =TDN_SC_05.get("PLA_Search");
+			String Address1_Search =TDN_SC_05.get("Address1_Search");
+			String Address1_Input =TDN_SC_05.get("Address1_Input");
+			String Address2_Search =TDN_SC_05.get("Address2_Search");
+			String Address2_Input =TDN_SC_05.get("Address2_Input");
+			String Vendor_Input =TDN_SC_05.get("Vendor_Input");
+			String Vendor_Name_Search =TDN_SC_05.get("Vendor_Name_Search");
+			String Address_Input =TDN_SC_05.get("Address_Input");
+			String Address_Search =TDN_SC_05.get("Address_Search");
+			String pickup_location_header =TDN_SC_05.get("pickup_location_header");
+			String return_location_header =TDN_SC_05.get("return_location_header");
+			String chasis_pickup_header =TDN_SC_05.get("chasis_pickup_header");
+			String chasis_drop_header =TDN_SC_05.get("chasis_drop_header");
+			String cust_depot_term_header =TDN_SC_05.get("cust_depot_term_header");
 
 			
 		navigateUrl(driver,url);
@@ -109,32 +126,21 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 					safeclick(driver, BL_Add);
 					
 					Step_End(2, "Click add(+) button in BookNo field.", test, test1);
-
-				
-					click(driver, type_Select1);
-					selectByText(driver, type_Select1, field_select);
-					waitForDisplay(driver, globalSearch_Condition_Dropdown1);
-					click(driver, globalSearch_Condition_Dropdown1);
-					selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
-					
 					Step_Start(3, "Paste book number and click search button.", test, test1);
 
-					sendKeys(driver, globalSearch_InputTextfield1, data1);
+					Step_Start(4, "Select the book number", test, test1);
 
-					click(driver, globalSearch_Frame_SearchButton);
+					globalValueSearchWindow(driver, dropdown_Condition, field_select, data1, PLA_Search, PLA_Input, PLD_Search, PLD_Input);
 					
 					
 					Step_End(3, "Paste book number and click search button.", test, test1);
 
-					Step_Start(4, "Select the book number", test, test1);
 
-					waitForElement(driver, retrieved_Value_Select);
-					click(driver, retrieved_Value_Select);
-					
-					waitForElement(driver, Aselectbutton1);
-					click(driver, Aselectbutton1);
-					
+				
 					Step_End(4, "Select the book number", test, test1);
+					
+					
+			
 
 				}
 			
@@ -188,33 +194,20 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 			Step_End(8, "click all in the box.", test, test1);
 
 			Step_Start(9, "click search icon in the warehouse field.", test, test1);
-
 			waitForElement(driver, Add_ware_house);
 			click(driver, Add_ware_house);
-			waitForElement(driver, type_Select1);
-			selectByText(driver, type_Select1, ware_House_Type_Select);
-			waitForElement(driver, globalSearch_Condition_Dropdown1);
-			click(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
 			
 			Step_End(9, "click search icon in the warehouse field.", test, test1);
 
 			Step_Start(10, "enter % in warehouse name.", test, test1);
+			Step_Start(11, "click on the warehouse and click select button.", test, test1);
 
-			sendKeys(driver, globalSearch_InputTextfield1, Ware_House_number);
+			globalValueSearchWindow(driver, dropdown_Condition, ware_House_Type_Select, Ware_House_number, Address1_Search, Address1_Input, Address2_Search, Address2_Input);
 
-			click(driver, globalSearch_Frame_SearchButton);
 			
 			Step_End(10, "enter % in warehouse name.", test, test1);
 
-			Step_Start(11, "click on the warehouse and click select button.", test, test1);
 
-			waitForElement(driver, retrieved_Value_Select);
-			click(driver, retrieved_Value_Select);
-			
-			waitForElement(driver, Aselectbutton1);
-			click(driver, Aselectbutton1);
-			
 			Step_End(11, "click on the warehouse and click select button.", test, test1);
 
 			Step_Start(12, "click in app date field and select the current date.", test, test1);
@@ -222,6 +215,7 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 			if (date_Picker.equalsIgnoreCase("Yes")) {
 				waitForElement(driver, Date_click);
 				selectDatePickerWithTime1(driver, Date_click, App_Date);
+				click(driver, State_Label);
 
 				
 			} else {
@@ -304,38 +298,18 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 
 			waitForElement(driver, modeof_transport);
 			click(driver, modeof_transport);
-			String Select_ModeOfTransport=String.format(mode_Of_Transport, Modeof_Transport);
+			String Select_ModeOfTransport=String.format(DropDown_Select, Modeof_Transport);
+			waitForElement(driver, Select_ModeOfTransport);
 			safeclick(driver, Select_ModeOfTransport);
 			
 			Step_End(21, "select mode of transport as truck in drop down.", test, test1);
 			
 			Step_Start(22, " click search icon in vendor details, enter % in vendor code and select the vendor.", test, test1);
+			   waitForElement(driver, vendor_searchicon);
+			    click(driver, vendor_searchicon);
+			globalValueSearchWindow(driver, dropdown_Condition, global_search_Vendor_Code_Option1, Vender_Code, Address_Search, Address_Input, Vendor_Name_Search, Vendor_Input);
 
 
-		    waitForElement(driver, vendor_searchicon);
-		    click(driver, vendor_searchicon);
-	     		
-		    waitForElement(driver, select_first);
-	 		click(driver, select_first);
-	 		waitForElement(driver, select_first);
-	 		selectByText(driver, select_first, global_search_Vendor_Code_Option1);
-	 		
-	 		waitForElement(driver, globalSearch_Condition_Dropdown1);
-	 		click(driver, globalSearch_Condition_Dropdown1);
-	 		selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
-	 		
-		    waitForElement(driver, vendor_Code);
-		    sendKeys(driver, vendor_Code, Vender_Code);
-		    
-		    waitForElement(driver, vendor_Code_searchicon);
-		    click(driver, vendor_Code_searchicon);
-		    
-		    waitForElement(driver, retrieved_Value_Select);
-			click(driver, retrieved_Value_Select);
-			
-			waitForElement(driver, Aselectbutton1);
-			click(driver, Aselectbutton1);
-			
 			Step_End(22, " click search icon in vendor details, enter % in vendor code and select the vendor.", test, test1);
 
 			Step_Start(23, "select Trans. Type Mode as pickup only in drop down.", test, test1);
@@ -363,7 +337,7 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 
 				waitForElement(driver, pickup_loc_search_icon);
 				click(driver, pickup_loc_search_icon);
-				selectValue(driver, condition, pickup_loc_search_data);
+				twoColumnSearchWindow(driver, pickup_location_header, condition, pickup_loc_search_data);
 			}
 			}
 			//2
@@ -386,7 +360,7 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 
 				waitForElement(driver, cust_depo_term_search_icon);
 				click(driver, cust_depo_term_search_icon);
-				selectValue(driver, condition, cust_dep_search_data);
+				twoColumnSearchWindow(driver, cust_depot_term_header, condition, cust_dep_search_data);
 			}
 			}
 			//3
@@ -407,7 +381,7 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 
 				waitForElement(driver, return_location_searchicon);
 				click(driver, return_location_searchicon);
-				selectValue(driver, condition, return_loc_search_data);
+				twoColumnSearchWindow(driver, return_location_header, condition, return_loc_search_data);
 			}
 			}
 		
@@ -430,7 +404,7 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 				if(!chasis_pickup_Search_data.equals("")) {
 					waitForElement(driver, Chassis_Pickup_Loc_Search);
 					click(driver, Chassis_Pickup_Loc_Search);
-					selectValue(driver, condition, chasis_pickup_Search_data);
+					twoColumnSearchWindow(driver, chasis_pickup_header, condition, chasis_pickup_Search_data);
 				}
 				//drop
 				if(!chasis_drop_dd_data.equals("")) {
@@ -443,7 +417,7 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_05 extends Keywords{
 				if(chasis_drop_Search_data.equals("")) {
 					waitForElement(driver, Chassis_Drop_Loc_Search);
 					click(driver, Chassis_Drop_Loc_Search);
-					selectValue(driver, condition, chasis_drop_Search_data);
+					twoColumnSearchWindow(driver, chasis_drop_header, condition, chasis_drop_Search_data);
 				}
 			}
 

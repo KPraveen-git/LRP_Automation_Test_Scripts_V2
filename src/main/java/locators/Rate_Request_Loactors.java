@@ -1,8 +1,8 @@
 package locators;
-public interface Rate_Request_Loactors extends Contract_Management_System_Locators {
+public interface Rate_Request_Loactors extends Scale_In_Out_Reference{
 	public static String Req_Rate_Loc="Req_Rate_Loc>(//tbody[@id='REQ-REQ_OFRGrid_data']//tr[@data-ri='0']//div[contains(@id,'REQ_OFRGrid')]//span[@class='REQ_txtAllinOFR'])[1]";
 	//Rate Request locators:
-
+	public static String Gross_Weights="Gross_Weight>//input[@id='REQ-REQ_txtweight_input']";
 	//sc15
 	public static String Surcharge_remove_Popup="Surcharge_remove_Popup>(//h2[text()='Rate Request']//following::span)[2]";
 	//sc16
@@ -13,7 +13,6 @@ public interface Rate_Request_Loactors extends Contract_Management_System_Locato
 	//SC14
 	public static String Table_Header="Table_Header>//thead[@id='REQ-REQ_surchargeGrid_head']//th";
 	public static String Table_Rows="Table_Rows>//tbody[@id='REQ-REQ_surchargeGrid_data']//tr";
-
 	public static String Select_Agent = "Select_Agent>//*[@id=\"SWP-SWP_datatable_data\"]/tr[3]/td[1]";
 	public static String Select_Agent1 = "Select_Agent1>(//tr[contains(@class,'ui-widget-content ui-datatable-even')]//td)[3]";
 	public static String Switch_ProfileB = "Switch_ProfileB>(//span[text()='Switch Profile'])[2]";
@@ -27,9 +26,10 @@ public interface Rate_Request_Loactors extends Contract_Management_System_Locato
 	public static String Orgin_Input = "Orgin-Input>//input[@id='REQ-REQ_txtOrigin_auto_input']";
 	public static String Delivery_Input = "Delivery_Input>//input[@id='REQ-REQ_txtDelivery_auto_input']";
 	public static String Commodity_Input ="Commodity_Input>//input[@id='REQ-REQ_txtCommodity_auto_input']";
+	public static String Ref_Number_CONTRIBUTE ="Ref_Number>//input[@id='CNC-CNC_txtOrigintransit']";                                             //input[@id='REQ-REQ_txtCommodity_auto_input']
+	public static String Gross_Weight_RR = "Gross_Weight>//input[@id='REQ-REQ_txtweight_input']";
 	public static String Eqp_Type = "Eqp_Type>//input[@id='REQ-REQ_txtEquipment_auto_input']";
 	public static String Eqp_Quantity = "Equ-Quantity>//input[@id='REQ-REQ_txtqty']";
-	public static String Gross_Weight = "Gross_Weight>//input[@id='REQ-REQ_txtweight_input']";
 	public static String checkbox_DG="checkbox_DG>//div[@id='REQ-REQ_chkDG']";
 	public static String Routing_Button = "Routing-Button>//button[@id='REQ-REQ_btnRouting']";
 	public static String Toolbar_Serch = "Toolbar_Serach>//button[@id='REQ-tbl-nfr_qs_schbtn']";
@@ -119,25 +119,25 @@ public interface Rate_Request_Loactors extends Contract_Management_System_Locato
 	public static String Routing_Value="Routing_Value>//div[text()='ACM']";
 	public static String added_portpair="port pair>//td[text()='Awaiting Approval']";
 	public static String global_edit_btn="global edit btn>//button[@id='REQ-tbl-btnTblEdit']";
-	//SRR Gate
-	public static String submit_RadioButton="submit_RadioButton>//table[@id='SRLform-SRL_rdSubmit']//following::label[.='SUBMIT']";
-	public static String menu_Icon_Grid="menu_Icon_Grid>(//div[@col-id='srrno']//child::span[@ref='eMenu'])[1]";
-	public static String filter_Icon_Grid="filter_Icon_Grid>//div[@ref='eHeader']/child::span[@aria-label='filter']";
-	public static String filter_Inputfield="filter_Inputfield>(//div[@ref='eFilterLoading']//following::input[@ref='eInput'])[1]";
-	public static String srrGate_Tab="srrGate_Tab>//a[@role='presentation']/child::label[.='SRR Gate']";
-	public static String select_Actual_ReqNo="select_Actual_ReqNo>//div[@row-index='0']//div[@col-id='srrno']";
-	public static String moveTo_Pending="moveTo_Pending>//span[.='Move to Pending']";
-	public static String close_Moved_Pending_Popup="close_Moved_Pending_Popup>//div[@id='primefacesmessagedlg']//following::a[@role='button']";
-	public static String pending_RadioButton="pending_RadioButton>//table[@id='SRLform-SRL_rdPending']//following::label[.='PENDING']";
-	public static String SRR_Search_Value="SRR_Search_Value>//li[@data-item-value='SRL']";
-	public static String SRR_Req_Type = "SRR_Req_Type>//label[@id='SRLform-cmbType_label']";
-	public static String All_Req_Type = "All_Req_Type>//li[text()='All']";
-	public static String SRR_Refresh_Btn = "SRR_Refresh_Btn>//button[@id='SRLform-btnShow']";
-	public static String NOR_Check_Box = "NOR_Check_Box>//div[@id='REQ-REQ_chkNOR']//span";
-	public static String Save_As_Btn="Save_As_Btn>//button[@id='REQ-tbl-btnTblSaveas']"; 
-	public static String SaveAs_YesBtn="SaveAs_YesBtn>//button[text()='Yes']";
-	public static String Current_Date="Current_Date>//input[@id='REQ-REQ_txtTodayDate_input']";
-	public static String From_Date="From_Date>//input[@id='REQ-REQ_txtFromDateDtl_input']";
+//	//SRR Gate
+//	public static String submit_RadioButton="submit_RadioButton>//table[@id='SRLform-SRL_rdSubmit']//following::label[.='SUBMIT']";
+//	public static String menu_Icon_Grid="menu_Icon_Grid>(//div[@col-id='srrno']//child::span[@ref='eMenu'])[1]";
+//	public static String filter_Icon_Grid="filter_Icon_Grid>//div[@ref='eHeader']/child::span[@aria-label='filter']";
+//	public static String filter_Inputfield="filter_Inputfield>(//div[@ref='eFilterLoading']//following::input[@ref='eInput'])[1]";
+//	public static String srrGate_Tab="srrGate_Tab>//a[@role='presentation']/child::label[.='SRR Gate']";
+//	public static String select_Actual_ReqNo="select_Actual_ReqNo>//div[@row-index='0']//div[@col-id='srrno']";
+//	public static String moveTo_Pending="moveTo_Pending>//span[.='Move to Pending']";
+//	public static String close_Moved_Pending_Popup="close_Moved_Pending_Popup>//div[@id='primefacesmessagedlg']//following::a[@role='button']";
+//	public static String pending_RadioButton="pending_RadioButton>//table[@id='SRLform-SRL_rdPending']//following::label[.='PENDING']";
+//	public static String SRR_Search_Value="SRR_Search_Value>//li[@data-item-value='SRL']";
+//	public static String SRR_Req_Type = "SRR_Req_Type>//label[@id='SRLform-cmbType_label']";
+//	public static String All_Req_Type = "All_Req_Type>//li[text()='All']";
+//	public static String SRR_Refresh_Btn = "SRR_Refresh_Btn>//button[@id='SRLform-btnShow']";
+//	public static String NOR_Check_Box = "NOR_Check_Box>//div[@id='REQ-REQ_chkNOR']//span";
+//	public static String Save_As_Btn="Save_As_Btn>//button[@id='REQ-tbl-btnTblSaveas']"; 
+//	public static String SaveAs_YesBtn="SaveAs_YesBtn>//button[text()='Yes']";
+//	public static String Current_Date="Current_Date>//input[@id='REQ-REQ_txtTodayDate_input']";
+//	public static String From_Date="From_Date>//input[@id='REQ-REQ_txtFromDateDtl_input']";
 	//surcharge
 	public static String surchargeGrid ="surchargeGrid>//div[@id='REQ-REQ_surchargeGrid']/child::div[@class='ui-datatable-scrollable-body']";
 	public static String SurCharge_LocInput="SurCharge_LocInput>(//td[.='BSC']/following::div[contains(@id,'REQ-REQ_surchargeGrid')])[3]";
@@ -182,7 +182,7 @@ public interface Rate_Request_Loactors extends Contract_Management_System_Locato
 	public static String Validsame = "Validsame >(//b[contains(text(),'Valid From')])[1]";
 	public static String Nosudule = "Nosudule >(//p[contains(text(),'No Schedules are available')])[1]";
 	public static String agencypop = "agencypop >(//b[contains(text(),'Standard Rate Request(MRG/SRR)')])[1]";
-
+	public static String Gross_Weight="Gross_Weight>//input[@id='REQ-REQ_txtweight_input']";
 
 	public static String raterequest = "raterequest >(//label[text()='Rate Request'])[1]";
 	public static String non_containradio_btn = "non_containradio_btn >//label[text()='Non Containerized']//preceding::div[1]";
@@ -218,14 +218,14 @@ public interface Rate_Request_Loactors extends Contract_Management_System_Locato
 	public static String Customer_Name_search_button="Customer_Name_search_button>//button[@id='REQ-REQ_btncustname-REQ_btncustname']";
 	public static String Customer_Code_Select_dropdown="Customer_Code_Select_dropdown>//select[@onchange='myFunction1()']";
 
-
-	public static String srrGate_FromDate = "srrGate_FromDate>//input[@id='SRLform-txtFrom_input']";
-	public static String srrGate_ToDate = "srrGate_ToDate>//input[@id='SRLform-txtTo_input']";
-	public static String RequestType = "RequestType>//ul[@id='REQ-REQ_cmbEnquiryType_items']/li[text()='%s']";	
-
-
-	public static String non_Containerized_RadioButton = "non_Containerized_RadioButton>//label[text()='Non Containerized']/preceding-sibling::div";
-	public static String srrGate_Module = "srrGate_Module>//li[@moduleid='SRL']";
+//
+//	public static String srrGate_FromDate = "srrGate_FromDate>//input[@id='SRLform-txtFrom_input']";
+//	public static String srrGate_ToDate = "srrGate_ToDate>//input[@id='SRLform-txtTo_input']";
+//	public static String RequestType = "RequestType>//ul[@id='REQ-REQ_cmbEnquiryType_items']/li[text()='%s']";	
+//
+//
+//	public static String non_Containerized_RadioButton = "non_Containerized_RadioButton>//label[text()='Non Containerized']/preceding-sibling::div";
+//	public static String srrGate_Module = "srrGate_Module>//li[@moduleid='SRL']";
 	//  		
 	public static String service_Textfield="service_Textfield>//input[@id='REQ-REQ_txtService_input']";
 	public static String pre_Carriage_Radiobtn = "pre_Carriage_Radiobtn>//legend[text()='Pre Carriage']//following::label[text()='%s']";

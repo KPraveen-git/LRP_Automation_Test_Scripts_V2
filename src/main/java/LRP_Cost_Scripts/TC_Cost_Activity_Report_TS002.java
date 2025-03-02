@@ -24,17 +24,14 @@ public class TC_Cost_Activity_Report_TS002 extends Keywords {
 		String username = data.get("Username");
 		String password = data.get("Password");
 		String Cost_Activity_Report_Module = data.get("Cost_Activity_Report_Module");
-		String car_value = data.get("Car_Number");
 		String AgencyUser = data.get("AgencyUser");
 		String CAR_Retrieve_Type1 = data.get("CAR_Retrieve_Type1");
 		String CAR_Retrieve_Condition1 = data.get("CAR_Retrieve_Condition1");
 		String CAR_Number_Retrieve_Value1 = data.get("CAR_Number_Retrieve_Value1");
-
 		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
 		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
 		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
 		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
-		
 		
 		
 		
@@ -89,22 +86,24 @@ public class TC_Cost_Activity_Report_TS002 extends Keywords {
 		Step_End(6, "Then click on the search button", test, test1);
 		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
 		
-	
 
 		Step_Start(9, "System will retrieve the CAR", test, test1);
 
+		waitForElement(driver, Vessel_Search_Btn_CAR);
+		
 		waitForElement(driver, car_Number_val);
+		
 		String Carvalue = getAttribute(driver, car_Number_val, "value");
 
 		System.out.println("Carvalue :" + Carvalue);
 
-		if (car_value.equals(Carvalue)) {
-			System.out.println("Matched exp value :" + car_value + "actual value :" + Carvalue);
-			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + car_value
+		if (CAR_Number_Retrieve_Value1.equals(Carvalue)) {
+			System.out.println("Matched exp value :" + CAR_Number_Retrieve_Value1 + "actual value :" + Carvalue);
+			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + CAR_Number_Retrieve_Value1
 					+ " || Actual Report Activity is : " + Carvalue, test, test1);
 		} else {
-			System.out.println("Not matched exp value :" + car_value + "actual value :" + Carvalue);
-			Extent_fail(driver, "Matched || " + " Expected Report Activity is : " + car_value
+			System.out.println("Not matched exp value :" + CAR_Number_Retrieve_Value1 + "actual value :" + Carvalue);
+			Extent_fail(driver, "Matched || " + " Expected Report Activity is : " + CAR_Number_Retrieve_Value1
 					+ " || Actual Report Activity is : " + Carvalue, test, test1);
 		}
 

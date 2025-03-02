@@ -1,6 +1,6 @@
 package locators;
 
-public interface Equipment_Master_Locators extends Master_Reactivation_Locators{
+public interface Equipment_Master_Locators extends Equipment_Profile_Locators{
 	// TC_Equipment_Master_TS051
 		public static String chassisSel = "chassisSel>//ul[contains(@id,'EQP-EQP_cmbChassis_items')]//li[contains(text(),'%s')]";
 		public static String breakBulkSel="breakBulkSel>//ul[contains(@id,'EQP-EQP_cmbBreakbulk_items')]//li[contains(text(),'%s')]";

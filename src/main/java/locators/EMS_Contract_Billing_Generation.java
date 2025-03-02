@@ -1,6 +1,6 @@
 package locators;
 
-public interface EMS_Contract_Billing_Generation extends Ems_Contract_Registration_Locators {
+public interface EMS_Contract_Billing_Generation extends Ems_Contract_Registration_Locators{
 
 ////TC_Scale_Out_TS_043
 

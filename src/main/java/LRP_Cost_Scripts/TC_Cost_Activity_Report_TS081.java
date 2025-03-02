@@ -56,6 +56,12 @@ public class TC_Cost_Activity_Report_TS081 extends Keywords{
 		String sub_Activity_Codes = data.get("Sub_Activity_Codes");
 		String warning_Message = data.get("Warning_Message");
 
+		String port_code_header = data.get("port_code_header");
+		String service_header = data.get("service_header");
+		String vessel_code_header = data.get("vessel_code_header");
+		String terminal_code_header = data.get("terminal_code_header");
+		String arrival_date_header = data.get("arrival_date_header");
+		String sub_activity_code_header = data.get("sub_activity_code_header");
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -97,36 +103,37 @@ public class TC_Cost_Activity_Report_TS081 extends Keywords{
 
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Service_Code);
-
+//		selectValue(driver, Service_details_Codition, Service_Code);
+		twoColumnSearchWindow(driver, service_header, Service_details_Codition, Service_Code);
 		Step_End(5, "Click on the Service search button and select the required service code. ", test, test1);
 		Step_Start(6, "Click on the Vessel search button and select the required vessel code.", test, test1);
 
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Vessel_Code);
-		
+//		selectValue(driver, Service_details_Codition, Vessel_Code);
+		twoColumnSearchWindow(driver, vessel_code_header, Service_details_Codition, Vessel_Code);
+
 		Step_End(6, "Click on the Vessel search button and select the required vessel code.", test, test1);
 		Step_Start(7, "Click on the Port search button and select the required port code", test, test1);
 
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Port_Code);
-		
+		twoColumnSearchWindow(driver, port_code_header, Service_details_Codition, Port_Code);
+
 		Step_End(7, "Click on the Port search button and select the required port code", test, test1);
 		Step_Start(8, "Click on the Terminal search button and select the required terminal code", test, test1);
 
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Terminal_Code);
-		
+		twoColumnSearchWindow(driver, terminal_code_header, Service_details_Codition, Terminal_Code);
+
 		Step_End(8, "Click on the Terminal search button and select the required terminal code", test, test1);
 		Step_Start(9, "Click on the Arrival date search button and select the required date", test, test1);
 
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, Arrival_Date_Value);
-		
+		twoColumnSearchWindow(driver, arrival_date_header, Arrival_Date_Condition, Arrival_Date_Value);
+
 		Step_End(9, "Click on the Arrival date search button and select the required date", test, test1);
 		
 		Step_Start(10, "Click on the Show button", test, test1);
@@ -193,12 +200,12 @@ public class TC_Cost_Activity_Report_TS081 extends Keywords{
 			
 			waitForElement(driver, port_Search_Button_PTM);
 			click(driver, port_Search_Button_PTM);
-			selectValue(driver, condition_2, Port_Code);
-			
+			twoColumnSearchWindow(driver, port_code_header, condition_2, Port_Code);
+
 			waitForElement(driver, terminal_Search_Button_PTM);
 			click(driver, terminal_Search_Button_PTM);
-			selectValue(driver, condition_2, Terminal_Code);
-			
+			twoColumnSearchWindow(driver, terminal_code_header, condition_2, Terminal_Code);
+
 			}
 		
 
@@ -208,8 +215,8 @@ public class TC_Cost_Activity_Report_TS081 extends Keywords{
 				waitForElement(driver, subActivity_Add_Button_PTM);
 				click(driver, subActivity_Add_Button_PTM);
 				
-			selectValue1(driver, condition_2, sub_Activity_Code);
-			
+			twoColumnSearchWindow(driver, sub_activity_code_header, condition_2, sub_Activity_Code);
+
 			}
 			waitForElement(driver, add_Button_PTM);
 			click(driver, add_Button_PTM);

@@ -70,11 +70,13 @@ public class TC_Rate_Request_SC68 extends Keywords{
 		String tService=data.get("T_Service");
 		String TOS=data.get("TOS_Option");
 		String paymentMode=data.get("PaymentMode");
-		String payLocation=data.get("PayLocation");
-		String condition=data.get("Condition");
 		String flexi_checkbox=data.get("Flexi_checkbox");
 		String MTY_checkbox=data.get("MTY_checkbox");
 
+		String search2=data.get("search2");
+		String input2=data.get("input2");
+		String search3=data.get("search3");
+		String input3=data.get("input3");
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
 		String preCarriageLocator = String.format(Rate_Request_Loactors.pre_Carriage_Radiobtn, Pre_Carriage_Radiobtn);
@@ -130,34 +132,35 @@ public class TC_Rate_Request_SC68 extends Keywords{
 		
 		waitForElement(driver, Customer_Name_search_button);
 	   click(driver, Customer_Name_search_button);
-	   waitForElement(driver, Customer_Code_Select_dropdown);
-	   click(driver, Customer_Code_Select_dropdown);
-	   selectByText(driver, Customer_Code_Select_dropdown, customerCode_Option);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver, CustomerSearch_Condition_Dropdown1, condition_Option);
-		waitForElement(driver, CustomerSearch_InputTextfield1);
-		sendKeys(driver, CustomerSearch_InputTextfield1, customerCode);
-		click(driver, CustomerSearch_Frame_SearchButton);
+	   
+	   globalValueSearchWindow1(driver, condition_Option, customerCode_Option, customerCode, search2, input2, search3, input3);
+
+//	   waitForElement(driver, Customer_Code_Select_dropdown);
+//	   click(driver, Customer_Code_Select_dropdown);
+//	   selectByText(driver, Customer_Code_Select_dropdown, customerCode_Option);
+//		click(driver, CustomerSearch_Condition_Dropdown1);
+//		selectByText(driver, CustomerSearch_Condition_Dropdown1, condition_Option);
+//		waitForElement(driver, CustomerSearch_InputTextfield1);
+//		sendKeys(driver, CustomerSearch_InputTextfield1, customerCode);
+//		click(driver, CustomerSearch_Frame_SearchButton);
 		
-		waitForDisplay(driver, pop_up_exp);
-		if(isdisplayed(driver,pop_up_exp )) {
+	   waitForDisplay(driver, pop_up_exp);
+		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
-			System.out.println("The Customer Code is Invalid The Actual Popup value was : "+actual_Popup);
-			Extent_fail(driver, "The Customer Code is Invalid The Actual Popup value was : "+actual_Popup, test, test1);
+			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
+			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 		}else {
-		waitForElement(driver, Customer_Select);
-		click(driver, Customer_Select);
-		waitForElement(driver, global_select_Button);
-		click(driver, global_select_Button);
-		}
-		
-		Step_End(2, "Enter the customer name", test, test1);
-		waitForDisplay(driver, exit_Button);
-		if(isdisplayed(driver, exit_Button)) {
-			scrollUsingElement(driver, exit_Button);
-			waitForElement(driver, exit_Button);
-			click(driver, exit_Button);
-		}
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
+			waitForElement(driver, SelectButton);
+			click(driver, SelectButton);
+
+			waitForDisplay(driver, CustName_ExitBtn);
+			if(isDisplayed(driver, CustName_ExitBtn)) {
+				waitForElement(driver, CustName_ExitBtn);
+				click(driver, CustName_ExitBtn);
+			
+			}
 
 		Step_Start(3, "Enter the origin", test, test1);
 		waitForElement(driver, Orgin_Input);
@@ -347,7 +350,7 @@ public class TC_Rate_Request_SC68 extends Keywords{
 		waitForDisplay(driver, payLocation_SearchButton_RR);
 		if(isdisplayed(driver, payLocation_SearchButton_RR)&& isElementAccessible(driver, payLocation_SearchButton_RR)) {
 		click(driver, payLocation_SearchButton_RR);
-		selectValue(driver, condition, payLocation);
+//		selectValue(driver, condition, payLocation);
 		
 		}
 		Step_End(12, "search the origin location", test, test1);
@@ -364,7 +367,7 @@ public class TC_Rate_Request_SC68 extends Keywords{
 		click(driver, Rate_AddBtn);
 		Step_End(14, "Click Add", test, test1);
 			
-
+		}
 			
 			Step_Start(15, "Click Save button in the tool bar", test, test1);
 			waitForElement(driver, Rate_SaveBtn);

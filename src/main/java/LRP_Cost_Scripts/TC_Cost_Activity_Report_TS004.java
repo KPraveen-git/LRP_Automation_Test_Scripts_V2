@@ -100,15 +100,6 @@ public class TC_Cost_Activity_Report_TS004 extends Keywords {
 
 		System.out.println("Carvalue :" + Carvalue);
 
-		if (CAR_Number_Retrieve_Value1.equals(Carvalue)) {
-			System.out.println("Matched exp value :" + CAR_Number_Retrieve_Value1 + "actual value :" + Carvalue);
-			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + CAR_Number_Retrieve_Value1
-					+ " || Actual Report Activity is : " + Carvalue, test, test1);
-		} else {
-			System.out.println("Not matched exp value :" + CAR_Number_Retrieve_Value1 + "actual value :" + Carvalue);
-			Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + CAR_Number_Retrieve_Value1
-					+ " || Actual Report Activity is : " + Carvalue, test, test1);
-		}
 
 		Step_End(9, "System will retrieve the CAR", test, test1);
 

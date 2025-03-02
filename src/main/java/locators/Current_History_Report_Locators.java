@@ -1,6 +1,6 @@
 package locators;
 
-public interface Current_History_Report_Locators extends EDI_Request_Submission_Locators {
+public interface Current_History_Report_Locators extends Disbursement_Locators{
 	
 	// Current History and report(Equipment Report_TS_029:
 	public static String payLoadTextField_2 = "payLoadTextField_2>//input[@id='CNP-CNP_txtpayload_hinput']";

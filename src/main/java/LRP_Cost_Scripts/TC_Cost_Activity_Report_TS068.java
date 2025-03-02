@@ -2,14 +2,11 @@ package LRP_Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
-
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
 import com.aventstack.extentreports.ExtentTest;
-
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
@@ -40,6 +37,10 @@ public class TC_Cost_Activity_Report_TS068 extends Keywords {
 		String total_cost_usd_column = data.get("total_cost_usd_column");
 		String Expensive_Table_Filter_Headers = data.get("Expensive_Table_Filter_Headers");
 
+		String Search_Type2 =data.get("Search_Type2");
+		String Search_Input2 =data.get("Search_Input2");
+		String Search_Type3 =data.get("Search_Type3");
+		String Search_Input3 =data.get("Search_Input3");
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -56,33 +57,31 @@ public class TC_Cost_Activity_Report_TS068 extends Keywords {
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 		Step_End(2, "Enter the screen name as \"Cost Activity Report\" in module search field.", test, test1);
 
+waitForDisplay(driver, NewButton_ToolBar);
+	
+	if(isdisplayed(driver, NewButton_ToolBar) && isElementAccessible(driver, NewButton_ToolBar)) {
+		
+		click(driver, NewButton_ToolBar);
+		
+	}
+		
 		Step_Start(3, "Click on the global search option which is available in the tool bar.    ", test, test1);
 		waitForElement(driver, SearchButton_Toolbar);
 		click(driver, SearchButton_Toolbar);
 		Step_End(3, "Click on the global search option which is available in the tool bar.    ", test, test1);
 
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
+		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_Start(6, "Then click on the search button. ", test, test1);
+		Step_Start(7, "System will show the CAR No ", test, test1);
+
+		globalValueSearchWindow(driver, CAR_Retrieve_Condition, CAR_Retrieve_Type, CAR_Number_Retrieve, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
 		Step_End(4, "Check whether it opens a new search window. ", test, test1);
 
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
 		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
 
-		Step_Start(6, "Then click on the search button. ", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
 		Step_End(6, "Then click on the search button. ", test, test1);
 
-		Step_Start(7, "System will show the CAR No ", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
 		Step_End(7, "System will show the CAR No", test, test1);
 
 		Step_Start(8, "Click on the click for more options above the grid.", test, test1);

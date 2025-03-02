@@ -94,6 +94,8 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_31 extends Keywords{
 		String Vendor_Search_Input2 =TDN_SC_31.get("Vendor_Search_Input2");
 		String Vendor_Search_Type3 =TDN_SC_31.get("Vendor_Search_Type3");
 		String Vendor_Search_Input3 =TDN_SC_31.get("Vendor_Search_Input3");
+		String Load_Status_drop_dd_data =TDN_SC_31.get("Load_Status_drop_dd_data");
+		String Load_Status_drop_dd_data1 =TDN_SC_31.get("Load_Status_drop_dd_data1");
 		navigateUrl(driver,url);
 
 		Extent_Start(testCase_Name, test, test1);
@@ -258,21 +260,22 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_31 extends Keywords{
 
 		Step_Start(19, " click search icon in vendor details, enter % in vendor code and select the vendor.", test, test1);
 
-
+//
 		waitForElement(driver, vendor_searchicon);
 		click(driver, vendor_searchicon);
-
-		waitForElement(driver, vendor_Code);
-		sendKeys(driver, vendor_Code, Vender_Code);
-
-		waitForElement(driver, vendor_Code_searchicon);
-		click(driver, vendor_Code_searchicon);
-
-		waitForElement(driver, select_FirstRow);
-		click(driver, select_FirstRow);
-
-		waitForElement(driver, Aselectbutton1);
-		click(driver, Aselectbutton1);
+//
+//		waitForElement(driver, vendor_Code);
+//		sendKeys(driver, vendor_Code, Vender_Code);
+//
+//		waitForElement(driver, vendor_Code_searchicon);
+//		click(driver, vendor_Code_searchicon);
+//
+//		waitForElement(driver, select_FirstRow);
+//		click(driver, select_FirstRow);
+//
+//		waitForElement(driver, Aselectbutton1);
+//		click(driver, Aselectbutton1);
+		globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Vendor_Code_Option1, Vender_Code, Vendor_Search_Type2, Vendor_Search_Input2, Vendor_Search_Type3, Vendor_Search_Input3);
 		Step_End(19, " click search icon in vendor details, enter % in vendor code and select the vendor.", test, test1);
 
 		Step_Start(20, "select Trans. Type Mode as (pickup only/Live load) in dropdown", test, test1);
@@ -358,6 +361,13 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_31 extends Keywords{
 				click(driver, Chassis_Drop_Loc_Search);
 				twoColumnSearchWindow(driver, chasis_drop_header, condition, chasis_drop_Search_data);
 			}
+		}
+		if(!Load_Status_drop_dd_data.equals("")) {
+			waitForElement(driver, Load_Status);
+			click(driver, Load_Status);
+			String Load_Status_drop_dd = String.format(DropDown_Select, Load_Status_drop_dd_data);
+			waitForElement(driver, Load_Status_drop_dd);
+			click(driver, Load_Status_drop_dd);
 		}
 		//4
 		if(!leg_pickupdate.equals("")) {
@@ -606,7 +616,13 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_31 extends Keywords{
 			click(driver, return_location_searchicon);
 			selectValue(driver, condition, return_loc_search_data1);
 		}
-
+		if(!Load_Status_drop_dd_data1.equals("")) {
+			waitForElement(driver, Load_Status);
+			click(driver, Load_Status);
+			String Load_Status_drop_dd = String.format(DropDown_Select, Load_Status_drop_dd_data1);
+			waitForElement(driver, Load_Status_drop_dd);
+			click(driver, Load_Status_drop_dd);
+		}
 		waitForElement(driver, with_Chassis_Check_Box);
 		checkBox(driver, with_Chassis_Check_Box, with_chasis_flag1);
 

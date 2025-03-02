@@ -7,7 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.ActivityDefinition_Locators;
 
 public class TC_ActivityDefinition_TS_062 extends Keywords{
 
@@ -29,11 +29,11 @@ public class TC_ActivityDefinition_TS_062 extends Keywords{
 		String Validation_Type_Input = Excel_data.get("Validation_Type_Input");
 		String Button = Excel_data.get("Button");
 		Extent_Start(testCase_Name, test, test1);
-		String update_Value =String.format(EMS_Locators.update_Value,Update_Input);
-		String Valid_Type = String.format(EMS_Locators.Valid_Type,Validation_Type_Input);
-		String cmbCpy_Value_1 =String.format(EMS_Locators.cmbCpy_Value_1,copy_From_Previous_Input);
-		String cmbCpy_Value_2 = String.format(EMS_Locators.cmbCpy_Value_2,copy_To_Previous_Input);
-		String add_button_select = String.format(EMS_Locators.add_button_select,Button);
+		String update_Value =String.format(ActivityDefinition_Locators.Updated_Value,Update_Input);
+		String Valid_Type = String.format(ActivityDefinition_Locators.Valid_Type_Value,Validation_Type_Input);
+		String cmbCpy_Value_1 =String.format(ActivityDefinition_Locators.CMBCpy_Value_1,copy_From_Previous_Input);
+		String cmbCpy_Value_2 = String.format(ActivityDefinition_Locators.CMBCpy_Value_2,copy_To_Previous_Input);
+		String add_button_select = String.format(ActivityDefinition_Locators.ADD_button_select,Button);
 		String Condition =Excel_data.get("Condition");
 		String Activity_Search_Column_Header =Excel_data.get("Activity_Search_Column_Header");
 		String Activity_Def_Column_Name_Search_Column_Header =Excel_data.get("Activity_Def_Column_Name_Search_Column_Header");
@@ -125,7 +125,7 @@ public class TC_ActivityDefinition_TS_062 extends Keywords{
 		for(String Column_Value : Column_Values) {
 			waitForElement(driver, column_Filter);
 			sendKeys(driver, column_Filter, Column_Value);
-			String Added_Column_Value = String.format(EMS_Locators.Added_Column_Value,Column_Value);
+			String Added_Column_Value = String.format(ActivityDefinition_Locators.Added_Column_Value,Column_Value);
 			String Added_Data = getText(driver, Added_Column_Value);
 			if(isDisplayed(driver, Added_Column_Value)) {
 				System.out.println( "Matched || The Newly Added Activity code : "+Added_Data);

@@ -1,6 +1,6 @@
 package locators;
 
-public interface Predictable_Activity_Locators extends User_Level_Security_Locators{
+public interface Predictable_Activity_Locators extends Rate_Request_Loactors{
 
 	public static String Predictable_Activity_Table_PAB = "Predictable Actvity Behaviour Table>//div[@id='ABH-ABH_gridActivityPre1_tbl']";
 

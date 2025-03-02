@@ -66,33 +66,12 @@ LRP_Login(driver, Username, Password);
 		Step_Start(2,"select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 
 		
-		
+//		Select service
 		waitForElement(driver, load_servicecode);
-		sendKeys(driver, load_servicecode,Servicecode );
+		selectservice(driver, Servicecode, vesselCode, Voyagenumber1, Boundinput, portCode, terminalCode);
+
 		
-//	Select service
 		
-			waitForElement(driver, vessel_Input);
-			sendKeys(driver, vessel_Input,vesselCode );
-		
-			
-			waitForElement(driver, VoyageInput);
-			sendKeys(driver, VoyageInput, Voyagenumber1);
-			
-			waitForElement(driver, Boundinpiut);
-			sendKeys(driver, Boundinpiut, Boundinput);
-			
-			
-			waitForElement(driver, portCode_Inputfield);
-			sendKeys(driver, portCode_Inputfield, portCode);
-			
-			
-			waitForElement(driver, terminalCode_Inputfield);
-			sendKeys(driver, terminalCode_Inputfield, terminalCode);
-			
-			
-			waitForElement(driver, select_Service);
-			doubleClick(driver, select_Service);	
 		
 			Step_End(2,"select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 

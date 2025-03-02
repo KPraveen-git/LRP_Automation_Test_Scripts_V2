@@ -70,8 +70,8 @@ public class TC_Rate_Request_SC72   extends Keywords {
 		String unno = Data.get("unno");
 		String dG_Class = Data.get("dG_Class");
 		String request_Status = Data.get("request_Status");
-		
-
+		String DG_Columnn_Header = Data.get("DG_Columnn_Header");
+		String UN_Number_Column_Header = Data.get("UN_Number_Column_Header");
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
 		String preCarriageLocator = String.format(Rate_Request_Loactors.pre_Carriage_Radiobtn, Pre_Carriage_Radiobtn);
@@ -230,11 +230,7 @@ public class TC_Rate_Request_SC72   extends Keywords {
 				Step_End(10, "Click the class search.", test, test1);
 
 				Step_Start(11, "Click on the class", test, test1);
-//				waitForElement(driver, searchfield_DG_Class);
-//				sendKeys(driver, searchfield_DG_Class, dG_Class);
-//				waitForElement(driver, DG_Class_Select);
-//				doubleClick(driver, DG_Class_Select);
-				selectValue(driver, Condition_Value, dG_Class);
+				twoColumnSearchWindow(driver, DG_Columnn_Header, Condition_Value, dG_Class);
 				Step_End(11, "Click on the class", test, test1);
 				Step_Start(12, "Click in the "+" radio button", test, test1);
 				waitForElement(driver, plus_Button);
@@ -242,11 +238,7 @@ public class TC_Rate_Request_SC72   extends Keywords {
 				Step_End(12, "Click in the "+" radio button", test, test1);
 
 				Step_Start(13, "Click on the UNNO numbe", test, test1);
-//				waitForElement(driver, searchfield_DG_Class);
-//				sendKeys(driver, searchfield_DG_Class, unno);
-//				waitForElement(driver, UN_Number_select);
-//				doubleClick(driver, UN_Number_select);
-				selectValue1(driver, Condition_Value, unno);
+				twoColumnSearchWindow(driver, UN_Number_Column_Header, Condition_Value, unno);
 				Step_End(13, "Click on the UNNO numbe", test, test1);
 
 			}else {
@@ -431,6 +423,7 @@ public class TC_Rate_Request_SC72   extends Keywords {
 				System.out.println("Not Matched || " + " Expected Report Activity is : " + requestStatus+ " || Actual Report Activity is : " + actRequestStatus);
 				Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + requestStatus+ " || Actual Report Activity is : " + actRequestStatus, test,test1);
 			}
+			Extent_completed(testCase_Name, test, test1);
 //			Step_Start(16, "Switch to line profile and navigate to the special rate request screen using SRR gate screen under Submit node", test, test1);
 //			ResetProfile(driver);
 //			moduleNavigate(driver, moduleSRRGate);

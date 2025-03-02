@@ -48,7 +48,7 @@ public class TC_Rate_Request_SC18 extends Keywords {
 			String Resquest_Saved_Msg = Data.get("Resquest_Saved_Msg");
 			String grid_Req_Status_Exp_TC18 = Data.get("grid_Req_Status_Exp_TC18");
 			String Req_Status_Exp_TC18 = Data.get("Req_Status_Exp_TC18");
-			String Location_code = Data.get("location_code");
+			String AgencyUser = Data.get("AgencyUser");
 			String Non_Containerized = Data.get("Non_Containerized");
 			String DG_checkboxs = Data.get("DG_checkboxs");
 			String NOR_checkbox = Data.get("NOR_checkbox");
@@ -60,13 +60,19 @@ public class TC_Rate_Request_SC18 extends Keywords {
 			String Customer_code_Value = Data.get("Customer_code_Value");
 			String Condition_Value = Data.get("Condition_Value");
 			String From_Date_Input =Data.get( "From_Date_Input");
-			String From_date_perform =Data.get( "From_date_perform");
 			String To_Date_Input =Data.get( "To_Date_Input");
-			String To_date_perform =Data.get( "To_date_perform");
 			Pre_Carriage_Radiobtn = Data.get("pre_Carriage_Radiobtn");
 			On_Carriage_Radiobtn = Data.get("On_Carriage_Radiobtn");
 			tService=Data.get("T_Service");
 			TOS=Data.get("TOS_Option");
+			String Customer_code_Value2 = Data.get("Customer_code_Value2");
+			String Customer_code_Value3 = Data.get("Customer_code_Value3");
+			String Cust_code2 = Data.get("Cust_code2");
+			String Cust_code3 = Data.get("Cust_code3");
+			String date_Picker = Data.get("date_Picker");
+			
+			
+			
 			String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 			String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
 
@@ -79,53 +85,23 @@ public class TC_Rate_Request_SC18 extends Keywords {
 		Extent_Start(testcase_Name, test, test1);
 
 		
-		waitForElement(driver, Username_input);
-		click(driver, Username_input);
-		waitForElement(driver, Username_input);
-		sendKeys(driver, Username_input, user_Name);
-		waitForElement(driver, APassword_input);
-		click(driver, APassword_input);
-		waitForElement(driver, APassword_input);
-		sendKeys(driver, APassword_input, pass_word);
-		waitForElement(driver, ALogin);
-		click(driver, ALogin);
-		if (isDisplayed(driver, home_Page)) {
-			System.out.println("*****User Logged in Successfully*****");
-			Extent_pass(driver, "*****User Logged in Successfully*****", test,test1);
-		}else {
-			System.out.println("*****User Unable to Logged in*****");
-			Extent_fail(driver, "*****User Unable to Login*****", test,test1);
-		}
-		//Switch User
-		waitForElement(driver, Switch_Profile);
-		click(driver, Switch_Profile);
-		waitForElement(driver, agency_Code_Filter);
-		sendKeys(driver, agency_Code_Filter, Location_code);
-		waitForElement(driver, select_Agency);
-		click(driver, select_Agency);
-		waitForElement(driver, Switch_Profile_Button);
-		click(driver, Switch_Profile_Button);
-
-
-		waitForElement(driver, Module_SearchR);
-		click(driver,Module_SearchR);
-		waitForElement(driver, Module_SearchR);
-		sendKeys(driver, Module_SearchR, Field_Names);
-		waitForElement(driver, Rate_Request);
-		click(driver, Rate_Request);
-		waitForElement(driver, Rate_Request_Page);
-		if(isDisplayed(driver, Rate_Request_Page)) {
-			System.out.println("*****Rate Request Module is Dispalyed*****");
-			Extent_pass(driver, "*****Rate Request Module is Dispalyed*****", test,test1);
-		}else {
-			System.out.println("*****Rate Request Module is not Dispalyed");
-			Extent_fail(driver, "*****Rate Request Module is not Dispalyed*****", test,test1);
-		}
-		
+		//Login
+				LRP_Login(driver, user_Name, pass_word);
+				
+			
+				
+				//Switch User
+				SwitchProfile(driver, AgencyUser);
+				
+				//Module search
+				moduleNavigate(driver, Field_Names);
+				
 		Step_Start(1, "Click on the new button in the toolbar", test, test1);
 
-		waitForElement(driver, Rate_Newbutton);
-		click(driver,Rate_Newbutton);
+		if(isdisplayed(driver, Rate_Newbutton)&&isElementEnabled(driver, Rate_Newbutton)) {
+			waitForElement(driver, Rate_Newbutton);
+			click(driver, Rate_Newbutton);
+		}
 		
 		Step_End(1, "Click on the new button in the toolbar", test, test1);
 		waitForElement(driver, tService_Dropdown);
@@ -140,38 +116,21 @@ public class TC_Rate_Request_SC18 extends Keywords {
 		
 
 		// Selecting the From Date
-		StringBuilder day = new StringBuilder();
-		StringBuilder month = new StringBuilder();
-		StringBuilder year = new StringBuilder();
+	
 		Extent_call(test, test1, "selecting from date");
 		waitForElement(driver, Dateclick);
-		if (From_date_perform.equalsIgnoreCase("Yes")) {
-			click(driver, Dateclick);
-			datePicker(From_Date_Input, day, month, year);
-			waitForElement(driver, Month_DD);
-			selectByText(driver, Month_DD,month.toString());
-			waitForElement(driver, Year_DD);
-			selectByText(driver, Year_DD,year.toString());
-			String date_select =  String.format(Rate_Request_Loactors.date_select,  day); 
-				waitForElement(driver, date_select);
-				click(driver, date_select);
+		if (date_Picker.equalsIgnoreCase("Yes")) {
+			selectDatePicker(driver, Dateclick, From_Date_Input);
 		} else {
 			waitForElement(driver, Dateclick);
 			clearAndType(driver, Dateclick, From_Date_Input);
 		}
 		// Selecting the to Date
 		Extent_call(test, test1, "selecting TO date");
+		// Selecting the to Date
 				waitForElement(driver, Dateclick1);
-				if (To_date_perform.equalsIgnoreCase("Yes")) {
-					click(driver, Dateclick1);
-					datePicker(To_Date_Input, day, month, year);
-					waitForElement(driver, Month_DD);
-					selectByText(driver, Month_DD,month.toString());
-					waitForElement(driver, Year_DD);
-					selectByText(driver, Year_DD,year.toString());
-					String date_select =  String.format(Rate_Request_Loactors.date_select,  day); 
-						waitForElement(driver, date_select);
-						click(driver, date_select);
+				if (date_Picker.equalsIgnoreCase("Yes")) {
+					selectDatePicker(driver, Dateclick1, To_Date_Input);
 				} else {
 					waitForElement(driver, Dateclick1);
 					clearAndType(driver, Dateclick1, To_Date_Input);
@@ -186,28 +145,34 @@ public class TC_Rate_Request_SC18 extends Keywords {
 			}
 	
 	     Step_Start(2, "Enter the customer name", test, test1);
-	     waitForElement(driver, Customer_Name_search_button);
-	 			click(driver, Customer_Name_search_button);
-	 			waitForElement(driver, Customer_Code_Select_dropdown);
-	 			click(driver, Customer_Code_Select_dropdown);
-	 			selectByText(driver, Customer_Code_Select_dropdown, Customer_Code);
-	 			click(driver, CustomerSearch_Condition_Dropdown1);
-	 			selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-	 			sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-	 			click(driver, CustomerSearch_Frame_SearchButton);
-	 			waitForDisplay(driver, pop_up_exp);
-	 			if(isDisplayed(driver,pop_up_exp )) {
-	 				String actual_Popup = getText(driver, pop_up_exp);
-	 				System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
-	 				Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
-	 			}else {
-	 			waitForElement(driver, Customer_Select);
-	 			doubleClick(driver, Customer_Select);
-		waitForDisplay(driver, exit_Button);
-		if(isDisplayed(driver, exit_Button)) {
-			waitForElement(driver, exit_Button);
-			click(driver, exit_Button);
-		}
+	    
+		
+		waitForElement(driver, Customer_Name_search_button);
+		click(driver, Customer_Name_search_button);
+		
+		
+		globalValueSearchWindow1(driver, Condition_Value, Customer_Code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
+		
+		
+		
+	
+		waitForDisplay(driver, pop_up_exp);
+		if(isDisplayed(driver,pop_up_exp )) {
+			String actual_Popup = getText(driver, pop_up_exp);
+			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
+			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
+		}else {
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
+			waitForElement(driver, SelectButton);
+			click(driver, SelectButton);
+
+			waitForDisplay(driver, CustName_ExitBtn);
+			if(isDisplayed(driver, CustName_ExitBtn)) {
+				waitForElement(driver, CustName_ExitBtn);
+				click(driver, CustName_ExitBtn);
+			
+			}
 		
 		  Step_End(2, "Enter the customer name", test, test1);
 		
@@ -289,18 +254,21 @@ public class TC_Rate_Request_SC18 extends Keywords {
 			waitForElement(driver, onCarriageLocator);
 			click(driver, onCarriageLocator);
 
-		waitForElement(driver, Exp_Days);
-		sendKeys(driver, Exp_Days, Exp_Det_Days_Input);
-
-		waitForElement(driver, Imp_Days);
-		sendKeys(driver, Imp_Days, Imp_Det_Days_Input);
-
-		waitForElement(driver, Exp_Demurage);
-		sendKeys(driver, Exp_Demurage, Exp_Demmurage_Input);
-
-		waitForElement(driver, Imp_Demurage);
-		sendKeys(driver, Imp_Demurage, Imp_Demmurage_Input);
+			waitForDisplay(driver, Exp_Days);
+			if(isdisplayed(driver, Exp_Days)&&isElementAccessible(driver, Exp_Days)) {
+				clearAndType(driver, Exp_Days, Exp_Det_Days_Input);
+			}
+			if(isdisplayed(driver, Imp_Days)&&isElementAccessible(driver, Imp_Days)) {
+				clearAndType(driver, Imp_Days, Imp_Det_Days_Input);
+			}
+			if(isdisplayed(driver, Exp_Demurage)&&isElementAccessible(driver, Exp_Demurage)) {
+				clearAndType(driver, Exp_Demurage, Exp_Demmurage_Input);
+			}
+			if(isdisplayed(driver, Imp_Demurage)&&isElementAccessible(driver, Imp_Demurage)) {
+				clearAndType(driver, Imp_Demurage, Imp_Demmurage_Input);
+			}
 	
+			waitForElement(driver, Retrived_Tariff_No);
 		String Before_Tarriff_no = getText(driver, Retrived_Tariff_No);
 		
 		Step_Start(9, "Click routing", test, test1);
@@ -428,6 +396,8 @@ public class TC_Rate_Request_SC18 extends Keywords {
 			System.out.println("Not Matched || " + " Expected Report Activity is : " + Req_Status_Exp_TC18 + " || Actual Report Activity is : " + act_Req_Status);        
 			Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + Req_Status_Exp_TC18 + " || Actual Report Activity is : " + act_Req_Status, test,test1); 
 		} 
+		waitForElement(driver, Mail_Cancel_button);
+		click(driver, Mail_Cancel_button);
 
 		 waitForElement(driver,close_Tab);
 			click(driver, close_Tab);

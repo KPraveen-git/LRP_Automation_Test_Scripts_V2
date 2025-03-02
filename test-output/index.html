@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Suite" class="navigator-link">
-              <span class="suite-name border-failed">Suite</span>
+              <span class="suite-name border-passed">Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Suite" class="navigator-link ">
-                    <span>D:\LRP_Latest_Updated_Frameworks_2025\LRP_Automation_Test_Scripts_V1\testng.xml</span>
+                    <span>C:\Users\RBT\Documents\LRP_Automation_Test_Scripts_V1\testng.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,21 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Suite" class="hide-methods failed suite-Suite"> (hide)</a> <!-- hide-methods failed suite-Suite -->
-                      <a href="#" panel-name="suite-Suite" class="show-methods failed suite-Suite"> (show)</a> <!-- show-methods failed suite-Suite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Suite" class="hide-methods passed suite-Suite"> (hide)</a> <!-- hide-methods passed suite-Suite -->
+                      <a href="#" panel-name="suite-Suite" class="show-methods passed suite-Suite"> (show)</a> <!-- show-methods passed suite-Suite -->
                     </span>
-                    <div class="method-list-content failed suite-Suite">
+                    <div class="method-list-content passed suite-Suite">
                       <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Suite" title="commonMethods.Testcases" class="method navigator-link" hash-for-method="TC_Rate_Request_SC01">TC_Rate_Request_SC01</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Suite" title="commonMethods.Testcases" class="method navigator-link" hash-for-method="TC_Rate_Request_SC73">TC_Rate_Request_SC73</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Suite -->
+                    </div> <!-- method-list-content passed suite-Suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -119,45 +119,36 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Suite" class="panel Suite">
-          <div class="suite-Suite-class-failed">
+          <div class="suite-Suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
+              <img src="passed.png"/>
               <span class="class-name">commonMethods.Testcases</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="TC_Rate_Request_SC01">
-                  </a> <!-- TC_Rate_Request_SC01 -->
-                  <span class="method-name">TC_Rate_Request_SC01</span>
-                  <div class="stack-trace">java.lang.AssertionError: Test failed due to error: 
-	at commonMethods.Testcases.runTestForDataset(Testcases.java:722)
-	at commonMethods.Testcases.TC_Rate_Request_SC01(Testcases.java:1598)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-... Removed 28 stack frames
-</div> <!-- stack-trace -->
+                  <a name="TC_Rate_Request_SC73">
+                  </a> <!-- TC_Rate_Request_SC73 -->
+                  <span class="method-name">TC_Rate_Request_SC73</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Suite-class-failed -->
+          </div> <!-- suite-Suite-class-passed -->
         </div> <!-- panel Suite -->
         <div panel-name="test-xml-Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">D:\LRP_Latest_Updated_Frameworks_2025\LRP_Automation_Test_Scripts_V1\testng.xml</span>
+            <span class="header-content">C:\Users\RBT\Documents\LRP_Automation_Test_Scripts_V1\testng.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite configfailurepolicy=&quot;continue&quot; name=&quot;Suite&quot;&gt;
-  &lt;listeners&gt;
-    &lt;listener class-name=&quot;Mail.CustomTestListener&quot;/&gt;
-  &lt;/listeners&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Test&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;commonMethods.Testcases&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;TC_Rate_Request_SC01&quot;/&gt;
+          &lt;include name=&quot;TC_Rate_Request_SC73&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- commonMethods.Testcases --&gt;
     &lt;/classes&gt;
@@ -201,14 +192,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'TC_Rate_Request_SC01')
+data.setCell(0, 1, 'TC_Rate_Request_SC73')
 data.setCell(0, 2, 'commonMethods.Testcases')
-data.setCell(0, 3, 116621);
+data.setCell(0, 3, 235706);
 window.suiteTableData['Suite']= { tableData: data, tableDiv: 'times-div-Suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 1 minutes</span>
+              <span class="suite-total-time">Total running time: 3 minutes</span>
               <div id="times-div-Suite">
               </div> <!-- times-div-Suite -->
             </div> <!-- times-div -->
@@ -447,9 +438,9 @@ return data;
                 <br/>
                 <span class="ignored-method-name">TC_Stock_Report_by_Size_Type_Detail_Report_TS_041</span>
                 <br/>
-                <span class="ignored-method-name">TC_Cost_Activity_Report_TS082</span>
-                <br/>
                 <span class="ignored-method-name">TC_Movement_Entry_Integration_TS049</span>
+                <br/>
+                <span class="ignored-method-name">TC_Cost_Activity_Report_TS082</span>
                 <br/>
                 <span class="ignored-method-name">TC_Movement_Entry_Integration_TS044</span>
                 <br/>
@@ -459,13 +450,13 @@ return data;
                 <br/>
                 <span class="ignored-method-name">TC_Movement_Entry_Integration_TS046</span>
                 <br/>
-                <span class="ignored-method-name">TC_Cost_Activity_Report_TS081</span>
-                <br/>
                 <span class="ignored-method-name">TC_Movement_Entry_Integration_TS048</span>
                 <br/>
-                <span class="ignored-method-name">TC_Cost_Activity_Report_TS080</span>
+                <span class="ignored-method-name">TC_Cost_Activity_Report_TS081</span>
                 <br/>
                 <span class="ignored-method-name">TC_Movement_Entry_Integration_TS047</span>
+                <br/>
+                <span class="ignored-method-name">TC_Cost_Activity_Report_TS080</span>
                 <br/>
                 <span class="ignored-method-name">TC_Stock_Report_by_Stock_Status_TS042</span>
                 <br/>
@@ -524,8 +515,6 @@ return data;
                 <span class="ignored-method-name">TC_Rate_Request_SC71</span>
                 <br/>
                 <span class="ignored-method-name">TC_Rate_Request_SC70</span>
-                <br/>
-                <span class="ignored-method-name">TC_Rate_Request_SC73</span>
                 <br/>
                 <span class="ignored-method-name">TC_Rate_Request_SC75</span>
                 <br/>
@@ -718,6 +707,8 @@ return data;
                 <span class="ignored-method-name">TC_Rate_Request_SC07</span>
                 <br/>
                 <span class="ignored-method-name">TC_Rate_Request_SC02</span>
+                <br/>
+                <span class="ignored-method-name">TC_Rate_Request_SC01</span>
                 <br/>
                 <span class="ignored-method-name">TC_Rate_Request_SC04</span>
                 <br/>
@@ -1016,25 +1007,23 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-test before">
                 <span class="method-name">Extentreport</span>
-                <span class="method-start">414 ms</span>
+                <span class="method-start">513 ms</span>
               </div> <!-- configuration-test before -->
               <div class="configuration-class before">
                 <span class="method-name">getDataFromConfig</span>
-                <span class="method-start">432 ms</span>
+                <span class="method-start">535 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">TC_Rate_Request_SC01</span>
-                <span class="method-start">480 ms</span>
+                <span class="method-name">TC_Rate_Request_SC73</span>
+                <span class="method-start">612 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">Teardown([TestResult name=TC_Rate_Request_SC01 status=FAILURE method=Testcases.TC_Rate_Request_SC01()[pri:0, ...)</span>
-                <span class="method-start">117107 ms</span>
+                <span class="method-name">Teardown([TestResult name=TC_Rate_Request_SC73 status=SUCCESS method=Testcases.TC_Rate_Request_SC73()[pri:0, ...)</span>
+                <span class="method-start">236336 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-test after">
                 <span class="method-name">aftertest</span>
-                <span class="method-start">117121 ms</span>
+                <span class="method-start">236349 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -1,6 +1,6 @@
 package locators;
 
-public interface ActivityDefinition_Locators extends Enquiry_History_Locators{
+public interface ActivityDefinition_Locators extends Bill_Upload_Gate{
 	public static String P_activity_Definition = "Activity_Definition >//div[contains(@style,'display: block')]//span[text()='Activity Definition']";
 	public static String P_activityDefinition_Page = "ActivityDefinition_Page >(//label[contains(text(),'Activity Definition')])[1]";
 	public static String P_Act_Global_Search = "Act_Global_Search >//button[contains(@id,'EAD-tbl-btnTblJdlgSearch')]";
@@ -32,11 +32,12 @@ public interface ActivityDefinition_Locators extends Enquiry_History_Locators{
 	public static String kActivityDefinitionCopyToPreviousNo = "ActivityDefinitionCopyToPreviousNo>//*[@id='EAD-EAD_cmbCpy2_2']";
 	public static String kActivityDefinitionCopyToPreviousAdd = "ActivityDefinitionCopyToPreviousAdd>//*[@id='EAD-EAD_btnAdd']";
 	public static String kActivityDefinitionSave = "ActivityDefinitionSave>//button[@id='EAD-tbl-btnsave']";
-	public static String kActivityDefinitionPopUp = "ActivityDefinitionPopUp>(//p[text()='Activity Definition updated'])[1]";public static String update_Value ="update_Value>//ul[@id='EAD-EAD_cmbIsUpdate_items']//li[text()='%s']";
-	public static String Valid_Type = "Valid_Type>//ul[@id='EAD-EAD_cmbValidType_items']//li[text()='%s']";
-	public static String cmbCpy_Value_1 = "cmbCpy_Value_1>//ul[@id='EAD-EAD_cmbCpy1_items']//li[text()='%s']";
-	public static String cmbCpy_Value_2 = "cmbCpy_Value_2>//ul[@id='EAD-EAD_cmbCpy2_items']//li[text()='%s']";
-	public static String add_button_select = "add_button_select>//button[@id='EAD-EAD_btnAdd']//following::span[text()='%s'][1]";
+	public static String kActivityDefinitionPopUp = "ActivityDefinitionPopUp>(//p[text()='Activity Definition updated'])[1]";
+	public static String Updated_Value ="update_Value>//ul[@id='EAD-EAD_cmbIsUpdate_items']//li[text()='%s']";
+	public static String Valid_Type_Value = "Valid_Type>//ul[@id='EAD-EAD_cmbValidType_items']//li[text()='%s']";
+	public static String CMBCpy_Value_1 = "cmbCpy_Value_1>//ul[@id='EAD-EAD_cmbCpy1_items']//li[text()='%s']";
+	public static String CMBCpy_Value_2 = "cmbCpy_Value_2>//ul[@id='EAD-EAD_cmbCpy2_items']//li[text()='%s']";
+	public static String ADD_button_select = "add_button_select>//button[@id='EAD-EAD_btnAdd']//following::span[text()='%s'][1]";
 	public static String Column_Value = "Column_Value>//label[text()='%s']//..";
 	public static String Module2 = "Module2>(//div[@id='nfr_mdldis_centerMainPnl']//label[contains(@id,'tablbl')])[1]";
 	public static String column_Filter="column_Filter>(//th[contains(@aria-label,'Columns Name: ')])[1]//input";

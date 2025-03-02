@@ -40,6 +40,10 @@ public class TC_Cost_Activity_Report_TS025 extends Keywords {
 		String ExpectedpopupMessage = data.get("ExpectedpopupMessage");
 		String DeleteCondition = data.get("DeleteCondition");
 		String TaxDetailsColum = data.get("TaxDetailsColum");
+		String Contract_Type_Code_Headers = data.get("Contract_Type_Code_Headers");
+		String Port_Filter_Header = data.get("Port_Filter_Header");
+		String Terminal_Filter_Header = data.get("Terminal_Filter_Header");
+		String Agency = data.get("Agency");
 
 		Extent_Start(tc_Name, test, test1);
 
@@ -49,19 +53,23 @@ public class TC_Cost_Activity_Report_TS025 extends Keywords {
 				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
 
+		navigateUrl(driver, url);
+
 		LRP_Login(driver, username, password);
+		
+		SwitchProfile(driver, Agency);
 
 		Step_End(1,
 				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
 
-		verifyMainMenu(driver);
+		Step_Start(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
-		Step_Start(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		verifyMainMenu(driver);
 
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
-		Step_End(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_End(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		Step_Start(3, "Click on the global search option which is available in the tool bar", test, test1);
 
@@ -84,34 +92,21 @@ public class TC_Cost_Activity_Report_TS025 extends Keywords {
 
 		Step_End(4, "Check whether it opens a new search window", test, test1);
 
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_Start(6, "Then click on the search button", test, test1);
 
-		click(driver, globalSearch_Frame_SearchButton);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No", test, test1);
-
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
-		Step_End(7, "System will show the CAR No", test, test1);
 
 		Step_Start(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
+
+		Step_End(6, "Then click on the search button", test, test1);
+
+		Step_End(7, "System will show the CAR No", test, test1);
 
 		Step_End(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
@@ -200,7 +195,9 @@ public class TC_Cost_Activity_Report_TS025 extends Keywords {
 		waitForElement(driver, Type_Search);
 		click(driver, Type_Search);
 
-		selectValue(driver, Condition2, contractType);
+//		selectValue(driver, Condition2, contractType);
+		
+		twoColumnSearchWindow(driver, Contract_Type_Code_Headers, Condition2, contractType);
 
 		String Validfrom = startdate(Arrival_Date_value);
 
@@ -215,14 +212,19 @@ public class TC_Cost_Activity_Report_TS025 extends Keywords {
 		waitForElement(driver, Tax_Port_Search);
 		click(driver, Tax_Port_Search);
 
-		selectValue(driver, Condition2, portname);
+//		selectValue(driver, Condition2, portname);
+		
+		twoColumnSearchWindow(driver, Port_Filter_Header, Condition2, portname);
+
 
 		if (isdisplayed(driver, Tax_Terminal_Search) && isElementEnabled(driver, Tax_Terminal_Search)) {
 
 			waitForElement(driver, Tax_Terminal_Search);
 			click(driver, Tax_Terminal_Search);
 
-			selectValue(driver, Condition2, TerminalName);
+//			selectValue(driver, Condition2, TerminalName);
+			
+			twoColumnSearchWindow(driver, Terminal_Filter_Header, Condition2, TerminalName);
 
 		}
 

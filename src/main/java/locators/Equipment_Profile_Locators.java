@@ -1,6 +1,6 @@
 package locators;
 
-public interface Equipment_Profile_Locators extends Movement_Entry_Locators {
+public interface Equipment_Profile_Locators extends Global_Activity_Mapping_Locators {
 	// TS-057 & TS-059
 		public static String eqpNoTextField_L = "eqpNoTextField>//input[@id='CNP-CNP_txtcontainernoNew']";
 

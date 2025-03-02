@@ -42,9 +42,15 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_01 extends Keywords{
 		String ware_House_Type_Select =TDN_S01.get("Ware_House_Type_Select");
 		String dropdown_Condition =TDN_S01.get("Dropdown_Condition");
 		String merchantPopup =TDN_S01.get("MerchantPopup");
-
 		String shipmenttype_select=String.format(shipmentType, Shipment_Type);
-			
+		String Booking_Number2 =TDN_S01.get("Booking_Number2");
+		String Booking_Number3 =TDN_S01.get("Booking_Number3");
+		String Booking_Number_Type_Select2 =TDN_S01.get("Booking_Number_Type_Select2");
+		String Booking_Number_Type_Select3 =TDN_S01.get("Booking_Number_Type_Select3");
+		String ware_House_Type_Select2 =TDN_S01.get("ware_House_Type_Select2");
+		String Ware_House_number2 =TDN_S01.get("Ware_House_number2");
+		String ware_House_Type_Select3 =TDN_S01.get("ware_House_Type_Select3");
+		String Ware_House_number3 =TDN_S01.get("Ware_House_number3");
 	navigateUrl(driver,url);
 	
 	Extent_Start(testCaseName, test, test1);
@@ -85,29 +91,16 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_01 extends Keywords{
 				safeclick(driver, BL_Add);
 				
 				Step_End(2, "Click add(+) button in BookNo field.", test, test1);
+				globalValueSearchWindow(driver, dropdown_Condition, field_select, data1,Booking_Number_Type_Select2,Booking_Number2,Booking_Number_Type_Select3,Booking_Number3);
 
-				click(driver, type_Select1);
-				selectByText(driver, type_Select1, field_select);
-				waitForDisplay(driver, globalSearch_Condition_Dropdown1);
-				click(driver, globalSearch_Condition_Dropdown1);
-				selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
 				
 				Step_Start(3, "Paste book number and click search button.", test, test1);
 
-				sendKeys(driver, globalSearch_InputTextfield1, data1);
-
-				click(driver, globalSearch_Frame_SearchButton);
-				
-				Step_End(3, "Paste book number and click search button.", test, test1);
+			Step_End(3, "Paste book number and click search button.", test, test1);
 
 				Step_Start(4, "Select the book number", test, test1);
 				
-				waitForElement(driver, select_FirstRow);
-				click(driver, select_FirstRow);
-				
-				waitForElement(driver, Aselectbutton1);
-				click(driver, Aselectbutton1);
-				Step_End(4, "Select the book number", test, test1);
+			Step_End(4, "Select the book number", test, test1);
 
 			}
 		
@@ -126,14 +119,18 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_01 extends Keywords{
 		Step_End(5, "system will display 'Selected Booking is a Merchant. Do you want to proceed?', click yes.", test, test1);
 		Step_Start(6, "click customer tab.", test, test1);
 
-		waitForElement(driver, TDN_Customer_Tab);
-		click(driver, TDN_Customer_Tab);
-		
-		waitForDisplay(driver, Select_Booking_DD);
-		if(!isdisplayed(driver, Select_Booking_DD)) {
+		waitForDisplay(driver, master_Tab_Table_Row_TDN);
+		if(isdisplayed(driver, master_Tab_Table_Row_TDN)) {
+			waitForElement(driver, TDN_Customer_Tab);
 			click(driver, TDN_Customer_Tab);
-			}
-		
+		}else{
+			waitForElement(driver, remove_Button_TDN);
+			click(driver, remove_Button_TDN);
+			waitForElement(driver, popup_Message_Ok_Button);
+			click(driver, popup_Message_Ok_Button);
+			waitForElement(driver, TDN_Customer_Tab);
+			click(driver, TDN_Customer_Tab);
+		}
 		
 		Step_End(6, "click customer tab.", test, test1);
 
@@ -160,30 +157,20 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_01 extends Keywords{
 
 		waitForElement(driver, Add_ware_house);
 		click(driver, Add_ware_house);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, ware_House_Type_Select);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
+		
+		globalValueSearchWindow(driver, dropdown_Condition, ware_House_Type_Select, Ware_House_number,ware_House_Type_Select2,Ware_House_number2,ware_House_Type_Select3,Ware_House_number3);
+
 		
 		Step_End(9, "click search icon in the warehouse field.", test, test1);
 
 		Step_Start(10, "enter % in warehouse name.", test, test1);
 
-		sendKeys(driver, globalSearch_InputTextfield1, Ware_House_number);
-
-		click(driver, globalSearch_Frame_SearchButton);
-		
+	
 		Step_End(10, "enter % in warehouse name.", test, test1);
 
 		Step_Start(11, "click on the warehouse and click select button.", test, test1);
 
-		waitForElement(driver, select_FirstRow);
-		click(driver, select_FirstRow);
-		
-		waitForElement(driver, Aselectbutton1);
-		click(driver, Aselectbutton1);
-		
+	
 		Step_End(11, "click on the warehouse and click select button.", test, test1);
 
 		Step_Start(12, "click in app date field and select the current date.", test, test1);

@@ -1,6 +1,6 @@
 package locators;
 
-public interface Tdn_Locators {
+public interface Tdn_Locators extends User_Level_Security_Locators{
 
 	public static String remove_Button_TDN = "remove_Button_TDN>//button[contains(@id,'TDN_btnRemoveContainer')]";
 	public static String master_Tab_Table_Row_TDN = "master_Tab_Table_Row_TDN>//div[contains(@id,'TDN_containerTreeTable_tbl')]//div[@row-index='0']";
@@ -97,7 +97,6 @@ public interface Tdn_Locators {
 	public static String Terminalcode_search ="Terminalcode_search>//input[@aria-label='Terminal Code Filter Input']";
 	public static String loadconfirmation_closebtn ="loadconfirmation_closebtn>(//span[@id='LCC_EditorPaneMsgImportTM_title']//following::a[@aria-label='Close'])[1]";
 	public static String TDN_master_tab ="TDN_master_tab>(//a[text()='Master'])[1]";
-	public static String get_modetype ="get_modetype>(//div[@col-id='mode'])[2]";
 	public static String TDN_ref_scroll ="TDN_ref_scroll>(//div[@ref='eBodyHorizontalScrollViewport'])[2]";
 	public static String TDN_Master_Tab = "TDN_Master_Tab>//div[contains(@id,'TDN_fragtab')]//a[text()='Master']";
 	public static String cust_Depot_Term_Label = "cust_Depot_Term_Label>//label[@id='JDlgTDNLegDetilsform-TDN_cmbCustLocation_label']";
@@ -125,13 +124,28 @@ public interface Tdn_Locators {
 	public static String tdnpopup="tdnpopup>//h2[text()='Transportation Dispatch Notice(Haulage)']";
 	public static String draft_Checkbox_Status_Check = "draft_Checkbox_Status_Check>//div[@id='TDN-TDN_chkdraft']//span/parent::div";
 	public static String shipmenttype_select="shipment_type>//li[text()='%s']";
-	public static String container_Select="container_Select>//div[contains(@id,'TDN_legTreeTable_tbl')]//div[@row-index]//div[@col-id='containerNo' and text()='%s']";
+
+	
+	public static String Load_status_value="Load_status_value>//li[text()='%s']";
 
 	
 	
-	
-	
-	
+	public static String get_modetype ="get_modetype>(//div[@col-id='mode'])[2]";
+	public static String container_Select ="container_Select>//div[contains(@id,'TDN_legTreeTable_tbl')]//div[@row-index='0']//div[@col-id='containerNo' and text()='%s']";
+	public static String State_Label="State_Label>//label[@id='TDN-TDN_jTabbedPane1-TDN_lblstate']";
+	public static String Make_As_Draft_Button="Make_As_Draft_Button>//button[@id='TDN-TDN_btnconfirm']";
+	public static String mode_Of_Transport = "mode_Of_Transport>//ul[@id='JDlgTDNLegDetilsform-TDN_cmbmode_items']//following::li[text()='%s']";
+	public static String messagePopup_TDN = "messagePopup_TDN>//form[@method='post']/table[contains(@id,'TDNDLG')]//label";
+	public static String messagePopup_Ok_TDN = "messagePopup_Ok_TDN>//form[@method='post']/table[contains(@id,'TDNDLG')]//label//following::span[text()='Ok']/parent::button";
+	public static String addleg="addleg>//button[@id='TDN-TDN_jTabbedPane1-TDN_btnAdd']";
+	public static String Charges="Charges>//div[contains(@id,'TDN_fragtab')]//a[text()='Charges']";
+	public static String Auto_Rate="Auto_Rate>//button[@id='TDN-TDN_jTabbedPane1-TDN_btnAutoTariff']";
+	public static String chargesgird_click="chargesgird_click>(//div[@col-id='tDNRef'])[3]";
+	public static String customerTab_Row = "customerTab_Row>//div[@id='TDN-TDN_jTabbedPane1-TDN_customerTreeTable_tbl']//div[@role='rowgroup']/div[@row-index='0']";
+
+	public static String Reset_customer="Reset_customer>//span[text()='Reset Customer']";
+
+
 	
 	
 	

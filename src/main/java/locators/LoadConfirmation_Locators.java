@@ -1,6 +1,6 @@
 package locators;
 
-public interface LoadConfirmation_Locators extends Tdn_Locators{
+public interface LoadConfirmation_Locators extends Master_Reactivation_Locators{
 
 
 	public static String Username_input = "UserName>//input[@id='nfr_login_authname']";
@@ -40,8 +40,7 @@ public interface LoadConfirmation_Locators extends Tdn_Locators{
 	public static String select_all = "select_all>(//input[@aria-label='Toggle Selection of All Rows'])[1]";
 	public static String load_servicecode="load_servicecode>//input[@id='LCC-LCC_txtService']";		
 	public static String search_First_Click="search_First_Click>//div[@id='nfr_topbar_autocomp_panel']//li[1]";
-
-
+	public static String plus_Button_Agency_config="plus_Button_Agency_config>//button[@id='ACG-ACG_btnAddRecord']";
 	public static String Transportation_dispatch_saved1 ="Transportation_dispatch_saved1>//span[text()='Transportation Dispatch Notice saved']";
 
 	public static String minute_DD = "minute_DD>//select[@data-unit='minute']";

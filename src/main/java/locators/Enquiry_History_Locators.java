@@ -1,6 +1,6 @@
 package locators;
 
-public interface Enquiry_History_Locators extends Equipment_Master_Locators{
+public interface Enquiry_History_Locators extends Equipment_Activity_Locators{
 	// TC_Enquiry_History_TS023:
 		public static String Suppress_Details = "EquipmentNo_Details >(//div[text()='CHSC']//..)[1]";
 		public static String CHSC_Value = "EquipmentNo_Details >//div[text()='CHSC']";

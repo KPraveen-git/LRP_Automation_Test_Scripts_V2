@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.on_off_hire_locators;
+import locators.On_Off_Hire_Locators;
 
 public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_040 extends Keywords{
 
@@ -47,9 +47,9 @@ public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_040 extends Keywords{
 		String cus_con_header = Excel_data.get("cus_con_header");
 
 		
-		String location_hierarchy_type6 =String.format(on_off_hire_locators.location_hierarchy_type6, Location_hierachy40);
-		String folder11 =String.format(on_off_hire_locators.folder11, folder1);
-		String folder_drop = String.format(on_off_hire_locators.folder_drop, folder2);
+		String location_hierarchy_type6 =String.format(On_Off_Hire_Locators.location_hierarchy_type6, Location_hierachy40);
+		String folder11 =String.format(On_Off_Hire_Locators.folder11, folder1);
+		String folder_drop = String.format(On_Off_Hire_Locators.folder_drop, folder2);
 
 
 		Extent_Start(tc_Name, test, test1);
@@ -93,7 +93,7 @@ public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_040 extends Keywords{
 		waitForElement(driver, sizetype_dropdown);
 		click(driver,sizetype_dropdown);
 
-		String sizetype_type = String.format(on_off_hire_locators.sizetype_type, Sizeandtype_value40);
+		String sizetype_type = String.format(On_Off_Hire_Locators.sizetype_type, Sizeandtype_value40);
 		waitForElement(driver, sizetype_type);
 		click(driver, sizetype_type);
 
@@ -187,7 +187,7 @@ public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_040 extends Keywords{
 
 		if(!sz_tp_buttons.equals("")) {
 
-			String sz_tp_btn =String.format(on_off_hire_locators.sz_tp_btn, sz_tp_buttons);
+			String sz_tp_btn =String.format(On_Off_Hire_Locators.sz_tp_btn, sz_tp_buttons);
 			waitForElement(driver, sz_tp_btn);
 			click(driver, sz_tp_btn);
 
@@ -197,7 +197,7 @@ public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_040 extends Keywords{
 
 		if(!sum_det_buttons.equals("")) {
 
-			String sum_det_btn =String.format(on_off_hire_locators.sum_det_btn, sum_det_buttons);
+			String sum_det_btn =String.format(On_Off_Hire_Locators.sum_det_btn, sum_det_buttons);
 			waitForElement(driver, sum_det_btn);
 			click(driver, sum_det_btn);
 
@@ -220,7 +220,7 @@ public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_040 extends Keywords{
 		System.out.println("total records count :"+total_Records_Count);
 
 		for(int i3=2;i3<=total_Records_Count;i3++) {
-			String grid_Check40=String.format(on_off_hire_locators.grid_Check40, i3);
+			String grid_Check40=String.format(On_Off_Hire_Locators.grid_Check40, i3);
 			if(grid_Check40!=null) {
 
 				System.out.println("Location list "+i3+" is displayed in the grid");
@@ -246,7 +246,7 @@ public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_040 extends Keywords{
 		String term_grid = getText(driver, term_detail);	
 		System.out.println("termgrid "+term_grid);
 
-		String term_Grid_Check=String.format(on_off_hire_locators.term_Grid_Check, term_grid);
+		String term_Grid_Check=String.format(On_Off_Hire_Locators.term_Grid_Check, term_grid);
 		waitForElement(driver, term_Grid_Check);
 		if(term_Grid_Check != null) {
 			System.out.println("Activity "+term_grid+" is present in the Stock Report By Size/Type Detail Report");

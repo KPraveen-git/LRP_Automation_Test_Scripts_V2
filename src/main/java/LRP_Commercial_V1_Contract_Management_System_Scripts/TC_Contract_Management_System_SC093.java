@@ -36,6 +36,7 @@ public class TC_Contract_Management_System_SC093 extends Keywords {
 		String MainSheetName = Data.get("MainSheetName");
 		String DGSheetName = Data.get("DGSheetName");
 		String OOGSheetName = Data.get("OOGSheetName");
+		String ImportFilename = Data.get("ImportFilename");
 		String Tariffs_of_General_Applicability = Data.get("Tariffs_of_General_Applicability");
 		String Contract_saved = Data.get("Contract_saved");
 		String Signatory_Name = Data.get("Signatory_Name");
@@ -50,11 +51,13 @@ public class TC_Contract_Management_System_SC093 extends Keywords {
 		String Contract_Activated_popup = Data.get("Contract_Activated_popup");
 		String Contract_Amendment = Data.get("Contract_Amendment");
 		String Remark = Data.get("Remark");
-		String ImportFilename = Data.get("ImportFilename");
+		
+		String Charges_Header = Data.get("Charges_Header");
 		
 		String MainSheet_option = String.format(SelectMainSheet, MainSheetName);
 		String DGheet_option = String.format(SelectDGSheet, DGSheetName);
 		String OOGSheet_option = String.format(SelectOOGSheet, OOGSheetName);
+
 		
 		Extent_Start(testCaseName, test, test1);
 
@@ -128,7 +131,7 @@ public class TC_Contract_Management_System_SC093 extends Keywords {
 		waitForElement(driver, Surcharge_Serach);
 		click(driver, Surcharge_Serach);
 
-		selectValue(driver, Search_Condition, Surcharge_Name);
+		twoColumnSearchWindow(driver, Charges_Header, Search_Condition, Surcharge_Name);
 
 		waitForElement(driver, SelectAll_Surcharge);
 		click(driver, SelectAll_Surcharge);
@@ -274,24 +277,7 @@ public class TC_Contract_Management_System_SC093 extends Keywords {
 		waitForElement(driver, SearchButton_Toolbar);
 		click(driver, SearchButton_Toolbar);
 
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_field);
-
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Search_Condition2);
-
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, contract_number);
-		;
-
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, Search_Condition2, Select_field, contract_number, "", "", "", "");
 
 		Step_End(10, "Retrieve the contract in the global search", test, test1);
 

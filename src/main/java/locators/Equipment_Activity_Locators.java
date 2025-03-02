@@ -1,6 +1,6 @@
 package locators;
 
-public interface Equipment_Activity_Locators extends Rate_Request_Loactors{
+public interface Equipment_Activity_Locators extends Equipment_Master_Locators{
 	public static String kActivityCodeVal = "ActivityCodeVal>//*[@id='CAV-CAV_txtActCode']";
 	public static String kActivityDescriptionVal = "ActivityDescriptionVal>//*[@id='CAV-CAV_txtActDesc']";
 	public static String kActivityGroup = "ActivityGroup>//*[@id='CAV-CAV_cmbActivityGrp_label']";

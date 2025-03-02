@@ -8,7 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.Enquiry_History_Locators;
 
 public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 
@@ -37,8 +37,8 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 			String Filter_Option =Excel_data.get("Filter_Option");
 			String two_Column_Search_Header =Excel_data.get("two_Column_Search_Header");
 			//Locators
-			String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-			String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+			String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+			String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 
 			Extent_Start(testCase_Name, test, test1);
 			navigateUrl(driver, url);
@@ -110,7 +110,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 				int total_Input_Size = Multi_Sel_Values.size();
 				for (String Multi_Sel_Value : Multi_Sel_Values) {
-					String movement =  String.format(EMS_Locators.movement_Value,i); 
+					String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 					waitForElement(driver, P_movement_Code);
 					String movementDetail = getText(driver, movement);
 					if (Grid_Size == total_Input_Size) {
@@ -138,7 +138,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				System.out.println("numberValue : "+numberValue);
 				int expectednumber =0; 
 				for(int i=0;i<=numberValue+numberValue;i++) {
-					String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+					String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 					String movement_Code_text = getTextwithoutfail(driver, movementcode);
 					if(!movement_Code_text.contains(Filter_Option) && !movement_Code_text.equals("null")) {
 						expectednumber++;
@@ -358,7 +358,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 			sendKeys(driver, equipmentNoSearchField_L, ActualEqNo);
 			waitForElement(driver, showHistoryButton_L);
 			safeclick(driver, showHistoryButton_L);
-			String grid_element =  String.format(EMS_Locators.grid_element,  activity2); 
+			String grid_element =  String.format(Enquiry_History_Locators.grid_element,  activity2); 
 			waitForElement(driver, grid_element);
 			RightClick(driver, grid_element);
 			waitForElement(driver, deleteOpionSingle_L);
@@ -397,10 +397,10 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 			}
 			waitForElement(driver, Equip_Type_DD);
 			safeclick(driver, Equip_Type_DD);
-			String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input24); 
+			String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input24); 
 			waitForElement(driver, Equip_Type_Select);
 			safeclick(driver, Equip_Type_Select);
-			String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button24);
+			String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button24);
 			//select Equipment radio button
 			waitForElement(driver, Radio_Btn_Select);
 			safeclick(driver, Radio_Btn_Select);
@@ -456,7 +456,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs24);
 				int total_Input_Size = Multi_Sel_Values.size();
 				for(String Multi_Sel_Value : Multi_Sel_Values) {
-					String movement =  String.format(EMS_Locators.movement_Value,i); 
+					String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 					waitForElement(driver, P_movement_Code);
 					String movementDetail=getText(driver, movement);
 					if(Grid_Size==total_Input_Size) {
@@ -484,7 +484,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 					waitForElement(driver, P_show_Btn);
 					safeclick(driver, P_show_Btn);
 					waitForElement(driver, P_movement_Code);
-					String deleted_Value =  String.format(EMS_Locators.deleted_Value,activity2); 
+					String deleted_Value =  String.format(Enquiry_History_Locators.deleted_Value,activity2); 
 					String deletedHighLight = getTextBackgroundColor(driver, deleted_Value);
 					String movementDetail1=getText(driver, P_equipmentNo_Details);
 					if(movementDetail1.equals(ActualEqNo)) {
@@ -540,7 +540,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 					System.out.println("numberValue : "+numberValue);
 					int expectednumber =0; 
 					for(int i=0;i<=numberValue+numberValue;i++) {
-						String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+						String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 						String movement_Code_text = getTextwithoutfail(driver, movementcode);
 						if(!movement_Code_text.contains(Filter_Option) && !movement_Code_text.equals("null")) {
 							expectednumber++;
@@ -596,8 +596,8 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				System.out.println("*****Enquiry History Module is not Dispalyed");
 				Extent_fail(driver, "*****Enquiry History Module is not Dispalyed*****", test,test1);
 			}
-			String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-			String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+			String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+			String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 			waitForElement(driver, Equip_Type_DD);
 			click(driver, Equip_Type_DD);
 			waitForElement(driver, Equip_Type_Select);
@@ -655,7 +655,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 				int total_Input_Size = Multi_Sel_Values.size();
 				for(String Multi_Sel_Value : Multi_Sel_Values) {
-					String movement =  String.format(EMS_Locators.movement_Value,i); 
+					String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 					waitForElement(driver, movement);
 					String movementDetail=getText(driver, movement);
 					if(Grid_Size==total_Input_Size) {
@@ -776,8 +776,8 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 			}
 			waitForElement(driver, Equip_Type_DD);
 			click(driver, Equip_Type_DD);
-			String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-			String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+			String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+			String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 			waitForElement(driver, Equip_Type_Select);
 			click(driver, Equip_Type_Select);
 			//select Equipment radio button
@@ -834,7 +834,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 				int total_Input_Size = Multi_Sel_Values.size();
 				for(String Multi_Sel_Value : Multi_Sel_Values) {
-					String movement =  String.format(EMS_Locators.movement_Value,i); 
+					String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 					waitForElement(driver, P_movement_Code);
 					String movementDetail=getText(driver, movement);
 					if(Grid_Size==total_Input_Size) {
@@ -857,7 +857,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				// check the movement details
 				waitForElement(driver, Scruoll);
 				horizontalscroll(driver, Scruoll, 4500);
-				String Booking_value =  String.format(EMS_Locators.P_bookingNo_Text,equipmentNo_TxtField_Input);
+				String Booking_value =  String.format(Enquiry_History_Locators.P_bookingNo_Text,equipmentNo_TxtField_Input);
 				String movementDetail=getText(driver, Booking_value);
 				if(equipmentNo_TxtField_Input.equals(movementDetail)) {
 					System.out.println("Matched || " + " Expected Report Activity is : " + equipmentNo_TxtField_Input + " || Actual Report Activity is : " + movementDetail);
@@ -877,7 +877,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				System.out.println("numberValue : "+numberValue);
 				int expectednumber =0; 
 				for(int i=0;i<=numberValue+numberValue;i++) {
-					String movementcode =  String.format(EMS_Locators.movementcode,i);
+					String movementcode =  String.format(Enquiry_History_Locators.movementcode,i);
 					String movement_Code_text = getTextwithoutfail(driver, movementcode);
 					if(movement_Code_text.equals(equipmentNo_TxtField_Input)) {
 						expectednumber++;
@@ -935,8 +935,8 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 			}
 			//select Equipment radio button
 			Step_Start(1, "Select BL no radio button option to proceed further", test, test1);
-			String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-			String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+			String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+			String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 			waitForElement(driver, Equip_Type_DD);
 			click(driver, Equip_Type_DD);
 			waitForElement(driver, Equip_Type_Select);
@@ -994,7 +994,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 				int total_Input_Size = Multi_Sel_Values.size();
 				for(String Multi_Sel_Value : Multi_Sel_Values) {
-					String movement =  String.format(EMS_Locators.movement_Value,i); 
+					String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 					waitForElement(driver, movement);
 					String movementDetail=getText(driver, movement);
 					if(Grid_Size==total_Input_Size) {
@@ -1035,7 +1035,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				System.out.println("numberValue : "+numberValue);
 				int expectednumber =0; 
 				for(int i=0;i<=numberValue+numberValue;i++) {
-					String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+					String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 					String movement_Code_text = getTextwithoutfail(driver, movementcode);
 					if(!movement_Code_text.contains("Equipment No:") && !movement_Code_text.equals("null")) {
 						expectednumber++;
@@ -1096,8 +1096,8 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 
 			//select Equipment radio button
 			Step_Start(1, " Select Equipment no radio button option to proceed further", test, test1);
-			String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-			String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+			String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+			String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 			waitForElement(driver, Equip_Type_DD);
 			click(driver, Equip_Type_DD);
 			waitForElement(driver, Equip_Type_Select);
@@ -1159,7 +1159,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				System.out.println("numberValue : "+numberValue);
 				int expectednumber =0; 
 				for(int i=0;i<=numberValue+numberValue;i++) {
-					String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+					String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 					String movement_Code_text = getTextwithoutfail(driver, movementcode);
 					if(!movement_Code_text.contains("Equipment No:") && !movement_Code_text.equals("null")) {
 						expectednumber++;
@@ -1184,7 +1184,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 				int total_Input_Size = Multi_Sel_Values.size();
 				for(String Multi_Sel_Value : Multi_Sel_Values) {
-					String movement =  String.format(EMS_Locators.movement_Value,i); 
+					String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 					waitForElement(driver, movement);
 					String movementDetail=getText(driver, movement);
 					if(Grid_Size==total_Input_Size) {
@@ -1230,7 +1230,7 @@ public class TC_Enquiry_History_TS023_to_TS028_C extends Keywords {
 				System.out.println("numberValue : "+numberValue);
 				int expectednumber =0; 
 				for(int i=0;i<=numberValue+numberValue;i++) {
-					String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+					String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 					String movement_Code_text = getTextwithoutfail(driver, movementcode);
 					if(!movement_Code_text.contains("Equipment No:") && !movement_Code_text.equals("null")) {
 						expectednumber++;

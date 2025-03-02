@@ -34,6 +34,7 @@ public class TC_Cost_Activity_Report_TS007 extends Keywords {
 		String Select_Port = data.get("Select_Port");
 		String Select_Terminal = data.get("Select_Terminal");
 		String Cost_Equipment_Grouping_Module = data.get("Cost_Equipment_Grouping_Module");
+		String Agency = data.get("Agency");
 
 		Extent_Start(tc_Name, test, test1);
 
@@ -44,6 +45,8 @@ public class TC_Cost_Activity_Report_TS007 extends Keywords {
 		navigateUrl(driver, url);
 
 		LRP_Login(driver, username, password);
+		
+		SwitchProfile(driver, Agency);
 
 		Step_End(1,
 				"Once login to the application and click on switch profile option and select for the required agency",
@@ -80,32 +83,19 @@ public class TC_Cost_Activity_Report_TS007 extends Keywords {
 
 		Step_Start(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		click(driver, globalSearch_Frame_SearchButton);
-
-		Step_End(6, "Then click on the search button", test, test1);
 
 		Step_Start(7, "System will show the CAR No", test, test1);
 
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
-		Step_End(7, "System will show the CAR No", test, test1);
-
 		Step_Start(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
+
+		Step_End(6, "Then click on the search button", test, test1);
+
+		Step_End(7, "System will show the CAR No", test, test1);
 
 		Step_End(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
@@ -271,30 +261,10 @@ public class TC_Cost_Activity_Report_TS007 extends Keywords {
 			Extent_fail(driver, "New Search window not got opened", test, test1);
 		}
 
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_ContractCode);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, GivenContract_Type);
-
-		waitForElement(driver, type_Select2);
-		click(driver, type_Select2);
-		selectByText(driver, type_Select2, Select_Port);
-		click(driver, globalSearch_Condition_Dropdown2);
-		selectByText(driver, globalSearch_Condition_Dropdown2, Condition);
-		clearAndType(driver, globalSearch_InputTextfield2, Port);
-
-		waitForElement(driver, type_Select3);
-		click(driver, type_Select3);
-		selectByText(driver, type_Select3, Select_Terminal);
-		click(driver, globalSearch_Condition_Dropdown3);
-		selectByText(driver, globalSearch_Condition_Dropdown3, Condition);
-		clearAndType(driver, globalSearch_InputTextfield3, Terminal);
-
-		click(driver, globalSearch_Frame_SearchButton);
-
-		if (isdisplayed(driver, Norecords)) {
+		globalValueSearchWindow1(driver, Condition, Select_ContractCode, GivenContract_Type, Select_Port, Port,
+				Select_Terminal, Terminal);
+		
+		if (isdisplayed(driver, CAR_Norecords)) {
 
 			System.out.println("No records found");
 			clear(driver, globalSearch_InputTextfield3);

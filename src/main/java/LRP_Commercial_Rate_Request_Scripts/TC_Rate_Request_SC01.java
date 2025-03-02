@@ -3,7 +3,6 @@ package LRP_Commercial_Rate_Request_Scripts;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 import com.aventstack.extentreports.ExtentTest;
 
@@ -16,15 +15,13 @@ public class TC_Rate_Request_SC01 extends Keywords {
 
 	public void SaveTheRecord(WebDriver driver, ExtentTest test, ExtentTest test1, String selected_dataset)
 			throws Exception {
-		
+
 		String tc_Name="TC_Rate_Request_SC01";
 		String File_Path = TestNgXml.getfilePath_FromExecution().get(tc_Name);
 		String Sheet_Name = TestNgXml.getsheetName_FromExecution().get(tc_Name);
 		String url = TestNgXml.getdatafromExecution().get(tc_Name);
 		Map<String, String> Data = Utils.GetAllData(Sheet_Name, tc_Name,"Dataset" + selected_dataset, File_Path);
 
-
-		
 		String username = Data.get("Username");
 		String password = Data.get("Password");
 		String rateRequestModule = Data.get("ModuleRateRequest");
@@ -67,7 +64,7 @@ public class TC_Rate_Request_SC01 extends Keywords {
 		String Customer_code_Value3 = Data.get("Customer_code_Value3");
 		String Cust_code2 = Data.get("Cust_code2");
 		String Cust_code3 = Data.get("Cust_code3");
-		
+
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
 		String preCarriageLocator = String.format(Rate_Request_Loactors.pre_Carriage_Radiobtn, Pre_Carriage_Radiobtn);
@@ -77,30 +74,30 @@ public class TC_Rate_Request_SC01 extends Keywords {
 
 		navigateUrl(driver, url);
 		//Login
-				LRP_Login(driver, username, password);
-				
-				//Switch User
-				SwitchProfile(driver, agencyUser);
-				
-				//Module search
-				moduleNavigate(driver, rateRequestModule);
-				
-				// Rate Request
-				waitForElement(driver, rateRequest_Tab);
-				if (isDisplayed(driver, rateRequest_Tab)) {
-					Extent_pass(driver, "Rate Request Page is displayed", test,test1);
-					System.out.println("Rate Request Page is displayed");
-				} else {
-					System.out.println("Rate Request Page is not displayed");
-					Extent_fail(driver, "Rate Request Page is not displayed", test,test1);
-				}
-				Step_Start(1, "Click on the new button in the toolbar", test, test1);
-				waitForDisplay(driver, Rate_Newbutton);
-				if(isdisplayed(driver, Rate_Newbutton)&&isElementEnabled(driver, Rate_Newbutton)) {
-					waitForElement(driver, Rate_Newbutton);
-					click(driver, Rate_Newbutton);
-				}
-				Step_End(1, "Click on the new button in the toolbar", test, test1);
+		LRP_Login(driver, username, password);
+
+		//Switch User
+		SwitchProfile(driver, agencyUser);
+
+		//Module search
+		moduleNavigate(driver, rateRequestModule);
+
+		// Rate Request
+		waitForElement(driver, rateRequest_Tab);
+		if (isDisplayed(driver, rateRequest_Tab)) {
+			Extent_pass(driver, "Rate Request Page is displayed", test,test1);
+			System.out.println("Rate Request Page is displayed");
+		} else {
+			System.out.println("Rate Request Page is not displayed");
+			Extent_fail(driver, "Rate Request Page is not displayed", test,test1);
+		}
+		Step_Start(1, "Click on the new button in the toolbar", test, test1);
+		waitForDisplay(driver, Rate_Newbutton);
+		if(isdisplayed(driver, Rate_Newbutton)&&isElementEnabled(driver, Rate_Newbutton)) {
+			waitForElement(driver, Rate_Newbutton);
+			click(driver, Rate_Newbutton);
+		}
+		Step_End(1, "Click on the new button in the toolbar", test, test1);
 		waitForElement(driver, tService_Dropdown);
 		click(driver, tService_Dropdown);
 		waitForElement(driver, select_t_Service);
@@ -119,7 +116,7 @@ public class TC_Rate_Request_SC01 extends Keywords {
 			waitForElement(driver, Dateclick);
 			clearAndType(driver, Dateclick, From_Date_Input);
 		}
-		
+
 		// Selecting the to Date
 		waitForElement(driver, Dateclick1);
 		if (date_Picker.equalsIgnoreCase("Yes")) {
@@ -137,7 +134,7 @@ public class TC_Rate_Request_SC01 extends Keywords {
 		click(driver, Customer_Name_search_button);
 		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
 		waitForDisplay(driver, pop_up_exp);
-		if(isDisplayed(driver,pop_up_exp )) {
+		if(isdisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
@@ -305,6 +302,7 @@ public class TC_Rate_Request_SC01 extends Keywords {
 			Step_Start(14, "Click submit", test, test1);
 			waitForElement(driver, Rate_SubmitBtn);
 			click(driver, Rate_SubmitBtn);
+			
 			waitForElement(driver, rate_Request_Popup);
 			String actualPopup=getText(driver, rate_Request_Popup);
 			if(actualPopup.equals(wantToProceedPopup)) {
@@ -312,11 +310,8 @@ public class TC_Rate_Request_SC01 extends Keywords {
 				System.out.println("Matched || Expected : "+wantToProceedPopup+" Actual : "+ actualPopup);
 				Extent_pass(driver, wantToProceedPopup+" popup is displayed", test,test1);
 				System.out.println(wantToProceedPopup+" popup is displayed");
-
-
 			}else {
 				System.out.println("Not Matched || Expected : "+wantToProceedPopup+" Actual : "+ actualPopup);
-
 				Extent_fail(driver,"Not Matched || Expected : "+wantToProceedPopup+" Actual : "+ actualPopup, test,test1);
 			}
 			Step_End(14, "Click submit", test, test1);
@@ -339,6 +334,8 @@ public class TC_Rate_Request_SC01 extends Keywords {
 				Extent_fail(driver,"Not Matched || Expected : "+submittedPopup+" Actual : "+ actSubmittedPopup, test,test1);
 			}
 			Step_End(15, "Click Ok", test, test1);
+			waitForElement(driver, Mail_Cancel_button);
+			click(driver, Mail_Cancel_button);
 			waitForElement(driver, reqNo_Textfield);
 			String actualReqNo=getAttribute(driver, reqNo_Textfield, "value");
 			System.out.println("Request Number:"+actualReqNo);  
@@ -378,11 +375,7 @@ public class TC_Rate_Request_SC01 extends Keywords {
 				waitForElement(driver, close_Tab);
 				click(driver, close_Tab);
 				Extent_call(test, test1, "Rate request Delete start");
-				waitForElement(driver, Module_SearchR);
-				sendKeys(driver, Module_SearchR, moduleSRRGate);
-				waitForElement(driver, SRR_Gate);
-				click(driver, SRR_Gate);
-
+				moduleNavigate(driver, moduleSRRGate);
 				//SRR Gate
 
 				waitForElement(driver, srrGate_Tab);
@@ -391,7 +384,6 @@ public class TC_Rate_Request_SC01 extends Keywords {
 					System.out.println("SRR Gate Page is displayed");
 				} else {
 					System.out.println("SRR Gate Page is not displayed");
-
 					Extent_fail(driver, "SRR Gate Page is not displayed", test,test1);
 				}
 				//Submitted	
@@ -416,7 +408,6 @@ public class TC_Rate_Request_SC01 extends Keywords {
 					Extent_pass(driver,"Matched || " + " Expected Value is : " + actualReqNo + " || ActualValue is : " + submitted_ReqNum,test,test1);
 					Extent_pass(driver, actualReqNo+"  is submitted", test,test1);
 					System.out.println(actualReqNo+" is submitted");
-
 					click(driver, select_Actual_ReqNo);
 					waitForElement(driver, select_Actual_ReqNo);
 					RightClick(driver, select_Actual_ReqNo);
@@ -424,7 +415,6 @@ public class TC_Rate_Request_SC01 extends Keywords {
 					click(driver, moveTo_Pending);
 					waitForElement(driver, close_Moved_Pending_Popup);
 					click(driver, close_Moved_Pending_Popup);
-
 				}else {
 					System.out.println("Not matched || " + " Expected Value is : " + actualReqNo + " || Actual Value  is : " + submitted_ReqNum);
 					Extent_fail(driver,"Not matched || " + " Expected Value is : " + actualReqNo + " || Actual Value is : " + submitted_ReqNum,test,test1);
@@ -464,19 +454,13 @@ public class TC_Rate_Request_SC01 extends Keywords {
 
 					waitForElement(driver, comment_Ok_Button);
 					click(driver, comment_Ok_Button);
-
-
-
 				}else {
 					System.out.println("Not matched || " + " Expected Value is : " + actualReqNo + " || Actual Value  is : " + pending_ReqNum);
 					Extent_fail(driver,"Not matched || " + " Expected Value is : " + actualReqNo + " || Actual Value is : " + pending_ReqNum,test,test1);
 				}	
 				Extent_call(test, test1, "Rate request Delete Ended");	
-
 			}
 		}
-
 		Extent_completed(tc_Name, test, test1);
-
 	}
 }

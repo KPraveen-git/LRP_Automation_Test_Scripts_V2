@@ -65,29 +65,7 @@ public class TC_Load_Confirmation_SC_LC_12 extends Keywords{
 			Step_Start(1, "select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 
 			waitForElement(driver, service_Searchfield);
-			sendKeys(driver, service_Searchfield, first_service_data);
-			waitForElement(driver, vessel_Input);
-			sendKeys(driver, vessel_Input,Vessels);
-			
-			
-			waitForElement(driver, VoyageInput);
-			sendKeys(driver, VoyageInput, Voyagenumber1);
-			
-			
-			waitForElement(driver, Boundinpiut);
-			sendKeys(driver, Boundinpiut, Boundinput);
-			
-			
-			waitForElement(driver, portCode_Inputfield);
-			sendKeys(driver, portCode_Inputfield, portCode);
-			
-			
-			waitForElement(driver, terminalCode_Inputfield);
-			sendKeys(driver, terminalCode_Inputfield, terminalCode);
-			
-			
-			waitForElement(driver, select_Service);
-			doubleClick(driver, select_Service);	
+			selectservice(driver, first_service_data, Vessels, Voyagenumber1, Boundinput, portCode, terminalCode);
 			
 			Step_End(1, "select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 

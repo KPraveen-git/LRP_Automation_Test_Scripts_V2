@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.LoadConfirmation_Locators;
+import locators.Tdn_Locators;
 
 public class TC_Transportation_Dispatch_Notice_SC_TDN_11 extends Keywords{
 
@@ -43,16 +43,15 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_11 extends Keywords{
 		String Dropdown_Condition =TDN_SC_11.get("Dropdown_Condition");
 		String Global_search_Book_No =TDN_SC_11.get("Global_search_Book_No");
 		String merchantPopup =TDN_SC_11.get("MerchantPopup");
+		String Search_Type2 =TDN_SC_11.get("Search_Type2");
+		String Search_Input2 =TDN_SC_11.get("Search_Input2");
+		String Search_Type3 =TDN_SC_11.get("Search_Type3");
+		String Search_Input3 =TDN_SC_11.get("Search_Input3");
 
 		
 		
-		
-		String shipmenttype_select=String.format(LoadConfirmation_Locators.shipmenttype_select, Shipment_Type);
+		String shipmenttype_select=String.format(Tdn_Locators.shipmenttype_select, Shipment_Type);
 
-		
-		
-		
-		
 	navigateUrl(driver,url);
 	
 	Extent_Start(tc_Name, test, test1);
@@ -108,28 +107,11 @@ waitForDisplay(driver, NewButton_ToolBar);
 				Step_End(2, "Click add(+) button in Bl No field.", test, test1);
 				
 				Step_Start(3, "Paste BL number and click search button.", test, test1);
-				
-				waitForElement(driver, select_first);
-				click(driver, select_first);
-				waitForElement(driver, select_first);
-				selectByText(driver, select_first, Global_search_Book_No);
-				
-				waitForElement(driver, globalSearch_Condition_Dropdown1);
-				click(driver, globalSearch_Condition_Dropdown1);
-				selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
+				Step_Start(4, "Select the BL number", test, test1);
+
+				globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Book_No, data1, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
 				
 				Step_End(3, "Paste BL number and click search button.", test, test1);
-
-				Step_Start(4, "Select the BL number", test, test1);
-				sendKeys(driver, Asearchinput, data1);
-				click(driver, Asearchclickbtn);
-				waitForElement(driver, select_FirstRow);
-				click(driver, select_FirstRow);
-				
-				waitForElement(driver, Aselectbutton1);
-				click(driver, Aselectbutton1);
-				
-				
 				Step_End(4, "Select the BL number", test, test1);
 				
 			}
@@ -172,7 +154,7 @@ waitForDisplay(driver, NewButton_ToolBar);
 		Step_Start(7, "select book number from drop down.", test, test1);
 		waitForElement(driver, Select_Booking_DD);
 		click(driver, Select_Booking_DD);
-		String contract_click1=String.format(LoadConfirmation_Locators.contract_click1, Booking_Number);
+		String contract_click1=String.format(Tdn_Locators.contract_click1, Booking_Number);
 		waitForElement(driver, contract_click1);
 		click(driver, contract_click1);
 		
@@ -191,31 +173,7 @@ waitForDisplay(driver, NewButton_ToolBar);
 		waitForElement(driver, Add_ware_house);
 		click(driver, Add_ware_house);
 		
-		waitForElement(driver, select_first);
-		click(driver, select_first);
-		waitForElement(driver, select_first);
-		selectByText(driver, select_first, Global_search_Option1);
-		
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
-		
-		Step_End(9, "click search icon in the warehouse field.", test, test1);
-		
-		Step_Start(10, "enter % in warehouse name.", test, test1);
-		
-		sendKeys(driver, globalSearch_InputTextfield1, Ware_House_number);
-		click(driver, globalSearch_Frame_SearchButton);
-		
-		Step_End(10, "enter % in warehouse name.", test, test1);
-		
-		Step_Start(11, "click on the warehouse and click select button.", test, test1);
-		
-		waitForElement(driver, select_FirstRow);
-		click(driver, select_FirstRow);
-		
-		waitForElement(driver, Aselectbutton1);
-		click(driver, Aselectbutton1);
+		globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Option1, Ware_House_number, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
 		
 		Step_End(11, "click on the warehouse and click select button.", test, test1);
 
@@ -241,7 +199,7 @@ waitForDisplay(driver, NewButton_ToolBar);
 		
 		waitForElement(driver, mode_of_Trans);
 		click(driver, mode_of_Trans);
-		String trans_select=String.format(LoadConfirmation_Locators.trans_select, Trans_select);
+		String trans_select=String.format(Tdn_Locators.trans_select, Trans_select);
 		waitForElement(driver, trans_select);
 		click(driver, trans_select);
 

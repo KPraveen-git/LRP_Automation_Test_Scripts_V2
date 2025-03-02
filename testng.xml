@@ -4,9 +4,10 @@
 		<classes>
 			<class name="commonMethods.Testcases" />
 		</classes>
+		<methods>
+		</methods>
 	</test>
 	<listeners>
-		<listener class-name="commonMethods.TestMethodFilter" />
 		<listener class-name="Mail.CustomTestListener" />
 	</listeners>
 </suite>

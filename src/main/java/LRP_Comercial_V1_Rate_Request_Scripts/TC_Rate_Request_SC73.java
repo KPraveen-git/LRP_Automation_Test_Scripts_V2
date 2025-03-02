@@ -387,7 +387,9 @@ public class TC_Rate_Request_SC73   extends Keywords {
 				System.out.println("Not Matched || " + " Expected Report Activity is : " + requestStatus+ " || Actual Report Activity is : " + actRequestStatus);
 				Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + requestStatus+ " || Actual Report Activity is : " + actRequestStatus, test,test1);
 			}
-			Step_Start(16, "Switch to line profile and navigate to the special rate request screen using SRR gate screen under Submit node", test, test1);
+			Extent_completed(testCase_Name, test, test1);
+			
+//			Step_Start(16, "Switch to line profile and navigate to the special rate request screen using SRR gate screen under Submit node", test, test1);
 //			ResetProfile(driver);
 //			moduleNavigate(driver, moduleSRRGate);
 //			//Submitted	

@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.LoadConfirmation_Locators;
+import locators.Tdn_Locators;
 
 public class TC_Transportation_Dispatch_Notice_SC_TDN_18 extends Keywords{
 
@@ -52,7 +52,6 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_18 extends Keywords{
 		String Global_search_Option1 =TDN_SC_18.get("Global_search_Option1");
 		String Dropdown_Condition =TDN_SC_18.get("Dropdown_Condition");
 		String merchantPopup =TDN_SC_18.get("MerchantPopup");
-
 		String pickup_loc_dd_data =TDN_SC_18.get("pickup_loc_dd_data");
 		String pickup_loc_search_data =TDN_SC_18.get("pickup_loc_search_data");
 		String condition =TDN_SC_18.get("condition");
@@ -66,8 +65,19 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_18 extends Keywords{
 		String chasis_pickup_dd_data =TDN_SC_18.get("chasis_pickup_dd_data");
 		String chasis_drop_dd_data =TDN_SC_18.get("chasis_drop_dd_data");
 		
-
-		String shipmenttype_select=String.format(LoadConfirmation_Locators.shipmenttype_select, Shipment_Type);
+		String cust_depot_term_header =TDN_SC_18.get("cust_depot_term_header");
+		String return_location_header =TDN_SC_18.get("return_location_header");
+		String pickup_location_header =TDN_SC_18.get("pickup_location_header");
+		String chasis_pickup_header =TDN_SC_18.get("chasis_pickup_header");
+		String chasis_drop_header =TDN_SC_18.get("chasis_drop_header");
+		String chasis_pickup_Search_data =TDN_SC_18.get("chasis_pickup_Search_data");
+		String chasis_drop_Search_data =TDN_SC_18.get("chasis_drop_Search_data");
+		String Chassis_Mode =TDN_SC_18.get("Chassis_Mode");
+		String Search_Type2 =TDN_SC_18.get("Search_Type2");
+		String Search_Input2 =TDN_SC_18.get("Search_Input2");
+		String Search_Type3 =TDN_SC_18.get("Search_Type3");
+		String Search_Input3 =TDN_SC_18.get("Search_Input3");
+		String shipmenttype_select=String.format(Tdn_Locators.shipmenttype_select, Shipment_Type);
 		
 	navigateUrl(driver,url);
 	
@@ -111,33 +121,12 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_18 extends Keywords{
 				safeclick(driver, BL_Add);
 				
 				Step_End(2, "Click add(+) button in BookNo field.", test, test1);
-
-			
-				waitForElement(driver, select_first);
-				click(driver, select_first);
-				waitForElement(driver, select_first);
-				selectByText(driver, select_first, Global_search_Wo_No);
-				
-				waitForElement(driver, globalSearch_Condition_Dropdown1);
-				click(driver, globalSearch_Condition_Dropdown1);
-				selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
-				
 				Step_Start(3, "Paste book number and click search button.", test, test1);
-
-				sendKeys(driver, Asearchinput, data1);
-
-				click(driver, Asearchclickbtn);
-				
-				Step_End(3, "Paste book number and click search button.", test, test1);
-
 				Step_Start(4, "Select the book number", test, test1);
 
-				waitForElement(driver, select_FirstRow);
-				click(driver, select_FirstRow);
-				
-				waitForElement(driver, Aselectbutton1);
-				click(driver, Aselectbutton1);
-				
+				globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Wo_No, data1, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
+				Step_End(3, "Paste book number and click search button.", test, test1);
+				Step_End(4, "Select the book number", test, test1);
 				Step_End(4, "Select the book number", test, test1);
 
 			}
@@ -180,7 +169,7 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_18 extends Keywords{
 		waitForElement(driver, Select_Booking_DD);
 		click(driver, Select_Booking_DD);
 		
-		String contract_click1=String.format(LoadConfirmation_Locators.contract_click1, Booking_Number);
+		String contract_click1=String.format(Tdn_Locators.contract_click1, Booking_Number);
 		waitForElement(driver, contract_click1);
 		click(driver, contract_click1);
 		
@@ -197,36 +186,12 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_18 extends Keywords{
 
 		waitForElement(driver, Add_ware_house);
 		click(driver, Add_ware_house);
-		
-		waitForElement(driver, select_first);
-		click(driver, select_first);
-		waitForElement(driver, select_first);
-		selectByText(driver, select_first, Global_search_Option1);
-		
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
-		
-		Step_End(9, "click search icon in the warehouse field.", test, test1);
+		   globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Option1, Ware_House_number, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
+			Step_End(9, "click search icon in the warehouse field.", test, test1);
 
-		Step_Start(10, "enter % in warehouse name.", test, test1);
+			Step_End(10, "enter % in warehouse name.", test, test1);
 
-		sendKeys(driver, Asearchinput, Ware_House_number);
-
-		click(driver, Asearchclickbtn);
-		
-		Step_End(10, "enter % in warehouse name.", test, test1);
-
-		Step_Start(11, "click on the warehouse and click select button.", test, test1);
-
-		
-		waitForElement(driver, select_FirstRow);
-		click(driver, select_FirstRow);
-		
-		waitForElement(driver, Aselectbutton1);
-		click(driver, Aselectbutton1);
-		
-		Step_End(11, "click on the warehouse and click select button.", test, test1);
+			Step_End(11, "click on the warehouse and click select button.", test, test1);
 
 		Step_Start(12, "click in app date field and select the current date.", test, test1);
 
@@ -247,7 +212,7 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 		waitForElement(driver, mode_of_Trans);
 
 		click(driver, mode_of_Trans);
-		String trans_select=String.format(LoadConfirmation_Locators.trans_select, Trans_select);
+		String trans_select=String.format(Tdn_Locators.trans_select, Trans_select);
 		waitForElement(driver, trans_select);
 		click(driver, trans_select);
 
@@ -315,7 +280,7 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 
 		waitForElement(driver, modeof_transport);
 		click(driver, modeof_transport);
-		String Select_ModeOfTransport=String.format(LoadConfirmation_Locators.Select_ModeOfTransport, Modeof_Transport);
+		String Select_ModeOfTransport=String.format(Tdn_Locators.Select_ModeOfTransport, Modeof_Transport);
 
 		safeclick(driver, Select_ModeOfTransport);
 		
@@ -327,33 +292,15 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 	    waitForElement(driver, vendor_searchicon);
 	    click(driver, vendor_searchicon);
      		
-	    waitForElement(driver, select_first);
-	 		click(driver, select_first);
-	 		waitForElement(driver, select_first);
-	 		selectByText(driver, select_first, Global_search_Vendor_Code_Option1);
-	 		
-	 		waitForElement(driver, globalSearch_Condition_Dropdown1);
-	 		click(driver, globalSearch_Condition_Dropdown1);
-	 		selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
-	      		
-	 		  waitForElement(driver, globalSearch_InputTextfield1);
-	 		    sendKeys(driver, globalSearch_InputTextfield1, Vender_Code);
-	    
-	    waitForElement(driver, vendor_Code_searchicon);
-	    click(driver, vendor_Code_searchicon);
-	    
-	    waitForElement(driver, select_FirstRow);
-		click(driver, select_FirstRow);
-	    
-	    waitForElement(driver, Aselectbutton1);
-	    click(driver, Aselectbutton1);
+	    globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Vendor_Code_Option1, Vender_Code, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
+
 	    
 		Step_End(22, " click search icon in vendor details, enter % in vendor code and select the vendor.", test, test1);
 
 		Step_Start(23, "select Trans. Type Mode as pickup only in drop down.", test, test1);
 		  waitForElement(driver, modeof_transport_type);
 		click(driver,modeof_transport_type);
-		String Select_ModeOfTransport_type=String.format(LoadConfirmation_Locators.Select_ModeOfTransport_type, Modeof_Transport_Type);
+		String Select_ModeOfTransport_type=String.format(Tdn_Locators.Select_ModeOfTransport_type, Modeof_Transport_Type);
 		safeclick(driver, Select_ModeOfTransport_type);
 		
 		Step_End(23, "select Trans. Type Mode as pickup only in drop down.", test, test1);
@@ -374,7 +321,7 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 
 			waitForElement(driver, pickup_loc_search_icon);
 			click(driver, pickup_loc_search_icon);
-			selectValue(driver, condition, pickup_loc_search_data);
+			twoColumnSearchWindow(driver, pickup_location_header, condition, pickup_loc_search_data);
 		}
 		}
 		//2
@@ -397,7 +344,7 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 
 			waitForElement(driver, cust_depo_term_search_icon);
 			click(driver, cust_depo_term_search_icon);
-			selectValue(driver, condition, cust_dep_search_data);
+			twoColumnSearchWindow(driver, cust_depot_term_header, condition, cust_dep_search_data);
 		}
 		}
 		//3
@@ -417,7 +364,7 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 
 			waitForElement(driver, return_location_searchicon);
 			click(driver, return_location_searchicon);
-			selectValue(driver, condition, return_loc_search_data);
+			twoColumnSearchWindow(driver, return_location_header, condition, return_loc_search_data);
 		}
 		}
 		
@@ -452,23 +399,37 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 		checkBox(driver, with_Chassis_Check_Box, with_chasis_flag);
 		
 		if(with_chasis_flag.equalsIgnoreCase("yes")) {
-			
-			waitForElement(driver, Chassis_Pickup_Loc_Label);
-			click(driver, Chassis_Pickup_Loc_Label);
-			
-			String chasis_pickup_dd = String.format(DropDown_Select, chasis_pickup_dd_data);
-			waitForElement(driver, chasis_pickup_dd);
-			click(driver, chasis_pickup_dd);
-
+			if(!Chassis_Mode.equals("")) {
+				String mode_Select = String.format(With_Chassis_Mode, Chassis_Mode);
+				waitForElement(driver, mode_Select);
+				click(driver, mode_Select);
+			}
+			if(!chasis_pickup_dd_data.equals("")) {
+				waitForElement(driver, Chassis_Pickup_Loc_Label);
+				click(driver, Chassis_Pickup_Loc_Label);
+				String chasis_pickup_dd = String.format(DropDown_Select, chasis_pickup_dd_data);
+				waitForElement(driver, chasis_pickup_dd);
+				click(driver, chasis_pickup_dd);
+			}
+			if(!chasis_pickup_Search_data.equals("")) {
+				waitForElement(driver, Chassis_Pickup_Loc_Search);
+				click(driver, Chassis_Pickup_Loc_Search);
+				twoColumnSearchWindow(driver, chasis_pickup_header, condition, chasis_pickup_Search_data);
+			}
 			//drop
-			
-			waitForElement(driver, Chassis_Drop_Loc_Label);
-			click(driver, Chassis_Drop_Loc_Label);
-			
-			String chasis_drop_dd = String.format(DropDown_Select, chasis_drop_dd_data);
-			waitForElement(driver, chasis_drop_dd);
-			click(driver, chasis_drop_dd);
-			
+			if(!chasis_drop_dd_data.equals("")) {
+				waitForElement(driver, Chassis_Drop_Loc_Label);
+				click(driver, Chassis_Drop_Loc_Label);
+				String chasis_drop_dd = String.format(DropDown_Select, chasis_drop_dd_data);
+				waitForElement(driver, chasis_drop_dd);
+				click(driver, chasis_drop_dd);
+			}
+			if(chasis_drop_Search_data.equals("")) {
+				waitForElement(driver, Chassis_Drop_Loc_Search);
+				click(driver, Chassis_Drop_Loc_Search);
+				twoColumnSearchWindow(driver, chasis_drop_header, condition, chasis_drop_Search_data);
+
+			}
 		}
 			Step_Start(24, "click add button and close the pop window.", test, test1);
 			waitForElement(driver, return_date_label_leg);
@@ -540,7 +501,7 @@ Step_Start(13, "select mode of transport as truck in dropdown.", test, test1);
 	    waitForElement(driver, modeof_transport);
 		click(driver, modeof_transport);
 		
-		String Select_ModeOfTransport1=String.format(LoadConfirmation_Locators.Select_ModeOfTransport, Modeof_Transport1);
+		String Select_ModeOfTransport1=String.format(Tdn_Locators.Select_ModeOfTransport, Modeof_Transport1);
 
 		safeclick(driver, Select_ModeOfTransport1);
 		

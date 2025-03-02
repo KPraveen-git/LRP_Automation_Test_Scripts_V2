@@ -40,6 +40,7 @@ public class TC_Load_Confirmation_SC_LC_11 extends Keywords {
 			String App_Date =Data.get("App_Date");
 			String date_Picker =Data.get("date_Picker");
 			String value =Data.get("value");
+			String Agency_search =Data.get("Agency_search");
 			String Condition_Filter =Data.get("Condition_Filter");
 			String load_confirmation_popup =Data.get("load_confirmation_popup");
 			
@@ -92,8 +93,8 @@ public class TC_Load_Confirmation_SC_LC_11 extends Keywords {
 					click(driver, agencySearch_Button);
 					
 					waitForElement(driver, agencyCode_Filter);
+					twoColumnSearchWindow(driver, Agency_search, Condition_Filter, AgencyUser);
 					
-					selectValue1(driver, Condition_Filter, AgencyUser);
 					waitForElement(driver, agencyConfig_Show_Button);
 					click(driver, agencyConfig_Show_Button);
 					
@@ -112,8 +113,8 @@ public class TC_Load_Confirmation_SC_LC_11 extends Keywords {
 					
 					
 
-					waitForElement(driver, plus_Button);
-					click(driver, plus_Button);
+					waitForElement(driver, plus_Button_Agency_config);
+					click(driver, plus_Button_Agency_config);
 					waitForElement(driver, popup_Message_Ok_Button);
 					click(driver, popup_Message_Ok_Button);
 					waitForElement(driver, description_Grid_Filter);
@@ -169,31 +170,7 @@ public class TC_Load_Confirmation_SC_LC_11 extends Keywords {
 			Step_Start(2, "select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 			
 			waitForElement(driver, service_Searchfield);
-			sendKeys(driver, service_Searchfield, first_service_data);
-	
-			
-			waitForElement(driver, vessel_Input);
-			sendKeys(driver, vessel_Input,Vessels);
-			
-			
-			waitForElement(driver, VoyageInput);
-			sendKeys(driver, VoyageInput, Voyagenumber1);
-			
-			
-			waitForElement(driver, Boundinpiut);
-			sendKeys(driver, Boundinpiut, Boundinput);
-			
-			
-			waitForElement(driver, portCode_Inputfield);
-			sendKeys(driver, portCode_Inputfield, portCode);
-			
-			
-			waitForElement(driver, terminalCode_Inputfield);
-			sendKeys(driver, terminalCode_Inputfield, terminalCode);
-			
-			
-			waitForElement(driver, select_Service);
-			doubleClick(driver, select_Service);	
+			selectservice(driver, first_service_data, Vessels, Voyagenumber1, Boundinput, portCode, terminalCode);
 			
 			Step_End(2, "select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 	

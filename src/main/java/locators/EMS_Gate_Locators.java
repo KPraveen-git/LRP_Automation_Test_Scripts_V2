@@ -1,6 +1,6 @@
 package locators;
 
-public interface EMS_Gate_Locators extends Equipment_Activity_Locators {
+public interface EMS_Gate_Locators extends Enquiry_History_Locators{
 	public static String EMS_Gate_From_Date="EMS_Gate_From_Date>//input[@id='EGT-EGT_txtFrom_input']";
 	public static String EMS_Gate_To_Date="EMS_Gate_To_Date>//input[@id='EGT-EGT_txtTo_input']";
 	public static String Action_Required_CheckBox = "Action_Required_CheckBox>(//input[@id='EGT-EGT_chkActionRequired_input']//following::span)[1]";

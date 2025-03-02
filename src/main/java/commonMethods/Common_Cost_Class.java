@@ -8,31 +8,30 @@ import com.aventstack.extentreports.ExtentTest;
 import locators.Rate_Request_Loactors;
 
 public class Common_Cost_Class extends Keywords{
-	
+	String From_Location_External = "";
+	String To_Location_External = "";
+	String From_Terminal_External = "";
+	String Service_External = "";
+	String To_Terminal_External ="";
 	public void parseEquipmentData(WebDriver driver, String input,ExtentTest test, ExtentTest test1,String selected_dataset) {
 
-		Map<String, String> Data = Utils.GetAllData("Common_Data", "Common_Cost_Datas","Dataset" + selected_dataset, "TestData");
+		Map<String, String> Data = Utils.GetAllData("Common_Data", "Common_Cost_Datas","Dataset" + selected_dataset, "TestData_Commercial");
 		String condition=Data.get("condition");
 		String datePicker=Data.get("datePicker");
+		String Start_Date=Data.get("Start_Date");
+		String End_Date=Data.get("End_Date");
 		String Fec_module=Data.get("Fec_module");
 		String Ac_module=Data.get("Ac_module");
 		String External_Feeder_Cost_Module = Data.get("External_Feeder_Cost_Module");
-		String end_date_fec = Data.get("end_date_fec");
-		String start_date_fec = Data.get("start_date_fec");
 		String transshipmentCost_Module=Data.get("TranshipmentCost_Module");
 		String equipment_Operation_cost_Origin_Module=Data.get("equipment_Operation_cost_Origin_Module");
 		String Create_New_Cost_Origin_Popup=Data.get("Create_New_Cost_Origin_Popup").trim();
 		String Condition_filter_C=Data.get("Condition_filter_C");
-		String date_Picker_C=Data.get("date_Picker_C");
-		String From_Date_Input_C=Data.get("From_Date_Input_C");
-		String To_Date_Input_C=Data.get("To_Date_Input_C");
 		String amount_C=Data.get("amount_C");
 		String amount_Type_C=Data.get("amount_Type_C");
 		String cost_Origin_Saved_Popup_C=Data.get("cost_Origin_Saved_Popup_C").trim();
 		String dischargeCost_Module=Data.get("DischargeCost_Module");
 		String container_Type_DSC=Data.get("Container_Type_DSC");
-		String start_Date_DSC=Data.get("Start_Date_DSC");
-		String end_Date_DSC=Data.get("End_Date_DSC");
 		String local_Amount_DSC=Data.get("Local_Amount_DSC");
 		String in_Transist_Checkbox_DSC=Data.get("In_Transist_Checkbox_DSC");
 		String port_Code_DSC=Data.get("Port_Code_DSC");
@@ -44,13 +43,9 @@ public class Common_Cost_Class extends Keywords{
 		String soc_flag_Ac = Data.get("soc_flag_Ac");
 		String container_type_data_Ac = Data.get("container_type_data_Ac");
 		String bl_type_data_Ac = Data.get("bl_type_data_Ac");
-		String start_date_data_Ac = Data.get("start_date_data_Ac");
-		String End_date_data_Ac = Data.get("End_date_data_Ac");
 		String amount_data_Ac = Data.get("amount_data_Ac");
 		String loadCost_Module=Data.get("LoadCost_Module");
 		String container_Type_LDC=Data.get("Container_Type_LDC");
-		String start_Date_LDC=Data.get("Start_Date_LDC");
-		String end_Date_LDC=Data.get("End_Date_LDC");
 		String local_Amount_LDC=Data.get("Local_Amount_LDC");
 		String in_Transist_Checkbox_LDC=Data.get("In_Transist_Checkbox_LDC");
 		String port_Code_LDC=Data.get("Port_Code_LDC");
@@ -67,24 +62,24 @@ public class Common_Cost_Class extends Keywords{
 		String empty_field_data_Fec = Data.get("empty_field_data_Fec");
 		String per_diem_data_Fec = Data.get("per_diem_data_Fec");
 		String ICO_Module_Name=Data.get("ICO_Module_Name");
-		String ICO_Start_Date=Data.get("ICO_Start_Date");
-		String ICO_End_Date=Data.get("ICO_End_Date");
 		String ICO_Amount_Input=Data.get("ICO_Amount_Input");
 		String ICO_Curreny_Input=Data.get("ICO_Curreny_Input");
+		String ICO_Location_Code_Header=Data.get("ICO_Location_Code_Header");
+		String ICO_Equip_Type_Header=Data.get("ICO_Equip_Type_Header");
 		String ICD_Origin_Input=Data.get("ICD_Origin_Input");
 		String ICD_Module_Name=Data.get("ICD_Module_Name");
-		String ICD_Start_Date=Data.get("ICD_Start_Date");
-		String ICD_End_Date=Data.get("ICD_End_Date");
 		String ICD_Amount_Input=Data.get("ICD_Amount_Input");
 		String ICD_Curreny_Input=Data.get("ICD_Curreny_Input");
+		String ICD_Delivery_Port_Column_Header=Data.get("ICD_Delivery_Port_Column_Header");
+		String ICD_Origin_Port_Column_Header=Data.get("ICD_Origin_Port_Column_Header");
+		String ICD_Equip_Type_Column_Header=Data.get("ICD_Equip_Type_Column_Header");
 		String claims_Module_Name=Data.get("claims_Module_Name");
-		String claims_Start_Date=Data.get("claims_Start_Date");
-		String claims_End_Date=Data.get("claims_End_Date");
 		String claims_Amount_Input=Data.get("claims_Amount_Input");
+		String claims_From_Location_Column_Header=Data.get("claims_From_Location_Column_Header");
+		String claims_To_Location_Column_Header=Data.get("claims_To_Location_Column_Header");
+		String claims_Equip_Type_Column_Header=Data.get("claims_Equip_Type_Column_Header");
 		String claims_Curreny_Input=Data.get("claims_Curreny_Input");
 		String container_Type_TCS_DT1=Data.get("Container_Type_TCS_DT1");
-		String start_Date_TCS_DT1=Data.get("Start_Date_TCS_DT1");
-		String end_Date_TCS_DT1=Data.get("End_Date_TCS_DT1");
 		String local_Amount_TCS_DT1=Data.get("Local_Amount_TCS_DT1");
 		String activity_Type_TCS_DT1=Data.get("Activity_Type_TCS_DT1");
 		String transhipmentType_TCS_DT=Data.get("TranshipmentType_TCS_DT");
@@ -93,73 +88,52 @@ public class Common_Cost_Class extends Keywords{
 		String equipment_Operation_cost_Delivery_Module=Data.get("equipment_Operation_cost_Delivery_Module");
 		String Create_New_Cost_Delivery_Popup=Data.get("Create_New_Cost_Delivery_Popup").trim();
 		String Condition_filter_D=Data.get("Condition_filter_D");
-		String date_Picker_D=Data.get("date_Picker_D");
-		String From_Date_Input_D=Data.get("From_Date_Input_D");
-		String To_Date_Input_D=Data.get("To_Date_Input_D");
 		String amount_D=Data.get("amount_D");
 		String amount_Type_D=Data.get("amount_Type_D");
 		String cost_Delivery_Saved_Popup_D=Data.get("cost_Delivery_Saved_Popup_D").trim();
 		String container_Type_TCS_LT1=Data.get("Container_Type_TCS_LT1");
-		String start_Date_TCS_LT1=Data.get("Start_Date_TCS_LT1");
-		String end_Date_TCS_LT1=Data.get("End_Date_TCS_LT1");
 		String local_Amount_TCS_LT1=Data.get("Local_Amount_TCS_LT1");
 		String activity_Type_TCS_LT1=Data.get("Activity_Type_TCS_LT1");
 		String transhipmentType_TCS_LT=Data.get("TranshipmentType_TCS_LT");
 		String activity_Type_Conditional_Behaviour_TSC_LT1=Data.get("Activity_Type_Conditional_Behaviour_TSC_LT1");
 		String local_Amount_Conditional_Behaviour_TSC_LT1=Data.get("Local_Amount_Conditional_Behaviour_TSC_LT1");
 		String container_Type_TCS_DT2=Data.get("Container_Type_TCS_DT2");
-		String start_Date_TCS_DT2=Data.get("Start_Date_TCS_DT2");
-		String end_Date_TCS_DT2=Data.get("End_Date_TCS_DT2");
 		String local_Amount_TCS_DT2=Data.get("Local_Amount_TCS_DT2");
 		String activity_Type_TCS_DT2=Data.get("Activity_Type_TCS_DT2");
 		String activity_Type_Conditional_Behaviour_TSC_DT2=Data.get("Activity_Type_Conditional_Behaviour_TSC_DT2");
 		String local_Amount_Conditional_Behaviour_TSC_DT2=Data.get("Local_Amount_Conditional_Behaviour_TSC_DT2");
 		String container_Type_TCS_LT2=Data.get("Container_Type_TCS_LT2");
-		String start_Date_TCS_LT2=Data.get("Start_Date_TCS_LT2");
-		String end_Date_TCS_LT2=Data.get("End_Date_TCS_LT2");
 		String local_Amount_TCS_LT2=Data.get("Local_Amount_TCS_LT2");
 		String activity_Type_TCS_LT2=Data.get("Activity_Type_TCS_LT2");
 		String activity_Type_Conditional_Behaviour_TSC_LT2=Data.get("Activity_Type_Conditional_Behaviour_TSC_LT2");
 		String local_Amount_Conditional_Behaviour_TSC_LT2=Data.get("Local_Amount_Conditional_Behaviour_TSC_LT2");
 		String container_Type_TCS_DT3=Data.get("Container_Type_TCS_DT3");
-		String start_Date_TCS_DT3=Data.get("Start_Date_TCS_DT3");
-		String end_Date_TCS_DT3=Data.get("End_Date_TCS_DT3");
 		String local_Amount_TCS_DT3=Data.get("Local_Amount_TCS_DT3");
 		String activity_Type_TCS_DT3=Data.get("Activity_Type_TCS_DT3");
 		String activity_Type_Conditional_Behaviour_TSC_DT3=Data.get("Activity_Type_Conditional_Behaviour_TSC_DT3");
 		String local_Amount_Conditional_Behaviour_TSC_DT3=Data.get("Local_Amount_Conditional_Behaviour_TSC_DT3");
 		String container_Type_TCS_LT3=Data.get("Container_Type_TCS_LT3");
-		String start_Date_TCS_LT3=Data.get("Start_Date_TCS_LT3");
-		String end_Date_TCS_LT3=Data.get("End_Date_TCS_LT3");
 		String local_Amount_TCS_LT3=Data.get("Local_Amount_TCS_LT3");
 		String activity_Type_TCS_LT3=Data.get("Activity_Type_TCS_LT3");
 		String activity_Type_Conditional_Behaviour_TSC_LT3=Data.get("Activity_Type_Conditional_Behaviour_TSC_LT3");
 		String local_Amount_Conditional_Behaviour_TSC_LT3=Data.get("Local_Amount_Conditional_Behaviour_TSC_LT3");
 		
 		String Container_External_feeder1 = Data.get("Container_External_feeder1");
-		String To_date_input_External_feeder1 = Data.get("To_date_input_External_feeder1");
-		String From_date_input_External_feeder1 = Data.get("From_date_input_External_feeder1");
 		String Activity_Code_External_amount1 = Data.get("Activity_Code_External_amount1");
 		String Activity_Code_External1 = Data.get("Activity_Code_External1");
 		String Condition_Equipment_group_External_feeder1 = Data.get("Condition_Equipment_group_External_feeder1");
 		String Condition_Activity_Code_External1 = Data.get("Condition_Activity_Code_External1");
 		String Container_External_feeder2 = Data.get("Container_External_feeder2");
-		String To_date_input_External_feeder2 = Data.get("To_date_input_External_feeder2");
-		String From_date_input_External_feeder2 = Data.get("From_date_input_External_feeder2");
 		String Activity_Code_External_amount2 = Data.get("Activity_Code_External_amount2");
 		String Activity_Code_External2 = Data.get("Activity_Code_External2");
 		String Condition_Equipment_group_External_feeder2 = Data.get("Condition_Equipment_group_External_feeder2");
 		String Condition_Activity_Code_External2 = Data.get("Condition_Activity_Code_External2");
 		String Container_External_feeder3 = Data.get("Container_External_feeder3");
-		String To_date_input_External_feeder3 = Data.get("To_date_input_External_feeder3");
-		String From_date_input_External_feeder3 = Data.get("From_date_input_External_feeder3");
 		String Activity_Code_External_amount3 = Data.get("Activity_Code_External_amount3");
 		String Activity_Code_External3 = Data.get("Activity_Code_External3");
 		String Condition_Equipment_group_External_feeder3 = Data.get("Condition_Equipment_group_External_feeder3");
 		String Condition_Activity_Code_External3 = Data.get("Condition_Activity_Code_External3");
 		String Container_External_feeder4 = Data.get("Container_External_feeder4");
-		String To_date_input_External_feeder4 = Data.get("To_date_input_External_feeder4");
-		String From_date_input_External_feeder4= Data.get("From_date_input_External_feeder4");
 		String Activity_Code_External_amount4= Data.get("Activity_Code_External_amount4");
 		String Activity_Code_External4= Data.get("Activity_Code_External4");
 		String Condition_Equipment_group_External_feeder4 = Data.get("Condition_Equipment_group_External_feeder4");
@@ -167,14 +141,57 @@ public class Common_Cost_Class extends Keywords{
 		String Haulage_Cost_Module = Data.get("Haulage_Cost_Module");
 		String From_Terminal_code_Haulage = Data.get("From_Terminal_code_Haulage");
 		String To_Terminal_Haulage = Data.get("To_Terminal_Haulage");
-		String To_date_input_Haulage = Data.get("To_date_input_Haulage");
-		String From_date_input_Haulage = Data.get("From_date_input_Haulage");
 		String Container_Haulage = Data.get("Container_Haulage");
 		String Activity_Code_Haulage_amount = Data.get("Activity_Code_Haulage_amount");
 		String Activity_Code_Haulage = Data.get("Activity_Code_Haulage");
 		String Condition_Equipment_group_Haulage = Data.get("Condition_Equipment_group_Haulage");
 		String Condition_Activity_Code_Haulage = Data.get("Condition_Activity_Code_Haulage");
+		String To_Terminal_CodeHaulage = Data.get("To_Terminal_CodeHaulage");
+		String To_Location_CodeHaulage = Data.get("To_Location_CodeHaulage");
+		String From_Location_code_Haulage = Data.get("From_Location_code_Haulage");
+		String From_Terminal_CodeHaulage = Data.get("From_Terminal_CodeHaulage");
+	
+		From_Location_External = Data.get("From_Location_External");
+		From_Terminal_External = Data.get("From_Terminal_External");
+		To_Location_External = Data.get("To_Location_External");
+		To_Terminal_External = Data.get("To_Terminal_External");
+		Service_External = Data.get("Service_External");
 		
+		
+		String locationDetails_Filter_DC = Data.get("locationDetails_Filter_DC");
+		String terminalDetails_Filter_DC = Data.get("terminalDetails_Filter_DC");
+		String servicelDetails_Filter_DC = Data.get("servicelDetails_Filter_DC");
+		
+		String locationDetails_Filter_LC = Data.get("locationDetails_Filter_LC");
+		String terminalDetails_Filter_LC = Data.get("terminalDetails_Filter_LC");
+		String servicelDetails_Filter_LC = Data.get("servicelDetails_Filter_LC");
+		
+		String locationDetails_Filter_TC1 = Data.get("locationDetails_Filter_TC1");
+		String terminalDetails_Filter_TC1 = Data.get("terminalDetails_Filter_TC1");
+		String servicelDetails_Filter_TC1 = Data.get("servicelDetails_Filter_TC1");
+		String locationDetails_Filter_TC2 = Data.get("locationDetails_Filter_TC2");
+		String terminalDetails_Filter_TC2 = Data.get("terminalDetails_Filter_TC2");
+		String servicelDetails_Filter_TC2 = Data.get("servicelDetails_Filter_TC2");
+		String locationDetails_Filter_TC3 = Data.get("locationDetails_Filter_TC3");
+		String terminalDetails_Filter_TC3 = Data.get("terminalDetails_Filter_TC3");
+		String servicelDetails_Filter_TC3 = Data.get("servicelDetails_Filter_TC3");
+		String Equip_Type_Header_C = Data.get("Equip_Type_Header_C");
+		String Port_Code_Header_C = Data.get("Port_Code_Header_C");
+		String Location_Code_Header_D = Data.get("Location_Code_Header_D");
+		String Equip_Type_Header_D = Data.get("Equip_Type_Header_D");
+		
+		String portCodeDetails_Filter_DC = Data.get("portCodeDetails_Filter_DC");
+		String portCodeDetails_Filter_LC = Data.get("portCodeDetails_Filter_LC");
+		
+		//FEC HEADERS
+		String service_code_header_Fec = Data.get("service_code_header_Fec");
+		String location_code_header_Fec = Data.get("location_code_header_Fec");
+		String equipment_type_header_Fec = Data.get("equipment_type_header_Fec");
+
+		//ADMIN COST HEADERS
+		
+		String service_code_header_Ac = Data.get("service_code_header_Ac");
+
 	
 		String equipmentType = "";
 
@@ -236,12 +253,16 @@ public class Common_Cost_Class extends Keywords{
 				Step_Start(3, "Enter the load port.", test, test1);
 				waitForElement(driver, location_SearchButton_DC);
 				click(driver, location_SearchButton_DC);
-				selectValue1(driver, condition, moduleData.get("Port Name"));
+				
+				twoColumnSearchWindow(driver, locationDetails_Filter_DC, condition,  moduleData.get("Port Name"));
+				
 				Step_End(3, "Enter the load port.", test, test1);
 				Step_Start(4, "Enter the load terminal.", test, test1);
 				waitForElement(driver, terminal_SearchButton_DC);
 				click(driver, terminal_SearchButton_DC);
-				selectValue1(driver, condition, moduleData.get("Terminal"));
+				
+				twoColumnSearchWindow(driver, terminalDetails_Filter_DC, condition,   moduleData.get("Terminal"));
+
 				Step_End(4, "Enter the load terminal.", test, test1);
 				Step_Start(5, "Enter the Equipment group", test, test1);
 				waitForElement(driver, eqp_Group_Dropdown_DC);
@@ -260,28 +281,37 @@ public class Common_Cost_Class extends Keywords{
 				Step_Start(7, "Enter the service", test, test1);
 				waitForElement(driver, service_SearchButton_DC);
 				click(driver, service_SearchButton_DC);
-				selectValue1(driver, condition, moduleData.get("Service"));
+				
+				twoColumnSearchWindow(driver, servicelDetails_Filter_DC, condition, moduleData.get("Service"));
+
 				Step_End(7, "Enter the service", test, test1);
+				if(!Start_Date.equals("")) {
+
 				waitForElement(driver, fromDate_DC);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, fromDate_DC, start_Date_DSC);
+					selectDatePicker(driver, fromDate_DC, Start_Date);
 				} else {
 					waitForElement(driver, fromDate_DC);
-					clearAndType(driver, fromDate_DC, start_Date_DSC);
+					clearAndType(driver, fromDate_DC, Start_Date);
 				}
+				}
+				if(!End_Date.equals("")) {
+
 				waitForElement(driver, toDate_DC);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, toDate_DC, end_Date_DSC);
+					selectDatePicker(driver, toDate_DC, End_Date);
 				} else {
 					waitForElement(driver, toDate_DC);
-					clearAndType(driver, toDate_DC, end_Date_DSC);
+					clearAndType(driver, toDate_DC, End_Date);
+				}
 				}
 				if (in_Transist_Checkbox_DSC.equalsIgnoreCase("Yes")) {
 					waitForDisplay(driver, in_Transist_Checkbox_DC);
 					checkBox(driver, in_Transist_Checkbox_DC, in_Transist_Checkbox_DSC);
 					waitForDisplay(driver, pol_Add_Button_DC);
 					click(driver, pol_Add_Button_DC);
-					selectValue(driver, condition, port_Code_DSC);
+					twoColumnSearchWindow(driver, portCodeDetails_Filter_DC, condition, port_Code_DSC);
+
 				}
 				Step_Start(8, "Enter the amount in the local amount column", test, test1);
 				List<String> activity_Types_DSC=splitAndExpand(activity_Type_DSC);
@@ -350,7 +380,8 @@ public class Common_Cost_Class extends Keywords{
 				Step_Start(3, "Enter the service", test, test1);
 				waitForElement(driver, service_search_icon_Ac);
 				click(driver, service_search_icon_Ac);
-				selectValue(driver, condition, moduleData.get("Service"));
+				twoColumnSearchWindow(driver, service_code_header_Ac, condition, moduleData.get("Service"));
+
 				Step_End(3, "Enter the service", test, test1);
 				//non-mandadtory
 				if(!currency_data_Ac.equals("")) {
@@ -378,13 +409,16 @@ public class Common_Cost_Class extends Keywords{
 					waitForElement(driver, bl_type_to_select);
 					click(driver, bl_type_to_select);
 				}
-				if(!start_date_data_Ac.equals("")) {
+				if(!Start_Date.equals("")) {
 					waitForElement(driver, start_date_Ac);
-					selectDatePicker(driver, start_date_Ac, start_date_data_Ac);
-				}
-				if(!End_date_data_Ac.equals("")) {
+					selectDatePicker(driver, start_date_Ac, Start_Date);
+				}else {
+				clearAndType(driver, start_date_Ac, Start_Date);}
+				if(!End_Date.equals("")) {
 					waitForElement(driver, End_date_Ac);
-					selectDatePicker(driver, End_date_Ac, End_date_data_Ac);
+					selectDatePicker(driver, End_date_Ac, End_Date);
+				}else {
+					clearAndType(driver, End_date_Ac, End_Date);
 				}
 				Step_Start(4, "Enter the amount", test, test1);
 				waitForElement(driver, amount_txtfld_Ac);
@@ -438,12 +472,16 @@ public class Common_Cost_Class extends Keywords{
 				Step_Start(3, "Enter the load port.", test, test1);
 				waitForElement(driver, location_SearchButton_LC);
 				click(driver, location_SearchButton_LC);
-				selectValue1(driver, condition, moduleData.get("Port Name"));
+				
+				twoColumnSearchWindow(driver, locationDetails_Filter_LC, condition,  moduleData.get("Port Name"));
+
 				Step_End(3, "Enter the load port.", test, test1);
 				Step_Start(4, "Enter the load terminal.", test, test1);
 				waitForElement(driver, terminal_SearchButton_LC);
 				click(driver, terminal_SearchButton_LC);
-				selectValue1(driver, condition, moduleData.get("Terminal"));
+				
+				twoColumnSearchWindow(driver, terminalDetails_Filter_LC, condition,   moduleData.get("Terminal"));
+
 				Step_End(4, "Enter the load terminal.", test, test1);
 				Step_Start(5, "Enter the Equipment group", test, test1);
 				waitForElement(driver, eqp_Group_Dropdown_LC);
@@ -462,28 +500,37 @@ public class Common_Cost_Class extends Keywords{
 				Step_Start(7, "Enter the service", test, test1);
 				waitForElement(driver, service_SearchButton_LC);
 				click(driver, service_SearchButton_LC);
-				selectValue1(driver, condition, moduleData.get("Service"));
+				
+				twoColumnSearchWindow(driver, servicelDetails_Filter_LC, condition, moduleData.get("Service"));
+
 				Step_End(7, "Enter the service", test, test1);
+				if(!Start_Date.equals("")) {
+
 				waitForElement(driver, fromDate_LC);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, fromDate_LC, start_Date_LDC);
+					selectDatePicker(driver, fromDate_LC, Start_Date);
 				} else {
 					waitForElement(driver, fromDate_LC);
-					clearAndType(driver, fromDate_LC, start_Date_LDC);
+					clearAndType(driver, fromDate_LC, Start_Date);
 				}
+				}
+				if(!End_Date.equals("")) {
+
 				waitForElement(driver, toDate_LC);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, toDate_LC, end_Date_LDC);
+					selectDatePicker(driver, toDate_LC, End_Date);
 				} else {
 					waitForElement(driver, toDate_LC);
-					clearAndType(driver, toDate_LC, end_Date_LDC);
+					clearAndType(driver, toDate_LC, End_Date);
+				}
 				}
 				if (in_Transist_Checkbox_LDC.equalsIgnoreCase("Yes")) {
 					waitForDisplay(driver, in_Transist_Checkbox_LC);
 					checkBox(driver, in_Transist_Checkbox_LC, in_Transist_Checkbox_LDC);
 					waitForDisplay(driver, pol_Add_Button_LC);
 					click(driver, pol_Add_Button_LC);
-					selectValue(driver, condition, port_Code_LDC);
+					twoColumnSearchWindow(driver, portCodeDetails_Filter_LC, condition, port_Code_LDC);
+
 				}
 				Step_Start(8, "Enter the amount in the local amount column", test, test1);
 				List<String> activity_Types_LDC=splitAndExpand(activity_Type_LDC);
@@ -578,33 +625,38 @@ public class Common_Cost_Class extends Keywords{
 				click(driver, container_click);
 				waitForElement(driver, From_location_search_Haulage);
 				click(driver, From_location_search_Haulage);
-				selectValue1(driver, condition, moduleData.get("From_location"));
+				
+				twoColumnSearchWindow(driver, From_Location_code_Haulage, condition,  moduleData.get("From_location"));
+				
+				
 				waitForElement(driver, From_terminal_search_Haulage);
 				click(driver, From_terminal_search_Haulage);
-				selectValue1(driver, condition, From_Terminal_code_Haulage);
+				twoColumnSearchWindow(driver, From_Terminal_CodeHaulage, condition,From_Terminal_code_Haulage);
+				
+				
 				waitForElement(driver, TO_location_search_Haulage);
 				click(driver, TO_location_search_Haulage);
-				selectValue1(driver, condition,moduleData.get("To_Location"));
+				twoColumnSearchWindow(driver, To_Location_CodeHaulage, condition,moduleData.get("To_Location"));
 				waitForElement(driver, to_terminal_search_Haulage);
 				click(driver, to_terminal_search_Haulage);
-				selectValue1(driver, condition, To_Terminal_Haulage);
+				twoColumnSearchWindow(driver, To_Terminal_CodeHaulage, condition, To_Terminal_Haulage);
 				waitForElement(driver, mode_Haulage_click);
 				click(driver, mode_Haulage_click);
 				waitForElement(driver, mode);
 				click(driver, mode);
 				waitForElement(driver, start_date_Haulage);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, start_date_Haulage, From_date_input_Haulage);
+					selectDatePicker(driver, start_date_Haulage, Start_Date);
 				} else {
 					waitForElement(driver, start_date_Haulage);
-					clearAndType(driver, start_date_Haulage, From_date_input_Haulage);
+					clearAndType(driver, start_date_Haulage, Start_Date);
 				}
 				waitForElement(driver, to_date_Haulage);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, to_date_Haulage, To_date_input_Haulage);
+					selectDatePicker(driver, to_date_Haulage, End_Date);
 				} else {
 					waitForElement(driver, to_date_Haulage);
-					clearAndType(driver, to_date_Haulage, To_date_input_Haulage);
+					clearAndType(driver, to_date_Haulage, End_Date);
 				}
 				waitForElement(driver, eqp_group_dd_Haulage);
 				click(driver, eqp_group_dd_Haulage);
@@ -667,7 +719,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("To_Location", values[2].trim());
 				moduleData.put("To_Terminal", values[3].trim());
 				moduleData.put("Service_input", values[4].trim());
-				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder1, condition, moduleData, datePicker, From_date_input_External_feeder1, To_date_input_External_feeder1,Condition_Activity_Code_External1, Condition_Equipment_group_External_feeder1, Activity_Code_External1, Activity_Code_External_amount1,test,test1);
+				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder1, condition, moduleData, datePicker, Start_Date, End_Date,Condition_Activity_Code_External1, Condition_Equipment_group_External_feeder1, Activity_Code_External1, Activity_Code_External_amount1,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -677,7 +729,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("To_Location", values[2].trim());
 				moduleData.put("To_Terminal", values[3].trim());
 				moduleData.put("Service_input", values[4].trim());
-				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder2, condition, moduleData, datePicker, From_date_input_External_feeder2, To_date_input_External_feeder2,Condition_Activity_Code_External2, Condition_Equipment_group_External_feeder2, Activity_Code_External2, Activity_Code_External_amount2,test,test1);
+				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder2, condition, moduleData, datePicker, Start_Date, End_Date,Condition_Activity_Code_External2, Condition_Equipment_group_External_feeder2, Activity_Code_External2, Activity_Code_External_amount2,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -687,7 +739,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("To_Location", values[2].trim());
 				moduleData.put("To_Terminal", values[3].trim());
 				moduleData.put("Service_input", values[4].trim());
-				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder3, condition, moduleData, datePicker, From_date_input_External_feeder3, To_date_input_External_feeder3,Condition_Activity_Code_External3, Condition_Equipment_group_External_feeder3, Activity_Code_External3, Activity_Code_External_amount3,test,test1);
+				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder3, condition, moduleData, datePicker, Start_Date,End_Date,Condition_Activity_Code_External3, Condition_Equipment_group_External_feeder3, Activity_Code_External3, Activity_Code_External_amount3,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -697,7 +749,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("To_Location", values[2].trim());
 				moduleData.put("To_Terminal", values[3].trim());
 				moduleData.put("Service_input", values[4].trim());
-				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder4, condition, moduleData, datePicker, From_date_input_External_feeder4, To_date_input_External_feeder4,Condition_Activity_Code_External4, Condition_Equipment_group_External_feeder4, Activity_Code_External4, Activity_Code_External_amount4,test,test1);
+				externalFeeder(driver, External_Feeder_Cost_Module, equipmentType, Container_External_feeder4, condition, moduleData, datePicker, Start_Date, End_Date,Condition_Activity_Code_External4, Condition_Equipment_group_External_feeder4, Activity_Code_External4, Activity_Code_External_amount4,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -729,29 +781,34 @@ public class Common_Cost_Class extends Keywords{
 				sendKeys(driver, Cost_Origin_Location_TF, moduleData.get("Origin"));
 				waitForElement(driver, cost_Origin_Location_Search_Button);
 				click(driver, cost_Origin_Location_Search_Button);
-				selectValue(driver, Condition_filter_C,  moduleData.get("Origin"));
+				twoColumnSearchWindow(driver, Port_Code_Header_C, Condition_filter_C,  moduleData.get("Origin"));
 				Step_End(3, "Enter the From Location", test, test1);
 				
 				Step_Start(4, "Enter the Equipment Type", test, test1);
 				waitForElement(driver, cost_Origin_Equipment_Type_Plus_Button);
 				click(driver, cost_Origin_Equipment_Type_Plus_Button);
-				selectValue1(driver, Condition_filter_C, equipmentType);
+				twoColumnSearchWindow(driver, Equip_Type_Header_C, Condition_filter_C,  equipmentType);
 				Step_End(4, "Enter the Equipment Type", test, test1);
 				
+				if(!Start_Date.equals("")) {
 				waitForElement(driver, cost_Origin_Start_Date);
-				if (date_Picker_C.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, cost_Origin_Start_Date, From_Date_Input_C);
+				if (datePicker.equalsIgnoreCase("Yes")) {
+					selectDatePicker(driver, cost_Origin_Start_Date, Start_Date);
 				} else {
 					waitForElement(driver, cost_Origin_Start_Date);
-					clearAndType(driver, cost_Origin_Start_Date, From_Date_Input_C);
+					clearAndType(driver, cost_Origin_Start_Date, Start_Date);
+				}
 				}
 				// Selecting the to Date
+				
+				if(!End_Date.equals("")) {
 				waitForElement(driver, cost_Origin_End_Date);
-				if (date_Picker_C.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, cost_Origin_End_Date, To_Date_Input_C);
+				if (datePicker.equalsIgnoreCase("Yes")) {
+					selectDatePicker(driver, cost_Origin_End_Date, End_Date);
 				} else {
 					waitForElement(driver, cost_Origin_End_Date);
-					clearAndType(driver, cost_Origin_End_Date, To_Date_Input_C);
+					clearAndType(driver, cost_Origin_End_Date, End_Date);
+				}
 				}
 				Step_Start(5, "Enter the amount", test, test1);
 				waitForElement(driver, cost_Origin_Amount_TF);
@@ -825,30 +882,35 @@ public class Common_Cost_Class extends Keywords{
 				sendKeys(driver, cost_Delivery_Location_TF, moduleData.get("Origin"));
 				waitForElement(driver, cost_Delivery_Location_Search_Button);
 				click(driver, cost_Delivery_Location_Search_Button);
-				selectValue(driver, Condition_filter_D, moduleData.get("Origin"));
+				twoColumnSearchWindow(driver, Location_Code_Header_D, Condition_filter_C,  moduleData.get("Origin"));
+
 				Step_End(3, "Enter the From Location", test, test1);
 				
 				Step_Start(4, "Enter the Equipment Type", test, test1);
 				waitForElement(driver, cost_Delivery_Equipment_Type_Plus_Button);
 				click(driver, cost_Delivery_Equipment_Type_Plus_Button);
-				selectValue2(driver, Condition_filter_D, equipmentType);
+				twoColumnSearchWindow(driver, Equip_Type_Header_D, Condition_filter_D,  equipmentType);
+
 				Step_End(4, "Enter the Equipment Type", test, test1);
+				if(!Start_Date.equals("")) {
 				waitForElement(driver, cost_Delivery_Start_Date);
-				if (date_Picker_D.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, cost_Delivery_Start_Date, From_Date_Input_D);
+				if (datePicker.equalsIgnoreCase("Yes")) {
+					selectDatePicker(driver, cost_Delivery_Start_Date, Start_Date);
 				} else {
 					waitForElement(driver, cost_Delivery_Start_Date);
-					clearAndType(driver, cost_Delivery_Start_Date, From_Date_Input_D);
+					clearAndType(driver, cost_Delivery_Start_Date, Start_Date);
+				}
 				}
 				// Selecting the to Date
+				if(!End_Date.equals("")) {
 				waitForElement(driver, cost_Delivery_End_Date);
-				if (date_Picker_D.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, cost_Delivery_End_Date, To_Date_Input_D);
+				if (datePicker.equalsIgnoreCase("Yes")) {
+					selectDatePicker(driver, cost_Delivery_End_Date,End_Date);
 				} else {
 					waitForElement(driver, cost_Delivery_End_Date);
-					clearAndType(driver, cost_Delivery_End_Date, To_Date_Input_D);
+					clearAndType(driver, cost_Delivery_End_Date, End_Date);
 				}
-				
+				}
 				Step_Start(5, "Enter the amount", test, test1);
 				waitForElement(driver, cost_Delivery_Amount_TF);
 				clearAndType(driver, cost_Delivery_Amount_TF, amount_D);
@@ -915,32 +977,45 @@ public class Common_Cost_Class extends Keywords{
 					if(!service_data_Fec.equals("")) {
 						waitForElement(driver, service_search_icon_Fec);
 						click(driver, service_search_icon_Fec);
-						selectValue(driver, condition, service_data_Fec);}
+//						selectValue(driver, condition, service_data_Fec);
+						twoColumnSearchWindow(driver, service_code_header_Fec, condition, service_data_Fec);}
+					
 					Step_End(3, "Enter the service", test, test1);
 					Step_Start(4, "Enter the origin", test, test1);
 					waitForElement(driver, origin_search_icon_Fec);
 					click(driver, origin_search_icon_Fec);
-					selectValue(driver, condition, moduleData.get("Origin"));
+//					selectValue(driver, condition, moduleData.get("Origin"));
+					twoColumnSearchWindow(driver, location_code_header_Fec, condition, moduleData.get("Origin"));
+
+					
 					Step_End(4, "Enter the origin", test, test1);
 					Step_Start(5, "Enter the POL", test, test1);
 					waitForElement(driver, pol_search_icon_Fec);
 					click(driver, pol_search_icon_Fec);
-					selectValue(driver, condition,  moduleData.get("POL"));
+//					selectValue(driver, condition,  moduleData.get("POL"));
+					twoColumnSearchWindow(driver, location_code_header_Fec, condition, moduleData.get("POL"));
+
 					Step_End(5, "Enter the POL", test, test1);
 					Step_Start(6, "Enter the POD", test, test1);
 					waitForElement(driver, pod_search_icon_Fec);
 					click(driver, pod_search_icon_Fec);
-					selectValue(driver, condition, moduleData.get("POD"));
+//					selectValue(driver, condition, moduleData.get("POD"));
+					twoColumnSearchWindow(driver, location_code_header_Fec, condition, moduleData.get("POD"));
+
 					Step_End(6, "Enter the POD", test, test1);
 					Step_Start(7, "Enter the Delivery", test, test1);
 					waitForElement(driver, delivery_search_icon_Fec);
 					click(driver, delivery_search_icon_Fec);
-					selectValue(driver, condition, moduleData.get("Delivery"));
+//					selectValue(driver, condition, moduleData.get("Delivery"));
+					twoColumnSearchWindow(driver, location_code_header_Fec, condition, moduleData.get("Delivery"));
+
 					Step_End(7, "Enter the Delivery", test, test1);
 					Step_Start(8, "Enter the Equipment type", test, test1);
 					waitForElement(driver, equip_type_add_btn_Fec);
 					click(driver, equip_type_add_btn_Fec);
-					selectValue2(driver, condition, equipmentType);
+//					selectValue2(driver, condition, equipmentType);
+					twoColumnSearchWindow(driver, equipment_type_header_Fec, condition, equipmentType);
+
 					Step_End(8, "Enter the Equipment type", test, test1);
 					
 					Step_Start(13, "Enter the Fixed Equipment cost", test, test1);
@@ -1011,24 +1086,36 @@ public class Common_Cost_Class extends Keywords{
 						waitForElement(driver, currency_to_select);
 						click(driver, currency_to_select);
 					}
-					waitForElement(driver, start_date_Fec);
+					if(!Start_Date.equals("")) {
+						waitForElement(driver, start_date_Fec);
+
 					if (datePicker.equalsIgnoreCase("Yes")) {
-						selectDatePicker(driver, start_date_Fec, start_date_fec);
+						selectDatePicker(driver, start_date_Fec, Start_Date);
 					} else {
 						waitForElement(driver, start_date_Fec);
-						clearAndType(driver, start_date_Fec, start_date_fec);
+						clearAndType(driver, start_date_Fec, Start_Date);
+					}
 					}
 					
-					waitForElement(driver, End_date_Fec);
+					
+					if(!End_Date.equals("")) {
+						waitForElement(driver, End_date_Fec);
+
 					if (datePicker.equalsIgnoreCase("Yes")) {
-						selectDatePicker(driver, End_date_Fec, end_date_fec);
+						selectDatePicker(driver, End_date_Fec,End_Date);
 					} else {
 						waitForElement(driver, End_date_Fec);
-						clearAndType(driver, End_date_Fec, end_date_fec);
+						clearAndType(driver, End_date_Fec, End_Date);
+					}
 					}
 					Step_Start(14, "Click save", test, test1);
 					waitForElement(driver, SaveButton_ToolBar);
 					click1(driver, SaveButton_ToolBar);
+					waitForDisplay(driver, popup_Message);
+					if(isdisplayed(driver, popup_Message)) {
+						waitForElement(driver, popup_Message);
+						click(driver, popup_Message_Yes_Button);
+					}
 					Step_End(14, "Click save", test, test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
@@ -1053,23 +1140,24 @@ public class Common_Cost_Class extends Keywords{
 				sendKeys(driver, ICO_LocationField,moduleData.get("Origin"));
 				waitForElement(driver, ICO_LocationButton);
 				click(driver, ICO_LocationButton);
-				selectValue(driver, condition, moduleData.get("Origin"));
+				twoColumnSearchWindow(driver, ICO_Location_Code_Header, condition, moduleData.get("Origin"));
+				
 				waitForElement(driver, ICO_EquipTypeButton);
 				click(driver, ICO_EquipTypeButton);
-				selectValue2(driver, condition, equipmentType);
+				twoColumnSearchWindow(driver, ICO_Equip_Type_Header, condition, equipmentType);
 				waitForElement(driver, ICO_StartDate);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, ICO_StartDate, ICO_Start_Date);
+					selectDatePicker(driver, ICO_StartDate, Start_Date);
 				} else {
 					waitForElement(driver, ICO_StartDate);
-					clearAndType(driver, ICO_StartDate, ICO_Start_Date);
+					clearAndType(driver, ICO_StartDate, Start_Date);
 				}
 				waitForElement(driver, ICO_EndDate);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, ICO_EndDate, ICO_End_Date);
+					selectDatePicker(driver, ICO_EndDate, End_Date);
 				} else {
 					waitForElement(driver, ICO_EndDate);
-					clearAndType(driver, ICO_EndDate, ICO_End_Date);
+					clearAndType(driver, ICO_EndDate, End_Date);
 				}
 				waitForElement(driver, ICO_Amount_Field);
 				clearAndType(driver, ICO_Amount_Field, ICO_Amount_Input);
@@ -1106,30 +1194,30 @@ public class Common_Cost_Class extends Keywords{
 				sendKeys(driver, ICD_DeliveryPortField,moduleData.get("Delivery"));
 				waitForElement(driver, ICD_DeliveryPortButton);
 				click(driver, ICD_DeliveryPortButton);
-				selectValue(driver, condition, moduleData.get("Delivery"));
+				twoColumnSearchWindow(driver, ICD_Delivery_Port_Column_Header, condition,  moduleData.get("Delivery"));
 				if(!ICD_Origin_Input.equals("")) {
 					waitForElement(driver, ICD_OriginPortField);
 					sendKeys(driver, ICD_OriginPortField,ICD_Origin_Input);
 					waitForElement(driver, ICD_OriginPortButton);
 					click(driver, ICD_OriginPortButton);
-					selectValue(driver, condition, ICD_Origin_Input);
+					twoColumnSearchWindow(driver, ICD_Origin_Port_Column_Header, condition, ICD_Origin_Input);
 				}
 				waitForElement(driver, ICD_EquipTypeButton);
 				click(driver, ICD_EquipTypeButton);
-				selectValue1(driver, condition, equipmentType);
+				twoColumnSearchWindow(driver, ICD_Equip_Type_Column_Header, condition, equipmentType);
 				waitForElement(driver, ICD_StartDate);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, ICD_StartDate, ICD_Start_Date);
+					selectDatePicker(driver, ICD_StartDate, Start_Date);
 				} else {
 					waitForElement(driver, ICD_StartDate);
-					clearAndType(driver, ICD_StartDate, ICD_Start_Date);
+					clearAndType(driver, ICD_StartDate, Start_Date);
 				}
 				waitForElement(driver, ICD_EndDate);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, ICD_EndDate, ICD_End_Date);
+					selectDatePicker(driver, ICD_EndDate, End_Date);
 				} else {
 					waitForElement(driver, ICD_EndDate);
-					clearAndType(driver, ICD_EndDate, ICD_End_Date);
+					clearAndType(driver, ICD_EndDate, End_Date);
 				}
 				waitForElement(driver, ICD_Amount_Field);
 				clearAndType(driver, ICD_Amount_Field, ICD_Amount_Input);
@@ -1165,26 +1253,26 @@ public class Common_Cost_Class extends Keywords{
 				}
 				waitForElement(driver, claims_FromLocationButton);
 				click(driver, claims_FromLocationButton);
-				selectValue1(driver, condition, moduleData.get("Origin"));
+				twoColumnSearchWindow(driver, claims_From_Location_Column_Header, condition, moduleData.get("Origin"));
 				waitForElement(driver, claims_ToLocationButton);
 				click(driver, claims_ToLocationButton);
-				selectValue1(driver, condition, moduleData.get("Delivery"));
+				twoColumnSearchWindow(driver, claims_To_Location_Column_Header, condition, moduleData.get("Delivery"));
 				waitForElement(driver, claims_EquipTypeButton);
 				click(driver, claims_EquipTypeButton);
-				selectValue1(driver, condition, equipmentType);
+				twoColumnSearchWindow(driver, claims_Equip_Type_Column_Header, condition, equipmentType);
 				waitForElement(driver, claims_StartDate);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, claims_StartDate, claims_Start_Date);
+					selectDatePicker(driver, claims_StartDate, Start_Date);
 				} else {
 					waitForElement(driver, claims_StartDate);
-					clearAndType(driver, claims_StartDate, claims_Start_Date);
+					clearAndType(driver, claims_StartDate, Start_Date);
 				}
 				waitForElement(driver, claims_EndDate);
 				if (datePicker.equalsIgnoreCase("Yes")) {
-					selectDatePicker(driver, claims_EndDate, claims_End_Date);
+					selectDatePicker(driver, claims_EndDate, End_Date);
 				} else {
 					waitForElement(driver, claims_EndDate);
-					clearAndType(driver, claims_EndDate, claims_End_Date);
+					clearAndType(driver, claims_EndDate, End_Date);
 				}
 				waitForElement(driver, claims_Amount_Field);
 				clearAndType(driver, claims_Amount_Field, claims_Amount_Input);
@@ -1209,7 +1297,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("Terminal", values[1].trim());
 				moduleData.put("Service", values[0].trim());
 				
-				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_DT, equipmentType, container_Type_TCS_DT1, condition, moduleData, datePicker, activity_Type_TCS_DT1, local_Amount_TCS_DT1, activity_Type_Conditional_Behaviour_TSC_DT1, local_Amount_Conditional_Behaviour_TSC_DT1, start_Date_TCS_DT1, end_Date_TCS_DT1,test,test1);
+				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_DT, equipmentType, container_Type_TCS_DT1, condition, moduleData, datePicker, activity_Type_TCS_DT1, local_Amount_TCS_DT1, activity_Type_Conditional_Behaviour_TSC_DT1, local_Amount_Conditional_Behaviour_TSC_DT1, Start_Date,locationDetails_Filter_TC1,terminalDetails_Filter_TC1,servicelDetails_Filter_TC1, End_Date,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -1221,7 +1309,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("Service", values[0].trim());
 				
 
-				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_LT, equipmentType, container_Type_TCS_LT1, condition, moduleData, datePicker, activity_Type_TCS_LT1, local_Amount_TCS_LT1, activity_Type_Conditional_Behaviour_TSC_LT1, local_Amount_Conditional_Behaviour_TSC_LT1, start_Date_TCS_LT1, end_Date_TCS_LT1,test,test1);
+				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_LT, equipmentType, container_Type_TCS_LT1, condition, moduleData, datePicker, activity_Type_TCS_LT1, local_Amount_TCS_LT1, activity_Type_Conditional_Behaviour_TSC_LT1, local_Amount_Conditional_Behaviour_TSC_LT1, Start_Date, End_Date,locationDetails_Filter_TC1,terminalDetails_Filter_TC1,servicelDetails_Filter_TC1,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -1232,7 +1320,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("Service", values[0].trim());
 				
 
-				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_DT, equipmentType, container_Type_TCS_DT2, condition, moduleData, datePicker, activity_Type_TCS_DT2, local_Amount_TCS_DT2, activity_Type_Conditional_Behaviour_TSC_DT2, local_Amount_Conditional_Behaviour_TSC_DT2, start_Date_TCS_DT2, end_Date_TCS_DT2,test,test1);
+				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_DT, equipmentType, container_Type_TCS_DT2, condition, moduleData, datePicker, activity_Type_TCS_DT2, local_Amount_TCS_DT2, activity_Type_Conditional_Behaviour_TSC_DT2, local_Amount_Conditional_Behaviour_TSC_DT2, Start_Date, End_Date,locationDetails_Filter_TC2,terminalDetails_Filter_TC2,servicelDetails_Filter_TC2,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -1244,7 +1332,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("Service", values[0].trim());
 				
 
-				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_LT, equipmentType, container_Type_TCS_LT2, condition, moduleData, datePicker, activity_Type_TCS_LT2, local_Amount_TCS_LT2, activity_Type_Conditional_Behaviour_TSC_LT2, local_Amount_Conditional_Behaviour_TSC_LT2, start_Date_TCS_LT2, end_Date_TCS_LT2,test,test1);
+				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_LT, equipmentType, container_Type_TCS_LT2, condition, moduleData, datePicker, activity_Type_TCS_LT2, local_Amount_TCS_LT2, activity_Type_Conditional_Behaviour_TSC_LT2, local_Amount_Conditional_Behaviour_TSC_LT2, Start_Date, End_Date,locationDetails_Filter_TC2,terminalDetails_Filter_TC2,servicelDetails_Filter_TC2,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -1256,7 +1344,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("Service", values[0].trim());
 				
 
-				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_DT, equipmentType, container_Type_TCS_DT3, condition, moduleData, datePicker, activity_Type_TCS_DT3, local_Amount_TCS_DT3, activity_Type_Conditional_Behaviour_TSC_DT3, local_Amount_Conditional_Behaviour_TSC_DT3, start_Date_TCS_DT3, end_Date_TCS_DT3,test,test1);
+				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_DT, equipmentType, container_Type_TCS_DT3, condition, moduleData, datePicker, activity_Type_TCS_DT3, local_Amount_TCS_DT3, activity_Type_Conditional_Behaviour_TSC_DT3, local_Amount_Conditional_Behaviour_TSC_DT3, Start_Date, End_Date,locationDetails_Filter_TC3,terminalDetails_Filter_TC3,servicelDetails_Filter_TC3,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -1267,7 +1355,7 @@ public class Common_Cost_Class extends Keywords{
 				moduleData.put("Terminal", values[1].trim());
 				moduleData.put("Service", values[0].trim());
 				
-				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_LT, equipmentType, container_Type_TCS_LT3, condition, moduleData, datePicker, activity_Type_TCS_LT3, local_Amount_TCS_LT3, activity_Type_Conditional_Behaviour_TSC_LT3, local_Amount_Conditional_Behaviour_TSC_LT3, start_Date_TCS_LT3, end_Date_TCS_LT3,test,test1);
+				transhipmentCost(driver, transshipmentCost_Module, transhipmentType_TCS_LT, equipmentType, container_Type_TCS_LT3, condition, moduleData, datePicker, activity_Type_TCS_LT3, local_Amount_TCS_LT3, activity_Type_Conditional_Behaviour_TSC_LT3, local_Amount_Conditional_Behaviour_TSC_LT3, Start_Date, End_Date,locationDetails_Filter_TC3,terminalDetails_Filter_TC3,servicelDetails_Filter_TC3,test,test1);
 				waitForElement(driver, Module_Close);
 				click(driver, Module_Close);
 				break;
@@ -1298,19 +1386,23 @@ public class Common_Cost_Class extends Keywords{
 		click(driver, container_click);
 		waitForElement(driver, From_location_search_external);
 		click(driver, From_location_search_external);
-		selectValue1(driver, condition, moduleData.get("From_location"));
+		twoColumnSearchWindow(driver, From_Location_External, condition, moduleData.get("From_location"));
 		waitForElement(driver, From_terminal_search_external);
 		click(driver, From_terminal_search_external);
-		selectValue1(driver, condition, moduleData.get("From_Terminal"));
+		twoColumnSearchWindow(driver, From_Terminal_External, condition, moduleData.get("From_Terminal"));
 		waitForElement(driver, TO_location_search_external);
 		click(driver, TO_location_search_external);
-		selectValue1(driver, condition, moduleData.get("To_Location"));
+		twoColumnSearchWindow(driver, To_Location_External, condition, moduleData.get("To_Location"));
+		
 		waitForElement(driver, to_terminal_search_external);
 		click(driver, to_terminal_search_external);
-		selectValue1(driver, condition, moduleData.get("To_Terminal"));
+		twoColumnSearchWindow(driver, To_Terminal_External, condition, moduleData.get("To_Terminal"));
+		
 		waitForElement(driver, Service_search_external_feeder);
 		click(driver, Service_search_external_feeder);
-		selectValue1(driver, condition, moduleData.get("Service_input"));
+		twoColumnSearchWindow(driver, Service_External, condition, moduleData.get("Service_input"));
+		
+		
 		waitForElement(driver, start_date_ex_feeder);
 		if (datePicker.equalsIgnoreCase("Yes")) {
 			selectDatePicker(driver, start_date_ex_feeder, From_date);
@@ -1375,62 +1467,7 @@ public class Common_Cost_Class extends Keywords{
 		click(driver, ID_Popup_Ok_Button );
 		
 	}
-	public void internalFeeder(WebDriver driver,String Cost_Module,String equipmentType,String Container,String condition,Map<String, String> moduleData,String datePicker,String From_Terminal_code,String To_Terminal_code,String Service_input,String From_date,String To_date, ExtentTest test, ExtentTest test1) {
-		String equipment_group =  String.format(Rate_Request_Loactors.select_type,  equipmentType); 
-		String container_click =  String.format(Rate_Request_Loactors.Container_type_internal_feeder,  Container); 
-		scrollTop(driver);
-		moduleNavigate(driver, Cost_Module);
-		scrollTop(driver);
-		waitForDisplay(driver, NewButton_ToolBar);
-		if(isdisplayed(driver, NewButton_ToolBar) && isElementEnabled(driver, NewButton_ToolBar)) {
-			click(driver, NewButton_ToolBar);
-			if(isdisplayed(driver, Yes_Btn)) {
-				click(driver, Yes_Btn);
-			}
-			System.out.println("New Button in tool bar is enabled");
-			Extent_pass(driver, "New Button in tool bar is enabled", test, test1);
-		}
-		waitForElement(driver, container_click);
-		click(driver, container_click);
-		waitForElement(driver, From_location_search);
-		click(driver, From_location_search);
-		selectValue1(driver, condition, moduleData.get(datePicker));
-		waitForElement(driver, From_terminal_search);
-		click(driver, From_terminal_search);
-		selectValue1(driver, condition, From_Terminal_code);
-		waitForElement(driver, TO_location_search);
-		click(driver, TO_location_search);
-		selectValue1(driver, condition, moduleData.get(datePicker));
-		waitForElement(driver, to_terminal_search);
-		click(driver, to_terminal_search);
-		selectValue1(driver, condition, To_Terminal_code);
-		waitForElement(driver, Service_search_internal_feeder);
-		click(driver, Service_search_internal_feeder);
-		selectValue1(driver,condition,Service_input);
-		waitForElement(driver, start_date_in_feeder);
-		if (datePicker.equalsIgnoreCase("Yes")) {
-			selectDatePicker(driver, start_date_in_feeder, From_date);
-		} else {
-			waitForElement(driver, start_date_in_feeder);
-			clearAndType(driver, start_date_in_feeder, From_date);
-		}
-		waitForElement(driver, to_date_in_feeder);
-		if (datePicker.equalsIgnoreCase("Yes")) {
-			selectDatePicker(driver, to_date_in_feeder, To_date);
-		} else {
-			waitForElement(driver, to_date_in_feeder);
-			clearAndType(driver, to_date_in_feeder, To_date);
-		}
-		waitForElement(driver, eqp_group_dd);
-		click(driver, eqp_group_dd);
-		waitForElement(driver, equipment_group);
-		click(driver, equipment_group);
-		waitForElement(driver, SaveButton_ToolBar );
-		click(driver, SaveButton_ToolBar );
-		waitForElement(driver, ID_Popup_Ok_Button );
-		click(driver, ID_Popup_Ok_Button );
-	}
-	public void transhipmentCost(WebDriver driver,String Cost_Module,String transhipmentType,String equipmentType,String Container,String condition,Map<String, String> moduleData,String datePicker,String activity_Type,String local_Amount,String activity_Type_Conditional_Behaviour,String local_Amount_Conditional_Behaviour,String From_date,String To_date, ExtentTest test, ExtentTest test1) {
+	public void transhipmentCost(WebDriver driver,String Cost_Module,String transhipmentType,String equipmentType,String Container,String condition,Map<String, String> moduleData,String datePicker,String activity_Type,String local_Amount,String activity_Type_Conditional_Behaviour,String local_Amount_Conditional_Behaviour,String From_date,String To_date, String locationDetails_Filter_TC,String terminalDetails_Filter_TC,String servicelDetails_Filter_TC, ExtentTest test, ExtentTest test1) {
 		String eqp_Group_TSC=moduleData.get("Equipment Type");
 		if(moduleData.get("Equipment Type").contains("2")) {
 			eqp_Group_TSC="20S";
@@ -1465,12 +1502,16 @@ public class Common_Cost_Class extends Keywords{
 		Step_Start(4, "Enter the load port", test, test1);
 		waitForElement(driver, location_SearchButton_TC);
 		click(driver, location_SearchButton_TC);
-		selectValue1(driver, condition, moduleData.get("Origin"));
+		
+		twoColumnSearchWindow(driver, locationDetails_Filter_TC, condition,  moduleData.get("Origin"));
+
 		Step_End(4, "Enter the load port", test, test1);
 		Step_Start(5, "Enter the load terminal.", test, test1);
 		waitForElement(driver, terminal_SearchButton_TC);
 		click(driver, terminal_SearchButton_TC);
-		selectValue1(driver, condition, moduleData.get("Terminal"));
+		
+		twoColumnSearchWindow(driver, terminalDetails_Filter_TC, condition,   moduleData.get("Terminal"));
+
 		Step_End(5, "Enter the load terminal.", test, test1);
 		Step_Start(6, "Enter the Equipment group", test, test1);
 		waitForElement(driver, eqp_Group_Dropdown_TC);
@@ -1482,9 +1523,12 @@ public class Common_Cost_Class extends Keywords{
 		Step_Start(7, "Enter the service", test, test1);
 		waitForElement(driver, service_SearchButton_TC);
 		click(driver, service_SearchButton_TC);
-		selectValue1(driver, condition, moduleData.get("Service"));
+		
+		twoColumnSearchWindow(driver, servicelDetails_Filter_TC, condition, moduleData.get("Service"));
+
 		Step_End(7, "Enter the service", test, test1);
 		// Selecting the start Date
+		if(!From_date.equals("")) {
 		waitForElement(driver, startDate_TC);
 		if (datePicker.equalsIgnoreCase("Yes")) {
 			selectDatePicker(driver, startDate_TC, From_date);
@@ -1492,6 +1536,8 @@ public class Common_Cost_Class extends Keywords{
 			waitForElement(driver, startDate_TC);
 			clearAndType(driver, startDate_TC, From_date);
 		}
+		}
+		if(!To_date.equals("")) {
 		// Selecting the end Date
 		waitForElement(driver, endDate_TC);
 		if (datePicker.equalsIgnoreCase("Yes")) {
@@ -1500,6 +1546,8 @@ public class Common_Cost_Class extends Keywords{
 			waitForElement(driver, endDate_TC);
 			clearAndType(driver, endDate_TC, To_date);
 		}
+		}
+		
 		Step_Start(8, "Enter the amount in the local amount column", test, test1);
 		List<String> activity_Types_TSC=splitAndExpand(activity_Type);
 		List<String> local_Amounts_TSC=splitAndExpand(local_Amount);

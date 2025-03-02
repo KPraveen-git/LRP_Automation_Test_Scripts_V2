@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.on_off_hire_locators;
+import locators.On_Off_Hire_Locators;
 
 public class TC_Stock_Report_by_Stock_Status_TS042 extends Keywords{
 
@@ -55,7 +55,7 @@ public class TC_Stock_Report_by_Stock_Status_TS042 extends Keywords{
 		
 		
 		
-		String sz_tp_btn =String.format(on_off_hire_locators.sz_tp_btn, sz_tp_buttons);
+		String sz_tp_btn =String.format(On_Off_Hire_Locators.sz_tp_btn, sz_tp_buttons);
 
 
 		Extent_Start(tc_Name, test, test1);

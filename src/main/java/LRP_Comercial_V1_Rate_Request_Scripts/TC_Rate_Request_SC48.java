@@ -1,4 +1,4 @@
-package Comercial_V1_Scripts;
+package LRP_Comercial_V1_Rate_Request_Scripts;
 
 import java.util.List;
 import java.util.Map;

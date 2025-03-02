@@ -70,6 +70,10 @@ public class TC_Rate_Request_SC53  extends Keywords{
 		tService=Data.get("T_Service");
 		TOS=Data.get("TOS_Option");
 		String Updated_pop_Exp=Data.get("Updated_pop_Exp");
+		String Customer_code_Value2 = Data.get("Customer_code_Value2");
+		String Customer_code_Value3 = Data.get("Customer_code_Value3");
+		String Cust_code2 = Data.get("Cust_code2");
+		String Cust_code3 = Data.get("Cust_code3");
 		
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
@@ -158,27 +162,29 @@ moduleNavigate(driver, rateRequestModule);
 
 		waitForElement(driver, Customer_Name_search_button);
 		click(driver, Customer_Name_search_button);
-		waitForElement(driver, Customer_Code_Select_dropdown);
-		click(driver, Customer_Code_Select_dropdown);
-		selectByText(driver, Customer_Code_Select_dropdown, Cust_code);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-		sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-		click(driver, CustomerSearch_Frame_SearchButton);
+		
+		
+		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
+		
+		
+		
+	
 		waitForDisplay(driver, pop_up_exp);
-		if(isdisplayed(driver,pop_up_exp )) {
+		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 		}else {
-			waitForElement(driver, globale_Value_select);
-			click(driver, globale_Value_select);
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
 			waitForElement(driver, SelectButton);
 			click(driver, SelectButton);
+
 			waitForDisplay(driver, CustName_ExitBtn);
 			if(isDisplayed(driver, CustName_ExitBtn)) {
 				waitForElement(driver, CustName_ExitBtn);
 				click(driver, CustName_ExitBtn);
+			
 			}
 
 			Step_End(2, " Enter the customer name", test, test1);
@@ -255,19 +261,19 @@ moduleNavigate(driver, rateRequestModule);
 
 			waitForDisplay(driver, Exp_Days);
 			if(isdisplayed(driver, Exp_Days)&&isElementAccessible(driver, Exp_Days)) {
-			sendKeys(driver, Exp_Days, Exp_Det_Days_Input);
+			clearAndType(driver, Exp_Days, Exp_Det_Days_Input);
 			}
 			waitForDisplay(driver, Imp_Days);
 			if(isdisplayed(driver, Imp_Days)&&isElementAccessible(driver, Imp_Days)) {
-			sendKeys(driver, Imp_Days, Imp_Det_Days_Input);
+				clearAndType(driver, Imp_Days, Imp_Det_Days_Input);
 			}
 			waitForDisplay(driver, Exp_Demurage);
 			if(isdisplayed(driver, Exp_Demurage)&&isElementAccessible(driver, Exp_Demurage)) {
-			sendKeys(driver, Exp_Demurage, Exp_Demmurage_Input);
+				clearAndType(driver, Exp_Demurage, Exp_Demmurage_Input);
 			}
 			waitForDisplay(driver, Imp_Demurage);
 			if(isdisplayed(driver, Imp_Demurage)&&isElementAccessible(driver, Imp_Demurage)) {
-			sendKeys(driver, Imp_Demurage, Imp_Demmurage_Input);
+				clearAndType(driver, Imp_Demurage, Imp_Demmurage_Input);
 			}
 			
 			Step_Start(9, "Click routing", test, test1);

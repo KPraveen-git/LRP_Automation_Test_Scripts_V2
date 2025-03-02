@@ -1,6 +1,6 @@
 package locators;
 
-public interface Movement_Entry_Locators extends on_off_hire_locators{
+public interface Movement_Entry_Locators extends On_Off_Hire_Locators{
 ///////////////////////Movement Entry///////////////////
 ///
 ///
@@ -444,7 +444,7 @@ public static String globalSearch11 = "globalSearch>//button[@id='RMS-RMS_tblsvm
 		public static String Consignee = "Consignee>//input[@id='CGE-CGE_txtconsigneeSin']";
 		public static String Remarks="Remarks>//input[@id='CGE-CGE_txtSinRemarks']";
 		public static String OW_amount="OW_amount>//input[@id='CGE-CGE_txtSinOWAmt_input']";
-		public static String Gross_Weight="Gross_Weight>//input[@id='CGE-CGE_txtSinGrossWt_input']";
+		public static String Gross_Weight="Gross_Weight>//input[@id='REQ-REQ_txtweight_input']";
 		public static String O_L="O_L>//input[@id='CGE-CGE_txtSinCargoWt_input']";
 		public static String Cargo_Weight ="Cargo_Weight>//input[@id='CGE-CGE_txtSinCargoWt_input']";
 		public static String Supplier_Contract="Supplier_Contract>//input[@id='CGE-CGE_txtSinSupplierCont']";

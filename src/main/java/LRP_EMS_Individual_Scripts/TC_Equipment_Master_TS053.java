@@ -5,7 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.Equipment_Master_Locators;
 
 public class TC_Equipment_Master_TS053 extends Keywords{
 	public void Equipment_Master_TS053(WebDriver driver, ExtentTest test,ExtentTest test1,String selected_dataset) {
@@ -37,15 +37,15 @@ public class TC_Equipment_Master_TS053 extends Keywords{
 		String eMS_Group_DropDown_Input_Txt =Excel_data.get("EMS_Group_DropDown_Input");
 		String before_Update_Value="";
 		String after_Update_value="";
-		String equipTypeSel=String.format(EMS_Locators.equipTypeSel,equipmentType_DropDown_Input_Txt);
-		String fleetSel=String.format(EMS_Locators.fleetSel,fleet_DropDown_Input_Txt);
-		String mesurementSel=String.format(EMS_Locators.mesurementSel,mesurement_DropDown_Input_Txt);
-		String teusSel=String.format(EMS_Locators.teusSel,teus_DropDown_Input_Txt);
-		String commercialTypeSel=String.format(EMS_Locators.commercialTypeSel,commercialType_DropDown_Input_Txt);
-		String contractTypeSel=String.format(EMS_Locators.contractTypeSel,contractType_DropDown_Input_Txt);
-		String dgClassSel=String.format(EMS_Locators.dgClassSel,dG_Class_DropDown_Input_Txt);
-		String emsTypeSel=String.format(EMS_Locators.emsTypeSel,eMS_Type_DropDown_Input_Txt);
-		String emsGroupSel=String.format(EMS_Locators.emsGroupSel,eMS_Group_DropDown_Input_Txt);
+		String equipTypeSel=String.format(Equipment_Master_Locators.equipTypeSel,equipmentType_DropDown_Input_Txt);
+		String fleetSel=String.format(Equipment_Master_Locators.fleetSel,fleet_DropDown_Input_Txt);
+		String mesurementSel=String.format(Equipment_Master_Locators.mesurementSel,mesurement_DropDown_Input_Txt);
+		String teusSel=String.format(Equipment_Master_Locators.teusSel,teus_DropDown_Input_Txt);
+		String commercialTypeSel=String.format(Equipment_Master_Locators.commercialTypeSel,commercialType_DropDown_Input_Txt);
+		String contractTypeSel=String.format(Equipment_Master_Locators.contractTypeSel,contractType_DropDown_Input_Txt);
+		String dgClassSel=String.format(Equipment_Master_Locators.dgClassSel,dG_Class_DropDown_Input_Txt);
+		String emsTypeSel=String.format(Equipment_Master_Locators.emsTypeSel,eMS_Type_DropDown_Input_Txt);
+		String emsGroupSel=String.format(Equipment_Master_Locators.emsGroupSel,eMS_Group_DropDown_Input_Txt);
 
 		Extent_Start(testCase_Name, test, test1);
 		navigateUrl(driver, url);

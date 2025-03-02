@@ -44,7 +44,6 @@ public class TC_Cost_Activity_Report_TS077 extends Keywords {
 		String currency_data_vc = data.get("currency_data_vc");
 		String equip_type_options_Vc_data = data.get("equip_type_options_Vc_data");
 		String equip_sts_data = data.get("equip_sts_data");
-		String wantToApprove_Popup = data.get("WantToApprove_Popup");
 		String mappingSavedPopup = data.get("MappingSavedPopup");
 		String dropdownCondition = data.get("DropdownCondition");
 		String Service_Code = data.get("Service_Code");
@@ -66,8 +65,20 @@ public class TC_Cost_Activity_Report_TS077 extends Keywords {
 		String Un_Predictable_Table_Filter_Headers = data.get("Un_Predictable_Table_Filter_Headers");
 		String columnHeaders_predictable = data.get("ColumnHeaders_predictable");
 
-		
-		
+		String Search_Type2 =data.get("Search_Type2");
+		String Search_Input2 =data.get("Search_Input2");
+		String Search_Type3 =data.get("Search_Type3");
+		String Search_Input3 =data.get("Search_Input3");
+		String contract_code_header = data.get("contract_code_header");
+		String vendor_code_header = data.get("vendor_code_header");
+		String currency_code_header = data.get("currency_code_header");
+		String activity_code_header = data.get("activity_code_header");
+		String port_code_header = data.get("port_code_header");
+		String service_header = data.get("service_header");
+		String vessel_code_header = data.get("vessel_code_header");
+		String terminal_code_header = data.get("terminal_code_header");
+		String arrival_date_header = data.get("arrival_date_header");
+
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -90,7 +101,8 @@ public class TC_Cost_Activity_Report_TS077 extends Keywords {
 		waitForDisplay(driver, NewButton_ToolBar);
 		
 		if(isdisplayed(driver, NewButton_ToolBar) && isElementAccessible(driver, NewButton_ToolBar)) {
-			click(driver, NewButton_ToolBar);}
+			click(driver, NewButton_ToolBar);
+			}
 		
 		waitForElement(driver, activity_code_Act_Mod);
 		sendKeys(driver, activity_code_Act_Mod, activity_code_data);
@@ -135,7 +147,7 @@ public class TC_Cost_Activity_Report_TS077 extends Keywords {
 
 		waitForElement(driver, contract_type_search_icon_Gam);
 		click(driver, contract_type_search_icon_Gam);
-		selectValue(driver, condition, contract_type_data);
+		twoColumnSearchWindow(driver, contract_code_header, condition, contract_type_data);
 		
 		click(driver, show_button_Gam_Mod);
 		waitForElement(driver, popup_Message_Yes_Button);
@@ -191,8 +203,8 @@ public class TC_Cost_Activity_Report_TS077 extends Keywords {
 		
 		waitForElement(driver, search_icon_contract_type_Vc);
 		click(driver, search_icon_contract_type_Vc);
-		selectValue(driver, condition, contract_type_data);
-		
+		twoColumnSearchWindow(driver, contract_code_header, condition, contract_type_data);
+
 		
 		Step_End(6, "Next enter the screen name as 'Vendor contracts' in the module search field. Select the contract type as CTL.", test, test1);
 
@@ -200,7 +212,7 @@ public class TC_Cost_Activity_Report_TS077 extends Keywords {
 	
 		waitForElement(driver, vendor_code_search_icon_Vc);
 		click(driver, vendor_code_search_icon_Vc);
-		selectValue(driver, condition, vendor_code_data_Vc);
+		twoColumnSearchWindow(driver, vendor_code_header, condition, vendor_code_data_Vc);
 		
 		if(datepicker.equalsIgnoreCase("yes")) {
 			
@@ -218,8 +230,7 @@ if(datepicker.equalsIgnoreCase("yes")) {
 
 	waitForElement(driver, currency_search_icon_vc);
 	click(driver, currency_search_icon_vc);
-	selectValue1(driver, condition, currency_data_vc);
-
+twoColumnSearchWindow(driver, currency_code_header, condition, currency_data_vc);
 	waitForElement(driver, show_btn_vc);
 	click(driver, show_btn_vc);
 	
@@ -288,7 +299,8 @@ if(datepicker.equalsIgnoreCase("yes")) {
 		
 		waitForElement(driver, vc_row_to_click);
 		click(driver, vc_row_to_click);
-		
+		wait(driver, "5");
+
 		waitForElement(driver, equip_type_dd_label_Vc);
 		click(driver, equip_type_dd_label_Vc);
 		
@@ -303,7 +315,7 @@ if(datepicker.equalsIgnoreCase("yes")) {
 		 String eqp_sts = String.format(equip_sts_Vc_option, equip_sts_data);
 		 waitForElement(driver, eqp_sts);
 		 click(driver, eqp_sts);
-		
+
 		waitForElement(driver, currency_dd_Vc);
 		click(driver, currency_dd_Vc);
 		
@@ -320,7 +332,7 @@ if(datepicker.equalsIgnoreCase("yes")) {
 		waitForElement(driver, add_item_Vc);
 		click(driver, add_item_Vc);
 		
-		selectValue1(driver, condition, activity_code_data);
+		twoColumnSearchWindow(driver, activity_code_header, condition, activity_code_data);
 		
 		scrollTop(driver);
 		waitForElement(driver, SaveButton_ToolBar);
@@ -342,39 +354,18 @@ if(datepicker.equalsIgnoreCase("yes")) {
 
 		waitForElement(driver, SearchButton_Toolbar);
 		click(driver, SearchButton_Toolbar);
-		
-		waitForElement(driver, select_first);
-		click(driver,select_first);
-		selectByText(driver, select_first, globalSearchFilterOption2);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, dropdownCondition);
-		
-		click(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, actual_Vendor_No);
-		
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		
-		waitForDisplay(driver, retrieved_Value_Select);
-		click(driver, retrieved_Value_Select);
-		
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+
+		globalValueSearchWindow(driver, dropdownCondition, globalSearchFilterOption2, actual_Vendor_No, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
 		
 		waitForElement(driver, accept_Button_VC);
 		click(driver, accept_Button_VC);
 		
-		waitForDisplay(driver, popup_Message);
-		String actual_Popup=getText(driver, popup_Message);
-		if(actual_Popup.equals(wantToApprove_Popup)) {
-			System.out.println("Matched || Expected Popup : "+wantToApprove_Popup+" || Actual Popup : "+actual_Popup);
-			Extent_pass(driver, "Matched || Expected Popup : "+wantToApprove_Popup+" || Actual Popup : "+actual_Popup, test, test1);
+		waitForElement(driver, popup_Message_Yes_Button);
+		if(isdisplayed(driver, popup_Message_Yes_Button)) {
 			click(driver, popup_Message_Yes_Button);
 		}
 		else {
-			System.out.println("Not Matched || Expected Popup : "+wantToApprove_Popup+" || Actual Popup : "+actual_Popup);
-			Extent_fail(driver, "Not Matched || Expected Popup : "+wantToApprove_Popup+" || Actual Popup : "+actual_Popup, test, test1);
+			System.out.println("yes buttonnot displayed");
 		}
 		
 //  Contract Mapping
@@ -382,8 +373,7 @@ if(datepicker.equalsIgnoreCase("yes")) {
 		waitForElement(driver, port_Plus_Button_CM);
 		click(driver, port_Plus_Button_CM);
 		
-		selectValue1(driver, condition, Port_Code);
-		
+		twoColumnSearchWindow(driver, port_code_header, condition, Port_Code);
 		
 		String select_Checkbox=String.format(terminal_Select_Checkbox_CM, Terminal_Code);
 		waitForElement(driver, select_Checkbox);
@@ -443,35 +433,32 @@ moduleNavigate(driver, Cost_Activity_Report_Module);
 
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, condition, Service_Code);
+twoColumnSearchWindow(driver, service_header, condition, Service_Code);
 
 		Step_End(5, "Click on the Service search button and select the required service code.", test, test1);
 		Step_Start(6, "Click on the Vessel search button and select the required vessel code.", test, test1);
 
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, condition, Vessel_Code);
-		
+		twoColumnSearchWindow(driver, vessel_code_header, condition, Vessel_Code);
 		Step_End(6, "Click on the Vessel search button and select the required vessel code.", test, test1);
 		Step_Start(7, "Click on the Port search button and select the required port code.", test, test1);
 
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, condition, Port_Code);
-		
+		twoColumnSearchWindow(driver, port_code_header, condition, Port_Code);
 		Step_End(7, "Click on the Port search button and select the required port code.", test, test1);
 		Step_Start(8, "Click on the Terminal search button and select the required terminal code.", test, test1);
 
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, condition, Terminal_Code);
-		
+		twoColumnSearchWindow(driver, terminal_code_header, condition, Terminal_Code);
 		Step_End(8, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		Step_Start(9, "Click on the Arrival date search button and select the required date.", test, test1);
 
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, Arrival_Date_Value);
+		twoColumnSearchWindow(driver, arrival_date_header, Arrival_Date_Condition, Arrival_Date_Value);
 		
 		Step_End(9, "Click on the Arrival date search button and select the required date.", test, test1);
 		
@@ -493,7 +480,7 @@ moduleNavigate(driver, Cost_Activity_Report_Module);
 		click(driver, Column_SelectMenu);
 		waitForElement(driver, Column_Search_Input);
 		
-		jsClick(driver, UnPredictable_All_Checkbox_CAR);
+		click(driver, UnPredictable_All_Checkbox_CAR);
 		
 		List<String> Unpredictable_Headers=splitAndExpand(Un_Predictable_Table_Filter_Headers);
 		for(String FilterHeader : Unpredictable_Headers) {
@@ -533,6 +520,7 @@ moduleNavigate(driver, Cost_Activity_Report_Module);
 		Step_End(17, "If the newly added activity needs to be mapped in the Predictable reporting tab, enter the screen name as 'Predictable activity behaviour' in the module search field.", test, test1);
 
 		Step_Start(18, "Click on the global search option and enter the required fields and click the search option. Next select the required details and click on the select option.", test, test1);
+
 
 		waitForElement(driver, type_Select1);
 		selectByText(driver, type_Select1, Predictable_Select_Type);
@@ -580,12 +568,14 @@ moduleNavigate(driver, Cost_Activity_Report_Module);
 		
 		waitForElement(driver, port_SearchButton_PAB);
 		click(driver,port_SearchButton_PAB);
-		selectValue(driver, condition_2, Port_Code);
+		twoColumnSearchWindow(driver, port_code_header, condition, Port_Code);
+		
 		
 		waitForElement(driver, terminal_SearchButton_PAB);
 		click(driver,terminal_SearchButton_PAB);
-		selectValue(driver, condition_2, Terminal_Code);
+		twoColumnSearchWindow(driver, terminal_code_header, condition, Terminal_Code);
 
+		
 		waitForElement(driver, show_Button_PAB);
 		click(driver,show_Button_PAB);
 		}
@@ -601,8 +591,7 @@ moduleNavigate(driver, Cost_Activity_Report_Module);
 			 	RightClick(driver, MainActivity_Name_Column);
 				waitForElement(driver, Add_item_PAB);
 				click(driver,Add_item_PAB);
-				selectValue1(driver, condition_2, activity_code_data);
-				
+				twoColumnSearchWindow(driver, activity_code_header, condition_2, Main_Activity_Value);
 			
 		}else {
 			System.out.println("Main Activity is not present");

@@ -27,17 +27,21 @@ public class TC_Cost_Activity_Report_TS057 extends Keywords {
 		String username = data.get("Username");
 		String password = data.get("Password");
 		String Cost_Activity_Report_Module = data.get("Cost_Activity_Report_Module");
-		String Contains = data.get("Contains_val");
-		String car_number = data.get("Car_No");
-		String car_value = data.get("Car_Number");
 		String Header_value = data.get("Header");
 		String AgencyUser = data.get("AgencyUser");
-
+		String CAR_Retrieve_Type1 = data.get("CAR_Retrieve_Type1");
+		String CAR_Retrieve_Condition1 = data.get("CAR_Retrieve_Condition1");
+		String CAR_Number_Retrieve_Value1 = data.get("CAR_Number_Retrieve_Value1");
+		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
+		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
+		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
+		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
+		
+		
+		
 		Extent_Start(tc_Name, test, test1);
 
-		Step_Start(1,
-				"Once login to the application and click on switch profile option and select the required agency.",
-				test, test1);
+		Step_Start(1,"Once login to the application and click on switch profile option and select the required agency.",test, test1);
 
 		navigateUrl(driver, url);
 
@@ -64,39 +68,19 @@ public class TC_Cost_Activity_Report_TS057 extends Keywords {
 		Step_End(3, "Click on the global search option which is available in the tool bar", test, test1);
 
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		click(driver, Ventor_Global_Seach_First_Field);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, car_number);
-
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
-
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-
+		
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, car_value);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		waitForElement(driver, Search_button);
-		click(driver, Search_button);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-
-		waitForElement(driver, column_Values);
-		click(driver, column_Values);
-
-		waitForElement(driver, Select_Option);
-		click(driver, Select_Option);
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition1,CAR_Retrieve_Type1,CAR_Number_Retrieve_Value1,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
+		
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(6, "Then click on the search button", test, test1);
+		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
+		Step_Start(8, "System will retrieve the CAR", test, test1);
+	
 
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
 
@@ -235,7 +219,10 @@ public class TC_Cost_Activity_Report_TS057 extends Keywords {
 					"Currency", curencu_Value, "Amount with STX");
 
 			List<String> vendorTotalAmounts = Vendor_Map.get(curencu_Value);
-			String actualSumAMount = sumAndConvertToString(actualAmount);
+			String actualSumAMount = sumAndConvertToString(actualAmount
+					);
+			System.out.println("actualSumAMount :"+actualSumAMount);
+			
 			if (vendorTotalAmounts.get(i).equals(actualSumAMount)) {
 				System.out.println("Extected : " + vendorTotalAmounts.get(i) + " Actual : " + actualSumAMount);
 				Extent_pass(driver, "Matched || " + " Expected Value is : " + vendorTotalAmounts
@@ -247,6 +234,7 @@ public class TC_Cost_Activity_Report_TS057 extends Keywords {
 
 			}
 		}
+		
 		List<String> activity_Values = getValuesByHeader(Activity_Table, "Activity");
 		for (int i = 0; i < activity_Values.size(); i++) {
 			String curencu_Value = getValueByFirstColumnAndHeader(Activity_Table, "Activity", activity_Values.get(i),

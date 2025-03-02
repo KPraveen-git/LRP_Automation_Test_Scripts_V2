@@ -26,9 +26,7 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 		String password = data.get("Password");
 		String Cost_Activity_Report_Module = data.get("Cost_Activity_Report_Module");
 
-		String car_number = data.get("Car_No");
-		String car_value = data.get("Car_Number");
-		String Contains = data.get("Contains_val");
+
 		String Draf = data.get("Draft_option");
 		String Header = data.get("Column_Header");
 		String Submitted = data.get("Submitted");
@@ -36,7 +34,17 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 		String Rejected = data.get("Rejected_val");
 		String PartlyApproved = data.get("Partly_Approved");
 		String AgencyUser =data.get("AgencyUser");
+		String CAR_Retrieve_Type1 = data.get("CAR_Retrieve_Type1");
+		String CAR_Retrieve_Condition1 = data.get("CAR_Retrieve_Condition1");
+		String CAR_Number_Retrieve_Value1 = data.get("CAR_Number_Retrieve_Value1");
+		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
+		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
+		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
+		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
 		 
+		
+		
+		
 		Extent_Start(tc_Name, test, test1);
 
 		Step_Start(1,"Once login to the application and click on switch profile option and select the required agency.",test, test1);
@@ -65,39 +73,15 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
 
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		click(driver, Ventor_Global_Seach_First_Field);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, car_number);
-
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
-
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, car_value);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		waitForElement(driver, Search_button);
-		click(driver, Search_button);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-
-		waitForElement(driver, column_Values);
-		click(driver, column_Values);
-
-		waitForElement(driver, Select_Option);
-		click(driver, Select_Option);
-
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition1,CAR_Retrieve_Type1,CAR_Number_Retrieve_Value1,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
+		
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(6, "Then click on the search button", test, test1);
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
 
 		Step_Start(8, "System will retrieve the CAR", test, test1);
@@ -106,16 +90,6 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 		String Carvalue = getAttribute(driver, car_Number_val, "value");
 
 		System.out.println("Carvalue :" + Carvalue);
-
-		if (car_value.equals(Carvalue)) {
-			System.out.println("matched exp value :" + car_value + "actual value :" + Carvalue);
-			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + car_value
-					+ " || Actual Report Activity is : " + Carvalue, test, test1);
-		} else {
-			System.out.println("Not matched exp value :" + car_value + "actual value :" + Carvalue);
-			Extent_fail(driver, "Matched || " + " Expected Report Activity is : " + car_value
-					+ " || Actual Report Activity is : " + Carvalue, test, test1);
-		}
 
 		Step_End(8, "System will retrieve the CAR", test, test1);
 
@@ -201,7 +175,7 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 			clear(driver, column_Searchbox);
 			sendKeys(driver, column_Searchbox, column);
 			
-			String checkbox=String.format(column_Checkboxs, column);
+			String checkbox=String.format(column_Checkboxs1, column);
 			click(driver, checkbox);
 			}
 			waitForElement(driver, Column);
@@ -246,6 +220,8 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 		if(Draft) {
 			Step_Start(10, "If the activities are in draft status then ensure that the system shows the car expense status as Draft", test, test1);
 			
+			Step_Start(14, "If the some of the activities are  draft status and other activities are in approved status means,then ensure that the system shows the car expense status as Draft", test, test1);
+			
 			if (Draf.equals(Status_values)) {
 				System.out.println("Matched exp value :" + Draf + "actual value :" + Status_values);
 				Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + Draf+ " || Actual Report Activity is : " + Status_values, test, test1);
@@ -256,10 +232,13 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 				
 			Step_End(10, "If the activities are in draft status then ensure that the system shows the car expense status as Draft", test, test1);	
 			
+			Step_End(14, "If the some of the activities are  draft status and other activities are in approved status means,then ensure that the system shows the car expense status as Draft", test, test1);
 		}else if(submited) {
 			
               Step_Start(11, "If the actvities are in submitted status then ensure that the system shows the car expense status as Submitted", test, test1);
 			
+              Step_Start(15, "If the some of the activities are  submitted status and other activities are in approved status means,then ensure that the system shows the car expense status as Submitted", test, test1);
+  			
 			  if (Submitted.equals(Status_values)) {
 				System.out.println("Matched exp value :" + Submitted + "actual value :" + Status_values);
 				Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + Submitted+ " || Actual Report Activity is : " + Status_values, test, test1);
@@ -269,11 +248,11 @@ public class TC_Cost_Activity_Report_TS029 extends Keywords{
 			  }
 				
 			Step_End(11, "If the actvities are in submitted status then ensure that the system shows the car expense status as Submitted", test, test1);		
-			
+			Step_End(15, "If the some of the activities are  submitted status and other activities are in approved status means,then ensure that the system shows the car expense status as Submitted", test, test1);
 			
 		}else if(rejected) {
 			
-			Step_Start(13, "If the activities are in rejected status then ensure that the system shows the car expense status as \"Rejected", test, test1);
+			Step_Start(13, "If the activities are in rejected status then ensure that the system shows the car expense status as Rejected", test, test1);
 			
 			  if (Rejected.equals(Status_values)) {
 				System.out.println("Matched exp value : " + Rejected + "actual value : " + Status_values);

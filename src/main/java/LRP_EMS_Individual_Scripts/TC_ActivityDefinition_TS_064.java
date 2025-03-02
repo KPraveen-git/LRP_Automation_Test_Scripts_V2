@@ -7,7 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.ActivityDefinition_Locators;
 
 public class TC_ActivityDefinition_TS_064 extends Keywords{
 
@@ -90,7 +90,7 @@ public class TC_ActivityDefinition_TS_064 extends Keywords{
 					waitForElement(driver, column_Filter);
 					sendKeys(driver, column_Filter, Column_Value);
 					Extent_call(test, test1, "Check the Deleted Activity code Highlighted In Red Color");
-					String deleted_Column_Value = String.format(EMS_Locators.deleted_Column_Value,Column_Value);
+					String deleted_Column_Value = String.format(ActivityDefinition_Locators.deleted_Column_Value,Column_Value);
 					String deleted_Column_color = getTextBackgroundColor(driver, deleted_Column_Value);
 					System.out.println("deleted_Column_color : "+deleted_Column_color);
 					if(deleted_Column_color.equals(act_Def_Deleted_colour_txt_Exp)) {
@@ -183,7 +183,7 @@ public class TC_ActivityDefinition_TS_064 extends Keywords{
 			for(String Column_Value : Column_Values) {
 				waitForElement(driver, column_Filter);
 				sendKeys(driver, column_Filter, Column_Value);
-				String Added_Column_Value = String.format(EMS_Locators.Added_Column_Value,Column_Value);
+				String Added_Column_Value = String.format(ActivityDefinition_Locators.Added_Column_Value,Column_Value);
 				String Added_Data = getText(driver, Added_Column_Value);
 				if(isDisplayed(driver, Added_Column_Value)) {
 					System.out.println( "Matched || The ReActivated Activity code : "+Added_Data);

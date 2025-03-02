@@ -8,7 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.Enquiry_History_Locators;
 
 public class TC_Enquiry_History_TS028 extends Keywords {
 	public void EnquiryHistoryTS028(WebDriver driver, ExtentTest test,ExtentTest test1,String selected_dataset) throws Exception {
@@ -52,8 +52,8 @@ public class TC_Enquiry_History_TS028 extends Keywords {
 
 		//select Equipment radio button
 		Step_Start(1, " Select Equipment no radio button option to proceed further", test, test1);
-		String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-		String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+		String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+		String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 		waitForElement(driver, Equip_Type_DD);
 		click(driver, Equip_Type_DD);
 		waitForElement(driver, Equip_Type_Select);
@@ -115,7 +115,7 @@ public class TC_Enquiry_History_TS028 extends Keywords {
 			System.out.println("numberValue : "+numberValue);
 			int expectednumber =0; 
 			for(int i=0;i<=numberValue+numberValue;i++) {
-				String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+				String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 				String movement_Code_text = getTextwithoutfail(driver, movementcode);
 				if(!movement_Code_text.contains("Equipment No:") && !movement_Code_text.equals("null")) {
 					expectednumber++;
@@ -140,7 +140,7 @@ public class TC_Enquiry_History_TS028 extends Keywords {
 			List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 			int total_Input_Size = Multi_Sel_Values.size();
 			for(String Multi_Sel_Value : Multi_Sel_Values) {
-				String movement =  String.format(EMS_Locators.movement_Value,i); 
+				String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 				waitForElement(driver, movement);
 				String movementDetail=getText(driver, movement);
 				if(Grid_Size==total_Input_Size) {
@@ -186,7 +186,7 @@ public class TC_Enquiry_History_TS028 extends Keywords {
 			System.out.println("numberValue : "+numberValue);
 			int expectednumber =0; 
 			for(int i=0;i<=numberValue+numberValue;i++) {
-				String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+				String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 				String movement_Code_text = getTextwithoutfail(driver, movementcode);
 				if(!movement_Code_text.contains("Equipment No:") && !movement_Code_text.equals("null")) {
 					expectednumber++;

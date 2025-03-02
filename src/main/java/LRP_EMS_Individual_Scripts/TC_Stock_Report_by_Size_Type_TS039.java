@@ -12,7 +12,7 @@ import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 
 import commonMethods.Utils;
-import locators.on_off_hire_locators;
+import locators.On_Off_Hire_Locators;
 
 public class TC_Stock_Report_by_Size_Type_TS039 extends Keywords{
 	
@@ -46,8 +46,8 @@ public class TC_Stock_Report_by_Size_Type_TS039 extends Keywords{
 		String different_headers = Excel_data.get("different_headers");
 		String service_code_header = Excel_data.get("service_code_header");
 		
-		String location_hierarchy_type =String.format(on_off_hire_locators.location_hierarchy_type39, Location_Heirachy_input);
-		String siez_type_btn =String.format(on_off_hire_locators.size_Type_Select, Size_Type_Button);
+		String location_hierarchy_type =String.format(On_Off_Hire_Locators.location_hierarchy_type39, Location_Heirachy_input);
+		String siez_type_btn =String.format(On_Off_Hire_Locators.size_Type_Select, Size_Type_Button);
 		
 		
 		Extent_Start(tc_Name, test, test1);

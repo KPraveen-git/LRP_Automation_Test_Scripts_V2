@@ -39,6 +39,12 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 		String GivenActivity = data.get("GivenActivity");
 		String Simulator_Value = data.get("Simulator_Value");
 		String Apply_Variable_popup = data.get("Apply_Variable_popup");
+		String Service_Filter_Header = data.get("Service_Filter_Header");
+		String Vessel_Filter_Header = data.get("Vessel_Filter_Header");
+		String Port_Filter_Header = data.get("Port_Filter_Header");
+		String Terminal_Filter_Header = data.get("Terminal_Filter_Header");
+		String ArrivalDate_Filter_Header = data.get("ArrivalDate_Filter_Header");
+		String Agency = data.get("Agency");
 
 		String Contract_option = String.format(Select_ContractType, GivenContract_Type);
 		String Mode_option = String.format(Select_ModeOption, GivenMode);
@@ -53,6 +59,8 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 				test, test1);
 
 		LRP_Login(driver, username, password);
+		
+		SwitchProfile(driver, Agency);
 
 		verifyMainMenu(driver);
 
@@ -82,7 +90,7 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 		waitForElement(driver, Service_Search);
 		click(driver, Service_Search);
 
-		selectValue(driver, Condition1, Service);
+		twoColumnSearchWindow(driver, Service_Filter_Header, Condition1, Service);
 
 		Step_End(3, "Click on the Service search button and select the required service code", test, test1);
 
@@ -91,7 +99,7 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 		waitForElement(driver, Vessel_Search);
 		click(driver, Vessel_Search);
 
-		selectValue(driver, Condition1, Vessel);
+		twoColumnSearchWindow(driver, Vessel_Filter_Header, Condition1, Vessel);
 
 		Step_End(4, "Click on the Vessel search button and select the required vessel code", test, test1);
 
@@ -100,7 +108,7 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 		waitForElement(driver, port_Search);
 		click(driver, port_Search);
 
-		selectValue(driver, Condition1, Port);
+		twoColumnSearchWindow(driver, Port_Filter_Header, Condition1, Port);
 
 		Step_End(5, "Click on the Port search button and select the required port code", test, test1);
 
@@ -109,7 +117,7 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 		waitForElement(driver, Terminal_Search);
 		click(driver, Terminal_Search);
 
-		selectValue(driver, Condition1, Terminal);
+		twoColumnSearchWindow(driver, Terminal_Filter_Header, Condition1, Terminal);
 
 		Step_End(6, "Click on the Terminal search button and select the required terminal code", test, test1);
 
@@ -118,7 +126,7 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 		waitForElement(driver, ArrivalDate_Search);
 		click(driver, ArrivalDate_Search);
 
-		selectValue(driver, Condition1, Arrival_Date);
+		twoColumnSearchWindow(driver, ArrivalDate_Filter_Header, Condition1, Arrival_Date);
 
 		Step_End(7, "Click on the Arrival date search button and select the required date", test, test1);
 
@@ -220,7 +228,7 @@ public class TC_Cost_Activity_Report_TS008 extends Keywords {
 					".Incase,if the selected activity contains any formula along with the To be reported(Formula) checkbox selection false means,we have to input the required variable values in the value field and click the simulator option. An information message will be displayed as \"The result for Sample Values along with simulator value\" and click ok option",
 					test, test1);
 
-			String qty_field = String.format(Amount_field, GivenActivity);
+			String qty_field = String.format(CAR_Amount_field, GivenActivity);
 
 			waitForElement(driver, qty_field);
 			doubleClick(driver, qty_field);

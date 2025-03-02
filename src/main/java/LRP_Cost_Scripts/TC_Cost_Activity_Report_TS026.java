@@ -1,6 +1,7 @@
 package LRP_Cost_Scripts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,21 +29,24 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 		String username = data.get("Username");
 		String password = data.get("Password");
 		String Cost_Activity_Report_Module = data.get("Cost_Activity_Report_Module");
-		String car_number = data.get("Car_No");
 		String Coloum_headers = data.get("Column_Header");
 		String Vendor_Invoice_Registraction = data.get("VendorInvoice_Registraction");
 		String Activity_ref_number = data.get("Activity_ref_Number");
 		String ModeVal = data.get("Mode");
 		String BackroundColor = data.get("BackRoundColor");
-		String AgencyUser = data.get("AgencyUser");
-		String Contains = data.get("Contains_val");
-		String car_value = data.get("Car_Number");
-
+		String CAR_Retrieve_Type1 = data.get("CAR_Retrieve_Type1");
+		String CAR_Retrieve_Condition1 = data.get("CAR_Retrieve_Condition1");
+		String CAR_Number_Retrieve_Value1 = data.get("CAR_Number_Retrieve_Value1");
+		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
+		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
+		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
+		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
+		
+		
+		
 		Extent_Start(tc_Name, test, test1);
 		
-		Step_Start(1,
-				"Once login to the application and click on switch profile option and select the required agency.",
-				test, test1);
+		Step_Start(1,"Once login to the application and click on switch profile option and select the required agency.",test, test1);
 
 		navigateUrl(driver, url);
 
@@ -53,7 +57,7 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 
 		LRP_Login(driver, username, password);
 
-		SwitchProfile(driver, AgencyUser);
+//		SwitchProfile(driver, AgencyUser);
 
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
@@ -69,57 +73,22 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 		Step_End(3, "Click on the global search option which is available in the tool bar", test, test1);
 
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		click(driver, Ventor_Global_Seach_First_Field);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, car_number);
-
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
-
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, car_value);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		waitForElement(driver, Search_button);
-		click(driver, Search_button);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-
-		waitForElement(driver, column_Values);
-		click(driver, column_Values);
-
-		waitForElement(driver, Select_Option);
-		click(driver, Select_Option);
-
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition1,CAR_Retrieve_Type1,CAR_Number_Retrieve_Value1,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
+		
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(6, "Then click on the search button", test, test1);
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
-
 		Step_Start(8, "System will retrieve the CAR", test, test1);
 
 		waitForElement(driver, car_Number_val);
 		String Carvalue = getAttribute(driver, car_Number_val, "value");
 
-		System.out.println("Carvalue :" + Carvalue);
-
-//	 if(car_value.equals(Carvalue)) {
-//		  System.out.println("Matched exp value :"+car_value +"actual value :"+Carvalue);
-//		  Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + car_value + " || Actual Report Activity is : " + Carvalue, test,test1);
-//	 }else {
-//		  System.out.println("Not matched exp value :"+car_value +"actual value :"+Carvalue);
-//		  Extent_fail(driver, "Matched || " + " Expected Report Activity is : " + car_value + " || Actual Report Activity is : " + Carvalue, test,test1);
-//	 }
-
+		System.out.println("Carvalue :" + Carvalue);		
 		Step_End(8, "System will retrieve the CAR", test, test1);
 
 		Step_Start(9,
@@ -208,6 +177,9 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 
 		waitForElement(driver, Ventor_Global_Search);
 		click(driver, Ventor_Global_Search);
+		
+
+		
 		waitForElement(driver, Ventor_Global_Seach_First_Field);
 		click(driver, Ventor_Global_Seach_First_Field);
 		waitForElement(driver, Ventor_Global_Seach_First_Field);
@@ -228,23 +200,30 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 			waitForElement(driver, Search_button);
 			click(driver, Search_button);
 
-			horizontalscroll(driver, Horizontal_, 1000);
 
 			waitForElement(driver, Mode_Field);
 			sendKeys(driver, Mode_Field, ModeVal);
 
-			horizontalscroll(driver, Horizontal_, -1000);
+			horizontalscroll(driver, Horizontal_val, 1000);
+			waitForElement(driver, Vendor_value);
+			doubleClick(driver, Vendor_value);
+			
 			waitForElement(driver, Vendor_Inv_Numbers);
 			String Invoice_No_Value = "";
-
+			List<String>  allTexts=new ArrayList<String>();
 			List<WebElement> Invoice_Numbers = listOfElements(driver, Vendor_Inv_Numbers);
 			for (WebElement ele : Invoice_Numbers) {
 
 				String eleText = ele.getText();
-
-				Invoice_No_Value = Invoice_No_Value + eleText + "/";
+				allTexts.add(eleText);
 
 			}
+			Collections.sort(allTexts, Collections.reverseOrder());
+			
+			for(String abc:allTexts) {
+				Invoice_No_Value = Invoice_No_Value + abc + "/";
+			}
+			
 			if (Invoice_No_Value.endsWith("/")) {
 				Invoice_No_Value = Invoice_No_Value.substring(0, Invoice_No_Value.length() - 1);
 			}
@@ -262,9 +241,7 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 		waitForElement(driver, ventor_Close);
 		click(driver, ventor_Close);
 
-		Step_Start(14,
-				"Incase if the Partial invoce done for invoice means,the same reference no. will show twice in Vendor invoice registration screen and those two invoice should be shown in CAR screen at the expense report Invoice No. column with the slash separator",
-				test, test1);
+		Step_Start(14,"Incase if the Partial invoce done for invoice means,the same reference no. will show twice in Vendor invoice registration screen and those two invoice should be shown in CAR screen at the expense report Invoice No. column with the slash separator",test, test1);
 
 		waitForElement(driver, ExpenseReport);
 		click(driver, ExpenseReport);
@@ -272,7 +249,6 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 		waitForElement(driver, ApprovedExpenses);
 		click(driver, ApprovedExpenses);
 
-		horizontalscroll(driver, Horizonval_val, 1000);
 
 		System.out.println("exp value :" + Exp_Values_);
 		System.out.println("actual value :" + Act_Values_);
@@ -280,19 +256,15 @@ public class TC_Cost_Activity_Report_TS026 extends Keywords {
 		if (CompareMapValues(Exp_Values_, Act_Values_)) {
 
 			System.out.println("matched exp value :" + Exp_Values_ + "actual value :" + Act_Values_);
-			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + Exp_Values_
-					+ " || Actual Report Activity is : " + Act_Values_, test, test1);
+			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + Exp_Values_+ " || Actual Report Activity is : " + Act_Values_, test, test1);
 
 		} else {
 
 			System.out.println("matched exp value :" + Exp_Values_ + "actual value :" + Act_Values_);
-			Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + Exp_Values_
-					+ " || Actual Report Activity is : " + Act_Values_, test, test1);
+			Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + Exp_Values_+ " || Actual Report Activity is : " + Act_Values_, test, test1);
 
 		}
-		Step_End(14,
-				"Incase if the Partial invoce done for invoice means,the same reference no. will show twice in Vendor invoice registration screen and those two invoice should be shown in CAR screen at the expense report Invoice No. column with the slash separator.",
-				test, test1);
+		Step_End(14,"Incase if the Partial invoce done for invoice means,the same reference no. will show twice in Vendor invoice registration screen and those two invoice should be shown in CAR screen at the expense report Invoice No. column with the slash separator.",test, test1);
 		Extent_completed(tc_Name, test, test1);
 
 	}

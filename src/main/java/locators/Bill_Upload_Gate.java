@@ -1,6 +1,6 @@
 package locators;
 
-public interface Bill_Upload_Gate extends Current_History_Report_Locators {
+public interface Bill_Upload_Gate extends CAR_Approval_Locators{
 	// TC_Scale_Out_TS_045
 
 	// TC_Scale_Out_TS_045
