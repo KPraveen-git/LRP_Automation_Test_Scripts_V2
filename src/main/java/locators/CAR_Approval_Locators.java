@@ -1,6 +1,6 @@
 package locators;
 
-public interface CAR_Approval_Locators extends Predictable_Activity_Locators {
+public interface CAR_Approval_Locators extends Contract_Management_System_Locators{
 
 	// User Car approval
 	public static String UserName_Filter_Input_UCA = "User Name Filter Input>//div[@id='UUM-UUM_dynamicTable']//input[@aria-label='User Name Filter Input']";
@@ -648,6 +648,11 @@ public interface CAR_Approval_Locators extends Predictable_Activity_Locators {
 
 	public static String GES_Summary_Activity ="GES_Summary_Activity>//div[@id='CRR_EqpTabbedPane1-CRR_gridgrpEqp_summary_tbl']//div[@row-id='%s']//div[@col-id='mainactdes']";
 	public static String GES_Summary_eqptype ="GES_Summary_Activity>//div[@id='CRR_EqpTabbedPane1-CRR_gridgrpEqp_summary_tbl']//div[@row-id='%s']//div[@col-id='grpEqp']";
+
+	public static String OpenExpense_Count ="Open Expenses column count>//div[@id='CRR_treeTableEXP_tbl']//div[@aria-colcount]";
+	public static String ApprovedExpense_Count ="Approved Expenses column count>//div[@id='CRR_treeTableEXPDB_tbl']//div[@aria-colcount]";
+	public static String Approved_Scroller = "Expense report approved scroller>//div[@id='CRR_treeTableEXPDB_tbl']//div[@class='ag-body-horizontal-scroll-viewport']";
+
 
 	
 }

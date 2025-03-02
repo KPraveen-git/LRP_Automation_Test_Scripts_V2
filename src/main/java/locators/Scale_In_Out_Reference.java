@@ -1,6 +1,6 @@
 package locators;
 
-public interface Scale_In_Out_Reference extends Bill_Upload_Gate {
+public interface Scale_In_Out_Reference extends Srr_Gate_Locators{
 	
 	// Arunthathi
 
@@ -58,15 +58,16 @@ public interface Scale_In_Out_Reference extends Bill_Upload_Gate {
 
 	public static String equipmenttypevalueenter = "equipmenttypevalueenter>//input[@aria-label='Equipment Type Filter Input']";
 	public static String Totalrecord0 = "Totalrecord0>//label[contains(text(),'Total Records : 0')]";
-
-
+	public static String SCaleIn_Loc_Tf = "SCaleIn_Loc_Tf>(//input[contains(@id,'RMS-RMS_treeScalein')])[3]";
+	public static String SCaleIn_SizeTyp_Tf = "SCaleIn_Loc_Tf>(//input[contains(@id,'RMS-RMS_treeScalein')])[4]";
+	public static String service_selectbtn = "service_selectbtn>//button[@id='nfr-twocol-select-button']";
 	public static String Norecords = "Norecords >//span[@id='EDB_NoRecords_title']//following::td[contains(text(),'No records found')]";
 	public static String NorecordsOK = "NorecordsOK >//button[@id='EDB_NoRecordsForm-EDB_NoRecordsDT-EDB_NoRecordscmdBtnOk']";
 	public static String Norecordspop = "Norecordspop>(//span[contains(text(),'Search Scale-In/Scale-Out Reference')])//following::p[1]";
 	public static String Equipmenttype = "Equipmenttype>(//div[@col-id='equipmenttype'])[2]";
 	public static String perdiempop = "perdiempop>//h2[contains(text(),'Scale In/Scale Out Reference')]//following::span[2]";
 	public static String Equipmentquenty = "Equipmentquenty>(//div[@col-id='equipmentquantity'])[2]";
-
+	public static String Return_Ref_No = "Return_Ref_No>//input[@id='CGE-CGE_txtSinRetRefNo']";
 	//	public static String Removepop = "Removepop>(//span[contains(text(),'Scale In/Scale Out Reference')])[2]//following::span[7]";
 	public static String scrollhorizandal = "scrollhorizandal>(//div[@ref='eBodyHorizontalScrollViewport'])[1]";
 	// TC_Scale_In_TS_007

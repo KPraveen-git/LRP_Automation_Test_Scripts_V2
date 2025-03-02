@@ -42,7 +42,16 @@ public class TC_Cost_Activity_Report_TS082 extends Keywords{
 		String Un_Predictable_Activate_Name = data.get("Un_Predictable_Activate_Name");
 		String Type_Quantity = data.get("Type_Quantity");
 
+		String port_code_header = data.get("port_code_header");
+		String service_header = data.get("service_header");
+		String vessel_code_header = data.get("vessel_code_header");
+		String terminal_code_header = data.get("terminal_code_header");
+		String arrival_date_header = data.get("arrival_date_header");
 		
+		String Search_Type2 =data.get("Search_Type2");
+		String Search_Input2 =data.get("Search_Input2");
+		String Search_Type3 =data.get("Search_Type3");
+		String Search_Input3 =data.get("Search_Input3");
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -60,21 +69,8 @@ public class TC_Cost_Activity_Report_TS082 extends Keywords{
 		waitForElement(driver, SearchButton_Toolbar);
 		click(driver,SearchButton_Toolbar);
 		
-		waitForElement(driver, select_first);
-		click(driver,select_first);
-		selectByText(driver, select_first, globalSearchFilterOption);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, dropdownCondition);
-		click(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, car_Number);
-		click(driver, globalSearch_Frame_SearchButton);
 		
-		waitForElement(driver, retrieved_Value_Select);
-		click(driver, retrieved_Value_Select);
-		
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, dropdownCondition, globalSearchFilterOption, car_Number, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
 		
 		waitForElement(driver, Arrival_Date_Input_CAR);
 		String actual_Arr_Date=getAttribute(driver, Arrival_Date_Input_CAR, "value");
@@ -299,24 +295,23 @@ public class TC_Cost_Activity_Report_TS082 extends Keywords{
 
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, actual_ServiceCode);
-
+		twoColumnSearchWindow(driver, service_header, Service_details_Codition, actual_ServiceCode);
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, actual_VesselCode);
-		
+		twoColumnSearchWindow(driver, vessel_code_header, Service_details_Codition, actual_VesselCode);
+
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, actual_PortCode);
-		
+		twoColumnSearchWindow(driver, port_code_header, Service_details_Codition, actual_PortCode);
+
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, actual_terminalCode);
-		
+		twoColumnSearchWindow(driver, terminal_code_header, Service_details_Codition, actual_terminalCode);
+
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, act_ArrDate);
-		
+		twoColumnSearchWindow(driver, arrival_date_header, Arrival_Date_Condition, act_ArrDate);
+
 		Step_End(20, "Paste the Service, Vessel, Port, Terminal, Arrival date, voyage and bound informations.", test, test1);
 		Step_Start(21, "Click on Show button.", test, test1);
 
@@ -344,8 +339,6 @@ public class TC_Cost_Activity_Report_TS082 extends Keywords{
 
 		waitForElement(driver, Predictable_Reporting_CAR);
 		click(driver,Predictable_Reporting_CAR);
-		
-		
 		
 		String PredictableActivity_Column=String.format(Predictable_Activity_Column_CAR, Select_Predicatble_Sub_Activity_Name);
 		waitForElement(driver, PredictableActivity_Column);

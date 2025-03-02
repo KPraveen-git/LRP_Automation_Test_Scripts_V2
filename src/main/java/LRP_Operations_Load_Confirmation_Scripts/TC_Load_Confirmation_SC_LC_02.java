@@ -65,34 +65,11 @@ public void Load_Confirmation_SC_LC_02(WebDriver driver, ExtentTest test,ExtentT
 		Step_Start(2,"select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 
 		waitForElement(driver, load_servicecode);
-		sendKeys(driver, load_servicecode,Servicecode );
-		
-		
+		selectservice(driver, Servicecode, vesselCode, Voyagenumber1, Boundinput, portCode, terminalCode);
 		
 // Select service
 		
-			waitForElement(driver, vessel_Input);
-			sendKeys(driver, vessel_Input,vesselCode );
-		
 			
-			waitForElement(driver, VoyageInput);
-			sendKeys(driver, VoyageInput, Voyagenumber1);
-			
-			waitForElement(driver, Boundinpiut);
-			sendKeys(driver, Boundinpiut, Boundinput);
-			
-			
-			waitForElement(driver, portCode_Inputfield);
-			sendKeys(driver, portCode_Inputfield, portCode);
-			
-			
-			waitForElement(driver, terminalCode_Inputfield);
-			sendKeys(driver, terminalCode_Inputfield, terminalCode);
-			
-			
-			waitForElement(driver, select_Service);
-			doubleClick(driver, select_Service);	
-		
 			Step_End(2,"select the service, vessel, voyage, bound, port code, and terminal using easy search.", test, test1);
 
 			Step_Start(3,"click show button.", test, test1);
@@ -127,7 +104,7 @@ public void Load_Confirmation_SC_LC_02(WebDriver driver, ExtentTest test,ExtentT
 
 			List<WebElement> Numberofcontainer = listOfElements(driver, Numberofcontainerr);
 			int Numberofcontainer_size = Numberofcontainer.size();
-			
+			List<String> number = splitAndExpand(Actual_Containerno_1);
 			for(int i=1; i<=Numberofcontainer_size; i++) {
 				String actual_container=String.format(LoadConfirmation_Locators.actual_containerr, i);
 				Step_Start(5," Double click on the actual container number field.", test, test1);
@@ -135,7 +112,8 @@ public void Load_Confirmation_SC_LC_02(WebDriver driver, ExtentTest test,ExtentT
 				doubleClick(driver, actual_container);
 				Step_End(5," Double click on the actual container number field.", test, test1);
 				Step_Start(6,"paste the actual container number in actual container number column for booking.", test, test1);
-				Actionsendkeys(driver, actual_container, Actual_Containerno_1);
+				
+				Actionsendkeys(driver, actual_container, number.get(i-1));
 				Step_End(6,"paste the actual container number in actual container number column for booking.", test, test1);
 
 				}

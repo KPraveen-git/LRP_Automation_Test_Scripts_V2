@@ -1,11 +1,13 @@
 package LRP_Cost_Scripts;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.aventstack.extentreports.ExtentTest;
 
@@ -31,28 +33,30 @@ public class TC_Cost_Activity_Report_TS046 extends Keywords {
 		String Condition = data.get("Condition");
 		String CAR_No = data.get("CAR_No");
 		String Export_Filename = data.get("Export_Filename");
-		String Mainactivity_Column = data.get("Mainactivity_Column");
-		String Eqp_Column = data.get("Eqp_Column");
 
 		Extent_Start(tc_Name, test, test1);
 
 		navigateUrl(driver, url);
 
-		Step_Start(1, "Once login to the application and click on switch profile option and select the required agency",
+		Step_Start(1,
+				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
+
+		navigateUrl(driver, url);
 
 		LRP_Login(driver, username, password);
 
-		Step_End(1, "Once login to the application and click on switch profile option and select the required agency",
+		Step_End(1,
+				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
 
-		Step_Start(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_Start(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		verifyMainMenu(driver);
 
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
-		Step_End(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_End(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		Step_Start(3, "Click on the global search option which is available in the tool bar", test, test1);
 
@@ -75,36 +79,39 @@ public class TC_Cost_Activity_Report_TS046 extends Keywords {
 
 		Step_End(4, "Check whether it opens a new search window", test, test1);
 
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_Start(6, "Then click on the search button", test, test1);
 
-		click(driver, globalSearch_Frame_SearchButton);
+		Step_Start(7, "System will show the CAR No", test, test1);
+
+		Step_Start(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
+
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_End(6, "Then click on the search button", test, test1);
 
-		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
+		Step_End(7, "System will show the CAR No", test, test1);
 
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
+		waitForElement(driver, CAR_Input);
+		String retrived_Number = getAttribute(driver, CAR_Input, "value");
 
-		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
+		if (retrived_Number.equals(CAR_No)) {
 
-		Step_Start(8, "System will retrieve the CAR", test, test1);
-
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
-
-		Step_End(8, "System will retrieve the CAR", test, test1);
+			System.out.println("The given CAR No was retrived || Expected CAR No : " + CAR_No + " || Actual CAR No : "
+					+ retrived_Number);
+			Extent_pass(driver, "The given CAR No was retrived || Expected CAR No : " + CAR_No + " || Actual CAR No : "
+					+ retrived_Number, test, test1);
+		} else {
+			System.out.println("The given CAR No was not retrived || Expected CAR No : " + CAR_No
+					+ " || Actual CAR No : " + retrived_Number);
+			Extent_fail(driver, "The given CAR No was not retrived || Expected CAR No : " + CAR_No
+					+ " || Actual CAR No : " + retrived_Number, test, test1);
+		}
+		
+		Step_End(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 		
 		Step_Start(9, "Click on the click for more options which is available at the right corner of AG Grid", test,
 				test1);
@@ -146,42 +153,75 @@ public class TC_Cost_Activity_Report_TS046 extends Keywords {
 		
 		Step_Start(11, "Ensure that the CAR details gets downloaded as file", test, test1);
 
-		List<String> Excel_mainactivity = readColumnDataFromCSV(Excelpath, Mainactivity_Column);
+		List<List<String>> CSVDatas = CSVallColumnData(Excelpath);
 
-		List<String> Excel_EqpType = readColumnDataFromCSV(Excelpath, Eqp_Column);
+		String columcount = getAttribute(driver, OverviewColumncount, "aria-colcount");
 
-		for (int i = 0; i < Main_Activities_desc.size(); i++) {
+		List<String> Grid_Headers = new ArrayList<String>();
 
-			String gridmainactivity = Main_Activities_desc.get(i);
-			String Excelmainactivity = Excel_mainactivity.get(i);
-			String gridEqpType = Grid_EqpType.get(i);
-			String ExcelEqpType = Excel_EqpType.get(i);
+		List<String> Grid_values = new ArrayList<String>();
 
-			if (Excelmainactivity.equals(gridmainactivity) && ExcelEqpType.equals(gridEqpType)) {
+		for (int i = 1; i <= Integer.parseInt(columcount); i++) {
 
-				System.out.println("Grid row " + (i + 1) + " values are displayed in the CSV file");
-				Extent_pass(driver, "Grid row " + (i + 1) + " values are displayed in the CSV file", test, test1);
-				Extent_pass(driver,
-						"Expected activity : " + gridmainactivity + " || Actual activity : " + Excelmainactivity, test,
-						test1);
-				Extent_pass(driver,
-						"Expected Equipment type : " + gridEqpType + " || Actual Equipment type : " + gridmainactivity,
-						test, test1);
+			WebElement Gridheader = driver
+					.findElement(By.xpath("(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridSmryOview']//div[@aria-colindex='"
+							+ i + "' and @role='columnheader'])[last()]"));
 
-			} else {
+			Grid_Headers.add(Gridheader.getText());
 
-				System.out.println("Grid row " + (i + 1) + " values are not displayed in the CSV file");
-				Extent_fail(driver, "Grid row " + (i + 1) + " values are not displayed in the CSV file", test, test1);
-				Extent_fail(driver,
-						"Expected activity : " + gridmainactivity + " || Actual activity : " + Excelmainactivity, test,
-						test1);
-				Extent_fail(driver,
-						"Expected Equipment type : " + gridEqpType + " || Actual Equipment type : " + gridmainactivity,
-						test, test1);
-			}
+			WebElement Gridvalue = driver
+					.findElement(By.xpath("(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridSmryOview']//div[@aria-colindex='"
+							+ i + "' and @role='gridcell'])[1]"));
+
+			Actions act = new Actions(driver);
+
+			act.moveToElement(Gridvalue).build().perform();
+
+			Grid_values.add(Gridvalue.getText());
 
 		}
-		
+
+		DecimalFormat df = new DecimalFormat("#.########");
+
+		for (int i = 0; i < Integer.parseInt(columcount); i++) {
+
+			String headername = Grid_Headers.get(i);
+			System.out.println("headername : " + headername);
+
+			String value = Grid_values.get(i); // Expected value from grid
+			List<String> Gridcolumnvalue = CSVDatas.get(i); // Values from Excel
+
+			for (String columns : Gridcolumnvalue) {
+
+				String Expectedvalue = columns;
+
+				// Convert numeric values properly without truncation
+				if (columns.matches("-?\\d+(\\.\\d+)?")) {
+					double num = Double.parseDouble(columns);
+					Expectedvalue = df.format(num); // Format correctly to avoid ".0"
+				}
+
+				// Compare values
+				if (Expectedvalue.equals(value)) {
+					System.out
+							.println(headername + " values are correctly showing in the downloaded Excel || Expected: "
+									+ value + " || Actual: " + Expectedvalue);
+					Extent_pass(driver,
+							headername + " values are correctly showing in the downloaded Excel || Expected: " + value
+									+ " || Actual: " + Expectedvalue,
+							test, test1);
+				} else {
+					System.out.println(
+							headername + " values are not correctly showing in the downloaded Excel || Expected: "
+									+ value + " || Actual: " + Expectedvalue);
+					Extent_fail(driver,
+							headername + " values are not correctly showing in the downloaded Excel || Expected: "
+									+ value + " || Actual: " + Expectedvalue,
+							test, test1);
+				}
+			}
+		}
+
 		Step_End(11, "Ensure that the CAR details gets downloaded as file", test, test1);
 
 		Extent_completed(tc_Name, test, test1);

@@ -36,22 +36,26 @@ public class TC_Cost_Activity_Report_TS051 extends Keywords {
 		Extent_Start(tc_Name, test, test1);
 
 		navigateUrl(driver, url);
-
-		Step_Start(1, "Once login to the application and click on switch profile option and select the required agency",
+		
+		Step_Start(1,
+				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
+
+		navigateUrl(driver, url);
 
 		LRP_Login(driver, username, password);
 
-		Step_End(1, "Once login to the application and click on switch profile option and select the required agency",
+		Step_End(1,
+				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
 
-		Step_Start(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_Start(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		verifyMainMenu(driver);
 
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
-		Step_End(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_End(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		Step_Start(3, "Click on the global search option which is available in the tool bar", test, test1);
 
@@ -74,36 +78,39 @@ public class TC_Cost_Activity_Report_TS051 extends Keywords {
 
 		Step_End(4, "Check whether it opens a new search window", test, test1);
 
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_Start(6, "Then click on the search button", test, test1);
 
-		click(driver, globalSearch_Frame_SearchButton);
+		Step_Start(7, "System will show the CAR No", test, test1);
+
+		Step_Start(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
+
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_End(6, "Then click on the search button", test, test1);
 
-		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
+		Step_End(7, "System will show the CAR No", test, test1);
 
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
+		waitForElement(driver, CAR_Input);
+		String retrived_Number = getAttribute(driver, CAR_Input, "value");
 
-		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
+		if (retrived_Number.equals(CAR_No)) {
 
-		Step_Start(8, "System will retrieve the CAR", test, test1);
-
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
-
-		Step_End(8, "System will retrieve the CAR", test, test1);
+			System.out.println("The given CAR No was retrived || Expected CAR No : " + CAR_No + " || Actual CAR No : "
+					+ retrived_Number);
+			Extent_pass(driver, "The given CAR No was retrived || Expected CAR No : " + CAR_No + " || Actual CAR No : "
+					+ retrived_Number, test, test1);
+		} else {
+			System.out.println("The given CAR No was not retrived || Expected CAR No : " + CAR_No
+					+ " || Actual CAR No : " + retrived_Number);
+			Extent_fail(driver, "The given CAR No was not retrived || Expected CAR No : " + CAR_No
+					+ " || Actual CAR No : " + retrived_Number, test, test1);
+		}
+		
+		Step_End(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
 		Step_Start(9, "Click on the expense report option", test, test1);
 

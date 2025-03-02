@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.LoadConfirmation_Locators;
+import locators.Tdn_Locators;
 
 public class TC_Transportation_Dispatch_Notice_SC_TDN_14 extends Keywords{
 
@@ -34,7 +34,6 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_14 extends Keywords{
 		String Modeof_Transport =TDN_SC_14.get("Modeof_Transport");
 		String Vender_Code =TDN_SC_14.get("Vender_Code");
 		String Load_Status =TDN_SC_14.get("Load_Status");
-		String Terminal_code_value =TDN_SC_14.get("Terminal_code_value");
 		String Transportation_saved =TDN_SC_14.get("Transportation_saved");
 		String Dropdown_Condition =TDN_SC_14.get("Dropdown_Condition");
 		String Global_search_Wo_No =TDN_SC_14.get("Global_search_Wo_No");
@@ -52,8 +51,21 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_14 extends Keywords{
 		String with_chasis_flag =TDN_SC_14.get("with_chasis_flag");
 		String chasis_pickup_dd_data =TDN_SC_14.get("chasis_pickup_dd_data");
 		String chasis_drop_dd_data =TDN_SC_14.get("chasis_drop_dd_data");
-		String Load_status_value=String.format(LoadConfirmation_Locators.Load_status_value, Load_Status);
-		String shipmenttype_select=String.format(LoadConfirmation_Locators.shipmenttype_select, Shipment_Type);
+		
+		String cust_depot_term_header =TDN_SC_14.get("cust_depot_term_header");
+		String return_location_header =TDN_SC_14.get("return_location_header");
+		String pickup_location_header =TDN_SC_14.get("pickup_location_header");
+		String chasis_pickup_header =TDN_SC_14.get("chasis_pickup_header");
+		String chasis_drop_header =TDN_SC_14.get("chasis_drop_header");
+		String chasis_pickup_Search_data =TDN_SC_14.get("chasis_pickup_Search_data");
+		String chasis_drop_Search_data =TDN_SC_14.get("chasis_drop_Search_data");
+		String Chassis_Mode =TDN_SC_14.get("Chassis_Mode");
+		String Search_Type2 =TDN_SC_14.get("Search_Type2");
+		String Search_Input2 =TDN_SC_14.get("Search_Input2");
+		String Search_Type3 =TDN_SC_14.get("Search_Type3");
+		String Search_Input3 =TDN_SC_14.get("Search_Input3");
+		String Load_status_value=String.format(Tdn_Locators.Load_status_value, Load_Status);
+		String shipmenttype_select=String.format(Tdn_Locators.shipmenttype_select, Shipment_Type);
 
 	navigateUrl(driver,url);
 	
@@ -102,24 +114,7 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 				Step_Start(3, "Enter the Work order number and click the search icon.", test, test1);
 
-			
-				waitForElement(driver, select_first);
-				click(driver, select_first);
-				waitForElement(driver, select_first);
-				selectByText(driver, select_first, Global_search_Wo_No);
-				
-				waitForElement(driver, globalSearch_Condition_Dropdown1);
-				click(driver, globalSearch_Condition_Dropdown1);
-				selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
-				
-				sendKeys(driver, Asearchinput, data1);
-				click(driver, Asearchclickbtn);
-				waitForElement(driver, select_FirstRow);
-				click(driver, select_FirstRow);
-				
-				waitForElement(driver, Aselectbutton1);
-				click(driver, Aselectbutton1);
-				
+				globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Wo_No, data1, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
 				Step_End(3, "Enter the Work order number and click the search icon.", test, test1);
 
 			}
@@ -152,7 +147,7 @@ waitForDisplay(driver, NewButton_ToolBar);
 		waitForElement(driver, modeof_transport);
 		click(driver, modeof_transport);
 		
-		String Select_ModeOfTransport=String.format(LoadConfirmation_Locators.Select_ModeOfTransport, Modeof_Transport);
+		String Select_ModeOfTransport=String.format(Tdn_Locators.Select_ModeOfTransport, Modeof_Transport);
 		safeclick(driver, Select_ModeOfTransport);
 		
 		Step_End(6, "Select the Rail in Mode of Transport Dropdown.", test, test1);
@@ -162,35 +157,8 @@ waitForDisplay(driver, NewButton_ToolBar);
 		 waitForElement(driver, vendor_searchicon);
 		    click(driver, vendor_searchicon);
 	     		
-		    waitForElement(driver, select_first);
-			click(driver, select_first);
-			waitForElement(driver, select_first);
-			selectByText(driver, select_first, Global_search_Vendor_Code_Option1);
-			
-			waitForElement(driver, globalSearch_Condition_Dropdown1);
-			click(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
-	     		
-			  waitForElement(driver, globalSearch_InputTextfield1);
-			    sendKeys(driver, globalSearch_InputTextfield1, Vender_Code);
-		    
-		    waitForElement(driver, vendor_Code_searchicon);
-		    click(driver, vendor_Code_searchicon);
-		    
-			waitForElement(driver, select_FirstRow);
-			click(driver, select_FirstRow);
-		    
-		    waitForElement(driver, Aselectbutton1);
-		    click(driver, Aselectbutton1);
-		    
-		    waitForElement(driver, pickup_location_searchicon);
-		    click(driver, pickup_location_searchicon);
-		    
-		    sendKeys(driver, Terminalcode_search, Terminal_code_value);
-		    
-			waitForElement(driver, select_FirstRow1);
-			click(driver, select_FirstRow1);
-		    click(driver, Terminalcode_select);
+		    globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Vendor_Code_Option1, Vender_Code, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
+
 		    
 			//pickuplocation
 			waitForElement(driver, pickup_loc_label);
@@ -208,7 +176,8 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 				waitForElement(driver, pickup_loc_search_icon);
 				click(driver, pickup_loc_search_icon);
-				selectValue(driver, condition, pickup_loc_search_data);
+				twoColumnSearchWindow(driver, pickup_location_header, condition, pickup_loc_search_data);
+
 			}
 			}
 			//2
@@ -231,7 +200,8 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 				waitForElement(driver, cust_depo_term_search_icon);
 				click(driver, cust_depo_term_search_icon);
-				selectValue(driver, condition, cust_dep_search_data);
+				twoColumnSearchWindow(driver, cust_depot_term_header, condition, cust_dep_search_data);
+
 			}
 			}
 			//3
@@ -251,7 +221,8 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 				waitForElement(driver, return_location_searchicon);
 				click(driver, return_location_searchicon);
-				selectValue(driver, condition, return_loc_search_data);
+				twoColumnSearchWindow(driver, return_location_header, condition, return_loc_search_data);
+
 			}
 			}
 			
@@ -261,23 +232,37 @@ waitForDisplay(driver, NewButton_ToolBar);
 			checkBox(driver, with_Chassis_Check_Box, with_chasis_flag);
 			
 			if(with_chasis_flag.equalsIgnoreCase("yes")) {
-				
-				waitForElement(driver, Chassis_Pickup_Loc_Label);
-				click(driver, Chassis_Pickup_Loc_Label);
-				
-				String chasis_pickup_dd = String.format(DropDown_Select, chasis_pickup_dd_data);
-				waitForElement(driver, chasis_pickup_dd);
-				click(driver, chasis_pickup_dd);
-
+				if(!Chassis_Mode.equals("")) {
+					String mode_Select = String.format(With_Chassis_Mode, Chassis_Mode);
+					waitForElement(driver, mode_Select);
+					click(driver, mode_Select);
+				}
+				if(!chasis_pickup_dd_data.equals("")) {
+					waitForElement(driver, Chassis_Pickup_Loc_Label);
+					click(driver, Chassis_Pickup_Loc_Label);
+					String chasis_pickup_dd = String.format(DropDown_Select, chasis_pickup_dd_data);
+					waitForElement(driver, chasis_pickup_dd);
+					click(driver, chasis_pickup_dd);
+				}
+				if(!chasis_pickup_Search_data.equals("")) {
+					waitForElement(driver, Chassis_Pickup_Loc_Search);
+					click(driver, Chassis_Pickup_Loc_Search);
+					twoColumnSearchWindow(driver, chasis_pickup_header, condition, chasis_pickup_Search_data);
+				}
 				//drop
-				
-				waitForElement(driver, Chassis_Drop_Loc_Label);
-				click(driver, Chassis_Drop_Loc_Label);
-				
-				String chasis_drop_dd = String.format(DropDown_Select, chasis_drop_dd_data);
-				waitForElement(driver, chasis_drop_dd);
-				click(driver, chasis_drop_dd);
-				
+				if(!chasis_drop_dd_data.equals("")) {
+					waitForElement(driver, Chassis_Drop_Loc_Label);
+					click(driver, Chassis_Drop_Loc_Label);
+					String chasis_drop_dd = String.format(DropDown_Select, chasis_drop_dd_data);
+					waitForElement(driver, chasis_drop_dd);
+					click(driver, chasis_drop_dd);
+				}
+				if(chasis_drop_Search_data.equals("")) {
+					waitForElement(driver, Chassis_Drop_Loc_Search);
+					click(driver, Chassis_Drop_Loc_Search);
+					twoColumnSearchWindow(driver, chasis_drop_header, condition, chasis_drop_Search_data);
+
+				}
 			}
 		    
 			Step_End(7, " Select the Vendor code and click the Search icon.", test, test1);

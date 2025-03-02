@@ -1,6 +1,6 @@
 package locators;
 
-public interface User_Level_Security_Locators extends Vendor_Invoice_Registration_Locators {
+public interface User_Level_Security_Locators extends Vendor_Contract_Locators{
 
 	public static String user_Search_button_ULS="User search button>//button[@id='UMM-UMM_btnSearchName-UMM_btnSearchName']";
 	public static String UserName_Input_ULS="User Name input>//input[@id='UMM-UMM_txtUser']";

@@ -9,7 +9,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.EMS_Contract_Billing_Generation_And_Verification_Locators;
 
 public class TC_EMS_Contract_Billing_Generation_85 extends Keywords {
 	public void Billing_Generation_Verification_85(WebDriver driver, ExtentTest test, ExtentTest test1,String selected_dataset) throws Throwable {
@@ -36,9 +36,9 @@ public class TC_EMS_Contract_Billing_Generation_85 extends Keywords {
 		String Condition =data.get("Condition");
 		String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 		//locators
-		String regenerateButton =  String.format(EMS_Locators.generatebutton,  regenerate_Button);
-		String month_Select85 = String.format(EMS_Locators.month_Select,  Month_Select_For85);
-		String contractnumbergrid =  String.format(EMS_Locators.element,  Contaract_No_input);
+		String regenerateButton =  String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.Generatebutton,  regenerate_Button);
+		String month_Select85 = String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.month_Select,  Month_Select_For85);
+		String contractnumbergrid =  String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.element,  Contaract_No_input);
 
 		Extent_Start(testCase_Name, test, test1);
 		navigateUrl(driver, url);

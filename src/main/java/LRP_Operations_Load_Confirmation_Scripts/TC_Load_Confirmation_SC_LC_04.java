@@ -68,19 +68,7 @@ import commonMethods.Utils;
 //		Select service
 			
 			waitForElement(driver, service_Searchfield);
-			sendKeys(driver, service_Searchfield, first_service_data);
-			
-			sendKeys(driver, vessel_Input,vesselCode );
-			
-			sendKeys(driver, VoyageInput, Voyagenumber1);
-			
-			sendKeys(driver, Boundinpiut, Boundinput);
-			
-			sendKeys(driver, portCode_Inputfield, portCode);
-			
-			sendKeys(driver, terminalCode_Inputfield, terminalCode);
-			
-			doubleClick(driver, select_Service);
+			selectservice(driver, first_service_data, vesselCode, Voyagenumber1, Boundinput, portCode, terminalCode);
 			
 			waitForElement(driver, show_Button);
 		    click(driver, show_Button);

@@ -71,11 +71,12 @@ public class TC_Rate_Request_SC67 extends Keywords{
 		
 		String flexi_checkbox=data.get("Flexi_checkbox");
 		String MTY_checkbox=data.get("MTY_checkbox");
-		String payLocation=data.get("PayLocation");
-		String condition=data.get("Condition");
 		String paymentMode=data.get("PaymentMode");
 
-
+		String search2=data.get("search2");
+		String input2=data.get("input2");
+		String search3=data.get("search3");
+		String input3=data.get("input3");
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
 		String preCarriageLocator = String.format(Rate_Request_Loactors.pre_Carriage_Radiobtn, Pre_Carriage_Radiobtn);
@@ -130,37 +131,37 @@ public class TC_Rate_Request_SC67 extends Keywords{
 
 		waitForElement(driver, Customer_Name_search_button);
 	   click(driver, Customer_Name_search_button);
+	   
+	   
 	   waitForElement(driver, Customer_Code_Select_dropdown);
 	   click(driver, Customer_Code_Select_dropdown);
-	   selectByText(driver, Customer_Code_Select_dropdown, customerCode_Option);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver, CustomerSearch_Condition_Dropdown1, condition_Option);
-		waitForElement(driver, CustomerSearch_InputTextfield1);
-		sendKeys(driver, CustomerSearch_InputTextfield1, customerCode);
-		click(driver, CustomerSearch_Frame_SearchButton);
+	   
+	   globalValueSearchWindow1(driver, condition_Option, customerCode_Option, customerCode, search2, input2, search3, input3);
+	   
+//	   selectByText(driver, Customer_Code_Select_dropdown, customerCode_Option);
+//		click(driver, CustomerSearch_Condition_Dropdown1);
+//		selectByText(driver, CustomerSearch_Condition_Dropdown1, condition_Option);
+//		waitForElement(driver, CustomerSearch_InputTextfield1);
+//		sendKeys(driver, CustomerSearch_InputTextfield1, customerCode);
+//		click(driver, CustomerSearch_Frame_SearchButton);
 		
 		waitForDisplay(driver, pop_up_exp);
-		if(isdisplayed(driver,pop_up_exp )) {
+		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
-			System.out.println("The Customer Code is Invalid The Actual Popup value was : "+actual_Popup);
-			Extent_fail(driver, "The Customer Code is Invalid The Actual Popup value was : "+actual_Popup, test, test1);
+			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
+			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 		}else {
-		waitForElement(driver, Customer_Select);
-		click(driver, Customer_Select);
-		waitForElement(driver, global_select_Button);
-		click(driver, global_select_Button);
-		}
-		
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
+			waitForElement(driver, SelectButton);
+			click(driver, SelectButton);
 
-		Step_End(3, "Enter the customer name", test, test1);
-		waitForDisplay(driver, exit_Button);
-		if(isdisplayed(driver, exit_Button)) {
-			scrollUsingElement(driver, exit_Button);
-			waitForElement(driver, exit_Button);
-			click(driver, exit_Button);
-		}
-		
-		Step_End(2, "Enter the customer name", test, test1);
+			waitForDisplay(driver, CustName_ExitBtn);
+			if(isDisplayed(driver, CustName_ExitBtn)) {
+				waitForElement(driver, CustName_ExitBtn);
+				click(driver, CustName_ExitBtn);
+			
+			}
 		Step_Start(3, " Enter the origin.", test, test1);
 		
 		waitForElement(driver, Orgin_Input);
@@ -222,10 +223,9 @@ public class TC_Rate_Request_SC67 extends Keywords{
 		Step_End(6, "Enter the Equipment type", test, test1);
 		Step_Start(7, "Enter the Quantity", test, test1);
 		waitForElement(driver, Eqp_Quantity);
-		clear(driver, Eqp_Quantity);
-		waitForElement(driver, Eqp_Quantity);
 		click(driver, Eqp_Quantity);
-		sendKeys(driver, Eqp_Quantity, Eqp_Quantity_Input);
+		Newclear(driver, Eqp_Quantity);
+		Actionsendkeys(driver, Eqp_Quantity,Eqp_Quantity_Input );
 		Step_End(7, "Enter the Quantity", test, test1);
 
 		Step_Start(8, "Enter the Gross Weight", test, test1);
@@ -279,21 +279,18 @@ public class TC_Rate_Request_SC67 extends Keywords{
 		click(driver, onCarriageLocator);
 		}
 
+		waitForDisplay(driver, Exp_Days);
 
 		if(isdisplayed(driver, Exp_Days)&& isElementAccessible(driver, Exp_Days)) {
-		waitForElement(driver, Exp_Days);
 		clearAndType(driver, Exp_Days, Exp_Det_Days_Input);
 		}
 		if(isdisplayed(driver, Imp_Days)&& isElementAccessible(driver, Imp_Days)) {
-		waitForElement(driver, Imp_Days);
 		clearAndType(driver, Imp_Days, Imp_Det_Days_Input);
 		}
 		if(isdisplayed(driver, Exp_Demurage)&& isElementAccessible(driver, Exp_Demurage)) {
-		waitForElement(driver, Exp_Demurage);
 		clearAndType(driver, Exp_Demurage, Exp_Demmurage_Input);
 		}
 		if(isdisplayed(driver, Imp_Demurage)&& isElementAccessible(driver, Imp_Demurage)) {
-		waitForElement(driver, Imp_Demurage);
 		clearAndType(driver, Imp_Demurage, Imp_Demmurage_Input);
 		}
 		
@@ -329,9 +326,11 @@ public class TC_Rate_Request_SC67 extends Keywords{
 		Step_End(10, "Select the routing", test, test1);
 		Step_Start(11, "Select the payment mode as Pay At", test, test1);
 		
-		waitForElement(driver, paymentMode_Dropdown_RR);
-		click(driver, paymentMode_Dropdown_RR);
+		waitForDisplay(driver, paymentMode_Dropdown_RR);
 		
+		if(isdisplayed(driver, paymentMode_Dropdown_RR)) {
+		click(driver, paymentMode_Dropdown_RR);
+		}
 		String select_PaymentMode=String.format(DropDown_Select, paymentMode);
 		waitForElement(driver, select_PaymentMode);
 		click(driver, select_PaymentMode);
@@ -342,7 +341,7 @@ public class TC_Rate_Request_SC67 extends Keywords{
 		waitForDisplay(driver, payLocation_SearchButton_RR);
 		if(isdisplayed(driver, payLocation_SearchButton_RR)&& isElementAccessible(driver, payLocation_SearchButton_RR)) {
 		click(driver, payLocation_SearchButton_RR);
-		selectValue(driver, condition, payLocation);
+	//	selectValue(driver, condition, payLocation);
 		
 		}
 		
@@ -360,7 +359,7 @@ public class TC_Rate_Request_SC67 extends Keywords{
 		waitForElement(driver, Rate_AddBtn);
 		click(driver, Rate_AddBtn);
 		Step_End(14, "Click Add", test, test1);
-			
+		}	
 			Step_Start(15, "Click Save button in the tool bar", test, test1);
 			waitForElement(driver, Rate_SaveBtn);
 			click(driver, Rate_SaveBtn);

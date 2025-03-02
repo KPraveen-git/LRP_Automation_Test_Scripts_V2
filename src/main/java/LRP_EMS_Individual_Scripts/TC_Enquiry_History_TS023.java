@@ -8,7 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.Enquiry_History_Locators;
 
 public class TC_Enquiry_History_TS023 extends Keywords {
 
@@ -35,8 +35,8 @@ public class TC_Enquiry_History_TS023 extends Keywords {
 		String Filter_Option =Excel_data.get("Filter_Option");
 		String two_Column_Search_Header =Excel_data.get("two_Column_Search_Header");
 		//Locators
-		String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-		String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+		String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+		String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 
 		Extent_Start(testCase_Name, test, test1);
 		navigateUrl(driver, url);
@@ -108,7 +108,7 @@ public class TC_Enquiry_History_TS023 extends Keywords {
 			List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 			int total_Input_Size = Multi_Sel_Values.size();
 			for (String Multi_Sel_Value : Multi_Sel_Values) {
-				String movement =  String.format(EMS_Locators.movement_Value,i); 
+				String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 				waitForElement(driver, P_movement_Code);
 				String movementDetail = getText(driver, movement);
 				if (Grid_Size == total_Input_Size) {
@@ -136,7 +136,7 @@ public class TC_Enquiry_History_TS023 extends Keywords {
 			System.out.println("numberValue : "+numberValue);
 			int expectednumber =0; 
 			for(int i=0;i<=numberValue+numberValue;i++) {
-					String movementcode =  String.format(EMS_Locators.Grid_Movement_Codes,i);
+					String movementcode =  String.format(Enquiry_History_Locators.Grid_Movement_Codes,i);
 					String movement_Code_text = getTextwithoutfail(driver, movementcode);
 					if(!movement_Code_text.contains(Filter_Option) && !movement_Code_text.equals("null")) {
 						expectednumber++;

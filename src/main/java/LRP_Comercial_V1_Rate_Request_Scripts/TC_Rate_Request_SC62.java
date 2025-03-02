@@ -65,29 +65,28 @@ public class TC_Rate_Request_SC62  extends Keywords{
 		String To_Date_Input = Data.get("To_Date_Input");
 		String date_Picker = Data.get("date_Picker");
 		String From_Date_Input = Data.get("From_Date_Input");
-		String Do_You_Want_Delete = Data.get("Do_You_Want_Delete");
 		String Pre_Carriage_Radiobtn = Data.get("pre_Carriage_Radiobtn");
 		String On_Carriage_Radiobtn = Data.get("On_Carriage_Radiobtn");
 		String Request_Input=Data.get("Request_Type_Input");
-		String To_Date_SRR=Data.get("Back_Date_SRR");
 		String payLocation=Data.get("PayLocation");
 		String condition=Data.get("Condition");
+		String Customer_code_Value2 = Data.get("Customer_code_Value2");
+		String Customer_code_Value3 = Data.get("Customer_code_Value3");
+		String Cust_code2 = Data.get("Cust_code2");
+		String Cust_code3 = Data.get("Cust_code3");
+		String Select_type_location = Data.get("Select_type_location");
+
 
 		tService=Data.get("T_Service");
 		TOS=Data.get("TOS_Option");
-		String Updated_pop_Exp=Data.get("Updated_pop_Exp");
 		
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
-		String Request_Input_select =  String.format(Rate_Request_Loactors.select_type,  Request_Input); 
 		String preCarriageLocator = String.format(Rate_Request_Loactors.pre_Carriage_Radiobtn, Pre_Carriage_Radiobtn);
 		String onCarriageLocator =  String.format(Rate_Request_Loactors.on_Carriage_Radiobtn,  On_Carriage_Radiobtn); 
 		String Request_Type_Locator = String.format(Rate_Request_Loactors.RequestType, Request_Input);
 
-		StringBuilder day = new StringBuilder();
-		StringBuilder month = new StringBuilder();
-		StringBuilder year = new StringBuilder();
-
+		
 		Extent_Start(tc_Name, test, test1);
 
 		navigateUrl(driver, url);
@@ -166,26 +165,29 @@ moduleNavigate(driver, rateRequestModule);
 
 		waitForElement(driver, Customer_Name_search_button);
 		click(driver, Customer_Name_search_button);
-		waitForElement(driver, Customer_Code_Select_dropdown);
-		click(driver, Customer_Code_Select_dropdown);
-		selectByText(driver, Customer_Code_Select_dropdown, Cust_code);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-		sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-		click(driver, CustomerSearch_Frame_SearchButton);
+		
+		
+		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
+		
+		
+		
+	
 		waitForDisplay(driver, pop_up_exp);
-		if(isdisplayed(driver,pop_up_exp )) {
+		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 		}else {
-			waitForElement(driver, Customer_Select);
-			doubleClick(driver, Customer_Select);
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
+			waitForElement(driver, SelectButton);
+			click(driver, SelectButton);
 
 			waitForDisplay(driver, CustName_ExitBtn);
 			if(isDisplayed(driver, CustName_ExitBtn)) {
 				waitForElement(driver, CustName_ExitBtn);
 				click(driver, CustName_ExitBtn);
+			
 			}
 
 			Step_End(2, " Enter the customer name", test, test1);
@@ -260,18 +262,19 @@ moduleNavigate(driver, rateRequestModule);
 			waitForElement(driver, onCarriageLocator);
 			click(driver, onCarriageLocator);
 
-//			waitForElement(driver, Exp_Days);
-//			sendKeys(driver, Exp_Days, Exp_Det_Days_Input);
-//
-//			waitForElement(driver, Imp_Days);
-//			sendKeys(driver, Imp_Days, Imp_Det_Days_Input);
-
-			waitForElement(driver, Exp_Demurage);
-			sendKeys(driver, Exp_Demurage, Exp_Demmurage_Input);
-
-			waitForElement(driver, Imp_Demurage);
-			sendKeys(driver, Imp_Demurage, Imp_Demmurage_Input);
-
+			waitForDisplay(driver, Exp_Days);
+			if(isdisplayed(driver, Exp_Days)&&isElementAccessible(driver, Exp_Days)) {
+				sendKeys(driver, Exp_Days, Exp_Det_Days_Input);
+			}
+			if(isdisplayed(driver, Imp_Days)&&isElementAccessible(driver, Imp_Days)) {
+				sendKeys(driver, Imp_Days, Imp_Det_Days_Input);
+			}
+			if(isdisplayed(driver, Exp_Demurage)&&isElementAccessible(driver, Exp_Demurage)) {
+				sendKeys(driver, Exp_Demurage, Exp_Demmurage_Input);
+			}
+			if(isdisplayed(driver, Imp_Demurage)&&isElementAccessible(driver, Imp_Demurage)) {
+				sendKeys(driver, Imp_Demurage, Imp_Demmurage_Input);
+			}
 			Step_Start(9, "Click routing", test, test1);
 			
 
@@ -305,7 +308,8 @@ moduleNavigate(driver, rateRequestModule);
 			}
 			
 			
-			
+			waitForDisplay(driver, paymentMode_Dropdown_RR);
+			if(isdisplayed(driver, paymentMode_Dropdown_RR)&& isElementAccessible(driver, paymentMode_Dropdown_RR)) {
 			waitForElement(driver, paymentMode_Dropdown_RR);
 			click(driver, paymentMode_Dropdown_RR);
 			
@@ -313,12 +317,12 @@ moduleNavigate(driver, rateRequestModule);
 			waitForElement(driver, select_PaymentMode);
 			click(driver, select_PaymentMode);
 			
-			waitForElement(driver, payLocation_SearchButton_RR);
+			waitForDisplay(driver, payLocation_SearchButton_RR);
 			if(isdisplayed(driver, payLocation_SearchButton_RR)&& isElementAccessible(driver, payLocation_SearchButton_RR)) {
 			click(driver, payLocation_SearchButton_RR);
-			selectValue(driver, condition, payLocation);
+			twoColumnSearchWindow(driver, condition, Select_type_location, payLocation);
 			
-			}
+			}}
 
 			Step_End(10, "Select the routing", test, test1);
 

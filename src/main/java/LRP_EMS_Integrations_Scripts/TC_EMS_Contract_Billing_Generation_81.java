@@ -6,7 +6,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.EMS_Contract_Billing_Generation_And_Verification_Locators;
 
 public class TC_EMS_Contract_Billing_Generation_81 extends Keywords {
 
@@ -39,11 +39,11 @@ public class TC_EMS_Contract_Billing_Generation_81 extends Keywords {
 		String Condition =data.get("Condition");
 		String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 		//locators
-		String month_Select81 = String.format(EMS_Locators.month_Select,  Month_Select_For81);
-		String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-		String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
-		String verrified_Row =  String.format(EMS_Locators.verrified_Row,  Contaract_No_input);
-		String regenerate_Button = String.format(EMS_Locators.generatebutton,  reGenerate_Button);
+		String month_Select81 = String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.month_Select,  Month_Select_For81);
+		String show_Bills =  String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.Generatebutton,  show_Bills_Button);
+		String ContractNo_Select_CheckBox =  String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.ContractNo_Select_ChkBox,  Contaract_No_input);
+		String verrified_Row =  String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.verified_Row,  Contaract_No_input);
+		String regenerate_Button = String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.Generatebutton,  reGenerate_Button);
 		Extent_Start(testCase_Name, test, test1);
 		navigateUrl(driver, url);
 		// Login

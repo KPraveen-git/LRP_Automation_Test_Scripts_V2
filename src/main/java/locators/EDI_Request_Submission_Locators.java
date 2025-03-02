@@ -1,6 +1,6 @@
 package locators;
 
-public interface EDI_Request_Submission_Locators extends EMS_Contract_Billing_Generation_And_Verification_Locatros {
+public interface EDI_Request_Submission_Locators extends EMS_Contract_Billing_Generation_And_Verification_Locators{
 	
 	public static String searchField = "searchField>//button[@name='ESN-ESN_btnPartnerSearch-ESN_btnPartnerSearch']";
 	public static String ediSearch = "ediSearch>//*[@id='ESN-ESN_btnEDISearch']";

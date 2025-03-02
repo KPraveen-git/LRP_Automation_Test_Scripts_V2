@@ -1,6 +1,6 @@
 package locators;
 
-public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
+public interface Cost_Activity_Report_Locators extends Current_History_Report_Locators{
 
 	public static String Contract_Type_Input_CAR = "Contract Type Input>//div[@id='CRR-CRR_cmboCntType']";
 	public static String Contract_Type_Options_CAR = "Contract Type Options>//ul[@id='CRR-CRR_cmboCntType_items']//li";
@@ -16,19 +16,18 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 
 	public static String Show_Button_CAR = "Show button >//button[@id='CRR-CRR_solverBtn1']";
 	public static String Predictable_Reporting_CAR = "Predictable Reporting>//div[@id='CRR-CRR_jTabbedPane1']//a[text()='Predictable Reporting']";
-	public static String Predictable_Table_CAR = "Predictable Table>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_tbl']";
-	public static String Predictable_Activity_Column_CAR = "Predictable Activity Column>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_tbl']//div[@col-id='subactivitydes' and text()='%s']";
-	public static String Main_Activity_Column_CAR = "Main Activity Column>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_tbl']//div[@col-id='mainActName' and text()='%s']";
+	public static String Service_Field="Service_Field>//input[@id='CRR-CRR_txtServiceCode_input']";
 
 	public static String UnPredictable_Tab_CAR = "Un Predictable tab>//div[@id='CRR-CRR_jTabbedPane1']//a[text()='Unpredictable Reporting']";
 	public static String UnPredictable_Table_CAR = "Un Predicatble Table>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_tbl']";
 	public static String UnPredictable_Activity_Column_CAR = "Un Predictable Activity Column>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_tbl']//div[@col-id='subactivitydes' and text()='%s']";
 	public static String UnPredictable_CheckBox_Vendor_CAR = "Un Predictable Column Checkbox>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_tbl']//div[@col-id='vendorCode' and text()='%s']/ancestor::div[@role='row']//input";
-	public static String CAR_Amount_field = "Amount_field>//div[@col-id='subactivitydes' and text()='%s']//following::div[@col-id='quantity']";
 	public static String Contracts_Used_Btn_CAR = "Contracts Used button>//button[@id='CRR-CRR_btnShowContracts']";
 	public static String Contracts_Details_tab_CAR = "Contracts details tab>//div[@id='CRR_contractdlg']";
 	public static String Activity_Behaviour_ID_CAR = "Activity Behaviour Value>//div[@id='CRR_contractdlg']//label[contains(text(),'Activity Behaviour Template')]";
 	public static String Contract_Details_Ok_Btn_CAR = "Contract Details Ok Button>//button[@id='CRR_btnOkActionPerformed']";
+	public static String contractTypeDropdown = "contract_Type_Dropdown>//div[@id='ATY-ATY_cmbContractCode']";
+	public static String already_ok_btn = "already_ok_btn>//div[@id='PTM-updatedlg1']//button[@id='PTM-PTM_dialogcancel']";
 
 	public static String Remarks_Tab_CAR = "Remarks Tab>//div[@id='CRR-CRR_jTabbedPane1']//a[text()='Remarks']";
 	public static String Remarks_Text_Area_CAR = "Remarks Text Area>//textarea[@id='CRR-CRR_jTabbedPane1-CRR_jTextArea1']";
@@ -41,7 +40,6 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 
 	public static String Refresh_Button_CAR = "Refresh Button>//button[@id='CRR-CRR_btnRefresh']";
 	public static String Select_Column_CAR = "Select Column>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_tbl']//div[@ref='sideBar']//span[text()='%s']";
-	public static String Select_Column_Predictable_CAR = "Select Column>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid']//div[@ref='sideBar']//span[text()='%s']";
 	public static String Arrival_Date_Input_CAR = "Arrival Date Input>//input[@id='CRR-CRR_txtDate_input']";
 	public static String Main_Activity_Filter_Input_CAR = "Main Activity Filter Input>//input[@aria-label='Main Activity Name Filter Input']";
 	public static String More_Grid_CAR = "More Grid >//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity']//div[contains(@id,'nfr_toolpanel_li_id')]";
@@ -90,11 +88,7 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 
 	public static String More_Grid_UnPredictable_CAR = "More Grid unpredictable>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_nfr_toolpanel_li_id']";
 	public static String Condition_UnPredictable_CAR = "Condition Filter unpredictable>//a[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_conditionFilter_id']";
-	public static String Activity_Name_CAR = "Activity Name Input>//input[@aria-label='Activity Name Filter Input']";
-	public static String Vendor_Code_Input_CAR = "Vendor Code Input>//input[@aria-label='Vendor Code Filter Input']";
-
 	public static String Quantity_Column_CAR = "Quantity Column>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_tbl']//div[@role='gridcell' and@col-id='quantity']";
-	public static String Quantity_Input_CAR = "Quantity Input CAR>//input[@id='CRR_CRR_jTabbedPane1-CRR_gridActivity_1_quantity_input']";
 	public static String Formula_Column_CAR = "Formula Column>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity_tbl']//div[@role='gridcell' and@col-id='formula']";
 
 	public static String Agency_Label_CAR = "Agency Label >//label[@id='CRR-CRR_lblagncycode']";
@@ -262,7 +256,6 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 	public static String Expense_Excel = "CAR Expense excel>//button[@id='CRR_btnExportAction']";
 	public static String ApprovedExpenses = "CAR Approved Expenses>//div[@id='CRR_jTabbedPaneExpenses']//a[text()='Approved Expenses']";
 	public static String Predictable_reporting = "CAR Predictable reporting>//a[text()='Predictable Reporting']";
-	public static String Predictable_reporting_columns = "CAR Predictable reporting column filter>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_tbl']//span[text()='Columns']";
 	public static String PR_Deselect = "CAR Predictable reporting column deselect all>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_tbl']//input[@aria-label='Toggle Select All Columns']";
 	public static String PR_FilterInput = "CAR Predictable reporting column Input>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_tbl']//input[@aria-label='Filter Columns Input']";
 	public static String Norecords = "CAR No records>//div[@id='lrp_cust_growl_container']//*[text()='No records Found']";
@@ -292,6 +285,62 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 	public static String Port_Input = "Port Input>//input[@id='CRR-CRR_txtPort']";
 	public static String Terminal_Input = "Terminal Input>//input[@id='CRR-CRR_txtTerminalCode']";
 	public static String Close_Tab2 = "Close the tab>(//i[@class='fa fa-remove mdlclose'])[2]/..";
+	public static String Contract_Details_Header = "Contract_Details_Header>//thead[@id='CRR_gridMessage_head']//th";
+	public static String Contract_Details_Body = "Contract_Details_Body>//tbody[@id='CRR_gridMessage_data']//tr";
+	public static String Show_Contract_Mapping = "Show_Contract_Mapping>//div[@id='copycontractpopupmnu']//a[@id='contmap']";
+	public static String ContractNo_Input = "ContractNo_Input>//input[@id='CMP-CMP_txtContractNo']";
+	public static String ContractMapping_Screen = "ContractMapping_Screen>//form[@id='CMP']";
+	public static String VendorContracts_Screen = "VendorContracts_Screen>//form[@id='HAN']";
+	public static String VendorContracts_Number = "VendorContracts_Number>//input[@id='HAN-HAN_txtContractNo']";
+	public static String CarSummary_Table = "CarSummary_Table>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridSmryOview_tbl']";
+	public static String CarSummary_Activities = "CarSummary_GridActivity>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridSmryOview_tbl']//div[@row-id='%s']//div[@col-id='mainactdes']";
+	public static String CarSummary_EqpType = "CarSummary_EqpType>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridSmryOview_tbl']//div[@row-id='%s']//div[@col-id='eqptype']";
+	public static String Grp_Eqp = "Grp_Eqp>//button[@id='CRR-CRR_btnEqpSummary']";
+	public static String Grp_Eqpsummary_Mainactivity = "Grp_Eqpsummary_Mainactivity>//div[@id='CRR_EqpTabbedPane1-CRR_gridEqp_summary_tbl']//div[@row-id='%s']//div[@col-id='mainactdes']";
+	public static String Grp_Eqpsummary_Eqp = "Grp_Eqpsummary_Eqp>//div[@id='CRR_EqpTabbedPane1-CRR_gridEqp_summary_tbl']//div[@row-id='%s']//div[@col-id='eqptype']";
+	public static String GES_Count = "GES_Count>//label[@id='CRR_EqpTabbedPane1-CRR_gridEqp_summary_records_lbl_cnt']";
+	public static String GE_SummaryTab = "GE_SummaryTab>//a[text()='Group Equipment Summary']";
+	public static String GES_Filter = "GES_Filter>(//a[@id='CRR_EqpTabbedPane1-CRR_gridgrpEqp_summary_conditionFilter_id'])[2]";
+
+	public static String GES_Records = "GES_Records>//label[@id='CRR_EqpTabbedPane1-CRR_gridgrpEqp_summary_records_lbl_cnt']";
+
+	public static String GES_Summary_Activity = "GES_Summary_Activity>//div[@id='CRR_EqpTabbedPane1-CRR_gridgrpEqp_summary_tbl']//div[@row-id='%s']//div[@col-id='mainactdes']";
+	public static String GES_Summary_eqptype = "GES_Summary_Activity>//div[@id='CRR_EqpTabbedPane1-CRR_gridgrpEqp_summary_tbl']//div[@row-id='%s']//div[@col-id='grpEqp']";
+
+	public static String CAR_CurrecnyGrid = "GES_Summary_Activity>(//tbody[contains(@id,'gridtotalsummary_data')]//tr[@data-ri='%s']//td)[1]";
+	public static String CAR_CurrecnyGridamount = "CAR_CurrecnyGridamount>(//tbody[contains(@id,'gridtotalsummary_data')]//tr[@data-ri='%s']//input)[1]";
+	public static String CAR_Totalexpense = "CAR_Totalexpense>(//div[@col-id='conTotalCost' and @role='gridcell'])[%s]";
+	public static String CARChecked_Verify = "CARChecked_Verify>(//div[@id='CRR_jTabbedPaneExpenses']//div[@col-id='sendToWDL' and @role='gridcell'])[%s]//input[@checked='checked']";
+	public static String ServiceTax_Count = "ServiceTax_Count>//label[@id='SVT-SVT_gridserTax_records_lbl_cnt']";
+	public static String ServiceTax_Grid = "ServiceTax_Grid>(//div[@id='SVT-SVT_gridserTax_tbl']//div[@row-index='%s']//div[@col-id])[1]";
+	public static String CopyTaxDetail = "CopyTaxDetail>//span[text()='Copy Tax Detail']";
+	public static String PasteTaxDetail = "PasteTaxDetail>//span[text()='Paste Tax Detail']";
+	public static String Group_Ok = "Group_Ok>//button[@id='CRR_jButton1']";
+	public static String Apply_popup_Message = "Apply_popup_Message>//div[@class='ui-growl-message']//p";
+
+	public static String CAR_Amount_field = "CAR_Amount_field>//div[@col-id='subactivitydes' and text()='%s']//following::div[@col-id='quantity']";
+	public static String Misc_Columns = "Misc_Columns>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR']//span[text()='Columns']";
+	public static String Misc_FilterInput = "Misc_FilterInput>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR']//input[@aria-label='Filter Columns Input']";
+	public static String Misc_FilterDeselect = "Misc_FilterDeselect>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR']//input[@aria-label='Toggle Select All Columns']";
+	public static String Remove_Misc = "Remove_Misc>//button[@id='CRR-CRR_jTabbedPane1-CRR_btnMscRemove']";
+	public static String Select_activity = "Select_activity>//div[@col-id='actdesc' and @role='gridcell' and text()='%s']";
+	public static String RemoveTax = "RemoveTax>//span[text()='Remove Item']";
+	
+	public static String ServiceTax_Value = "MSC Table Service tax>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='serviceTaxNO']";
+	public static String Taxdetails = "MSC TTaxdetails>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='%s']";
+
+
+	public static String MSC_table_Activity_Column_CAR_New = "MSC Table Activity Column>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@role='gridcell' and @col-id='actcode' and text()='%s'])[last()]";
+	public static String MSC_table_Quantity_Column_CAR_New = "MSC Table Quantity Column>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='qty'])[last()]";
+	public static String MSC_table_Quantity_input_CAR_New = "MSC Table Quantity Input>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='qty']//input[@type='text'])[last()]";
+	public static String MSC_Table_EqpType_Column_CAR_New = "MSC Table Eqp Type Column>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='type'])[last()]";
+	public static String MSC_Table_Vendor_Code_Column_CAR_New = "MSC Table Vendor Code Column>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='vendor'])[last()]";
+	public static String MSC_Table_Amount_Column_CAR_New = "MSC Table Amount Column>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='amount'])[last()]";
+	public static String MSC_Table_Amount_Input_CAR_New = "MSC Table Amount Input>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='amount']//input[@type='text'])[last()]";
+	public static String MSC_Table_Activity_Filter_input_CAR_New = "MSC Table Activity Filter Input>//input[@aria-label='Activity Filter Input']";
+	public static String MSC_Table_Cuurency_Column_CAR_New = "MSC Table Currency Column Input>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='currency'])[last()]";
+	public static String MSC_Table_Cuurency_option_CAR_New = "MSC Table Currency Input>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actcode' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='currency'])[last()]//*[text()='CZK']";
+
 
 	// Service Tax
 	public static String Type_Search = "Tax type search>//button[@id='SVT-SVT_btnContract']";
@@ -577,21 +626,8 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 	public static String equip_sts_Vc_option = "equip_sts_Vc>//ul[@id='HAN-HAN_cmbMasterCmbEqpSts_items']//li[.='%s']";
 	public static String eqp_sts_label_vc = "eqp_sts_label_vc>//label[@id='HAN-HAN_cmbMasterCmbEqpSts_label']";
 	
-	//New locators
-	
-	public static String ServiceTax_Count = "ServiceTax_Count>//label[@id='SVT-SVT_gridserTax_records_lbl_cnt']";
-	public static String ServiceTax_Grid = "ServiceTax_Grid>(//div[@id='SVT-SVT_gridserTax_tbl']//div[@row-index='%s']//div[@col-id])[1]";
-	public static String CopyTaxDetail = "CopyTaxDetail>//span[text()='Copy Tax Detail']";
-	public static String PasteTaxDetail = "PasteTaxDetail>//span[text()='Paste Tax Detail']";
-	public static String Group_Ok = "Group_Ok>//button[@id='CRR_jButton1']";
-	public static String Apply_popup_Message = "Apply_popup_Message>//div[@class='ui-growl-message']//p";
 
 	public static String Amount_field = "Amount_field>//div[@col-id='subactivitydes' and text()='%s']//following::div[@col-id='quantity']";
-	public static String Misc_Columns = "Misc_Columns>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR']//span[text()='Columns']";
-	public static String Misc_FilterInput = "Misc_FilterInput>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR']//input[@aria-label='Filter Columns Input']";
-	public static String Misc_FilterDeselect = "Misc_FilterDeselect>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR']//input[@aria-label='Toggle Select All Columns']";
-	public static String Remove_Misc = "Remove_Misc>//button[@id='CRR-CRR_jTabbedPane1-CRR_btnMscRemove']";
-	public static String Select_activity = "Select_activity>//div[@col-id='actdesc' and @role='gridcell' and text()='%s']";
 
 	//new
 		public static String CAR_Expense_Status="CAR Expense status>//label[@id='CRR-CRR_lblCARStatus']";
@@ -599,13 +635,6 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 		public static String Open_Expensive_CAR="Open Expense>//div[@id='CRR_jTabbedPaneExpenses']//a[text()='Open Expenses']";
 		public static String Predicatble_More_Grid_CAR="Predictable More Grid>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_nfr_toolpanel_li_id']";
 		public static String Predicatble_ConditionFilter_CAR="Predictable Condition Filter>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_toolpanel']//img[@alt='Condition']";
-		public static String Head_Filter_input_CAR="Head Filter Input>//input[@aria-label='Head Filter Input']";
-		public static String EqpType_Filter_input_CAR="Equipment Filter input>//input[@aria-label='Eqp Type Filter Input']";
-		public static String ContractNo_Filter_Input_CAR="Contract no Filter input>//input[@aria-label='Contract No Filter Input']";
-		public static String Select_Table_Row_CAR="Select Table Row Checkbox>//div[@col-id='subactivitydes' and text()='%s']//ancestor::div[@role='row']//div[@col-id='isPred']//input[@type='checkbox']";
-		public static String Predictable_Grid_Cell_CAR="Predicatble Grid Cell>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid']//div[@role='gridcell']";
-		public static String Select_CheckBox_Predictable_CAR="Select Predictable Row Checkbox>//div[@col-id='subactivitydes' and text()='%s']//ancestor::div[@role='row']//div[@col-id='nfr_sel_col']//input[@type='checkbox']";
-		public static String UnPredictable_Grid_Cell_CAR="Unpredictable Table Cell>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity']//div[@role='gridcell']";
 		
 		public static String Unpredicatble_Remove_btn_CAR="Un Predictable remove button>//button[@id='CRR-CRR_jTabbedPane1-CRR_btnUnpredRemove']";
 		public static String Predictable_Remove_btn_CAR="Predictable remove button>//button[@id='CRR-CRR_jTabbedPane1-CRR_btnCTLPredRemove']";
@@ -618,9 +647,6 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 		public static String CAR_Overview_Cells="CAR Overview Cells>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridSmryOview']//div[@aria-colindex='%s' and @role='gridcell'])[1]";
 		
 		public static String CAR_Summary_Table="CAR Summary Table>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridSmryOview_tbl']";
-		public static String Non_ReportedActivity_name_CAR="Non Reported Activity name>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid_tbl']//div[@role='row' and not(contains(@class,'pink'))]//div[@col-id='subactivitydes' and @role='gridcell']";
-		
-		public static String Updated_Activity_Row_CAR="Updated Activity>//div[@id='CRR-CRR_jTabbedPane1-CRR_smrylclloadgrid']//div[@col-id='subactivitydes' and text()='%s']//ancestor::div[@role='row']";
 		
 		public static String MSC_table_Activity_Column_CAR = "MSC Table Activity Column>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@role='gridcell' and @col-id='actdesc' and text()='%s'])[last()]";
 		public static String MSC_table_Quantity_Column_CAR = "MSC Table Quantity Column>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actdesc' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='qty'])[last()]";
@@ -632,6 +658,45 @@ public interface Cost_Activity_Report_Locators extends CAR_Approval_Locators {
 		public static String MSC_Table_Activity_Filter_input_CAR = "MSC Table Activity Filter Input>//input[@aria-label='Activity Filter Input']";
 		public static String MSC_Table_Cuurency_Column_CAR = "MSC Table Currency Column Input>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actdesc' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='currency'])[last()]";
 		public static String MSC_Table_Cuurency_option_CAR = "MSC Table Currency Input>(//div[@id='CRR-CRR_jTabbedPane1-CRR_gridMiscCAR_tbl']//div[@col-id='actdesc' and text()='%s']//ancestor::div[@role='row']//div[@role='gridcell' and @col-id='currency'])[last()]//*[text()='CZK']";
-	
+		public static String Total_cost_usds = "Total_cost_usd>//div[@id='CRR_treeTableEXPDB_tbl']//div[@row-index]//div[@col-id='conTotalCost']";
+		public static String Car_Select_all_Option ="Car_Select_all_Option>(//input[@aria-label='Toggle Select All Columns'])[1]";
+		public static String column_Checkboxs1="column_Checkboxs1>(//div[@id='CRR_treeTableEXPDB_tbl']//following::div[@ref='primaryColsListPanel'][1]//span[text()='%s']//preceding::div[@ref='cbSelect'][1]/div)[2]";
+		public static String ChargeQuantity1= "ChargeQuantity1>(//div[@id='CRR_treeTableEXP_tbl']//div[@ref='centerContainer']//div[@role='row'])[%s]//div[@col-id='agencyqty']";
+		public static String Horizontal_val="Horizontal_val>(//div[@id='nfr-jdlgGrid-div']//div[@ref='eViewport'])[2]";
+		public static String Vendor_value ="Vendor_value>//span[text()='Vendor Inv No']";
+		public static String Filter_Inputs="Filter_Inputs>(//input[@aria-label='Filter Columns Input'])[2]";
+		public static String OpsQuantitys="OpsQuantitys>(//div[@id='CRR_treeTableEXP_tbl']//div[@ref='centerContainer']//div[@role='row'])[%s]//div[@col-id='opsqty']";
+		public static String column_Checkbox_option="column_Checkbox_option>(//div[@id='CRR_treeTableEXPDB_tbl']//following::div[@ref='primaryColsListPanel'][1]//span[text()='%s']//preceding::div[@ref='cbSelect'][1]/div)[2]";
+		public static String Filtered_Rows ="Filtered_Rows>//div[@id='nfr-jdlgGrid-div']//div[@ref='eBodyViewport']//div[@role='row']";
+		public static String Select_Filter_Rows ="Select_Filter_Rows>(//div[@id='nfr-jdlgGrid-div']//div[@ref='eBodyViewport']//div[@role='row'])[%s]";
+		public static String Vendar_Colunm_selectall="Vendar_Colunm_selectall>//div[@id='PCI-PCI_invoiceGrid_tbl']//div[@ref='primaryColsListPanel']//span[text()='%s']";
+		public static String Activity_Ref_Input_Field ="Activity_Ref_Input_Fiel>//input[@aria-label='Activity Ref.No Filter Input']";
+		public static String Open_ExpensesSelectAlls="Open_ExpensesSelectAlls>//div[@id='CRR_treeTableEXP']//input[@aria-label='Toggle Select All Columns']";
+		public static String Invoice_Amount_column="Invoice_Amount_column>//div[@id='CRR_treeTableEXPDB_tbl']//div[@row-index]//div[@col-id='invAmountHash']";
+		public static String Car_Approval_Option="Car_Approval_Option>//button[@id='CRR-CRR_jTabbedPane1-CRR_btnMscApprove']";
+		public static String Predictable_Table_CAR = "Predictable Table>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']";//changed 
+	    public static String Predictable_Activity_Column_CAR = "Predictable Activity Column>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']//div[@col-id='subactivitydes' and text()='%s']";//changed
+		public static String Main_Activity_Column_CAR = "Main Activity Column>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']//div[@col-id='mainActName' and text()='%s']";//changed
+		public static String Select_Column_Predictable_CAR = "Select Column>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']//div[@ref='sideBar']//span[text()='%s']";//changed
+	public static String Activity_Name_CAR = "Activity Name Input>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//input[@aria-label='Activity Name Filter Input']";//changed
+		public static String Vendor_Code_Input_CAR = "Vendor Code Input>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//input[@aria-label='Vendor Code Filter Input']";//changed
+		public static String Predictable_reporting_columns = "CAR Predictable reporting column filter>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']//span[text()='Columns']";//changed
+
+	public static String Head_Filter_input_CAR="Head Filter Input>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//input[@aria-label='Head Filter Input']";//changed
+			public static String EqpType_Filter_input_CAR="Equipment Filter input>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//input[@aria-label='Eqp Type Filter Input']";//changed
+			public static String ContractNo_Filter_Input_CAR="Contract no Filter input>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//input[@aria-label='Contract No Filter Input']";//changed
+			public static String Select_Table_Row_CAR="Select Table Row Checkbox>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@col-id='subactivitydes' and text()='%s']//ancestor::div[@role='row']//div[@col-id='isPred']//input[@type='checkbox']";//changed
+			public static String Predictable_Grid_Cell_CAR="Predicatble Grid Cell>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']//div[@ref='eContainer']//div[@role='gridcell']";//changed
+			public static String Select_CheckBox_Predictable_CAR="Select Predictable Row Checkbox>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@col-id='subactivitydes' and text()='%s']//ancestor::div[@role='row']//div[@col-id='nfr_sel_col']//input[@type='checkbox']";//changed
+			public static String UnPredictable_Grid_Cell_CAR="Unpredictable Table Cell>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity']//div[@ref='eContainer']//div[@role='gridcell']";//changed
+				public static String Non_ReportedActivity_name_CAR="Non Reported Activity name>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']//div[@role='row' and not(contains(@class,'pink'))]//div[@col-id='subactivitydes' and @role='gridcell']";//changed
+			
+			public static String Updated_Activity_Row_CAR="Updated Activity>//div[@role='tabpanel' and @style='display: block;' and not(contains(@id,'main'))]//div[@class='sm-dt-table']/div[@role='presentation']//div[@col-id='subactivitydes' and text()='%s']//ancestor::div[@role='row']";//changed
+		
+		//new
+			public static String Total_Cost_Column_CAR="Total Cost Column>//div[@col-id='subactivitydes' and text()='%s']//ancestor::div[@role='row']//div[@col-id='totalCost']";
+			public static String UnPredict_Activity_GridCell_CAR="Unpredict Activity GridCell>//div[@id='CRR-CRR_jTabbedPane1-CRR_gridActivity']//div[@role='gridcell']";
+			public static String Quantity_Input_CAR="Quantity Input CAR>//input[contains(@id,'_quantity_input')]";//changed
+
 
 }

@@ -137,7 +137,7 @@ public class TC_Rate_Request_SC04 extends Keywords {
 		click(driver, Customer_Name_search_button);
 		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
 		waitForDisplay(driver, pop_up_exp);
-		if(isDisplayed(driver,pop_up_exp )) {
+		if(isdisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
@@ -346,6 +346,8 @@ public class TC_Rate_Request_SC04 extends Keywords {
 				System.out.println("Not Matched || Expected : "+submittedPopup+" Actual : "+ actSubmittedPopup);
 			}
 			Step_End(16, "Click Ok", test, test1);
+			waitForElement(driver, mail_Cancel_Button);
+			click(driver, mail_Cancel_Button);
 			waitForElement(driver, reqNo_Textfield);
 			String actualReqNoSOC=getAttribute(driver, reqNo_Textfield, "value");
 			System.out.println("Request Number:"+actualReqNoSOC);  
@@ -396,11 +398,7 @@ public class TC_Rate_Request_SC04 extends Keywords {
 
 			Extent_call(test, test1, "Rate request Delete start");
 			if(Do_You_Want_Delete.equalsIgnoreCase("Yes")){
-				waitForElement(driver, Module_SearchR);
-				sendKeys(driver, Module_SearchR, moduleSRRGate);
-				waitForElement(driver, SRR_Gate);
-				click(driver, SRR_Gate);
-
+				moduleNavigate(driver, moduleSRRGate);
 
 				//SRR Gate
 

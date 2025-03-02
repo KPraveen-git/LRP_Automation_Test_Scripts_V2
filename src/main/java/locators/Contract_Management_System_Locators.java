@@ -1,6 +1,6 @@
 package locators;
 
-public interface Contract_Management_System_Locators extends Cost_Activity_Report_Locators{
+public interface Contract_Management_System_Locators extends Contract_Mapping_Locators{
 
 	public static String Containerised = "Select the Containerised>(//table[@id='CUC-CUC_Classlist12']//label)[1]";
 	public static String NonContainerised = "Select the Non Containerised>(//table[@id='CUC-CUC_Classlist12']//label)[2]";

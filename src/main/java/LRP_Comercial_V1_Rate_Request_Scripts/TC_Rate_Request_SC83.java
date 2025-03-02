@@ -66,6 +66,11 @@ public class TC_Rate_Request_SC83 extends Keywords {
 		String Request_type = Data.get("Request_type");
 		tService=Data.get("T_Service");
 		TOS=Data.get("TOS_Option");
+		String Customer_code_Value2 = Data.get("Customer_code_Value2");
+		String Customer_code_Value3 = Data.get("Customer_code_Value3");
+		String Cust_code2 = Data.get("Cust_code2");
+		String Cust_code3 = Data.get("Cust_code3");
+
 
 
 		
@@ -146,30 +151,34 @@ public class TC_Rate_Request_SC83 extends Keywords {
 
 
 
+
 				waitForElement(driver, Customer_Name_search_button);
 				click(driver, Customer_Name_search_button);
-				waitForElement(driver, Customer_Code_Select_dropdown);
-				click(driver, Customer_Code_Select_dropdown);
-				selectByText(driver, Customer_Code_Select_dropdown, Cust_code);
-				click(driver, CustomerSearch_Condition_Dropdown1);
-				selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-				sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-				click(driver, CustomerSearch_Frame_SearchButton);
+				
+				globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
+				
+				
+				
+			
 				waitForDisplay(driver, pop_up_exp);
-				if(isdisplayed(driver,pop_up_exp )) {
+				if(isDisplayed(driver,pop_up_exp )) {
 					String actual_Popup = getText(driver, pop_up_exp);
 					System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 					Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 				}else {
-					waitForElement(driver, Customer_Select);
-					click(driver, Customer_Select);
+					waitForElement(driver, retrivedGlobalValue);
+					click(driver, retrivedGlobalValue);
 					waitForElement(driver, SelectButton);
 					click(driver, SelectButton);
+
 					waitForDisplay(driver, CustName_ExitBtn);
 					if(isDisplayed(driver, CustName_ExitBtn)) {
 						waitForElement(driver, CustName_ExitBtn);
 						click(driver, CustName_ExitBtn);
+					
 					}
+				
+				
 
 					Step_End(3, " Enter the customer name", test, test1);
 
@@ -405,6 +414,7 @@ public class TC_Rate_Request_SC83 extends Keywords {
 				Step_Start(17, "Switch to line profile and navigate to the special rate request screen using SRR gate screen under Submit node", test, test1);
 				
 				}	
+				Extent_completed(testCaseName, test, test1);
 				}
 
 

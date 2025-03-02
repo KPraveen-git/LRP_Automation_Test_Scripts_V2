@@ -34,32 +34,13 @@ public class TC_Rate_Request_SC24  extends Keywords{
 
 		navigateUrl(driver, URL);
 		//Login
-		waitForElement(driver, Username_input);
-		click(driver, Username_input);
-		waitForElement(driver, Username_input);
-		sendKeys(driver, Username_input, username);
-		waitForElement(driver, APassword_input);
-		click(driver, APassword_input);
-		waitForElement(driver, APassword_input);
-		sendKeys(driver, APassword_input, pass_word);
-		waitForElement(driver, ALogin);
-		click(driver, ALogin);
-		if (isDisplayed(driver, P_homePage)) {
-			System.out.println("*****User Logged in Successfully*****");
-			Extent_pass(driver, "*****User Logged in Successfully*****", test,test1);
-		}else {
-			System.out.println("*****User Unable to Logged in*****");
-			Extent_fail(driver, "*****User Unable to Login*****", test,test1);
-			
-		}
-		waitForElement(driver, Module_SearchR);
-		click(driver,Module_SearchR);
-		waitForElement(driver, Module_SearchR);
-		sendKeys(driver, Module_SearchR, ModuleRateRequest);
-		waitForElement(driver, Rate_Request);
-		click(driver, Rate_Request);
+				LRP_Login(driver, username, pass_word);
+				
+				//Module search
+				moduleNavigate(driver, ModuleRateRequest);
+	
 		waitForElement(driver, Rate_Request_Page);
-		if(isDisplayed(driver, Rate_Request_Page)) {
+		if(isdisplayed(driver, Rate_Request_Page)) {
 			System.out.println("*****Rate Request Module is Dispalyed*****");
 			Extent_pass(driver, "*****Rate Request Module is Dispalyed*****", test,test1);
 		}else {
@@ -68,8 +49,11 @@ public class TC_Rate_Request_SC24  extends Keywords{
 			
 		}
 
-		waitForElement(driver, Rate_Newbutton);
-		click(driver,Rate_Newbutton);
+		waitForDisplay(driver, Rate_Newbutton);
+		if(isdisplayed(driver, Rate_Newbutton)&&isElementEnabled(driver, Rate_Newbutton)) {
+			waitForElement(driver, Rate_Newbutton);
+			click(driver, Rate_Newbutton);
+		}
 		waitForElement(driver, agencypop);
 		waitForElement(driver, pop_up_exp);                                                                                                                                
 		String PopUp_Msg=getText(driver, pop_up_exp);    

@@ -1,6 +1,6 @@
 package locators;
 
-public interface Vendor_Invoice_Registration_Locators extends Disbursement_Locators {
+public interface Vendor_Invoice_Registration_Locators extends Vessel_Locators{
 
 	public static String Vedor_Code_Search_Button_VIR="Vendor Code Search buttin>//button[@id='PCI-PCI_btnVendor-PCI_btnVendor']";
 	public static String Vendor_Invoice_Number_Input_VIR="Vendor Invoice Number input>//input[@id='PCI-PCI_txtInvoiceNo']";

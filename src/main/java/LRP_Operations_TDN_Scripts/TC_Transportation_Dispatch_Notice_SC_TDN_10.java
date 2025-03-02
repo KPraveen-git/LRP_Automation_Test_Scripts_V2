@@ -37,6 +37,10 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_10 extends Keywords{
 		String TDN_warehouse_popup =TDN_SC_10.get("TDN_warehouse_popup");
 		String dropdown_Condition =TDN_SC_10.get("Dropdown_Condition");
 		String merchantPopup =TDN_SC_10.get("MerchantPopup");
+		String PLD_Input =TDN_SC_10.get("PLD_Input");
+		String PLD_Search =TDN_SC_10.get("PLD_Search");
+		String PLA_Input =TDN_SC_10.get("PLA_Input");
+		String PLA_Search =TDN_SC_10.get("PLA_Search");
 
 	navigateUrl(driver,url);
 	
@@ -88,30 +92,19 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_10 extends Keywords{
 				
 				Step_Start(4, "Enter the Book Number.", test, test1);
 				
-				click(driver, type_Select1);
-				selectByText(driver, type_Select1, field_select);
-				waitForDisplay(driver, globalSearch_Condition_Dropdown1);
-				click(driver, globalSearch_Condition_Dropdown1);
-				selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
 				
-				Step_End(4, "Enter the Book Number.", test, test1);
 				
 				Step_Start(5, "Click the search icon.", test, test1);
 				
-				sendKeys(driver, globalSearch_InputTextfield1, data1);
-
-				click(driver, globalSearch_Frame_SearchButton);
 				
-				Step_End(5, "Click the search icon.", test, test1);
 				
 				Step_Start(6, " Select the booking and click the search icon.", test, test1);
 				
-				waitForElement(driver, retrieved_Value_Select);
-				click(driver, retrieved_Value_Select);
-				
-				waitForElement(driver, Aselectbutton1);
-				click(driver, Aselectbutton1);
-				
+				globalValueSearchWindow(driver, dropdown_Condition, field_select, data1, PLA_Search, PLA_Input, PLD_Search, PLD_Input);
+				Step_End(4, "Enter the Book Number.", test, test1);
+
+				Step_End(5, "Click the search icon.", test, test1);
+
 				Step_End(6, " Select the booking and click the search icon.", test, test1);
 
 			}

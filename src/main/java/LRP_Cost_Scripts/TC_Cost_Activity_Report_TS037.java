@@ -1,4 +1,4 @@
-package Cost_Scripts;
+package LRP_Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -37,6 +37,11 @@ public class TC_Cost_Activity_Report_TS037 extends Keywords{
 		String Vendor_Code_Filter_Type = data.get("Vendor_Code_Filter_Type");
 		String Vendor_Code_Filter_Condition = data.get("Vendor_Code_Filter_Condition");
 				
+		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
+		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
+		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
+		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
+		
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -60,7 +65,7 @@ public class TC_Cost_Activity_Report_TS037 extends Keywords{
 		Step_Start(6, "Then click on the search button", test, test1);
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
 
-		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
 
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
 		Step_End(6, "Then click on the search button", test, test1);

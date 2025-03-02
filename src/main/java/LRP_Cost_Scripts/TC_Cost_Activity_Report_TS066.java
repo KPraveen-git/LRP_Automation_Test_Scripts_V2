@@ -29,6 +29,10 @@ public class TC_Cost_Activity_Report_TS066 extends Keywords{
 		String CAR_Retrieve_Condition = data.get("CAR_Retrieve_Condition");
 		String CAR_Number_Retrieve = data.get("CAR_Number_Retrieve");
 		String related_Car_Number = data.get("related_Car_Number");
+		String Contract_type_Search = data.get("Contract_type_Search");
+		String Contract_Type_Input = data.get("Contract_Type_Input");
+		String Carrier_Code_Search = data.get("Carrier_Code_Search");
+		String Carrier_Code_Input = data.get("Carrier_Code_Input");
 		
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
@@ -49,28 +53,19 @@ public class TC_Cost_Activity_Report_TS066 extends Keywords{
 		Step_End(3, "Click on the global search option which is available in the tool bar", test, test1);
 		
 		Step_Start(4, "Check whether it opens a new search window", test, test1);
-		waitForElement(driver, type_Select1);
-		Step_End(4, "Check whether it opens a new search window", test, test1);
 		
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
+		globalValueSearchWindow(driver, CAR_Retrieve_Condition, CAR_Retrieve_Type, CAR_Number_Retrieve, Carrier_Code_Search, Carrier_Code_Input, Contract_type_Search, Contract_Type_Input);
+
+		Step_End(4, "Check whether it opens a new search window", test, test1);
+		
 		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
 		
 		
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		waitForElement(driver, First_Row_click);
-		click(driver, First_Row_click);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
 		
 		Step_Start(6, "System will show the details of CAR generated with the same service, vessel, voyage", test, test1);
-		waitForElement(driver, Service_TF);
-		String Service= getAttribute(driver, Service_TF, "value");
+		waitForElement(driver, Service_Field);
+		String Service= getAttribute(driver, Service_Field, "value");
 		System.out.println("Service :"+Service);
 		
 		waitForElement(driver, vessel_TF);
@@ -113,8 +108,8 @@ public class TC_Cost_Activity_Report_TS066 extends Keywords{
 		String Actual_Number=getAttribute(driver, Car_No_New_Tab_TF, "value");
 		System.out.println("Actual_Number :"+Actual_Number);
 		
-		waitForElement(driver, Service_TF);
-		String Service_New_Tab= getAttribute(driver, Service_TF, "value");
+		waitForElement(driver, Service_Field);
+		String Service_New_Tab= getAttribute(driver, Service_Field, "value");
 		System.out.println("Service_New_Tab :"+Service_New_Tab);
 		
 		waitForElement(driver, vessel_TF);

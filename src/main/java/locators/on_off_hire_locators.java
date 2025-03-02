@@ -1,6 +1,6 @@
 package locators;
 
-public interface on_off_hire_locators extends Scale_In_Out_Reference {
+public interface On_Off_Hire_Locators extends Plugin_Configuration_Locators{
 
 	// TS_041
 

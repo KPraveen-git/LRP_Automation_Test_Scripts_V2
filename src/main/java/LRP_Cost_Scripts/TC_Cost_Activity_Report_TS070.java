@@ -32,6 +32,16 @@ public void  Cost_Activity_Report_TS070(WebDriver driver, ExtentTest test, Exten
 		String operation_list_module = data.get("operation_list_module");
 		String condition = data.get("condition");
 		String columns_to_filter1 = data.get("columns_to_filter1");
+		String search2 = data.get("search2");
+		String input2 = data.get("input2");
+		String search3 = data.get("search3");
+		String input3 = data.get("input3");
+		String service_header = data.get("service_header");
+		String vessel_header = data.get("vessel_header");
+		String voyage_header = data.get("voyage_header");
+		String port_header = data.get("port_header");
+		String terminal_header = data.get("terminal_header");
+		String terminal_condition = data.get("terminal_condition");
 
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
@@ -57,34 +67,17 @@ public void  Cost_Activity_Report_TS070(WebDriver driver, ExtentTest test, Exten
 		Step_End(3, "Click on the global search option which is available in the tool bar.", test, test1);  
 
 		Step_Start(4, "Check whether it opens a new search window.", test, test1);  
-		
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
+		Step_Start(5, "Enter the required CAR No. in the CAR No search field.", test, test1); 
+		Step_Start(6, "Then click on the search button.", test, test1);  
+		Step_Start(7, "System will show the CAR No.", test, test1);  
+
+		globalValueSearchWindow(driver, CAR_Retrieve_Condition, CAR_Retrieve_Type, CAR_Number_Retrieve, search2, input2, search3, input3);
 		
 		Step_End(4, "Check whether it opens a new search window.", test, test1);  
-
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field.", test, test1); 
-		
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
 		
 		Step_End(5, "Enter the required CAR No. in the CAR No search field.", test, test1);  
 
-		Step_Start(6, "Then click on the search button.", test, test1);  
-		
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		
 		Step_End(6, "Then click on the search button.", test, test1);  
-
-		Step_Start(7, "System will show the CAR No.", test, test1);  
-		
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
 		
 		Step_End(7, "System will show the CAR No.", test, test1);  
 
@@ -201,11 +194,13 @@ public void  Cost_Activity_Report_TS070(WebDriver driver, ExtentTest test, Exten
 		
 		waitForElement(driver, service_search_OpL);
 		click(driver, service_search_OpL);
-		selectValue(driver, condition, service_car);
+		twoColumnSearchWindow(driver, service_header, condition, service_car);
+		
 		
 		waitForElement(driver, vessel_search_OpL);
 		click(driver, vessel_search_OpL);
-		selectValue(driver, condition, vessel_car);
+		twoColumnSearchWindow(driver, vessel_header, condition, vessel_car);
+
 		
 		waitForElement(driver, voyage_search_OpL);
 		click(driver, voyage_search_OpL);
@@ -217,20 +212,21 @@ public void  Cost_Activity_Report_TS070(WebDriver driver, ExtentTest test, Exten
 	        
 	        System.out.println("Number part: " + numberPart);
 	        System.out.println("Letter part: " + letterPart);
-		selectValue(driver, condition, numberPart);
+		twoColumnSearchWindow(driver, voyage_header, condition, numberPart);
+
 		}else {
 			
-			selectValue(driver, condition, voyage_car);
+			twoColumnSearchWindow(driver, voyage_header, condition, voyage_car);
 
 		}
 		waitForElement(driver, port_search_OpL);
 		click(driver, port_search_OpL);
-		selectValue(driver, condition, port_car);
-		
+		twoColumnSearchWindow(driver, port_header, condition, port_car);
+
 		waitForElement(driver, terminal_search_OpL);
 		click(driver, terminal_search_OpL);
-		selectValue(driver, "Contains", terminal_car);
-		
+		twoColumnSearchWindow(driver, terminal_header, terminal_condition, terminal_car);
+
 		waitForElement(driver, load_list);
 		click(driver, load_list);
 		

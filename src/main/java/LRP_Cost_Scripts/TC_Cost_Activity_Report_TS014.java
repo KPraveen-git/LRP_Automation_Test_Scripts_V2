@@ -1,4 +1,4 @@
-package Cost_Scripts;
+package LRP_Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;

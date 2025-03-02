@@ -68,6 +68,8 @@ public class TC_Rate_Request_SC03 extends Keywords {
 		String Customer_code_Value3 = Data.get("Customer_code_Value3");
 		String Cust_code2 = Data.get("Cust_code2");
 		String Cust_code3 = Data.get("Cust_code3");
+		String DG_Columnn_Header = Data.get("DG_Columnn_Header");
+		String UN_Number_Column_Header = Data.get("UN_Number_Column_Header");
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
 		String preCarriageLocator = String.format(Rate_Request_Loactors.pre_Carriage_Radiobtn, Pre_Carriage_Radiobtn);
@@ -134,10 +136,11 @@ public class TC_Rate_Request_SC03 extends Keywords {
 		}
 
 		Step_Start(2, " Enter the customer name", test, test1);
-
+		waitForElement(driver, Customer_Name_search_button);
+		click(driver, Customer_Name_search_button);
 		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
 		waitForDisplay(driver, pop_up_exp);
-		if(isDisplayed(driver,pop_up_exp )) {
+		if(isdisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
@@ -227,11 +230,11 @@ public class TC_Rate_Request_SC03 extends Keywords {
 				Step_End(10, "Click the class search.", test, test1);
 
 				Step_Start(11, "Click on the class", test, test1);
-				waitForElement(driver, searchfield_DG_Class);
-				sendKeys(driver, searchfield_DG_Class, dG_Class);
-				waitForElement(driver, DG_Class_Select);
-				doubleClick(driver, DG_Class_Select);
-
+//				waitForElement(driver, searchfield_DG_Class);
+//				sendKeys(driver, searchfield_DG_Class, dG_Class);
+//				waitForElement(driver, DG_Class_Select);
+//				doubleClick(driver, DG_Class_Select);
+				twoColumnSearchWindow(driver, DG_Columnn_Header, Condition_Value, dG_Class);
 				Step_End(11, "Click on the class", test, test1);
 				Step_Start(12, "Click in the "+" radio button", test, test1);
 				waitForElement(driver, plus_Button);
@@ -239,16 +242,15 @@ public class TC_Rate_Request_SC03 extends Keywords {
 				Step_End(12, "Click in the "+" radio button", test, test1);
 
 				Step_Start(13, "Click on the UNNO numbe", test, test1);
-				waitForElement(driver, searchfield_DG_Class);
-				sendKeys(driver, searchfield_DG_Class, unno);
-				waitForElement(driver, UN_Number_select);
-				doubleClick(driver, UN_Number_select);
-
+//				waitForElement(driver, searchfield_DG_Class);
+//				sendKeys(driver, searchfield_DG_Class, unno);
+//				waitForElement(driver, UN_Number_select);
+//				doubleClick(driver, UN_Number_select);
+twoColumnSearchWindow(driver, UN_Number_Column_Header, Condition_Value, unno);
 				Step_End(13, "Click on the UNNO numbe", test, test1);
 
 			}else {
 				System.out.println("Not Matched || Expected : "+dGDetailsFrame+" Actual : "+ actDGDetailsFrame);
-
 				Extent_fail(driver,"Not Matched || Expected : "+dGDetailsFrame+" Actual : "+ actDGDetailsFrame, test,test1);
 			}
 
@@ -384,6 +386,8 @@ public class TC_Rate_Request_SC03 extends Keywords {
 				Extent_fail(driver,"Not Matched || Expected : "+submittedPopup+" Actual : "+ actSubmittedPopup, test,test1);
 				
 			}
+			waitForElement(driver, mail_Cancel_Button);
+			click(driver, mail_Cancel_Button);
 			waitForElement(driver, reqNo_Textfield);
 			String actualReqNo=getAttribute(driver, reqNo_Textfield, "value");
 			System.out.println("Request Number:"+actualReqNo);  
@@ -440,12 +444,8 @@ public class TC_Rate_Request_SC03 extends Keywords {
 
 			Extent_call(test, test1, "Rate request Delete start");
 			if(Do_You_Want_Delete.equalsIgnoreCase("Yes")){
-				waitForElement(driver, Module_SearchR);
-				sendKeys(driver, Module_SearchR, moduleSRRGate);
-				waitForElement(driver, SRR_Gate);
-				click(driver, SRR_Gate);
 
-
+moduleNavigate(driver, moduleSRRGate);
 
 				//SRR Gate
 

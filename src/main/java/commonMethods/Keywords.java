@@ -47,10 +47,22 @@ import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.jexl3.JexlBuilder;
+import org.apache.commons.jexl3.JexlContext;
 import org.apache.commons.jexl3.JexlEngine;
 import org.apache.commons.jexl3.JexlExpression;
+import org.apache.commons.jexl3.MapContext;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.exceptions.OLE2NotOfficeXmlFileException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -83,6 +95,7 @@ import org.testng.IClass;
 import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
+
 import com.aventstack.extentreports.ExtentTest;
 import com.codoid.products.exception.FilloException;
 import com.codoid.products.fillo.Connection;
@@ -90,21 +103,15 @@ import com.codoid.products.fillo.Fillo;
 import com.codoid.products.fillo.Recordset;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import com.sun.jna.platform.win32.KnownFolders;
+import com.sun.jna.platform.win32.Shell32Util;
 
 import atu.testng.reports.ATUReports;
 import atu.testng.reports.utils.Directory;
-import locators.EMS_Locators;
+import locators.Common_Locators;
 import locators.LoadConfirmation_Locators;
-
-import com.sun.jna.platform.win32.KnownFolders;
-import com.sun.jna.platform.win32.Shell32Util;
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.openxml4j.exceptions.OLE2NotOfficeXmlFileException;
-import org.apache.poi.ss.usermodel.*;
-import org.apache.commons.jexl3.*;
 //All the methods which we are using 
-public class Keywords extends ATUReports implements EMS_Locators {
+public class Keywords extends ATUReports implements Common_Locators {
 
 	public String ElementWait = Utils.getDataFromTestConfig("Wait Time");
 	public int WaitElementSeconds =Integer.parseInt(ElementWait);
@@ -265,7 +272,60 @@ public class Keywords extends ATUReports implements EMS_Locators {
 			Extent_fail(driver, "********************Home page is not displayed********************", test, test1);
 		}
 	}
-
+	public void selectservice_Discharge(WebDriver driver,String Servicecode,String vesselCode,String Voyagenumber,String Boundinput,String portCode,String terminalCode) {
+		waitForElement(driver, dischargeload_servicecode);
+		sendKeys(driver, dischargeload_servicecode,Servicecode );
+		
+			waitForElement(driver, dischargevessel_Input);
+			sendKeys(driver, dischargevessel_Input,vesselCode );
+		
+			
+			waitForElement(driver, discharge_VoyageInput);
+			sendKeys(driver, discharge_VoyageInput, Voyagenumber);
+			
+			waitForElement(driver, dischare_Boundinput);
+			sendKeys(driver, dischare_Boundinput, Boundinput);
+			
+			
+			waitForElement(driver, dischargeportCode_Inputfield);
+			sendKeys(driver, dischargeportCode_Inputfield, portCode);
+			
+			
+			waitForElement(driver, discharge_terminalCode_Inputfield);
+			sendKeys(driver, discharge_terminalCode_Inputfield, terminalCode);
+			
+			waitForElement(driver, select_Service);
+			click(driver, select_Service);	
+			waitForElement(driver, select_Service_Discharge);
+			click(driver, select_Service_Discharge);	
+	}
+	public void selectservice(WebDriver driver,String Servicecode,String vesselCode,String Voyagenumber,String Boundinput,String portCode,String terminalCode) {
+		waitForElement(driver, load_servicecode);
+		sendKeys(driver, load_servicecode,Servicecode );
+		
+			waitForElement(driver, vessel_Input);
+			sendKeys(driver, vessel_Input,vesselCode );
+		
+			
+			waitForElement(driver, VoyageInput);
+			sendKeys(driver, VoyageInput, Voyagenumber);
+			
+			waitForElement(driver, Boundinpiut);
+			sendKeys(driver, Boundinpiut, Boundinput);
+			
+			
+			waitForElement(driver, portCode_Inputfield);
+			sendKeys(driver, portCode_Inputfield, portCode);
+			
+			
+			waitForElement(driver, terminalCode_Inputfield);
+			sendKeys(driver, terminalCode_Inputfield, terminalCode);
+			
+			waitForElement(driver, select_Service);
+			click(driver, select_Service);	
+			waitForElement(driver, select_Service_Discharge);
+			click(driver, select_Service_Discharge);	
+	}
 	public String alertAccept(WebDriver driver) {
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10)); // Wait up to 10 seconds
@@ -348,6 +408,29 @@ public class Keywords extends ATUReports implements EMS_Locators {
 			verifyServerStatus(driver);
 			Assert.fail("Element is not present " + e.getLocalizedMessage());
 		}
+	}
+	public void selectDatePickerWith_Time(WebDriver driver, String Locator, String DateValue) {
+		StringBuilder day = new StringBuilder();
+		StringBuilder month = new StringBuilder();
+		StringBuilder year = new StringBuilder();
+		StringBuilder time = new StringBuilder();
+
+		waitForElement(driver,Locator);
+		click(driver,Locator);
+		datePickerWithTime(DateValue, day, month, year,time);
+		waitForElement(driver, Year_DD);
+		selectByText(driver, Year_DD,year.toString());
+		waitForElement(driver, Month_DD);
+		selectByText(driver, Month_DD, month.toString());
+
+		waitForElement(driver, timeInput);
+		clearAndType(driver, timeInput, time.toString());
+		waitForElement(driver, timeInput);
+		click(driver,timeInput);
+
+		String date_Select=String.format(date_select,day);
+		waitForElement(driver, date_Select);
+		click(driver, date_Select);
 	}
 	public void Scroll_ElementVisible(WebDriver driver, String xpath, String scroll) {
 
@@ -490,7 +573,7 @@ public class Keywords extends ATUReports implements EMS_Locators {
 		String filter_Btn = String.format(Filter_Button, columnIndex);
 		String column_Values = String.format(column_Value, columnIndex);
 		boolean flag=true;
-		if(Condition_Filter.equalsIgnoreCase("Equals")) {
+		if(Condition_Filter.equalsIgnoreCase("Equals")||Condition_Filter.equalsIgnoreCase("Equal To")) {
 			waitForElement(driver, filter_Field);
 			sendKeys(driver, filter_Field, value);
 			waitForElement(driver, filter_Btn);
@@ -805,6 +888,29 @@ public class Keywords extends ATUReports implements EMS_Locators {
 			}
 		}
 	}
+	public void selectDatePickerWithTime(WebDriver driver, String Locator, String DateValue) {
+		StringBuilder day = new StringBuilder();
+		StringBuilder month = new StringBuilder();
+		StringBuilder year = new StringBuilder();
+		StringBuilder time = new StringBuilder();
+		
+		waitForElement(driver,Locator);
+		click(driver,Locator);
+		datePickerWithTime(DateValue, day, month, year,time);
+		waitForElement(driver, Year_DD);
+		selectByText(driver, Year_DD,year.toString());
+		waitForElement(driver, Month_DD);
+		selectByText(driver, Month_DD, month.toString());
+		waitForElement(driver, timeInput);
+		click(driver,timeInput);
+		waitForElement(driver, timeInput);
+		doubleClick(driver, timeInput);
+		clearAndType(driver, timeInput, time.toString());
+		String date_Select=String.format(LoadConfirmation_Locators.date_select,day);
+		waitForElement(driver, date_Select);
+		click(driver, date_Select);
+		
+			}
 	/*
 	 * Used to wait for the Visibility of the Element in the page (30 seconds)
 	 */
@@ -821,6 +927,80 @@ public class Keywords extends ATUReports implements EMS_Locators {
 			Assert.fail();
 		}
 	}
+	public static String extractVariableName(String formula) {
+        Pattern pattern = Pattern.compile("#(\\w+)#");
+        Matcher matcher = pattern.matcher(formula);
+        return matcher.find() ? matcher.group(1) : null;
+    }
+public static double getNumberValue(String value) {
+		
+		double numberValue=0;
+		try {
+			if(value.contains(",")) {
+				value=value.replace(",", "");
+			}
+			numberValue=Double.parseDouble(value);
+			numberValue = Double.parseDouble(String.format("%.2f", numberValue));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return numberValue;
+		
+	}
+
+	/*
+	 * Used to get the table value
+	 */
+	public List<Map<String, String>> extractTableDataDirect1(WebDriver driver, String xpath) {
+		String[] values = splitXpath(xpath);
+		try {
+			// Wait until the table is present
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WaitElementSeconds));
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(values[1])));
+
+			// Locate the parent div containing the table data
+			WebElement tableContainer = driver.findElement(By.xpath(values[1]));
+
+			// Get all header cells
+			List<WebElement> headers = tableContainer.findElements(By.xpath(".//span[@ref='eText' and contains(@class,'cell')]"));
+
+			// Store headers in a list
+			List<String> columnHeaders = new ArrayList<>();
+			for (WebElement header : headers) {
+				columnHeaders.add(header.getText().trim());
+			}
+
+			// Get all rows from the container
+			List<WebElement> rows = tableContainer.findElements(By.xpath(".//div[@ref='eContainer']//div[@role='row']"));
+
+			// List to store each row as a map
+			List<Map<String, String>> tableData = new ArrayList<>();
+
+			// Iterate through the rows
+			for (WebElement row : rows) {
+				List<WebElement> cells = row.findElements(By.xpath(".//div[contains(@class,'ag-cell-value')]"));
+
+				// Ensure the number of cells matches the number of headers
+				if (cells.size() == columnHeaders.size()) {
+					Map<String, String> rowData = new HashMap<>();
+					for (int i = 0; i < cells.size(); i++) {
+						rowData.put(columnHeaders.get(i), cells.get(i).getText().trim());
+					}
+					tableData.add(rowData);
+				} else {
+					System.out.println("Row cell count mismatch with header count.");
+				}
+			}
+
+			return tableData;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Extent_fail(driver, "Unable to get the Table Value from Element - " + values[0] + " " + e.getLocalizedMessage(), test, test);
+			return Collections.emptyList();
+		}
+	} 
 	/*
 	 * Used to click the web element
 	 */
@@ -3764,52 +3944,7 @@ public class Keywords extends ATUReports implements EMS_Locators {
         }
         return true;
     }
-	public void selectDatePickerWith_Time(WebDriver driver, String Locator, String DateValue) {
-		StringBuilder day = new StringBuilder();
-		StringBuilder month = new StringBuilder();
-		StringBuilder year = new StringBuilder();
-		StringBuilder time = new StringBuilder();
-
-		waitForElement(driver,Locator);
-		click(driver,Locator);
-		datePickerWithTime(DateValue, day, month, year,time);
-		waitForElement(driver, Year_DD);
-		selectByText(driver, Year_DD,year.toString());
-		waitForElement(driver, Month_DD);
-		selectByText(driver, Month_DD, month.toString());
-
-		waitForElement(driver, timeInput);
-		clearAndType(driver, timeInput, time.toString());
-		waitForElement(driver, timeInput);
-		click(driver,timeInput);
-
-		String date_Select=String.format(date_select,day);
-		waitForElement(driver, date_Select);
-		click(driver, date_Select);
-	}
-	public void selectDatePickerWithTime(WebDriver driver, String Locator, String DateValue) {
-		StringBuilder day = new StringBuilder();
-		StringBuilder month = new StringBuilder();
-		StringBuilder year = new StringBuilder();
-		StringBuilder time = new StringBuilder();
-		
-		waitForElement(driver,Locator);
-		click(driver,Locator);
-		datePickerWithTime(DateValue, day, month, year,time);
-		waitForElement(driver, Year_DD);
-		selectByText(driver, Year_DD,year.toString());
-		waitForElement(driver, Month_DD);
-		selectByText(driver, Month_DD, month.toString());
-		waitForElement(driver, timeInput);
-		click(driver,timeInput);
-		waitForElement(driver, timeInput);
-		doubleClick(driver, timeInput);
-		clearAndType(driver, timeInput, time.toString());
-		String date_Select=String.format(LoadConfirmation_Locators.date_select,day);
-		waitForElement(driver, date_Select);
-		click(driver, date_Select);
-		
-			}
+	
 	/*
 	 * Used to expand the data set
 	 */
@@ -4530,62 +4665,7 @@ public class Keywords extends ATUReports implements EMS_Locators {
 		}
 
 	}
-	/*
-	 * Used to get the table value
-	 */
-	public List<Map<String, String>> extractTableDataDirect1(WebDriver driver, String xpath) {
-		String[] values = splitXpath(xpath);
-		try {
-			// Wait until the table is present
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WaitElementSeconds));
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(values[1])));
 
-			// Locate the parent div containing the table data
-			WebElement tableContainer = driver.findElement(By.xpath(values[1]));
-
-			// Get all header cells
-			List<WebElement> headers = tableContainer
-					.findElements(By.xpath(".//span[@ref='eText' and contains(@class,'cell')]"));
-
-			// Store headers in a list
-			List<String> columnHeaders = new ArrayList<>();
-			for (WebElement header : headers) {
-				columnHeaders.add(header.getText().trim());
-			}
-
-			// Get all rows from the container
-			List<WebElement> rows = tableContainer
-					.findElements(By.xpath(".//div[@ref='eCenterContainer']//div[@role='row']"));
-
-			// List to store each row as a map
-			List<Map<String, String>> tableData = new ArrayList<>();
-
-			// Iterate through the rows
-			for (WebElement row : rows) {
-				List<WebElement> cells = row.findElements(By.xpath(".//div[contains(@class,'ag-cell-auto')]"));
-
-				// Ensure the number of cells matches the number of headers
-				if (cells.size() == columnHeaders.size()) {
-					Map<String, String> rowData = new HashMap<>();
-					for (int i = 0; i < cells.size(); i++) {
-						rowData.put(columnHeaders.get(i), cells.get(i).getText().trim());
-					}
-					tableData.add(rowData);
-				} else {
-					System.out.println("Row cell count mismatch with header count.");
-				}
-			}
-
-			return tableData;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			Extent_fail(driver,
-					"Unable to get the Table Value from Element - " + values[0] + " " + e.getLocalizedMessage(), test,
-					test);
-			return Collections.emptyList();
-		}
-	}
 	public List<List<String>> getValuesByHeaders(List<Map<String, String>> tableData, List<String> headers) {
 		// Initialize the result list
 		List<List<String>> result = new ArrayList<>();
@@ -5861,6 +5941,141 @@ public class Keywords extends ATUReports implements EMS_Locators {
 			minitOut.append(minite);
 		}
 	}
+	
+	public List<List<String>> CSVallColumnData(String filepath) {
+
+		List<List<String>> columnDataList = new ArrayList<>();
+
+		try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+			String line;
+			int lineIndex = 0;
+
+			while ((line = br.readLine()) != null) {
+				String[] values = line.split(","); // Assuming CSV is comma-separated
+
+				// Initialize lists for each column based on the first row (header row)
+				if (lineIndex == 1) { // Skip first row (header row)
+					for (int i = 0; i < values.length; i++) {
+						columnDataList.add(new ArrayList<>());
+					}
+				} else if (lineIndex > 1) { // Start adding data from second row onwards
+					for (int i = 0; i < values.length; i++) {
+						String cleanedValue = values[i].trim().replaceAll("^\"|\"$", ""); // Remove surrounding quotes
+						columnDataList.get(i).add(cleanedValue);
+					}
+				}
+				lineIndex++;
+			}
+		} catch (IOException e) {
+			System.err.println("Error reading CSV file: " + e.getMessage());
+		}
+
+		return columnDataList;
+	}
+
+	public List<List<String>> xls_allColumnData(String filepath,String sheetname)
+	        throws EncryptedDocumentException, InvalidFormatException {
+	    List<List<String>> columnDataList = new ArrayList<>();
+
+	    try (FileInputStream fis = new FileInputStream(filepath); Workbook workbook = WorkbookFactory.create(fis)) {
+
+	        Sheet sheet = workbook.getSheet(sheetname); // Reading the first sheet
+	        int headerRowIndex = 3;
+	        Row headerRow = sheet.getRow(headerRowIndex);
+
+	        if (headerRow == null) {
+	            System.out.println("Header row is empty!");
+	            return columnDataList; // Return empty list instead of null
+	        }
+
+	        int columnCount = headerRow.getLastCellNum();
+
+	        // Initialize lists for each column
+	        for (int col = 0; col < columnCount; col++) {
+	            columnDataList.add(new ArrayList<>());
+	        }
+
+	        // Read column values (starting from row index 2)
+	        for (int rowIndex = headerRowIndex + 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+	            Row row = sheet.getRow(rowIndex);
+	            
+	            for (int col = 0; col < columnCount; col++) {
+	                Cell cell = (row != null) ? row.getCell(col) : null;
+
+	                // Ensure even empty cells have ""
+	                String cellValue = (cell != null && cell.getCellTypeEnum() != CellType.BLANK) 
+	                                    ? getCellValueAsString1(cell) 
+	                                    : "";
+
+	                columnDataList.get(col).add(cellValue);
+	            }
+	        }
+	    } catch (OLE2NotOfficeXmlFileException e) {
+	        System.err.println("Invalid file format: Please use an Excel file (.xls or .xlsx).");
+	    } catch (IOException e) {
+	        System.err.println("Error reading Excel file: " + e.getMessage());
+	    }
+
+	    return columnDataList;
+	}
+
+	
+	public void horizontalscrollFull(WebDriver driver, String xpath) {
+		String[] values = splitXpath(xpath);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(WaitElementSeconds));
+		try {
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WaitElementSeconds));
+			WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(values[1])));
+			wait.until(ExpectedConditions.visibilityOf(element));
+		} catch (TimeoutException e) {
+			e.printStackTrace();
+			Extent_fail(driver,
+					"Element not clickable or not found within the timeout period: " + values[0] + " " + e.getMessage(),
+					test, test1);
+			global.add("Element not clickable or not found - " + values[0]);
+			verifyServerStatus(driver);
+			Assert.fail();
+		} catch (Exception e) {
+			// Handle other exceptions
+			e.printStackTrace();
+			Extent_fail(driver,
+					"An unexpected error occurred while waiting for the element: " + values[0] + " " + e.getMessage(),
+					test, test1);
+			global.add("Error occurred while waiting for element - " + values[0]);
+			verifyServerStatus(driver);
+			Assert.fail();
+		}
+		try {
+			
+			wait(driver,"3");
+			
+			WebElement element = driver.findElement(By.xpath(values[1]));
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript("arguments[0].scrollLeft = 0;", element);
+			
+			wait(driver,"3");
+		} catch (Exception e) {
+			e.printStackTrace();
+			Extent_fail(driver, "Element is not present " + e.getLocalizedMessage(), test, test1);
+			global.add("Element is not present - " + values[0]);
+			verifyServerStatus(driver);
+			Assert.fail("Element is not present " + e.getLocalizedMessage());
+		}
+	}
+	
+	public static List<String> readPdfData(String filePath) throws IOException {
+        File file = new File(filePath);
+        PDDocument document = PDDocument.load(file);
+
+        PDFTextStripper pdfStripper = new PDFTextStripper();
+        String pdfText = pdfStripper.getText(document);
+
+        document.close(); // Close document to avoid memory leaks
+
+        // Split text into list (line-by-line or space-separated)
+        return Arrays.asList(pdfText.split("\n"));  // Split by new line
+    }
+
 
 	// Custom implementation of ITestResult for simplicity
 	static class CustomTestResult implements ITestResult {

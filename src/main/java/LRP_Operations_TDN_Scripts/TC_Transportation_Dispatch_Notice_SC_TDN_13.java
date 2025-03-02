@@ -10,7 +10,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.LoadConfirmation_Locators;
+import locators.Tdn_Locators;
 
 public class TC_Transportation_Dispatch_Notice_SC_TDN_13 extends Keywords{
 
@@ -66,8 +66,8 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_13 extends Keywords{
 		String Search_Input3 =TDN_SC_13.get("Search_Input3");
 		
 		
-		String Load_status_value=String.format(LoadConfirmation_Locators.Load_status_value, Load_Status);
-		String shipmenttype_select=String.format(LoadConfirmation_Locators.shipmenttype_select, Shipment_Type);
+		String Load_status_value=String.format(Tdn_Locators.Load_status_value, Load_Status);
+		String shipmenttype_select=String.format(Tdn_Locators.shipmenttype_select, Shipment_Type);
 		
 	navigateUrl(driver,url);
 	
@@ -121,24 +121,6 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 				Step_Start(3, "Enter the Work order number and click the search icon.", test, test1);
 				globalValueSearchWindow(driver, Dropdown_Condition, Global_search_Wo_No, data1, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
-
-//				waitForElement(driver, select_first);
-//				click(driver, select_first);
-//				waitForElement(driver, select_first);
-//				selectByText(driver, select_first, Global_search_Wo_No);
-//				
-//				waitForElement(driver, globalSearch_Condition_Dropdown1);
-//				click(driver, globalSearch_Condition_Dropdown1);
-//				selectByText(driver, globalSearch_Condition_Dropdown1, Dropdown_Condition);
-//				sendKeys(driver, Asearchinput, data1);
-//				click(driver, Asearchclickbtn);
-//				
-//				waitForElement(driver, select_FirstRow);
-//				click(driver, select_FirstRow);
-//				
-//				waitForElement(driver, Aselectbutton1);
-//				click(driver, Aselectbutton1);
-				
 				Step_End(3, "Enter the Work order number and click the search icon.", test, test1);
 
 			}
@@ -170,7 +152,7 @@ waitForDisplay(driver, NewButton_ToolBar);
 		
 		waitForElement(driver, modeof_transport);
 		click(driver, modeof_transport);
-		String Select_ModeOfTransport=String.format(LoadConfirmation_Locators.Select_ModeOfTransport, Modeof_Transport);
+		String Select_ModeOfTransport=String.format(Tdn_Locators.Select_ModeOfTransport, Modeof_Transport);
 		safeclick(driver, Select_ModeOfTransport);
 		
 		//pickuplocation
@@ -186,9 +168,11 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 		}
 		if(!pickup_loc_search_data.equalsIgnoreCase("")) {
+
 			waitForElement(driver, pickup_loc_search_icon);
 			click(driver, pickup_loc_search_icon);
 			twoColumnSearchWindow(driver, pickup_location_header, condition, pickup_loc_search_data);
+
 		}
 		}
 		//2
@@ -200,29 +184,41 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 			waitForElement(driver,cust_Depot_Term_Label);
 			click(driver, cust_Depot_Term_Label);
+
 			String cust_depo_dd = String.format(DropDown_Select, cust_depot_term_data);
 			waitForElement(driver, cust_depo_dd);
 			click(driver, cust_depo_dd);
+
+
 		}
 		if(!cust_dep_search_data.equalsIgnoreCase("")) {
+
 			waitForElement(driver, cust_depo_term_search_icon);
 			click(driver, cust_depo_term_search_icon);
 			twoColumnSearchWindow(driver, cust_depot_term_header, condition, cust_dep_search_data);
+
+			
 		}
 		}
 		//3
 
 		waitForElement(driver, return_location_label);
 		if(isElementAccessible(driver, return_location_searchicon)) {
+
 			waitForElement(driver,return_location_label);
 			click(driver, return_location_label);
+
 			String return_loc_dd = String.format(DropDown_Select, return_loc_dd_data);
 			waitForElement(driver, return_loc_dd);
 			click(driver, return_loc_dd);
+		
+
 		if(!return_loc_search_data.equalsIgnoreCase("")) {
+
 			waitForElement(driver, return_location_searchicon);
 			click(driver, return_location_searchicon);
 			twoColumnSearchWindow(driver, return_location_header, condition, return_loc_search_data);
+
 		}
 		}
 		
@@ -255,7 +251,9 @@ waitForDisplay(driver, NewButton_ToolBar);
 
 			waitForElement(driver, return_date_leg);
 			if (!leg_return_date.equals("")) {
+				
 				selectDatePickerWithTime1(driver, return_date_leg, leg_return_date);
+			
 			}else {
 				waitForElement(driver, return_Date_Field);
 				clearAndType(driver, return_Date_Field, leg_return_date);
@@ -294,6 +292,7 @@ waitForDisplay(driver, NewButton_ToolBar);
 					waitForElement(driver, Chassis_Drop_Loc_Search);
 					click(driver, Chassis_Drop_Loc_Search);
 					twoColumnSearchWindow(driver, chasis_drop_header, condition, chasis_drop_Search_data);
+
 				}
 			}
 			
@@ -347,7 +346,12 @@ waitForDisplay(driver, NewButton_ToolBar);
 			} 
 			
 			click(driver, tdnPopup_Ok);
+			
 			Extent_completed(tc_Name, test, test1);
 
 		}
+
+		    
 	}
+
+

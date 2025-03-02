@@ -8,7 +8,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.Enquiry_History_Locators;
 
 public class TC_Enquiry_History_TS026 extends Keywords{
 
@@ -53,8 +53,8 @@ public class TC_Enquiry_History_TS026 extends Keywords{
 		}
 		waitForElement(driver, Equip_Type_DD);
 		click(driver, Equip_Type_DD);
-		String Equip_Type_Select = String.format(EMS_Locators.Equip_Type_Select,  equipmentType_Input); 
-		String Radio_Btn_Select = String.format(EMS_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
+		String Equip_Type_Select = String.format(Enquiry_History_Locators.Equip_Type_Select,  equipmentType_Input); 
+		String Radio_Btn_Select = String.format(Enquiry_History_Locators.Radio_Btn_Select,  Container_Type_Radio_Button);
 		waitForElement(driver, Equip_Type_Select);
 		click(driver, Equip_Type_Select);
 		//select Equipment radio button
@@ -111,7 +111,7 @@ public class TC_Enquiry_History_TS026 extends Keywords{
 			List<String> Multi_Sel_Values = splitAndExpand(Multi_Select_Inputs);
 			int total_Input_Size = Multi_Sel_Values.size();
 			for(String Multi_Sel_Value : Multi_Sel_Values) {
-				String movement =  String.format(EMS_Locators.movement_Value,i); 
+				String movement =  String.format(Enquiry_History_Locators.movement_Value,i); 
 				waitForElement(driver, P_movement_Code);
 				String movementDetail=getText(driver, movement);
 				if(Grid_Size==total_Input_Size) {
@@ -134,7 +134,7 @@ public class TC_Enquiry_History_TS026 extends Keywords{
 			// check the movement details
 			waitForElement(driver, Scruoll);
 			horizontalscroll(driver, Scruoll, 4500);
-			String Booking_value =  String.format(EMS_Locators.P_bookingNo_Text,equipmentNo_TxtField_Input);
+			String Booking_value =  String.format(Enquiry_History_Locators.P_bookingNo_Text,equipmentNo_TxtField_Input);
 			String movementDetail=getText(driver, Booking_value);
 			if(equipmentNo_TxtField_Input.equals(movementDetail)) {
 				System.out.println("Matched || " + " Expected Report Activity is : " + equipmentNo_TxtField_Input + " || Actual Report Activity is : " + movementDetail);
@@ -154,7 +154,7 @@ public class TC_Enquiry_History_TS026 extends Keywords{
 			System.out.println("numberValue : "+numberValue);
 			int expectednumber =0; 
 			for(int i=0;i<=numberValue+numberValue;i++) {
-					String movementcode =  String.format(EMS_Locators.movementcode,i);
+					String movementcode =  String.format(Enquiry_History_Locators.movementcode,i);
 					String movement_Code_text = getTextwithoutfail(driver, movementcode);
 					if(movement_Code_text.equals(equipmentNo_TxtField_Input)) {
 						expectednumber++;

@@ -6,7 +6,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.Equipment_Master_Locators;
 
 public class TC_Equipment_Master_TS052 extends Keywords{
 	
@@ -25,7 +25,7 @@ public class TC_Equipment_Master_TS052 extends Keywords{
 		String ReActivate_Optioin =Excel_data.get("ReActivate_Optioin");
 		String Matser_Module =Excel_data.get("Matser_Module");
 		String Reactivation_Popup =Excel_data.get("Reactivation_Popup");
-		String newlyAddedEquipment=String.format(EMS_Locators.newlyAddedEquipment,equip_Type);
+		String newlyAddedEquipment=String.format(Equipment_Master_Locators.newlyAddedEquipment,equip_Type);
 		String Condition =Excel_data.get("Condition");
 		String Module_Name_Column_Header =Excel_data.get("Module_Name_Column_Header");
 		String Global_Search_Type =Excel_data.get("Global_Search_Type");

@@ -16,10 +16,6 @@ import locators.Rate_Request_Loactors;
 
 public class TC_Rate_Request_SC16 extends Keywords {
 
-	public static String Pre_Carriage_Radiobtn;
-	public static String On_Carriage_Radiobtn;
-	public static String tService;
-	public static String TOS;
 
 	public void Rate_Request_SC16(WebDriver driver, ExtentTest test, ExtentTest test1, String selected_dataset)
 			throws Exception {
@@ -67,10 +63,17 @@ public class TC_Rate_Request_SC16 extends Keywords {
 		String To_date_perform =Data.get( "To_date_perform");
 		String Eqp_Quantity_Input =Data.get( "Eqp_Quantity_Input");
 		String do_You_Want_Delete = Data.get("Do_You_Want_Delete").trim();
-		Pre_Carriage_Radiobtn = Data.get("pre_Carriage_Radiobtn");
-		On_Carriage_Radiobtn = Data.get("On_Carriage_Radiobtn");
-		tService=Data.get("T_Service");
-		TOS=Data.get("TOS_Option");
+		String Pre_Carriage_Radiobtn = Data.get("pre_Carriage_Radiobtn");
+		String	On_Carriage_Radiobtn = Data.get("On_Carriage_Radiobtn");
+		String	tService=Data.get("T_Service");
+		String	TOS=Data.get("TOS_Option");
+		String search_type2=Data.get("search_type2");
+		String input2=Data.get("input2");
+		String search_type3=Data.get("search_type3");
+		String input3=Data.get("input3");
+		
+		
+		
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
 
@@ -80,47 +83,14 @@ public class TC_Rate_Request_SC16 extends Keywords {
 
 		Extent_Start(testcase_Name, test, test1);
 
-		waitForElement(driver, Login);
-		waitForElement(driver, Username_input);
-		sendKeys(driver, Username_input, username);
-		waitForElement(driver, Password_input);
-		sendKeys(driver, Password_input, password);
-		waitForElement(driver, Login);
-		click(driver, Login);
-		waitForElement(driver, home_Page);
-		if(isDisplayed(driver, home_Page)) {
-			Extent_pass(driver, "Home Page is Displayed", test,test1);
-		}else {
-			Extent_fail(driver, "Home Page is not Displayed", test,test1);
-		}
+		LRP_Login(driver, username, password);
+		
 
 		//Switch User
+SwitchProfile(driver, agencyUser);
 
-		waitForElement(driver, Switch_Profile);
-		click(driver, Switch_Profile);
-		waitForElement(driver, agency_Code_Filter);
-		sendKeys(driver, agency_Code_Filter, agencyUser);
-		waitForElement(driver, select_Agency);
-		click(driver, select_Agency);
-		waitForElement(driver, Switch_Profile_Button);
-		click(driver, Switch_Profile_Button);
+moduleNavigate(driver, Field_Names);
 
-
-
-		waitForElement(driver, Module_SearchR);
-		click(driver,Module_SearchR);
-		waitForElement(driver, Module_SearchR);
-		sendKeys(driver, Module_SearchR, Field_Names);
-		waitForElement(driver, Rate_Request);
-		click(driver, Rate_Request);
-		waitForElement(driver, Rate_Request_Page);
-		if(isDisplayed(driver, Rate_Request_Page)) {
-			System.out.println("*****Rate Request Module is Dispalyed*****");
-			Extent_pass(driver, "*****Rate Request Module is Dispalyed*****", test,test1);
-		}else {
-			System.out.println("*****Rate Request Module is not Dispalyed");
-			Extent_fail(driver, "*****Rate Request Module is not Dispalyed*****", test,test1);
-		}
 
 		Step_Start(1, "Click on the new button in the toolbar", test, test1);
 
@@ -146,20 +116,11 @@ public class TC_Rate_Request_SC16 extends Keywords {
 		click(driver, tos);
 		Extent_call(test, test1, "selecting the from date");
 		// Selecting the From Date
-		StringBuilder day = new StringBuilder();
-		StringBuilder month = new StringBuilder();
-		StringBuilder year = new StringBuilder();
+	
 		waitForElement(driver, Dateclick);
 		if (From_date_perform.equalsIgnoreCase("Yes")) {
-			click(driver, Dateclick);
-			datePicker(From_Date_Input, day, month, year);
-			waitForElement(driver, Month_DD);
-			selectByText(driver, Month_DD,month.toString());
-			waitForElement(driver, Year_DD);
-			selectByText(driver, Year_DD,year.toString());
-			String date_select =  String.format(Rate_Request_Loactors.date_select,  day); 
-			waitForElement(driver, date_select);
-			click(driver, date_select);
+			
+			selectDatePicker(driver, Dateclick, From_Date_Input);
 		} else {
 			waitForElement(driver, Dateclick);
 			clearAndType(driver, Dateclick, From_Date_Input);
@@ -168,15 +129,9 @@ public class TC_Rate_Request_SC16 extends Keywords {
 		Extent_call(test, test1, "selecting the TO date");
 		waitForElement(driver, Dateclick1);
 		if (To_date_perform.equalsIgnoreCase("Yes")) {
-			click(driver, Dateclick1);
-			datePicker(To_Date_Input, day, month, year);
-			waitForElement(driver, Month_DD);
-			selectByText(driver, Month_DD,month.toString());
-			waitForElement(driver, Year_DD);
-			selectByText(driver, Year_DD,year.toString());
-			String date_select =  String.format(Rate_Request_Loactors.date_select,  day); 
-			waitForElement(driver, date_select);
-			click(driver, date_select);
+			
+			selectDatePicker(driver, Dateclick1, To_Date_Input);
+			
 		} else {
 			waitForElement(driver, Dateclick1);
 			clearAndType(driver, Dateclick1, To_Date_Input);
@@ -186,13 +141,7 @@ public class TC_Rate_Request_SC16 extends Keywords {
 
 		waitForElement(driver, Customer_Name_search_button);
 		click(driver, Customer_Name_search_button);
-		waitForElement(driver, Customer_Code_Select_dropdown);
-		click(driver, Customer_Code_Select_dropdown);
-		selectByText(driver, Customer_Code_Select_dropdown, Customer_Code);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-		sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-		click(driver, CustomerSearch_Frame_SearchButton);
+		globalValueSearchWindow1(driver, Condition_Value, Customer_Code, Customer_code_Value, search_type2, input2,search_type3, input3);
 		waitForDisplay(driver, pop_up_exp);
 		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
@@ -258,7 +207,9 @@ public class TC_Rate_Request_SC16 extends Keywords {
 
 			Step_Start(7, "Enter the Quantity", test, test1);
 			waitForElement(driver, Eqp_Quantity);
-			clearAndType(driver, Eqp_Quantity,Eqp_Quantity_Input);
+			click(driver, Eqp_Quantity);
+			Newclear(driver, Eqp_Quantity);
+			Actionsendkeys(driver, Eqp_Quantity,Eqp_Quantity_Input );
 			Step_End(7, "Enter the Quantity", test, test1);
 
 			Step_Start(8, "Enter the Gross Weigh", test, test1);
@@ -287,14 +238,19 @@ public class TC_Rate_Request_SC16 extends Keywords {
 			waitForElement(driver, onCarriageLocator);
 			click(driver, onCarriageLocator);
 
-			waitForElement(driver, Exp_Days);
-			sendKeys(driver, Exp_Days, Exp_Detention_Days);
-			waitForElement(driver, Imp_Days);
-			sendKeys(driver, Imp_Days, Imp_Detention_Days);
-			waitForElement(driver, Exp_Demurage);
-			sendKeys(driver, Exp_Demurage, Exp_Demurrage);
-			waitForElement(driver, Imp_Demurage);
-			sendKeys(driver, Imp_Demurage, Imp_Demurrage);
+			waitForDisplay(driver, Exp_Days);
+			if(isdisplayed(driver, Exp_Days)&&isElementAccessible(driver, Exp_Days)) {
+				clearAndType(driver, Exp_Days, Exp_Detention_Days);
+			}
+			if(isdisplayed(driver, Imp_Days)&&isElementAccessible(driver, Imp_Days)) {
+				clearAndType(driver, Imp_Days, Imp_Detention_Days);
+			}
+			if(isdisplayed(driver, Exp_Demurage)&&isElementAccessible(driver, Exp_Demurage)) {
+				clearAndType(driver, Exp_Demurage, Exp_Demurrage);
+			}
+			if(isdisplayed(driver, Imp_Demurage)&&isElementAccessible(driver, Imp_Demurage)) {
+				clearAndType(driver, Imp_Demurage, Imp_Demurrage);
+			}
 
 			Step_Start(9, "Click routing", test, test1);
 
@@ -443,7 +399,8 @@ public class TC_Rate_Request_SC16 extends Keywords {
 			}
 
 			Step_End(17, "Click Ok", test, test1);
-
+			waitForElement(driver, Mail_Cancel_button);
+			click(driver, Mail_Cancel_button);
 			waitForElement(driver,reqNo_Textfield);
 			String Value5=getAttribute(driver, reqNo_Textfield, "value");
 			System.out.println("Req.No:"+Value5);
@@ -455,12 +412,8 @@ public class TC_Rate_Request_SC16 extends Keywords {
 				waitForElement(driver,close_Tab);
 				click(driver, close_Tab);
 
-				waitForElement(driver,Module_SearchR);
-				sendKeys(driver, Module_SearchR, ModuleName1);
-
-				waitForElement(driver, SRR_Gate);
-				click(driver, SRR_Gate);
-
+				moduleNavigate(driver, ModuleName1);
+				
 				//SRR Gate
 
 				waitForElement(driver, srrGate_Tab);
@@ -507,7 +460,6 @@ public class TC_Rate_Request_SC16 extends Keywords {
 					System.out.println("Not matched || " + " Expected Value is : " + Value5 + " || Actual Value  is : " + submitted_ReqNum5);
 					System.out.println(Value5+" is not submitted");
 					Extent_fail(driver,"Not matched || " + " Expected Value is : " + Value5 + " || Actual Value is : " + submitted_ReqNum5,test,test1);
-					Extent_fail(driver, Value5+" Error is not displayed", test,test1);
 				}		
 				//Pending	
 				waitForElement(driver, pending_RadioButton);
@@ -550,7 +502,6 @@ public class TC_Rate_Request_SC16 extends Keywords {
 					System.out.println("Not matched || " + " Expected Value is : " + Value5 + " || Actual Value  is : " + pending_ReqNum5);
 					System.out.println(Value5+" is not submitted");
 					Extent_fail(driver,"Not matched || " + " Expected Value is : " + Value5 + " || Actual Value is : " + pending_ReqNum5,test,test1);
-					Extent_fail(driver, Value5+" Error is not displayed", test,test1);
 				}	
 
 				Extent_call(test, test1, "Rate request delete ends");

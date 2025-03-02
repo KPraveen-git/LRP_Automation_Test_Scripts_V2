@@ -71,7 +71,8 @@ public class TC_Rate_Request_SC10_SC11 extends Keywords {
 		String TOS = Excel_data.get("TOS_Option");
 		String Pre_Carriage_Radiobtn = Excel_data.get("pre_Carriage_Radiobtn");
 		String On_Carriage_Radiobtn = Excel_data.get("on_Carriage_Radiobtn");
-	
+		String Rate_No_Search_Type = Excel_data.get("Rate_No_Search_Type");
+		
 		navigateUrl(driver, url);
 
 		Extent_Start(testCaseName, test, test1);	
@@ -134,7 +135,7 @@ public class TC_Rate_Request_SC10_SC11 extends Keywords {
 		globalValueSearchWindow1(driver, condition_Option, customerCode_Option, customerCode, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
 		
 		waitForDisplay(driver, pop_up_exp);
-		if(isDisplayed(driver,pop_up_exp )) {
+		if(isdisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid The Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid The Actual Popup value was : "+actual_Popup, test, test1);
@@ -339,7 +340,7 @@ public class TC_Rate_Request_SC10_SC11 extends Keywords {
 			System.out.println("Not Matched || " + " Expected Report Activity is : " + Rate_Req_Submitted_Popup_Txt + " || Actual Report Activity is : " + PopUp_Msg2);        
 			Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + Rate_Req_Submitted_Popup_Txt + " || Actual Report Activity is : " + PopUp_Msg2, test,test1); 
 		} 
-
+		
 		waitForElement(driver, Req_No_Txt_Field); 
 		String Act_ReqNo=getAttribute(driver, Req_No_Txt_Field, "value");                                                                                                            
 		if(!Act_ReqNo.equals("")) {                                                                                                                  
@@ -365,23 +366,14 @@ public class TC_Rate_Request_SC10_SC11 extends Keywords {
 
 		waitForElement(driver, close_Tab);
 		click(driver, close_Tab);
-		waitForElement(driver, Module_SearchR);
-		sendKeys(driver, Module_SearchR, Search_module);	
-		enter(driver);
-
+moduleNavigate(driver, Search_module);
 		Step_Start(1, "Click on the search icon in the toolbar", test, test1);
 
 		waitForElement(driver, global_search_R);
 		click(driver, global_search_R);
 		Step_End(1, "Click on the search icon in the toolbar", test, test1);
 		Step_Start(2, ".Enter the Reference number.", test, test1);
-
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver, CustomerSearch_Condition_Dropdown1, condition_Option);
-
-		waitForElement(driver, global_search_input_R);
-		sendKeys(driver, global_search_input_R, Act_ReqNo);
-		enter(driver);
+globalValueSearchWindow1(driver, condition_Option, Rate_No_Search_Type, Act_ReqNo, "", "", "", "");
 		Step_End(2, ".Enter the Reference number.", test, test1);
 
 		
@@ -433,17 +425,15 @@ public class TC_Rate_Request_SC10_SC11 extends Keywords {
 			System.out.println("Not Matched || " + " Expected Request Status is : " + req_Status_Submit + " || Actual Request Status is : " + act_Req_Status);        
 			Extent_fail(driver, "Not Matched || " + " Expected Request Status is : " + req_Status_Submit + " || Actual Request Status is : " + act_Req_Status, test,test1); 
 		} 
-
+		waitForElement(driver, mail_Cancel_Button);
+		click(driver, mail_Cancel_Button);
 
 		if(delete_perform.equalsIgnoreCase("Yes")) {
 			Extent_call(test, test1, "Rate request Delete Started");
 
 			waitForElement(driver, close_Tab);
 			click(driver, close_Tab);
-			waitForElement(driver, Module_SearchR);
-			sendKeys(driver, Module_SearchR, Module_SRR_Gate);
-			enter(driver);
-
+moduleNavigate(driver, Module_SRR_Gate);
 
 			//SRR Gate
 

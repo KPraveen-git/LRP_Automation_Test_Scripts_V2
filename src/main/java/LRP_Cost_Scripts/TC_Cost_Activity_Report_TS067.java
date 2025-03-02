@@ -1,4 +1,4 @@
-package Cost_Scripts;
+package LRP_Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -111,15 +111,17 @@ public class TC_Cost_Activity_Report_TS067 extends Keywords {
 		twoColumnSearchWindow(driver,Arrival_Date_Header,Arrival_Date_Condition,Arrival_Date_Value);
 		Step_End(7, "Click on the Arrival date search button and select the required date. ", test, test1);
 		
-		Step_Start(8, "Click on the Show button. ", test, test1);
+		Step_Start(8, ".Click on the Show button and Click on the Predictable Reporting tab ", test, test1);
 		waitForElement(driver, Show_Button_CAR);
 		click(driver,Show_Button_CAR);
-		Step_End(8, "Click on the Show button. ", test, test1);
 		
 		waitForElement(driver, UnPredictable_Tab_CAR);
 		click(driver,UnPredictable_Tab_CAR);
 		waitForElement(driver, UnPredictable_Table_CAR);
 	
+		Step_End(8, ".Click on the Show button and Click on the Predictable Reporting tab ", test, test1);
+
+		Step_Start(9, "Get the Formula from the Formula column in selected Activity and check whether the To be reported(Formula) checkbox is selected", test, test1);
 		waitForElement(driver, Column_SelectMenu);
 		click(driver, Column_SelectMenu);
 		waitForElement(driver, Column_Search_Input);
@@ -167,17 +169,21 @@ public class TC_Cost_Activity_Report_TS067 extends Keywords {
 		waitForElement(driver, Formula_Column_CAR);
 		click(driver,Formula_Column_CAR);
 		double quantity_Amount=0;
-		
+	
+
 		if (!Formula_Value.isEmpty()) {
-			
 			String varibaleNameFormula=extractVariableName(Formula_Value);
 			String formulavalue = evaluateExpression(Formula_Value, Apply_Variable_Value);
 			System.out.println("formulavalue : "+formulavalue);
 			String SelectColumn=String.format(Select_Table_Row_CAR,Activity_Name_Value);
-			
+		
 			waitForDisplay(driver, IsPredictable_Check_CAR);
 			String predictableCheck=getAttribute1(driver, IsPredictable_Check_CAR, "aria-label");
+			Step_End(9, "Get the Formula from the Formula column in selected Activity and check whether the To be reported(Formula) checkbox is selected", test, test1);
+
 			if(!predictableCheck.equals("checked")) {
+				Step_Start(15, "If the To be reported(Formula) checkbox is not selected Enter the variable amount", test, test1);
+
 				if(Select_Contract_type_Value.equalsIgnoreCase("PTC")) {
 					quantity_Amount=Double.parseDouble("1");
 				}else {
@@ -191,9 +197,14 @@ public class TC_Cost_Activity_Report_TS067 extends Keywords {
 				System.out.println("Apply_Variable_Value : "+Apply_Variable_Value);
 				sendKeys(driver, Value_Input_CAR, Apply_Variable_Value);
 				
+				Step_End(15, "If the To be reported(Formula) checkbox is not selected Enter the variable amount", test, test1);
+
+				Step_Start(16, "click the Apply variable button", test, test1);
 				waitForElement(driver, Apply_Button_CAR);
 				click(driver, Apply_Button_CAR);
-				
+				Step_End(16, "click the Apply variable button", test, test1);
+
+				Step_Start(17, "Check the total cost value in the Activity , the value is matched with formula result after applied our input value.", test, test1);
 				waitForDisplay(driver, SelectColumn);
 				jsClick(driver, SelectColumn);
 
@@ -212,22 +223,31 @@ public class TC_Cost_Activity_Report_TS067 extends Keywords {
 					System.out.println("Total Cost Value Not Matched ||  Expected : "+resultExpected+" ||  Actual  : "+total_Cost_value_Act);
 					Extent_fail(driver, "Total Cost Value Not Matched ||  Expected : "+resultExpected+" ||  Actual  : "+total_Cost_value_Act, test, test1);
 				}
-				
+				Step_End(17, "Check the total cost value in the Activity , the value is matched with formula result after applied our input value.", test, test1);
+
 			}else {
-				
+				Step_Start(10, "If the To be reported(Formula) checkbox is selected, get the formula name and navigate to the 'Vessel' module", test, test1);
+
 				moduleNavigate(driver, Vessel_Module_navigate);
 				
+				Step_End(10, "If the To be reported(Formula) checkbox is selected, get the formula name and navigate to the 'Vessel' module", test, test1);
+
+				Step_Start(11, "Select the Action icon for the respective vessel code", test, test1);
 				waitForElement(driver, Vessel_Code_Filter_Input_VSL);
 				click(driver,Vessel_Code_Filter_Input_VSL);
 				sendKeys(driver, Vessel_Code_Filter_Input_VSL, Vessel_Code);
 				
 				waitForElement(driver, Vessel_Code_Action_button_VSL);
 				click(driver,Vessel_Code_Action_button_VSL);
-				
+				Step_End(11, "Select the Action icon for the respective vessel code", test, test1);
+
+				Step_Start(12, "Get the value for the Formula name in the AG grid  formula", test, test1);
 				String varible_Element=String.format(Get_Varibale_Value_VSL,varibaleNameFormula);
 				waitForElement(driver, varible_Element);
 				String Variable_text_value=getAttribute(driver, varible_Element, "value");
-				
+				Step_End(12, "Get the value for the Formula name in the AG grid  formula", test, test1);
+
+				Step_Start(13, "Navigate back to Cost Actvity page and apply the value in the formula and Calculate the amount.", test, test1);
 				String formulavalue1 = evaluateExpression(Formula_Value, Variable_text_value);
 				double result1 =getNumberValue(formulavalue1) ;
 				quantity_Amount=Double.parseDouble(Enter_Quantity_value);
@@ -239,6 +259,9 @@ public class TC_Cost_Activity_Report_TS067 extends Keywords {
 				
 				String SelectTotalCostColumn=String.format(Total_Cost_Column_CAR,Activity_Name_Value);
 				waitForElement(driver, SelectTotalCostColumn);
+				Step_End(13, "Navigate back to Cost Actvity page and apply the value in the formula and Calculate the amount.", test, test1);
+
+				Step_Start(14, "Check the Total Cost value for that activity and Verify the charge rate  is matched with Calclulated amount.", test, test1);
 				String total_Cost_act=getText(driver, SelectTotalCostColumn);
 				double total_Cost_value_Act=getNumberValue(total_Cost_act);
 				
@@ -249,6 +272,8 @@ public class TC_Cost_Activity_Report_TS067 extends Keywords {
 					System.out.println("Total Cost Value Not Matched ||  Expected : "+resultExpected+" ||  Actual  : "+total_Cost_value_Act);
 					Extent_fail(driver, "Total Cost Value Not Matched ||  Expected : "+resultExpected+" ||  Actual  : "+total_Cost_value_Act, test, test1);
 				}
+				Step_End(14, "Check the Total Cost value for that activity and Verify the charge rate  is matched with Calclulated amount.", test, test1);
+
 			}
 			
 		}else {

@@ -46,6 +46,12 @@ public class TC_Cost_Activity_Report_TS079 extends Keywords{
 		String Service_details_Codition = data.get("Service_details_Codition");
 		String Arrival_Date_Condition = data.get("Arrival_Date_Condition");
 		String Arrival_Date_Value = data.get("Arrival_Date_Value");
+		String Service_Header = data.get("Service_Header");
+		String Vessel_Header = data.get("Vessel_Header");
+		String Port_Header = data.get("Port_Header");
+		String Terminal_Header = data.get("Terminal_Header");
+		String Arrival_Date_Header = data.get("Arrival_Date_Header");
+		String Vendor_Code_Header = data.get("Vendor_Code_Header");
 		
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
@@ -76,8 +82,8 @@ public class TC_Cost_Activity_Report_TS079 extends Keywords{
 		waitForElement(driver, select_ActivityType);
 		click(driver, select_ActivityType);
 		
-		waitForElement(driver, contract_Type_Dropdown);
-		click(driver, contract_Type_Dropdown);
+		waitForElement(driver, contractTypeDropdown);
+		click(driver, contractTypeDropdown);
 		
 		String select_Contract_Type=String.format(DropDown_Select, contract_Type);
 		waitForElement(driver, select_Contract_Type);
@@ -161,23 +167,28 @@ public class TC_Cost_Activity_Report_TS079 extends Keywords{
 		
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Service_Code);
+		twoColumnSearchWindow(driver,Service_Header,Service_details_Codition,Service_Code);
+
 
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Vessel_Code);
+		twoColumnSearchWindow(driver,Vessel_Header,Service_details_Codition,Vessel_Code);
+
 		
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Port_Code);
+		twoColumnSearchWindow(driver,Port_Header,Service_details_Codition,Port_Code);
+
 		
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Terminal_Code);
+		twoColumnSearchWindow(driver,Terminal_Header,Service_details_Codition,Terminal_Code);
+
 		
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, Arrival_Date_Value);
+		twoColumnSearchWindow(driver,Arrival_Date_Header,Arrival_Date_Condition,Arrival_Date_Value);
+
 		
 		Step_End(5, "Enter the required service,vessel,port,terminal,arrival date from their respective searches.", test, test1);
 		
@@ -231,7 +242,7 @@ public class TC_Cost_Activity_Report_TS079 extends Keywords{
 		waitForElement(driver, vendorCode_Button);
 		click(driver, vendorCode_Button);
 		
-		selectValue(driver, condition_2, vendorCode);
+		twoColumnSearchWindow(driver, Vendor_Code_Header, condition_2, vendorCode);
 		
 		waitForElement(driver, amount_Gridcell_Mics);
 		doubleClick(driver, amount_Gridcell_Mics);

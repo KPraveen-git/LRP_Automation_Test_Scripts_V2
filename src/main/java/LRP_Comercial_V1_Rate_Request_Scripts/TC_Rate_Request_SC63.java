@@ -71,6 +71,12 @@ public class TC_Rate_Request_SC63 extends Keywords{
 		String SRR_Status = data.get("SRR_Status");
 		String Module_SRR_Gate=data.get("Module_SRR_Gate");
 		String srrRequestType=data.get("SRR_RequestType");
+		String Customer_code_Value2 = data.get("Customer_code_Value2");
+		String Customer_code_Value3 = data.get("Customer_code_Value3");
+		String Cust_code2 = data.get("Cust_code2");
+		String Cust_code3 = data.get("Cust_code3");
+		String Select_type_location = data.get("Select_type_location");
+
 
 		String preCarriageLocator = String.format(Rate_Request_Loactors.pre_Carriage_Radiobtn, Pre_Carriage_Radiobtn);
 		String onCarriageLocator =  String.format(Rate_Request_Loactors.on_Carriage_Radiobtn,  On_Carriage_Radiobtn); 
@@ -124,36 +130,31 @@ public class TC_Rate_Request_SC63 extends Keywords{
 		
 		
 		waitForElement(driver, Customer_Name_search_button);
-	   click(driver, Customer_Name_search_button);
-	   waitForElement(driver, Customer_Code_Select_dropdown);
-	   click(driver, Customer_Code_Select_dropdown);
-	   selectByText(driver, Customer_Code_Select_dropdown, customerCode_Option);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver, CustomerSearch_Condition_Dropdown1, condition_Option);
-		waitForElement(driver, CustomerSearch_InputTextfield1);
-		sendKeys(driver, CustomerSearch_InputTextfield1, customerCode);
-		click(driver, CustomerSearch_Frame_SearchButton);
+		click(driver, Customer_Name_search_button);
 		
+		
+		globalValueSearchWindow1(driver, condition_Option, customerCode_Option, customerCode, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
+		
+		
+		
+	
 		waitForDisplay(driver, pop_up_exp);
-		if(isdisplayed(driver,pop_up_exp )) {
+		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
-			System.out.println("The Customer Code is Invalid The Actual Popup value was : "+actual_Popup);
-			Extent_fail(driver, "The Customer Code is Invalid The Actual Popup value was : "+actual_Popup, test, test1);
+			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
+			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 		}else {
-		waitForElement(driver, Customer_Select);
-		click(driver, Customer_Select);
-		waitForElement(driver, global_select_Button);
-		click(driver, global_select_Button);
-		}
-		
-		Step_End(2, "Enter the customer name", test, test1);
-		waitForDisplay(driver, exit_Button);
-		if(isdisplayed(driver, exit_Button)) {
-			scrollUsingElement(driver, exit_Button);
-			waitForElement(driver, exit_Button);
-			click(driver, exit_Button);
-		}
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
+			waitForElement(driver, SelectButton);
+			click(driver, SelectButton);
 
+			waitForDisplay(driver, CustName_ExitBtn);
+			if(isDisplayed(driver, CustName_ExitBtn)) {
+				waitForElement(driver, CustName_ExitBtn);
+				click(driver, CustName_ExitBtn);
+			
+			}
 		Step_Start(3, "Enter the origin", test, test1);
 		waitForElement(driver, Orgin_Input);
 		sendKeys(driver, Orgin_Input, Origin_Input);
@@ -314,7 +315,8 @@ public class TC_Rate_Request_SC63 extends Keywords{
 		Step_End(10, "Select the routing", test, test1);
 		Step_Start(11, "Select the payment mode as Pay At", test, test1);
 
-		
+		waitForDisplay(driver, paymentMode_Dropdown_RR);
+		if(isdisplayed(driver, paymentMode_Dropdown_RR)&& isElementAccessible(driver, paymentMode_Dropdown_RR)) {
 		waitForElement(driver, paymentMode_Dropdown_RR);
 		click(driver, paymentMode_Dropdown_RR);
 		
@@ -325,9 +327,11 @@ public class TC_Rate_Request_SC63 extends Keywords{
 		waitForElement(driver, payLocation_SearchButton_RR);
 		if(isdisplayed(driver, payLocation_SearchButton_RR)&& isElementAccessible(driver, payLocation_SearchButton_RR)) {
 		click(driver, payLocation_SearchButton_RR);
-		selectValue(driver, condition, payLocation);
+		twoColumnSearchWindow(driver, condition, Select_type_location, payLocation);
 		
-		}
+		
+		
+		}}
 		Step_End(11, "Select the payment mode as Pay At", test, test1);
 		Step_Start(12, "Enter the OFR", test, test1);
 		waitForElement(driver, OFR_Txt_Field);
@@ -558,5 +562,4 @@ public class TC_Rate_Request_SC63 extends Keywords{
 
 				 
 }
-}
-
+}}

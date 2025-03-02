@@ -37,6 +37,16 @@ public class TC_Cost_Activity_Report_TS069 extends Keywords {
 		String columns_filter_opl = data.get("columns_filter_opl");
 		String columns_value_opl = data.get("columns_value_opl");
 
+		String Search_Type2 =data.get("Search_Type2");
+		String Search_Input2 =data.get("Search_Input2");
+		String Search_Type3 =data.get("Search_Type3");
+		String Search_Input3 =data.get("Search_Input3");
+		
+		String terminal_header =data.get("terminal_header");
+		String port_header =data.get("port_header");
+		String voyage_header =data.get("voyage_header");
+		String vessel_header =data.get("vessel_header");
+		String service_header =data.get("service_header");
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 
@@ -55,7 +65,15 @@ public class TC_Cost_Activity_Report_TS069 extends Keywords {
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
 		Step_End(2, "Enter the screen name as 'Cost Activity Report' in module search field.", test, test1);
-
+		
+waitForDisplay(driver, NewButton_ToolBar);
+	
+	if(isdisplayed(driver, NewButton_ToolBar) && isElementAccessible(driver, NewButton_ToolBar)) {
+		
+		click(driver, NewButton_ToolBar);
+		
+	}
+		
 		Step_Start(3, "Click on the global search option which is available in the tool bar.", test, test1);
 
 		waitForElement(driver, SearchButton_Toolbar);
@@ -64,34 +82,22 @@ public class TC_Cost_Activity_Report_TS069 extends Keywords {
 		Step_End(3, "Click on the global search option which is available in the tool bar.", test, test1);
 
 		Step_Start(4, "Check whether it opens a new search window.", test, test1);
-
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-
-		Step_End(4, "Check whether it opens a new search window.", test, test1);
-
+	
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field.", test, test1);
-
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field.", test, test1);
 
 		Step_Start(6, "Then click on the search button.", test, test1);
 
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-
-		Step_End(6, "Then click on the search button.", test, test1);
-
 		Step_Start(7, "System will show the CAR No.", test, test1);
 
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, CAR_Retrieve_Condition, CAR_Retrieve_Type, CAR_Number_Retrieve, Search_Type2, Search_Input2, Search_Type3, Search_Input3);
+
+		Step_End(4, "Check whether it opens a new search window.", test, test1);
+
+
+		Step_End(5, "Enter the required CAR No. in the CAR No search field.", test, test1);
+
+
+		Step_End(6, "Then click on the search button.", test, test1);
 
 		Step_End(7, "System will show the CAR No.", test, test1);
 
@@ -131,7 +137,7 @@ public class TC_Cost_Activity_Report_TS069 extends Keywords {
 		waitForElement(driver, load_window_sidebar_columns);
 		click(driver, load_window_sidebar_columns);
 		waitForElement(driver, load_window_select_all);
-		jsClick(driver, load_window_select_all);
+		click(driver, load_window_select_all);
 
 		List<String> ExpensiveTable_Headers = splitAndExpand(columns_to_filter);
 		for (String FilterHeader : ExpensiveTable_Headers) {
@@ -210,12 +216,14 @@ public class TC_Cost_Activity_Report_TS069 extends Keywords {
 
 		waitForElement(driver, service_search_OpL);
 		click(driver, service_search_OpL);
-		selectValue(driver, condition, service_car);
-
+		twoColumnSearchWindow(driver, service_header, condition, service_car);
+		
+		
 		waitForElement(driver, vessel_search_OpL);
 		click(driver, vessel_search_OpL);
-		selectValue(driver, condition, vessel_car);
+		twoColumnSearchWindow(driver, vessel_header, condition, vessel_car);
 
+		
 		waitForElement(driver, voyage_search_OpL);
 		click(driver, voyage_search_OpL);
 		if (voyage_car.matches(".*\\d.*[a-zA-Z].*")) {
@@ -226,19 +234,19 @@ public class TC_Cost_Activity_Report_TS069 extends Keywords {
 
 			System.out.println("Number part: " + numberPart);
 			System.out.println("Letter part: " + letterPart);
-			selectValue(driver, condition, numberPart);
-		} else {
+			twoColumnSearchWindow(driver, voyage_header, condition, numberPart);
 
-			selectValue(driver, condition, voyage_car);
+		} else {
+			twoColumnSearchWindow(driver, voyage_header, condition, voyage_car);
 
 		}
 		waitForElement(driver, port_search_OpL);
 		click(driver, port_search_OpL);
-		selectValue(driver, condition, port_car);
+		twoColumnSearchWindow(driver, port_header, condition, port_car);
 
 		waitForElement(driver, terminal_search_OpL);
 		click(driver, terminal_search_OpL);
-		selectValue(driver, "Contains", terminal_car);
+		twoColumnSearchWindow(driver, terminal_header, condition, terminal_car);
 
 		waitForElement(driver, load_btn_opl);
 		click(driver, load_btn_opl);
@@ -253,7 +261,7 @@ public class TC_Cost_Activity_Report_TS069 extends Keywords {
 		waitForElement(driver, opl_sidebar_columns);
 		click(driver, opl_sidebar_columns);
 		waitForElement(driver, opl_select_all);
-		jsClick(driver, opl_select_all);
+		click(driver, opl_select_all);
 
 		List<String> operation_list_headers = splitAndExpand(columns_filter_opl);
 		for (String FilterHeader : operation_list_headers) {

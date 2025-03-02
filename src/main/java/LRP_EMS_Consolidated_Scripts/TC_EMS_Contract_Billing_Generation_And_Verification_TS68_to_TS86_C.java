@@ -9,7 +9,6 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
 
 public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C extends Keywords {
 	public void EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C(WebDriver driver, ExtentTest test, ExtentTest test1,String selected_dataset) throws Throwable {
@@ -101,8 +100,8 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 
-			String month_Select69 = String.format(EMS_Locators.month_Select,  Month_Select_For69);
-			String generatebutton =  String.format(EMS_Locators.generatebutton,  generate_Button);
+			String month_Select69 = String.format(month_Select,  Month_Select_For69);
+			String generatebutton =  String.format(Generatebutton,  generate_Button);
 
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -206,8 +205,8 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String generate_Button = data.get("generate_Button");
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
-			String month_Select70 = String.format(EMS_Locators.month_Select,  Month_Select_For70);
-			String generatebutton =  String.format(EMS_Locators.generatebutton,  generate_Button);
+			String month_Select70 = String.format(month_Select,  Month_Select_For70);
+			String generatebutton =  String.format(Generatebutton,  generate_Button);
 
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -312,8 +311,8 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String month_Select71 = String.format(EMS_Locators.month_Select,  Month_Select_For71);
-			String generatebutton =  String.format(EMS_Locators.generatebutton,  generate_Button);
+			String month_Select71 = String.format(month_Select,  Month_Select_For71);
+			String generatebutton =  String.format(Generatebutton,  generate_Button);
 			Extent_Start(testCase_Name, test, test1);
 
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -414,8 +413,8 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String month_Select72 = String.format(EMS_Locators.month_Select,  Month_Select_For72);
-			String generatebutton =  String.format(EMS_Locators.generatebutton,  generate_Button);
+			String month_Select72 = String.format(month_Select,  Month_Select_For72);
+			String generatebutton =  String.format(Generatebutton,  generate_Button);
 			Extent_Start(testCase_Name, test, test1);
 
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -525,9 +524,9 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String month_Select73 = String.format(EMS_Locators.month_Select,  Month_Select_For73);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
+			String month_Select73 = String.format(month_Select,  Month_Select_For73);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
 
 			Extent_Start(testCase_Name, test, test1);
 
@@ -617,9 +616,9 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 
-			String month_Select74 = String.format(EMS_Locators.month_Select,  Month_Select_For74);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
+			String month_Select74 = String.format(month_Select,  Month_Select_For74);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
 
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -730,9 +729,9 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String month_Select75 = String.format(EMS_Locators.month_Select,  Month_Select_For75);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
+			String month_Select75 = String.format(month_Select,  Month_Select_For75);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
 
 			Extent_Start(testCase_Name, test, test1);
 			// Login
@@ -844,10 +843,10 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 
 			//locators
-			String month_Select76 = String.format(EMS_Locators.month_Select,  Month_Select_For76);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
-			String verrified_Row =  String.format(EMS_Locators.verrified_Row,  Contaract_No_input);
+			String month_Select76 = String.format(month_Select,  Month_Select_For76);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
+			String verrified_Row =  String.format(verified_Row,  Contaract_No_input);
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
 			moduleNavigate(driver, Field_Names);
@@ -980,9 +979,9 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 
 			//locators
-			String month_Select77 = String.format(EMS_Locators.month_Select,  Month_Select_For77);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
+			String month_Select77 = String.format(month_Select,  Month_Select_For77);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
 
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -1079,10 +1078,10 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String verrified_Row =  String.format(EMS_Locators.verrified_Row,  Contaract_No_input);
-			String month_Select78 = String.format(EMS_Locators.month_Select,  Month_Select_For78);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
+			String verrified_Row =  String.format(verified_Row,  Contaract_No_input);
+			String month_Select78 = String.format(month_Select,  Month_Select_For78);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
 			moduleNavigate(driver, Field_Names);
@@ -1238,10 +1237,10 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String month_Select79 = String.format(EMS_Locators.month_Select,  Month_Select_For79);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
-			String verrified_Row =  String.format(EMS_Locators.verrified_Row,  Contaract_No_input);
+			String month_Select79 = String.format(month_Select,  Month_Select_For79);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
+			String verrified_Row =  String.format(verified_Row,  Contaract_No_input);
 
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -1399,10 +1398,10 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 
 			//locators
-			String month_Select80 = String.format(EMS_Locators.month_Select,  Month_Select_For80);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
-			String verrified_Row =  String.format(EMS_Locators.verrified_Row,  Contaract_No_input);
+			String month_Select80 = String.format(month_Select,  Month_Select_For80);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
+			String verrified_Row =  String.format(verified_Row,  Contaract_No_input);
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
 			moduleNavigate(driver, Field_Names);
@@ -1573,11 +1572,11 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String month_Select81 = String.format(EMS_Locators.month_Select,  Month_Select_For81);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
-			String verrified_Row =  String.format(EMS_Locators.verrified_Row,  Contaract_No_input);
-			String regenerate_Button = String.format(EMS_Locators.generatebutton,  reGenerate_Button);
+			String month_Select81 = String.format(month_Select,  Month_Select_For81);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
+			String verrified_Row =  String.format(verified_Row,  Contaract_No_input);
+			String regenerate_Button = String.format(Generatebutton,  reGenerate_Button);
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
 			moduleNavigate(driver, Field_Names);
@@ -1767,11 +1766,11 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String month_Select82 = String.format(EMS_Locators.month_Select,  Month_Select_For82);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String ContractNo_Select_CheckBox =  String.format(EMS_Locators.ContractNo_Select_CheckBox,  Contaract_No_input);
-			String verrified_Row =  String.format(EMS_Locators.verrified_Row,  Contaract_No_input);
-			String regenerate_Button = String.format(EMS_Locators.generatebutton,  reGenerate_Button);
+			String month_Select82 = String.format(month_Select,  Month_Select_For82);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String ContractNo_Select_CheckBox =  String.format(ContractNo_Select_ChkBox,  Contaract_No_input);
+			String verrified_Row =  String.format(verified_Row,  Contaract_No_input);
+			String regenerate_Button = String.format(Generatebutton,  reGenerate_Button);
 			Extent_Start(testCase_Name, test, test1);
 
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -1969,10 +1968,10 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 
 			//locators
-			String month_Select83 = String.format(EMS_Locators.month_Select,  Month_Select_For83);
-			String after_month_Select83 = String.format(EMS_Locators.month_Select,  afterMonth_Select_For83);
-			String show_Bills =  String.format(EMS_Locators.generatebutton,  show_Bills_Button);
-			String generateButton =  String.format(EMS_Locators.generatebutton,  generate_Button);
+			String month_Select83 = String.format(month_Select,  Month_Select_For83);
+			String after_month_Select83 = String.format(month_Select,  afterMonth_Select_For83);
+			String show_Bills =  String.format(Generatebutton,  show_Bills_Button);
+			String generateButton =  String.format(Generatebutton,  generate_Button);
 
 			Extent_Start(testCase_Name, test, test1);
 			Extent_call(test, test1, "Enter module name in searchbox & click the module");
@@ -2068,8 +2067,8 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String regenerateButton =  String.format(EMS_Locators.generatebutton,  regenerate_Button);
-			String month_Select84 = String.format(EMS_Locators.month_Select,  Month_Select_For84);
+			String regenerateButton =  String.format(Generatebutton,  regenerate_Button);
+			String month_Select84 = String.format(month_Select,  Month_Select_For84);
 
 			Extent_Start(testCase_Name, test, test1);
 			Step_Start(1, "Open EMS Contract BIlling screen", test, test1);
@@ -2157,9 +2156,9 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String regenerateButton =  String.format(EMS_Locators.generatebutton,  regenerate_Button);
-			String month_Select86 = String.format(EMS_Locators.month_Select,  Month_Select_For86);
-			String contractnumbergrid =  String.format(EMS_Locators.element,  Contaract_No_input);
+			String regenerateButton =  String.format(Generatebutton,  regenerate_Button);
+			String month_Select86 = String.format(month_Select,  Month_Select_For86);
+			String contractnumbergrid =  String.format(element,  Contaract_No_input);
 
 			Extent_Start(testCase_Name, test, test1);
 			// Login
@@ -2313,9 +2312,9 @@ public class TC_EMS_Contract_Billing_Generation_And_Verification_TS68_to_TS86_C 
 			String Condition =data.get("Condition");
 			String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 			//locators
-			String regenerateButton =  String.format(EMS_Locators.generatebutton,  regenerate_Button);
-			String month_Select85 = String.format(EMS_Locators.month_Select,  Month_Select_For85);
-			String contractnumbergrid =  String.format(EMS_Locators.element,  Contaract_No_input);
+			String regenerateButton =  String.format(Generatebutton,  regenerate_Button);
+			String month_Select85 = String.format(month_Select,  Month_Select_For85);
+			String contractnumbergrid =  String.format(element,  Contaract_No_input);
 
 			Extent_Start(testCase_Name, test, test1);
 			// Login

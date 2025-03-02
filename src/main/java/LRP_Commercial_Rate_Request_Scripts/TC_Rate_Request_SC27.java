@@ -58,54 +58,20 @@ public class TC_Rate_Request_SC27 extends Keywords {
 
 		navigateUrl(driver, URL);
 		//Login
-		waitForElement(driver, Username_input);
-		click(driver, Username_input);
-		waitForElement(driver, Username_input);
-		sendKeys(driver, Username_input, username);
-		waitForElement(driver, APassword_input);
-		click(driver, APassword_input);
-		waitForElement(driver, APassword_input);
-		sendKeys(driver, APassword_input, pass_word);
-		waitForElement(driver, ALogin);
-		click(driver, ALogin);
-		if (isDisplayed(driver, home_Page)) {
-			System.out.println("*****User Logged in Successfully*****");
-			Extent_pass(driver, "*****User Logged in Successfully*****", test,test1);
-		}else {
-			System.out.println("*****User Unable to Logged in*****");
-			Extent_fail(driver, "*****User Unable to Login*****", test,test1);
-			
-		}
-		//Switch User
+				LRP_Login(driver, username, pass_word);
+				//Switch User
+				SwitchProfile(driver, agencyUser);
+				
 
-
-		waitForElement(driver, Switch_Profile);
-		click(driver, Switch_Profile);
-		waitForElement(driver, agency_Code_Filter);
-		sendKeys(driver, agency_Code_Filter, agencyUser);
-
-		waitForElement(driver, select_Agency);
-		click(driver, select_Agency);
-		waitForElement(driver, Switch_Profile_Button);
-		click(driver, Switch_Profile_Button);
-		waitForElement(driver, Module_SearchR);
-		click(driver,Module_SearchR);
-		waitForElement(driver, Module_SearchR);
-		sendKeys(driver, Module_SearchR, Field_Names);
-		waitForElement(driver, Rate_Request);
-		click(driver, Rate_Request);
-		waitForElement(driver, Rate_Request_Page);
-		if(isDisplayed(driver, Rate_Request_Page)) {
-			System.out.println("*****Rate Request Module is Dispalyed*****");
-			Extent_pass(driver, "*****Rate Request Module is Dispalyed*****", test,test1);
-		}else {
-			System.out.println("*****Rate Request Module is not Dispalyed");
-			Extent_fail(driver, "*****Rate Request Module is not Dispalyed*****", test,test1);
-			
-		}
+				//Module search
+				moduleNavigate(driver, Field_Names);
+				
 		Step_Start(1, "Click on the new button in the toolbar", test, test1);
-		waitForElement(driver, Rate_Newbutton);
-		click(driver,Rate_Newbutton);
+		waitForDisplay(driver, Rate_Newbutton);
+		if(isdisplayed(driver, Rate_Newbutton)&&isElementEnabled(driver, Rate_Newbutton)) {
+			waitForElement(driver, Rate_Newbutton);
+			click(driver, Rate_Newbutton);
+		}
 		waitForElement(driver, tService_Dropdown);
 		click(driver, tService_Dropdown);
 		waitForElement(driver, select_t_Service);
@@ -116,43 +82,24 @@ public class TC_Rate_Request_SC27 extends Keywords {
 		waitForElement(driver, tos);
 		click(driver, tos);
 		// Selecting the From Date
-		StringBuilder day = new StringBuilder();
-		StringBuilder month = new StringBuilder();
-		StringBuilder year = new StringBuilder();
-		waitForElement(driver, Dateclick);
-		if (Date_Picker.equalsIgnoreCase("Yes")) {
-			click(driver, Dateclick);
-			datePicker(From_Date_Input, day, month, year);
-			waitForElement(driver, Month_DD);
-			selectByText(driver, Month_DD,month.toString());
-			waitForElement(driver, Year_DD);
-			selectByText(driver, Year_DD,year.toString());
-			String date_select ="date_select>//a[text()='" + day+ "']";
-			waitForElement(driver, date_select);
-			click(driver, date_select);
-		} else {
-			waitForElement(driver, Dateclick);
-			clearAndType(driver, Dateclick, From_Date_Input);
-		}
+				waitForElement(driver, Dateclick);
+				if (Date_Picker.equalsIgnoreCase("Yes")) {
+					selectDatePicker(driver, Dateclick, From_Date_Input);
+				} else {
+					waitForElement(driver, Dateclick);
+					clearAndType(driver, Dateclick, From_Date_Input);
+				}
 		Step_End(3, "Select Validity From Date range accordingly in date picker ",test, test1);
 		// Selecting the to Date
 		Step_Start(4, "-Select Validity To Date range accordingly in date picker ",test, test1);
 		waitForElement(driver, Dateclick1);
 		if (Date_Picker.equalsIgnoreCase("Yes")) {
-			click(driver, Dateclick1);
-			datePicker(To_Date_Input, day, month, year);
-			waitForElement(driver, Month_DD);
-			selectByText(driver, Month_DD,month.toString());
-			waitForElement(driver, Year_DD);
-			selectByText(driver, Year_DD,year.toString());
-			String date_select ="date_select>//a[text()='" + day+ "']";
-			waitForElement(driver, date_select);
-			click(driver, date_select);
+			selectDatePicker(driver, Dateclick1, To_Date_Input);
 		} else {
 			waitForElement(driver, Dateclick1);
 			clearAndType(driver, Dateclick1, To_Date_Input);
 		}
-
+		
 		Step_End(1, "Click on the new button in the toolbar", test, test1);
 
 		waitForElement(driver, preCarriageLocator);

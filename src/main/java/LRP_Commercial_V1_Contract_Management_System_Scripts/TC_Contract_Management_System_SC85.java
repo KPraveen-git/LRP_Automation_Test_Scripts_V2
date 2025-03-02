@@ -47,11 +47,8 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 		String Signatory_Title = Data.get("Signatory_Title");
 		String Verified = Data.get("Verified");
 		String Contract_Verified = Data.get("Contract_Verified");
-		String Contract_Updated = Data.get("Contract_Updated");
-		String Charger = Data.get("Charger");
 		String BackRoundColor = Data.get("BackRoundColor");
 		String Activated = Data.get("Activated");
-		String date = Data.get("date");
 		String Activated_val = Data.get("Activated");
 		String file_input = Data.get("file_input");
 		String Filed = Data.get("Filed");
@@ -60,7 +57,7 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 		String Select_field = Data.get("Select_field");
 		String Search_Condition2 = Data.get("Search_Condition2");
 		String Search_Condition = Data.get("Search_Condition");
-		
+		String Dg_header = Data.get("Dg_header");
 		
 		Extent_Start(testCaseName, test, test1);
 
@@ -236,8 +233,8 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 			waitForElement(driver, DG_Class);
 			click(driver, DG_Class);
 
-			selectValue(driver, Search_Condition, DGCLass_Value);
-
+			twoColumnSearchWindow(driver,Dg_header,Search_Condition,DGCLass_Value);
+			
 			waitForElement(driver, Add_DG_Class);
 			click(driver, Add_DG_Class);
 
@@ -301,14 +298,13 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 		}else {
 			
 			Extent_fail(driver,"Not Matched || Expected : "+Contract_saved+" Actual : "+ saved_popup, test,test1);
-			System.out.println("Not Matched || Expected : "+Contract_saved+" Actual : "+ saved_popup);
-			
+						
 		}
 		
 	
 		Step_End(12, "click Save", test, test1);
-
 		
+
 	
 		Step_Start(13, "Retrieve the contract in the global search", test, test1);
 		
@@ -358,7 +354,7 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 		
 		Step_End(13, "Retrieve the contract in the global search", test, test1);
 		
-		Step_Start(14, "click edit", test, test1);
+       Step_Start(14, "click edit", test, test1);
 		
 		waitForElement(driver, Contract_Management_System_Edit);
 		click(driver, Contract_Management_System_Edit);
@@ -397,9 +393,9 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 			Extent_pass(driver,"Matched || Expected value is : "+Contract_Verified+" Actual value is: "+ verified_popup, test,test1);
 			System.out.println("Matched || Expected value is : "+Contract_Verified+" Actual value is : "+ verified_popup);
 		}else {
-			
-			Extent_fail(driver,"Not Matched || Expected value is : "+Contract_Verified+" Actual value is : "+ verified_popup, test,test1);
 			System.out.println("Not Matched || Expected value is : "+Contract_Verified+" Actual value is : "+ verified_popup);
+			Extent_fail(driver,"Not Matched || Expected value is : "+Contract_Verified+" Actual value is : "+ verified_popup, test,test1);
+			
 		}	
 		
 		
@@ -411,9 +407,9 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 			Extent_pass(driver,"Matched || Expected value is : "+Verified+" Actual value is : "+ verifiednumber, test,test1);
 			System.out.println("Matched || Expected value is : "+Verified+" Actual value is : "+ verifiednumber);
 		}else {
-			
-			Extent_fail(driver,"Not Matched || Expected value is : "+Verified+" Actual value is : "+ verifiednumber, test,test1);
 			System.out.println("Not Matched || Expected value is : "+Verified+" Actual value is : "+ verifiednumber);
+			Extent_fail(driver,"Not Matched || Expected value is : "+Verified+" Actual value is : "+ verifiednumber, test,test1);
+			
 			
 		}
 		
@@ -422,11 +418,7 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 		
 		Step_Start(17, "Enter the signatory date", test, test1);	
 			
-		
-//		waitForElement(driver, Contract_Management_System_Edit);
-//		sendKeys(driver, Contract_Management_System_Edit,date);
-		
-		
+
 		waitForElement(driver, Contract_Management_System_Edit);
 		click(driver, Contract_Management_System_Edit);
 		
@@ -450,12 +442,13 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 					.println("Matched || Expected value is : " + Activated_val + " Actual value is : " + Activated_avl);
 		} else {
 
-			Extent_fail(driver,
-					"Not Matched || Expected value is : " + Activated_val + " Actual value is : " + Activated_avl, test,
-					test1);
 			System.out.println(
 					"Not Matched || Expected value is : " + Activated_val + " Actual value is : " + Activated_avl);
 
+			Extent_fail(driver,
+					"Not Matched || Expected value is : " + Activated_val + " Actual value is : " + Activated_avl, test,
+					test1);
+		
 		}
 
 		if (isdisplayed(driver, popup_Message)) {
@@ -508,18 +501,17 @@ public class TC_Contract_Management_System_SC85  extends Keywords {
 			System.out
 					.println("Matched || Expected value is : " + Filed + " Actual value is : " + Filed_avl);
 		} else {
-
+			System.out.println(
+					"Not Matched || Expected value is : " + Filed + " Actual value is : " + Filed_avl);
 			Extent_fail(driver,
 					"Not Matched || Expected value is : " + Filed + " Actual value is : " + Filed_avl, test,
 					test1);
-			System.out.println(
-					"Not Matched || Expected value is : " + Filed + " Actual value is : " + Filed_avl);
+			
 
 		}
 		Step_End(18, "click activate", test, test1);
 		
 		Extent_completed(testCaseName, test, test1);
-		
 		
 		
 }

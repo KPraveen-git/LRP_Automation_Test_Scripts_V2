@@ -41,6 +41,15 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_09 extends Keywords {
 		String dropdown_Condition =Data.get("Dropdown_Condition");
 		String merchantPopup =Data.get("MerchantPopup");
 		String ware_House_Type_Select =Data.get("Ware_House_Type_Select");
+		String PLD_Input =Data.get("PLD_Input");
+		String PLD_Search =Data.get("PLD_Search");
+		String PLA_Input =Data.get("PLA_Input");
+		String PLA_Search =Data.get("PLA_Search");
+		String Address1_Search =Data.get("Address1_Search");
+		String Address1_Input =Data.get("Address1_Input");
+		String Address2_Search =Data.get("Address2_Search");
+		String Address2_Input =Data.get("Address2_Input");
+
 
 		
 	navigateUrl(driver,URL);
@@ -88,28 +97,19 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_09 extends Keywords {
 			Step_End(3, "Click the Plus icon button.", test, test1);
 			Step_Start(4, "Enter the Book Number.", test, test1);	
 
-			click(driver, type_Select1);
-			selectByText(driver, type_Select1, field_select);
-			waitForDisplay(driver, globalSearch_Condition_Dropdown1);
-			click(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
-			
-			sendKeys(driver, globalSearch_InputTextfield1, data1);
-			
-			Step_End(4, "Enter the Book Number", test, test1);
-
 			Step_Start(5, "Click the search icon.", test, test1);
 			
-			click(driver, globalSearch_Frame_SearchButton);
-			
-			Step_End(5, "Click the search icon.", test, test1);
 			Step_Start(6, "Select the booking and click the search icon.", test, test1);
 
-			waitForElement(driver, retrieved_Value_Select);
-			click(driver, retrieved_Value_Select);
+
+			globalValueSearchWindow(driver, dropdown_Condition, field_select, data1, PLA_Search, PLA_Input, PLD_Search, PLD_Input);
+
+			Step_End(4, "Enter the Book Number", test, test1);
+
 			
-			waitForElement(driver, Aselectbutton1);
-			click(driver, Aselectbutton1);
+			
+			Step_End(5, "Click the search icon.", test, test1);
+
 			
 			Step_End(6, "Select the booking and click the search icon.", test, test1);
 
@@ -168,28 +168,18 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_09 extends Keywords {
 
 	waitForElement(driver, Add_ware_house);
 	click(driver, Add_ware_house);
-	waitForElement(driver, type_Select1);
-	selectByText(driver, type_Select1, ware_House_Type_Select);
-	waitForElement(driver, globalSearch_Condition_Dropdown1);
-	click(driver, globalSearch_Condition_Dropdown1);
-	selectByText(driver, globalSearch_Condition_Dropdown1, dropdown_Condition);
+	
+	
 	
 	Step_End(12, " Click the Ware House Name search icon.", test, test1);
 	Step_Start(13, "Enter the % in Ware House Name search box and click the search icon.", test, test1);
 
-	sendKeys(driver, globalSearch_InputTextfield1, Ware_House_number);
+	globalValueSearchWindow(driver, dropdown_Condition, ware_House_Type_Select, Ware_House_number, Address1_Search, Address1_Input, Address2_Search, Address2_Input);
 
 	
 	Step_End(13, "Enter the % in Ware House Name search box and click the search icon.", test, test1);
 	Step_Start(14, "Select the ware house name and click the search icon", test, test1);
 	
-	click(driver, globalSearch_Frame_SearchButton);
-		
-		waitForElement(driver, retrieved_Value_Select);
-		click(driver, retrieved_Value_Select);
-		
-		waitForElement(driver, Aselectbutton1);
-		click(driver, Aselectbutton1);
 		
 		Step_End(14, "Select the ware house name and click the search icon", test, test1);
 		Step_Start(15, "Select the date in APP Date field. ", test, test1);
@@ -199,6 +189,8 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_09 extends Keywords {
 			click(driver, Date_click);
 			
 			selectDatePickerWithTime1(driver, Date_click, App_Date);
+			click(driver, State_Label);
+
 
 		} else {
 			waitForElement(driver, Date_click);
@@ -213,11 +205,11 @@ public class TC_Transportation_Dispatch_Notice_SC_TDN_09 extends Keywords {
 		Step_End(16, "Click the ADD button.", test, test1);
 		Step_Start(17, "Select the containers and Click the Reset customer button and customer will be cleared", test, test1);
 		
-		waitForElement(driver,chargesgird_click );
-		click(driver,chargesgird_click );
+		waitForElement(driver,chargesgird_click);
+		click(driver,chargesgird_click);
 		
-		waitForElement(driver,Reset_customer );
-		click(driver,Reset_customer );
+		waitForElement(driver,Reset_customer);
+		click(driver,Reset_customer);
 
 		waitForDisplay(driver, customerTab_Row);
 		if(!isdisplayed(driver, customerTab_Row)) {

@@ -13,7 +13,7 @@ import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 
 import commonMethods.Utils;
-import locators.on_off_hire_locators;
+import locators.On_Off_Hire_Locators;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,11 +52,11 @@ public class TC_Stock_Report_by_Size_Type_Detail_Report_TS_041 extends Keywords{
 		String cus_con_header = Excel_data.get("cus_con_header");
 
 		
-		String sz_tp_btn =String.format(on_off_hire_locators.sz_tp_btn, sz_tp_buttons);
+		String sz_tp_btn =String.format(On_Off_Hire_Locators.sz_tp_btn, sz_tp_buttons);
 
 
-		String sizetype_type1 =String.format(on_off_hire_locators.sizetype_type1, Sizeandtype_value41);
-		String location_hierarchy_type7 = String.format(on_off_hire_locators.location_hierarchy_type7,Location_hierachy41);
+		String sizetype_type1 =String.format(On_Off_Hire_Locators.sizetype_type1, Sizeandtype_value41);
+		String location_hierarchy_type7 = String.format(On_Off_Hire_Locators.location_hierarchy_type7,Location_hierachy41);
 		
 		
 		Extent_Start(tc_Name, test, test1);

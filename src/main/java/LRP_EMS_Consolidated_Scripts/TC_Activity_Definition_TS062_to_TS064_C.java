@@ -2,12 +2,14 @@ package LRP_EMS_Consolidated_Scripts;
 
 import java.util.List;
 import java.util.Map;
+
 import org.openqa.selenium.WebDriver;
+
 import com.aventstack.extentreports.ExtentTest;
+
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
 
 public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 
@@ -31,11 +33,11 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 			String Validation_Type_Input = Excel_data.get("Validation_Type_Input");
 			String Button = Excel_data.get("Button");
 			Extent_Start(testCase_Name, test, test1);
-			String update_Value =String.format(EMS_Locators.update_Value,Update_Input);
-			String Valid_Type = String.format(EMS_Locators.Valid_Type,Validation_Type_Input);
-			String cmbCpy_Value_1 =String.format(EMS_Locators.cmbCpy_Value_1,copy_From_Previous_Input);
-			String cmbCpy_Value_2 = String.format(EMS_Locators.cmbCpy_Value_2,copy_To_Previous_Input);
-			String add_button_select = String.format(EMS_Locators.add_button_select,Button);
+			String update_value =String.format(Updated_Value,Update_Input);
+			String valid_Type = String.format(Valid_Type_Value,Validation_Type_Input);
+			String CmbCpy_Value_1 =String.format(CMBCpy_Value_1,copy_From_Previous_Input);
+			String CmbCpy_Value_2 = String.format(CMBCpy_Value_2,copy_To_Previous_Input);
+			String Add_button_select = String.format(ADD_button_select,Button);
 			String Condition =Excel_data.get("Condition");
 			String Activity_Search_Column_Header =Excel_data.get("Activity_Search_Column_Header");
 			String Activity_Def_Column_Name_Search_Column_Header =Excel_data.get("Activity_Def_Column_Name_Search_Column_Header");
@@ -76,8 +78,8 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 			click(driver,kActivityDefinitionIsUpdate);
 			Step_End (5, "Click on the \\\"Is Update\\\" dropdown.", test, test1);
 			Step_Start(6, "Select 'Yes' or 'No' for Is update.", test, test1);
-			waitForElement(driver, update_Value);
-			click(driver, update_Value);
+			waitForElement(driver, update_value);
+			click(driver, update_value);
 			Step_End (6, "Select 'Yes' or 'No' for Is update.", test, test1);
 
 			Step_Start(7, "Click on the \"Validation Type\" dropdown", test, test1);
@@ -85,8 +87,8 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 			click(driver,kActivityDefinitionValidationType);
 			Step_End(7, "Click on the \"Validation Type\" dropdown", test, test1);
 			Step_Start(8, "Select 'V' in the Validation type.", test, test1);
-			waitForElement(driver, Valid_Type);
-			click(driver, Valid_Type);
+			waitForElement(driver, valid_Type);
+			click(driver, valid_Type);
 			Step_End(8, "Select 'V' in the Validation type.", test, test1);
 			Step_Start(9, "Click on the \"Copy From Previous\" dropdown.", test, test1);
 
@@ -94,20 +96,20 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 			click(driver,kActivityDefinitionCopyFromPrevious);
 			Step_End(9, "Click on the \"Copy From Previous\" dropdown.", test, test1);
 			Step_Start(10, "Select 'Yes' or 'No' for Copy From Previous.", test, test1);
-			waitForElement(driver, cmbCpy_Value_1);
-			click(driver, cmbCpy_Value_1);
+			waitForElement(driver, CmbCpy_Value_1);
+			click(driver, CmbCpy_Value_1);
 			Step_End(10, "Select 'Yes' or 'No' for Copy From Previous.", test, test1);
 			Step_Start(11, "Click on the \"Copy To Previous\" dropdown.", test, test1);
 			waitForElement(driver, kActivityDefinitionCopyToPrevious);
 			click(driver,kActivityDefinitionCopyToPrevious);
 			Step_End(11, "Click on the \"Copy To Previous\" dropdown.", test, test1);
 			Step_Start(12, "Select 'Yes' or 'No' for Copy To Previous.", test, test1);
-			waitForElement(driver, cmbCpy_Value_2);
-			click(driver, cmbCpy_Value_2);
+			waitForElement(driver, CmbCpy_Value_2);
+			click(driver, CmbCpy_Value_2);
 			Step_End(12, "Select 'Yes' or 'No' for Copy To Previous.", test, test1);
 			Step_Start(13, "Click on the \"Add\" button.", test, test1);
-			waitForElement(driver, add_button_select);
-			click(driver, add_button_select);
+			waitForElement(driver, Add_button_select);
+			click(driver, Add_button_select);
 			Step_End(13, "Click on the \"Add\" button.", test, test1);
 			Step_Start(14, "Press the save button in the toolbar.", test, test1);
 			waitForElement(driver, kActivityDefinitionSave);
@@ -127,9 +129,9 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 			for(String Column_Value : Column_Values) {
 				waitForElement(driver, column_Filter);
 				sendKeys(driver, column_Filter, Column_Value);
-				String Added_Column_Value = String.format(EMS_Locators.Added_Column_Value,Column_Value);
-				String Added_Data = getText(driver, Added_Column_Value);
-				if(isDisplayed(driver, Added_Column_Value)) {
+				String added_Column_Value = String.format(Added_Column_Value,Column_Value);
+				String Added_Data = getText(driver, added_Column_Value);
+				if(isDisplayed(driver, added_Column_Value)) {
 					System.out.println( "Matched || The Newly Added Activity code : "+Added_Data);
 					Extent_pass(driver, "Matched || The Newly Added Activity code : "+Added_Data, test,test1);
 				} else {
@@ -156,11 +158,11 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 			String Validation_Type_Input = Excel_data.get("Validation_Type_Input");
 			String Button = Excel_data.get("Button");
 			String act_Def_updated_Popup_txt_Exp = Excel_data.get("Act_Def_updated_Popup_txt");
-			String is_update_Value =String.format(EMS_Locators.update_Value,Update_Input);
-			String validation_Type = String.format(EMS_Locators.Valid_Type,Validation_Type_Input);
-			String Copy_From_Value =String.format(EMS_Locators.cmbCpy_Value_1,copy_From_Previous_Input);
-			String Copy_Pre_Value = String.format(EMS_Locators.cmbCpy_Value_2,copy_To_Previous_Input);
-			String edit_button_select = String.format(EMS_Locators.add_button_select,Button);
+			String is_update_Value =String.format(Updated_Value,Update_Input);
+			String validation_Type = String.format(Valid_Type_Value,Validation_Type_Input);
+			String Copy_From_Value =String.format(CMBCpy_Value_1,copy_From_Previous_Input);
+			String Copy_Pre_Value = String.format(CMBCpy_Value_2,copy_To_Previous_Input);
+			String edit_button_select = String.format(ADD_button_select,Button);
 			String Condition =Excel_data.get("Condition");
 			String Activity_Search_Column_Header =Excel_data.get("Activity_Search_Column_Header");
 
@@ -194,9 +196,9 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 			Step_Start(4, "Double click on the Activity code.", test, test1);
 			waitForElement(driver, column_Filter);
 			sendKeys(driver, column_Filter, Column_Input);
-			String Column_Value = String.format(EMS_Locators.Column_Value,Column_Input);
-			waitForElement(driver, Column_Value);
-			doubleClick(driver, Column_Value);
+			String column_Value = String.format(Column_Value,Column_Input);
+			waitForElement(driver, column_Value);
+			doubleClick(driver, column_Value);
 			Step_End(4, "Double click on the Activity code.", test, test1);
 			waitForElement(driver, kActivityDefinitionEdit);
 			click(driver,kActivityDefinitionEdit);
@@ -297,8 +299,8 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 				waitForElement(driver, column_Filter);
 				sendKeys(driver, column_Filter, Column_Value);
 				Step_Start(4, "Double click the columns Name.", test, test1);
-				String Added_Column_Value = String.format(EMS_Locators.AddedColumnValue,Column_Value);
-				String Added_Data = getText(driver, Added_Column_Value);
+				String added_Column_Value = String.format(AddedColumnValue,Column_Value);
+				String Added_Data = getText(driver, added_Column_Value);
 
 				if(isDisplayed(driver, Added_Column_Value)) {
 					System.out.println( "Matched || The Selected Activity code : "+Added_Data);
@@ -324,8 +326,8 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 						waitForElement(driver, column_Filter);
 						sendKeys(driver, column_Filter, Column_Value);
 						Extent_call(test, test1, "Check the Deleted Activity code Highlighted In Red Color");
-						String deleted_Column_Value = String.format(EMS_Locators.deleted_Column_Value,Column_Value);
-						String deleted_Column_color = getTextBackgroundColor(driver, deleted_Column_Value);
+						String Deleted_Column_Value = String.format(deleted_Column_Value,Column_Value);
+						String deleted_Column_color = getTextBackgroundColor(driver, Deleted_Column_Value);
 						System.out.println("deleted_Column_color : "+deleted_Column_color);
 						if(deleted_Column_color.equals(act_Def_Deleted_colour_txt_Exp)) {
 							System.out.println( "Matched || The Deleted Activity code : "+Column_Value+" And hihglighted in Red color"+deleted_Column_color);
@@ -417,9 +419,9 @@ public class TC_Activity_Definition_TS062_to_TS064_C extends Keywords{
 				for(String Column_Value : Column_Values) {
 					waitForElement(driver, column_Filter);
 					sendKeys(driver, column_Filter, Column_Value);
-					String Added_Column_Value = String.format(EMS_Locators.Added_Column_Value,Column_Value);
-					String Added_Data = getText(driver, Added_Column_Value);
-					if(isDisplayed(driver, Added_Column_Value)) {
+					String added_Column_Value = String.format(Added_Column_Value,Column_Value);
+					String Added_Data = getText(driver, added_Column_Value);
+					if(isDisplayed(driver, added_Column_Value)) {
 						System.out.println( "Matched || The ReActivated Activity code : "+Added_Data);
 						Extent_pass(driver, "Matched || The ReActivated Activity code : "+Added_Data, test,test1);
 					} else {

@@ -6,7 +6,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.EMS_Locators;
+import locators.EMS_Contract_Billing_Generation_And_Verification_Locators;
 
 public class TC_EMS_Contract_Billing_Generation_69 extends Keywords {
 
@@ -31,8 +31,8 @@ public class TC_EMS_Contract_Billing_Generation_69 extends Keywords {
 		String Condition =data.get("Condition");
 		String Search_Contract_No_Column_Header =data.get("Search_Contract_No_Column_Header");
 
-		String month_Select69 = String.format(EMS_Locators.month_Select,  Month_Select_For69);
-		String generatebutton =  String.format(EMS_Locators.generatebutton,  generate_Button);
+		String month_Select69 = String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.month_Select,  Month_Select_For69);
+		String generatebutton =  String.format(EMS_Contract_Billing_Generation_And_Verification_Locators.Generatebutton,  generate_Button);
 
 		Extent_Start(testCase_Name, test, test1);
 		navigateUrl(driver, url);

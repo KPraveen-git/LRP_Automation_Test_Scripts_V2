@@ -35,11 +35,14 @@ public class TC_Cost_Activity_Report_TS021 extends Keywords {
 		String Reject_PopupMessage = data.get("Reject_PopupMessage");
 		String Remark_text = data.get("Remark_text");
 		String Updated_PopupMessage = data.get("Updated_PopupMessage");
+		String Agency = data.get("Agency");
 
 		Extent_Start(tc_Name, test, test1);
 
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
+		
+		SwitchProfile(driver, Agency);
 
 		Step_Start(1, "Enter the screen name as Cost Activity Report in module search field", test, test1);
 
@@ -70,34 +73,23 @@ public class TC_Cost_Activity_Report_TS021 extends Keywords {
 
 		Step_End(3, "Check whether it opens a new search window", test, test1);
 
-		Step_Start(4, "Enter the required CAR No. in the CAR No search field", test, test1);
-
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(4, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(4, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_Start(5, "Then click on the search button", test, test1);
 
-		click(driver, globalSearch_Frame_SearchButton);
-
-		Step_End(5, "Then click on the search button", test, test1);
-
 		Step_Start(6, "System will show the CAR No", test, test1);
 
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
+		Step_Start(7, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
+
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(4, "Enter the CTL CAR No. in the CAR No search field", test, test1);
+
+		Step_End(5, "Then click on the search button", test, test1);
 
 		Step_End(6, "System will show the CAR No", test, test1);
 
 		Step_Start(7, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
-
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
 
 		waitForElement(driver, CAR_Input);
 		String retrived_Number = getAttribute(driver, CAR_Input, "value");
@@ -197,15 +189,15 @@ public class TC_Cost_Activity_Report_TS021 extends Keywords {
 
 		Step_Start(17, "Click on ok", test, test1);
 
+		waitForElement(driver, ExpenseReportTab);
+
 		List<WebElement> openexpenses2 = driver.findElements(
 				By.xpath("//div[@id='CRR_treeTableEXP']//div[@col-id='parentActName' and @role='gridcell']"));
 
 		for (int i = 0; i < openexpenses2.size(); i++) {
 
-			List<WebElement> expensesList = driver.findElements(
-					By.xpath("//div[@id='CRR_treeTableEXP']//div[@col-id='parentActName' and @role='gridcell']"));
-
-			WebElement expense = expensesList.get(i);
+			WebElement expense = driver.findElement(By.xpath(
+					"(//div[@id='CRR_treeTableEXP']//div[@col-id='parentActName' and @role='gridcell'])[" + (i+1) + "]"));
 
 			String ActivityName = expense.getText();
 
@@ -216,12 +208,12 @@ public class TC_Cost_Activity_Report_TS021 extends Keywords {
 				waitForElement(driver, Remarks_option);
 				click(driver, Remarks_option);
 
-				waitForElement(driver, Remarks_Input);
-				clear(driver, Remarks_Input);
-				sendKeys(driver, Remarks_Input, Remark_text);
+				waitForElement(driver, CAR_Remarks_Input);
+				clear(driver, CAR_Remarks_Input);
+				sendKeys(driver, CAR_Remarks_Input, Remark_text);
 
-				waitForElement(driver, Remark_Ok);
-				click(driver, Remark_Ok);
+				waitForElement(driver, CAR_Remark_Ok);
+				click(driver, CAR_Remark_Ok);
 
 			}
 		}
@@ -342,25 +334,23 @@ public class TC_Cost_Activity_Report_TS021 extends Keywords {
 
 		for (int j = 0; j < openexpenses4.size(); j++) {
 
-			List<WebElement> expensesList = driver.findElements(
-					By.xpath("//div[@id='CRR_treeTableEXP']//div[@col-id='parentActName' and @role='gridcell']"));
-
-			WebElement expense = expensesList.get(j);
+			WebElement expense = driver.findElement(By.xpath(
+					"(//div[@id='CRR_treeTableEXP']//div[@col-id='parentActName' and @role='gridcell'])[" + (j+1) + "]"));
 
 			String ActivityName = expense.getText();
 
 			if (GivenExpenses.contains(ActivityName)) {
 
-				expense.click();
+				Click(driver, expense);
 
 				RightClick1(driver, expense);
 
 				waitForElement(driver, Remarks_option);
 				click(driver, Remarks_option);
 
-				waitForElement(driver, Remarks_Input);
+				waitForElement(driver, CAR_Remarks_Input);
 
-				String UpdatedRemark = getText(driver, Remarks_Input);
+				String UpdatedRemark = getText(driver, CAR_Remarks_Input);
 				if (UpdatedRemark.equals(Remark_text)) {
 
 					System.out.println("Given remarks are updated in the selected activity || Expected remark : "
@@ -377,8 +367,8 @@ public class TC_Cost_Activity_Report_TS021 extends Keywords {
 
 				}
 
-				waitForElement(driver, Remark_Ok);
-				click(driver, Remark_Ok);
+				waitForElement(driver, CAR_Remark_Ok);
+				click(driver, CAR_Remark_Ok);
 
 			}
 		}

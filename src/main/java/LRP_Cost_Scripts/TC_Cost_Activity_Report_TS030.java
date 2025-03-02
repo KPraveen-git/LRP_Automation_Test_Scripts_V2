@@ -26,13 +26,16 @@ public class TC_Cost_Activity_Report_TS030 extends Keywords {
 		String username = data.get("Username");
 		String password = data.get("Password");
 		String Cost_Activity_Report_Module = data.get("Cost_Activity_Report_Module");
-
-		String car_number = data.get("Car_No");
-		String car_value = data.get("Car_Number");
-		String Contains = data.get("Contains_val");
 		String Coloum_headers = data.get("Open_Expenses_Column_Header");
 		String BackroundColor = data.get("BackRoundColor");
-
+		String CAR_Retrieve_Type1 = data.get("CAR_Retrieve_Type1");
+		String CAR_Retrieve_Condition1 = data.get("CAR_Retrieve_Condition1");
+		String CAR_Number_Retrieve_Value1 = data.get("CAR_Number_Retrieve_Value1");
+		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
+		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
+		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
+		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
+		
 		Extent_Start(tc_Name, test, test1);
 
 		Step_Start(1,
@@ -61,43 +64,22 @@ public class TC_Cost_Activity_Report_TS030 extends Keywords {
 
 		Step_End(3, "Click on the global search option which is available in the tool bar", test, test1);
 
+
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
 
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		click(driver, Ventor_Global_Seach_First_Field);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, car_number);
-
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
-
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, car_value);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		waitForElement(driver, Search_button);
-		click(driver, Search_button);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-
-		waitForElement(driver, column_Values);
-		click(driver, column_Values);
-
-		waitForElement(driver, Select_Option);
-		click(driver, Select_Option);
-
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition1,CAR_Retrieve_Type1,CAR_Number_Retrieve_Value1,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
+		
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(6, "Then click on the search button", test, test1);
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
 
+
+		
 		Step_Start(8, "System will retrieve the CAR", test, test1);
 
 		waitForElement(driver, car_Number_val);
@@ -105,13 +87,6 @@ public class TC_Cost_Activity_Report_TS030 extends Keywords {
 
 		System.out.println("Carvalue :" + Carvalue);
 
-//	 if(car_value.equals(Carvalue)) {
-//		  System.out.println("matched exp value :"+car_value +"actual value :"+Carvalue);
-//		  Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + car_value + " || Actual Report Activity is : " + Carvalue, test,test1);
-//	 }else {
-//		  System.out.println("Not matched exp value :"+car_value +"actual value :"+Carvalue);
-//		  Extent_fail(driver, "Matched || " + " Expected Report Activity is : " + car_value + " || Actual Report Activity is : " + Carvalue, test,test1);
-//	 }
 
 		Step_End(8, "System will retrieve the CAR", test, test1);
 
@@ -139,8 +114,7 @@ public class TC_Cost_Activity_Report_TS030 extends Keywords {
 
 		Step_End(9, "Click on the Expense report button and check system opens a new tab", test, test1);
 
-		Step_Start(10,
-				"Ensure that if ops quantity matches with chargeable quantity then the activities will be shown in blue colour and it is applicable for predictable activity alone in both Open expenses and Approved expenses tab",
+		Step_Start(10,"Ensure that if ops quantity matches with chargeable quantity then the activities will be shown in blue colour and it is applicable for predictable activity alone in both Open expenses and Approved expenses tab",
 				test, test1);
 
 		waitForElement(driver, Open_Expenses);
@@ -171,10 +145,10 @@ public class TC_Cost_Activity_Report_TS030 extends Keywords {
 		for (int i = 1; i <= rows.size(); i++) {
 
 			String num = String.valueOf(i);
-			String ChargeValueElement = String.format(ChargeQuantity, num);
+			String ChargeValueElement = String.format(ChargeQuantity1, num);
 			String ChargeValue = getText(driver, ChargeValueElement);
 
-			String OpsValueElement = String.format(OpsQuantity, num);
+			String OpsValueElement = String.format(OpsQuantitys, num);
 			String OpsValue = getText(driver, OpsValueElement);
 
 			if (ChargeValue.equals(OpsValue)) {
@@ -219,14 +193,14 @@ public class TC_Cost_Activity_Report_TS030 extends Keywords {
 			clear(driver, column_Searchbox);
 			sendKeys(driver, column_Searchbox, column);
 
-			String checkbox = String.format(column_Checkboxs, column);
-			click(driver, checkbox);
+			String checkbox = String.format(column_Checkbox_option, column);
+			jsClick(driver, checkbox);
 		}
+		
 		waitForElement(driver, Column);
 		click(driver, Column);
 
-		Step_End(10,
-				"Ensure that if ops quantity matches with chargeable quantity then the activities will be shown in blue colour and it is applicable for predictable activity alone in both Open expenses and Approved expenses tab",
+		Step_End(10,"Ensure that if ops quantity matches with chargeable quantity then the activities will be shown in blue colour and it is applicable for predictable activity alone in both Open expenses and Approved expenses tab",
 				test, test1);
 
 		Extent_completed(tc_Name, test, test1);

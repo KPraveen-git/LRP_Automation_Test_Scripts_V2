@@ -69,6 +69,10 @@ public class TC_Rate_Request_SC57  extends Keywords {
 		String SRR_Global_Search_Select_Type = Data.get("SRR_Global_Search_Select_Type");
 		tService=Data.get("T_Service");
 		TOS=Data.get("TOS_Option");
+		String Customer_code_Value2 = Data.get("Customer_code_Value2");
+		String Customer_code_Value3 = Data.get("Customer_code_Value3");
+		String Cust_code2 = Data.get("Cust_code2");
+		String Cust_code3 = Data.get("Cust_code3");
 
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
@@ -124,13 +128,7 @@ public class TC_Rate_Request_SC57  extends Keywords {
 
 		waitForElement(driver, Customer_Name_search_button);
 		click(driver, Customer_Name_search_button);
-		waitForElement(driver, Customer_Code_Select_dropdown);
-		click(driver, Customer_Code_Select_dropdown);
-		selectByText(driver, Customer_Code_Select_dropdown, Cust_code);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-		sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-		click(driver, CustomerSearch_Frame_SearchButton);
+		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
 		waitForDisplay(driver, pop_up_exp);
 		if(isdisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
@@ -454,13 +452,7 @@ public class TC_Rate_Request_SC57  extends Keywords {
 			Step_Start(22, " Enter the customer name", test, test1);
 			waitForElement(driver, Customer_Name_search_button);
 			click(driver, Customer_Name_search_button);
-			waitForElement(driver, Customer_Code_Select_dropdown);
-			click(driver, Customer_Code_Select_dropdown);
-			selectByText(driver, Customer_Code_Select_dropdown, Cust_code);
-			click(driver, CustomerSearch_Condition_Dropdown1);
-			selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-			sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-			click(driver, CustomerSearch_Frame_SearchButton);
+			globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
 			waitForDisplay(driver, pop_up_exp);
 			if(isdisplayed(driver,pop_up_exp )) {
 				String actual_Popup = getText(driver, pop_up_exp);
@@ -760,13 +752,7 @@ public class TC_Rate_Request_SC57  extends Keywords {
 
 				waitForElement(driver, toolBar_Search_Button);
 				click(driver, toolBar_Search_Button);
-				waitForElement(driver, Customer_Code_Select_dropdown);
-				click(driver, Customer_Code_Select_dropdown);
-				selectByText(driver, Customer_Code_Select_dropdown, SRR_Global_Search_Select_Type);
-				click(driver, CustomerSearch_Condition_Dropdown1);
-				selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-				sendKeys(driver, CustomerSearch_InputTextfield1, actualReqNo);
-				click(driver, CustomerSearch_Frame_SearchButton);
+				globalValueSearchWindow1(driver, Condition_Value, SRR_Global_Search_Select_Type, actualReqNo, "", "","", "");
 				waitForDisplay(driver, pop_up_exp);
 				if(isdisplayed(driver,pop_up_exp )) {
 					String actual_Popup = getText(driver, pop_up_exp);

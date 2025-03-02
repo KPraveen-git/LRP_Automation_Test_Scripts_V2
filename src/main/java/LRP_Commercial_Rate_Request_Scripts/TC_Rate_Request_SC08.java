@@ -131,7 +131,7 @@ public class TC_Rate_Request_SC08 extends Keywords {
 		globalValueSearchWindow1(driver, condition_Option, customerCode_Option, customerCode, Cust_code2, Customer_code_Value2,Cust_code3, Customer_code_Value3);
 		
 		waitForDisplay(driver, pop_up_exp);
-		if(isDisplayed(driver,pop_up_exp )) {
+		if(isdisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid The Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid The Actual Popup value was : "+actual_Popup, test, test1);
@@ -349,7 +349,8 @@ public class TC_Rate_Request_SC08 extends Keywords {
 			System.out.println("Not Matched || " + " Expected Report Activity is : " + Rate_Req_Submitted_Popup_Txt + " || Actual Report Activity is : " + PopUp_Msg2);        
 			Extent_fail(driver, "Not Matched || " + " Expected Report Activity is : " + Rate_Req_Submitted_Popup_Txt + " || Actual Report Activity is : " + PopUp_Msg2, test,test1); 
 		} 
-
+		waitForElement(driver, mail_Cancel_Button);
+		click(driver, mail_Cancel_Button);
 		waitForElement(driver, Req_No_Txt_Field); 
 		String Act_ReqNo=getAttribute(driver, Req_No_Txt_Field, "value");                                                                                                            
 		if(!Act_ReqNo.equals("")) {                                                                                                                  
@@ -395,10 +396,7 @@ public class TC_Rate_Request_SC08 extends Keywords {
 
 			waitForElement(driver, close_Tab);
 			click(driver, close_Tab);
-			waitForElement(driver, Module_SearchR);
-			sendKeys(driver, Module_SearchR, Module_SRR_Gate);
-			enter(driver);
-
+moduleNavigate(driver, Module_SRR_Gate);
 
 			//SRR Gate
 

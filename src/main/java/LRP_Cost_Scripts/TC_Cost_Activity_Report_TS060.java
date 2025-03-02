@@ -26,8 +26,6 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 		String password = data.get("Password");
 		String Cost_Activity_Report_Module = data.get("Cost_Activity_Report_Module");
 		String Contains = data.get("Contains_val");
-		String car_number = data.get("Car_No");
-		String car_value = data.get("Car_Number");
 		String AgencyUser = data.get("AgencyUser");
 		String MSC_Headers_Names = data.get("MSC_Headers_Names");
 		String Activity_Headers = data.get("Activity_Headers");
@@ -35,13 +33,19 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 		String Activity_Code = data.get("Activity_Code");
 		String Submitted_popup = data.get("Submitted_popup");
 		String Approved_popup = data.get("Approved_popup");
-		String Auto_Approved_status = data.get("Auto_Approved_status");
-
+		String CAR_Retrieve_Type1 = data.get("CAR_Retrieve_Type1");
+		String CAR_Retrieve_Condition1 = data.get("CAR_Retrieve_Condition1");
+		String CAR_Number_Retrieve_Value1 = data.get("CAR_Number_Retrieve_Value1");
+		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
+		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
+		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
+		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
+	    String activity_Approved_status = data.get("Approved_popup");
+	    
+    
 		Extent_Start(tc_Name, test, test1);
 
-		Step_Start(1,
-				"Once login to the application and click on switch profile option and select the required agency.",
-				test, test1);
+		Step_Start(1,"Once login to the application and click on switch profile option and select the required agency.",test, test1);
 
 		navigateUrl(driver, url);
 
@@ -64,45 +68,22 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 
 		waitForElement(driver, seach_Filed);
 		click(driver, seach_Filed);
-
+		
 		Step_End(3, "Click on the global search option which is available in the tool bar", test, test1);
 
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
 
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		click(driver, Ventor_Global_Seach_First_Field);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, car_number);
-
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
-
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, car_value);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		waitForElement(driver, Search_button);
-		click(driver, Search_button);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-
-		waitForElement(driver, column_Values);
-		click(driver, column_Values);
-
-		waitForElement(driver, Select_Option);
-		click(driver, Select_Option);
-
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition1,CAR_Retrieve_Type1,CAR_Number_Retrieve_Value1,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
+		
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(6, "Then click on the search button", test, test1);
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
+		
 
 		Step_Start(8, "System will retrieve the CAR", test, test1);
 
@@ -111,13 +92,6 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 
 		System.out.println("Carvalue :" + Carvalue);
 
-//		 if(car_value.equals(Carvalue)) {
-//			  System.out.println("Matched exp value :"+car_value +"actual value :"+Carvalue);
-//			  Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + car_value + " || Actual Report Activity is : " + Carvalue, test,test1);
-//		 }else {
-//			  System.out.println("Not matched exp value :"+car_value +"actual value :"+Carvalue);
-//			  Extent_fail(driver, "Matched || " + " Expected Report Activity is : " + car_value + " || Actual Report Activity is : " + Carvalue, test,test1);
-//		 }
 
 		Step_End(8, "System will retrieve the CAR", test, test1);
 
@@ -199,14 +173,14 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 		waitForElement(driver, Activity_Global_Search);
 		click(driver, Activity_Global_Search);
 
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, Activity_Code);
+		waitForElement(driver, type_Select1);
+		selectByText(driver, type_Select1, Activity_Code);
 
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
+		waitForElement(driver, globalSearch_Condition_Dropdown1);
+		selectByText(driver, globalSearch_Condition_Dropdown1, Contains);
 
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, Activity_Headers);
+		waitForElement(driver, globalSearch_InputTextfield1);
+		sendKeys(driver, globalSearch_InputTextfield1, Activity_Headers);
 
 		waitForElement(driver, search_option);
 		click(driver, search_option);
@@ -222,6 +196,8 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 
 		waitForElement(driver, Select_Option);
 		click(driver, Select_Option);
+		
+
 
 		Step_End(13, "Click on the global search option and paste the activity code in activity code field", test,
 				test1);
@@ -348,6 +324,7 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 				waitForDisplay(driver, checkbox);
 				jsClick(driver, checkbox);
 			}
+			
 			waitForElement(driver, MSC_Column_Filt_CAR);
 			jsClick(driver, MSC_Column_Filt_CAR);
 
@@ -403,56 +380,8 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 		} else {
 			if (carScreenAmountValue <= activityAmountValue) {
 
-				Step_Start(16,
-						"If any amount is defined for that activity then check the amount of the activities in CAR screen.If it matches or less than the amount when compared with the amount of the activity screen means,then Select the activity and click the submit option",
-						test, test1);
+				Step_Start(16,"If any amount is defined for that activity then check the amount of the activities in CAR screen.If it matches or less than the amount when compared with the amount of the activity screen means,then Select the activity and click the submit option",test, test1);
 
-				waitForElement(driver, MSC_Column_Filt_CAR);
-				click(driver, MSC_Column_Filt_CAR);
-
-				waitForElement(driver, MSC_Column_Filt_CAR);
-				click(driver, MSC_Column_Filt_CAR);
-
-				waitForElement(driver, MSC_Filter_input_CAR);
-				jsClick(driver, MSC_SelectAll_Checkbox_CAR);
-
-				List<String> ExpensiveTable_Headers1 = splitAndExpand(MSC_Headers_Names);
-				for (String FilterHeader : ExpensiveTable_Headers1) {
-					waitForElement(driver, MSC_Filter_input_CAR);
-					clear(driver, MSC_Filter_input_CAR);
-					waitForElement(driver, MSC_Filter_input_CAR);
-					sendKeys(driver, MSC_Filter_input_CAR, FilterHeader);
-
-					String checkbox = String.format(Select_Column_MSC_CAR, FilterHeader);
-					waitForDisplay(driver, checkbox);
-					jsClick(driver, checkbox);
-				}
-				waitForElement(driver, MSC_Column_Filt_CAR);
-				jsClick(driver, MSC_Column_Filt_CAR);
-
-				waitForElement(driver, Activity_Code_Side_Menu);
-				click(driver, Activity_Code_Side_Menu);
-
-				waitForElement(driver, Activity_Code_Filter);
-				click(driver, Activity_Code_Filter);
-
-				waitForElement(driver, Activity_Code_SelectAll_Option);
-				click(driver, Activity_Code_SelectAll_Option);
-
-				List<String> ActivityHeaders1 = splitAndExpand(Activity_Headers);
-				for (String FilterHeader : ActivityHeaders1) {
-					waitForElement(driver, Activity_Code_Input_Field);
-					clear(driver, Activity_Code_Input_Field);
-					waitForElement(driver, Activity_Code_Input_Field);
-					sendKeys(driver, Activity_Code_Input_Field, FilterHeader);
-
-					String checkbox = String.format(Activity_code_Select_column, FilterHeader);
-					waitForDisplay(driver, checkbox);
-					jsClick(driver, checkbox);
-				}
-
-				waitForElement(driver, Activity_Code_Filter);
-				click(driver, Activity_Code_Filter);
 
 				waitForElement(driver, Car_First_Row_Option);
 				click(driver, Car_First_Row_Option);
@@ -472,6 +401,9 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 					Extent_fail(driver, "Matched || " + " Expected Value is : " + Submitted_popup
 							+ " || Actual Value is : " + Submit_popup, test, test1);
 				}
+				waitForElement(driver, popup_Message_Ok_Button);
+				click(driver, popup_Message_Ok_Button);
+
 				Step_End(16,
 						"If any amount is defined for that activity then check the amount of the activities in CAR screen.If it matches or less than the amount when compared with the amount of the activity screen means,then Select the activity and click the submit option",
 						test, test1);
@@ -483,7 +415,7 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 				click(driver, MSC_Column_Filt_CAR);
 
 				waitForElement(driver, MSC_Filter_input_CAR);
-				jsClick(driver, MSC_SelectAll_Checkbox_CAR);
+				jsClick(driver, SelectAll_Column_CheckBox);
 
 				List<String> ExpensiveTable_Headers2 = splitAndExpand(MSC_Headers_Names);
 				for (String FilterHeader : ExpensiveTable_Headers2) {
@@ -523,26 +455,39 @@ public class TC_Cost_Activity_Report_TS060 extends Keywords {
 				waitForElement(driver, Activity_Code_Filter);
 				click(driver, Activity_Code_Filter);
 
-				String row_value = getText(driver, Car_status_Row_Option);
+			
+				
+				waitForElement(driver, Car_First_Row_Option);
+				click(driver, Car_First_Row_Option);
+
+				waitForElement(driver, Car_Approval_Option);
+				click(driver, Car_Approval_Option);
+				
+				String row_value = getText(driver, popup_Message);
 				System.out.println("row_value : " + row_value);
+				
+				if (activity_Approved_status.equals(row_value)) {
 
-				if (Auto_Approved_status.equals(row_value)) {
-
-					System.out.println("Matched exp value :" + Auto_Approved_status + "actual value :" + row_value);
-					Extent_pass(driver, "Matched || " + " Expected Value is : " + Auto_Approved_status
+					System.out.println("Matched exp value :" + activity_Approved_status + "actual value :" + row_value);
+					Extent_pass(driver, "Matched || " + " Expected Value is : " + activity_Approved_status
 							+ " || Actual Value is : " + row_value, test, test1);
 
 				} else {
-					System.out.println("Not Matched exp value :" + Auto_Approved_status + "actual value :" + row_value);
-					Extent_fail(driver, "Not Matched || " + " Expected Value is : " + Auto_Approved_status
+					System.out.println("Not Matched exp value :" + activity_Approved_status + "actual value :" + row_value);
+					Extent_fail(driver, "Not Matched || " + " Expected Value is : " + activity_Approved_status
 							+ " || Actual Value is : " + row_value, test, test1);
 
 				}
-				Step_End(17, "Then check the status column in the AG grid,it should show the status as Auto Approved",
-						test, test1);
+				Step_End(17, "Then check the status column in the AG grid,it should show the status as Auto Approved",test, test1);	
+				
+				waitForElement(driver, popup_Message_Ok_Button);
+				click(driver, popup_Message_Ok_Button);
 
+				
 			}
 		}
+
+		Extent_completed(tc_Name, test, test1);
 
 	}
 }

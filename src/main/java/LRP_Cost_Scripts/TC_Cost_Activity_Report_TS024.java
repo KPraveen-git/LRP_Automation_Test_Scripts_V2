@@ -36,6 +36,7 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 		String FilterColumn1 = data.get("FilterColumn1");
 		String FilterColumn2 = data.get("FilterColumn2");
 		String FilterColumn3 = data.get("FilterColumn3");
+		String Agency = data.get("Agency");
 
 		Extent_Start(tc_Name, test, test1);
 
@@ -45,19 +46,23 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
 
+		navigateUrl(driver, url);
+
 		LRP_Login(driver, username, password);
+		
+		SwitchProfile(driver, Agency);
 
 		Step_End(1,
 				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
 
-		verifyMainMenu(driver);
+		Step_Start(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
-		Step_Start(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		verifyMainMenu(driver);
 
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
-		Step_End(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_End(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		Step_Start(3, "Click on the global search option which is available in the tool bar", test, test1);
 
@@ -80,36 +85,21 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 
 		Step_End(4, "Check whether it opens a new search window", test, test1);
 
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_Start(6, "Then click on the search button", test, test1);
 
-		click(driver, globalSearch_Frame_SearchButton);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No", test, test1);
-
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
-		Step_End(7, "System will show the CAR No", test, test1);
 
 		Step_Start(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
-		
-		waitInvisible(driver, SelectButton);
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
+
+		Step_End(6, "Then click on the search button", test, test1);
+
+		Step_End(7, "System will show the CAR No", test, test1);
 
 		Step_End(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
@@ -199,14 +189,11 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 
 			waitForElement(driver, currencyvalues);
 
-			WebElement currencygrid = driver.findElement(By.xpath(
-					"(//tbody[contains(@id,'gridtotalsummary_data')]//tr[@data-ri='" + cur_count + "']//td)[1]"));
+			String currencygrid = String.format(CAR_CurrecnyGrid, cur_count);
+			String currencyAmount = String.format(CAR_CurrecnyGridamount, cur_count);
 
-			WebElement currencyAmount = driver.findElement(By.xpath(
-					"(//tbody[contains(@id,'gridtotalsummary_data')]//tr[@data-ri='" + cur_count + "']//input)[1]"));
-
-			String Currency_Value = currencygrid.getText();
-			String CurrencyAmount = currencyAmount.getAttribute("value").replace(",", "");
+			String Currency_Value = getText(driver, currencygrid);
+			String CurrencyAmount = getText(driver, currencyAmount).replace(",", "");
 
 			Ventor_Currency.add(Currency_Value);
 
@@ -230,14 +217,11 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 
 			waitForElement(driver, currencyvalues);
 
-			WebElement currencygrid = driver.findElement(By.xpath(
-					"(//tbody[contains(@id,'gridtotalsummary_data')]//tr[@data-ri='" + cur_count + "']//td)[1]"));
+			String currencygrid = String.format(CAR_CurrecnyGrid, cur_count);
+			String currencyAmount = String.format(CAR_CurrecnyGridamount, cur_count);
 
-			WebElement currencyAmount = driver.findElement(By.xpath(
-					"(//tbody[contains(@id,'gridtotalsummary_data')]//tr[@data-ri='" + cur_count + "']//input)[1]"));
-
-			String Currency_Value = currencygrid.getText();
-			String CurrencyAmount = currencyAmount.getAttribute("value").replace(",", "");
+			String Currency_Value = getText(driver, currencygrid);
+			String CurrencyAmount = getText(driver, currencyAmount).replace(",", "");
 
 			Main_Currency.add(Currency_Value);
 
@@ -279,9 +263,9 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 
 			if (Currency_value.contains(expense_currency)) {
 
-				String total = driver
-						.findElement(By.xpath("(//div[@col-id='conTotalCost' and @role='gridcell'])[" + i + "]"))
-						.getText().replace(",", "");
+				String totalexpensefield = String.format(CAR_Totalexpense, i);
+				
+				String total = getText(driver, totalexpensefield).replace(",", "");
 
 				double totalamount = Double.parseDouble(total);
 
@@ -341,9 +325,9 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 
 			if (Ventor_Currency.contains(expense_currency)) {
 
-				String total = driver
-						.findElement(By.xpath("(//div[@col-id='conTotalCost' and @role='gridcell'])[" + j + "]"))
-						.getText().replace(",", "");
+				String totalexpensefield = String.format(CAR_Totalexpense, j);
+				
+				String total = getText(driver, totalexpensefield).replace(",", "");
 
 				double totalamount = Double.parseDouble(total);
 
@@ -401,9 +385,9 @@ public class TC_Cost_Activity_Report_TS024 extends Keywords {
 
 			if (Main_Currency.contains(expense_currency)) {
 
-				String total = driver
-						.findElement(By.xpath("(//div[@col-id='conTotalCost' and @role='gridcell'])[" + k + "]"))
-						.getText().replace(",", "");
+				String totalexpensefield = String.format(CAR_Totalexpense, k);
+				
+				String total = getText(driver, totalexpensefield).replace(",", "");
 
 				double totalamount = Double.parseDouble(total);
 

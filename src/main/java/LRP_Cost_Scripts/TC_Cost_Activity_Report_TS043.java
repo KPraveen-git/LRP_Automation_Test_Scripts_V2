@@ -34,26 +34,33 @@ public class TC_Cost_Activity_Report_TS043 extends Keywords {
 		String Car_Open_Popup = data.get("Car_Open_Popup");
 		String Open_popup = data.get("Open_popup");
 		String Operational_Warning = data.get("Operational_Warning");
+		String Agency = data.get("Agency");
 
 		Extent_Start(tc_Name, test, test1);
 
 		navigateUrl(driver, url);
 
-		Step_Start(1, "Once login to the application and click on switch profile option and select the required agency",
+		Step_Start(1,
+				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
+
+		navigateUrl(driver, url);
 
 		LRP_Login(driver, username, password);
+		
+		SwitchProfile(driver, Agency);
 
-		Step_End(1, "Once login to the application and click on switch profile option and select the required agency",
+		Step_End(1,
+				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
 
-		Step_Start(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_Start(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		verifyMainMenu(driver);
 
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
-		Step_End(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
+		Step_End(2, "Enter the screen name as 'Cost Activity Report' in module search field", test, test1);
 
 		Step_Start(3, "Click on the global search option which is available in the tool bar", test, test1);
 
@@ -76,52 +83,52 @@ public class TC_Cost_Activity_Report_TS043 extends Keywords {
 
 		Step_End(4, "Check whether it opens a new search window", test, test1);
 
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-
-		waitForElement(driver, type_Select1);
-		click(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_search_value);
-		click(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Condition);
-		clearAndType(driver, globalSearch_InputTextfield1, CAR_No);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_Start(6, "Then click on the search button", test, test1);
 
-		click(driver, globalSearch_Frame_SearchButton);
+		Step_Start(7, "System will show the CAR No", test, test1);
+
+		Step_Start(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
+
+		globalValueSearchWindow(driver, Condition, Select_search_value, CAR_No, "", "", "", "");
+
+		Step_End(5, "Enter the CTL CAR No. in the CAR No search field", test, test1);
 
 		Step_End(6, "Then click on the search button", test, test1);
 
-		Step_Start(7, "System will show the CAR No", test, test1);
-
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
 		Step_End(7, "System will show the CAR No", test, test1);
 
-		Step_Start(8, "System will retrieve the CAR", test, test1);
+		waitForElement(driver, CAR_Input);
+		String retrived_Number = getAttribute(driver, CAR_Input, "value");
 
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		if (retrived_Number.equals(CAR_No)) {
 
-		waitInvisible(driver, SelectButton);
-
-		if (isdisplayed(driver, Car_Close) && isElementEnabled(driver, Car_Close)) {
-
-			waitForElement(driver, Car_Close);
-			click(driver, Car_Close);
-
-			waitForElement(driver, popup_Message_Ok_Button);
-			click(driver, popup_Message_Ok_Button);
-
+			System.out.println("The given CAR No was retrived || Expected CAR No : " + CAR_No + " || Actual CAR No : "
+					+ retrived_Number);
+			Extent_pass(driver, "The given CAR No was retrived || Expected CAR No : " + CAR_No + " || Actual CAR No : "
+					+ retrived_Number, test, test1);
+		} else {
+			System.out.println("The given CAR No was not retrived || Expected CAR No : " + CAR_No
+					+ " || Actual CAR No : " + retrived_Number);
+			Extent_fail(driver, "The given CAR No was not retrived || Expected CAR No : " + CAR_No
+					+ " || Actual CAR No : " + retrived_Number, test, test1);
 		}
-
-		Step_End(8, "System will retrieve the CAR", test, test1);
+		
+		Step_End(8, "Click on the select button.Ensure that the system retrieves the saved CAR", test, test1);
 
 		Step_Start(9,
 				"Ensure that only opened CAR is allowed to edit. If CAR is closed and clicking edit option System validates as \"Closed CAR cannot be edited.\". Click on the ok option.Then click CAR open and open the car",
 				test, test1);
+		
+		if(isdisplayed(driver, car_Close_Button)) {
+			waitForElement(driver, car_Close_Button);
+			click(driver, car_Close_Button);
+			
+			waitForElement(driver, popup_Message_Ok_Button);
+			click(driver, popup_Message_Ok_Button);
+			
+		}
 
 		waitForElement(driver, Edit_Button_toolBar);
 		click(driver, Edit_Button_toolBar);

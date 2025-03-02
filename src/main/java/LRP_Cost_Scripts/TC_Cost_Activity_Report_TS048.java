@@ -44,6 +44,12 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 		String Condition2 = data.get("Condition2");
 		String VendorColumn = data.get("VendorColumn");
 
+		String Service_Filter_Header = data.get("Service_Filter_Header");
+		String Vessel_Filter_Header = data.get("Vessel_Filter_Header");
+		String Port_Filter_Header = data.get("Port_Filter_Header");
+		String Terminal_Filter_Header = data.get("Terminal_Filter_Header");
+		String ArrivalDate_Filter_Header = data.get("ArrivalDate_Filter_Header");
+
 		String Contract_option = String.format(Select_ContractType, GivenContract_Type);
 		String Mode_option = String.format(Select_ModeOption, GivenMode);
 
@@ -57,13 +63,12 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 
 		LRP_Login(driver, username, password);
 
+		verifyMainMenu(driver);
+
 		Step_End(1,
 				"Once login to the application and click on switch profile option and select for the required agency",
 				test, test1);
-
 		Step_Start(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
-
-		verifyMainMenu(driver);
 
 		moduleNavigate(driver, Cost_Activity_Report_Module);
 
@@ -86,7 +91,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 		waitForElement(driver, Service_Search);
 		click(driver, Service_Search);
 
-		selectValue(driver, Condition1, Service);
+		twoColumnSearchWindow(driver, Service_Filter_Header, Condition1, Service);
 
 		Step_End(3, "Click on the Service search button and select the required service code", test, test1);
 
@@ -95,7 +100,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 		waitForElement(driver, Vessel_Search);
 		click(driver, Vessel_Search);
 
-		selectValue(driver, Condition1, Vessel);
+		twoColumnSearchWindow(driver, Vessel_Filter_Header, Condition1, Vessel);
 
 		Step_End(4, "Click on the Vessel search button and select the required vessel code", test, test1);
 
@@ -104,7 +109,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 		waitForElement(driver, port_Search);
 		click(driver, port_Search);
 
-		selectValue(driver, Condition1, Port);
+		twoColumnSearchWindow(driver, Port_Filter_Header, Condition1, Port);
 
 		Step_End(5, "Click on the Port search button and select the required port code", test, test1);
 
@@ -113,7 +118,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 		waitForElement(driver, Terminal_Search);
 		click(driver, Terminal_Search);
 
-		selectValue(driver, Condition1, Terminal);
+		twoColumnSearchWindow(driver, Terminal_Filter_Header, Condition1, Terminal);
 
 		Step_End(6, "Click on the Terminal search button and select the required terminal code", test, test1);
 
@@ -122,7 +127,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 		waitForElement(driver, ArrivalDate_Search);
 		click(driver, ArrivalDate_Search);
 
-		selectValue(driver, Condition1, Arrival_Date);
+		twoColumnSearchWindow(driver, ArrivalDate_Filter_Header, Condition1, Arrival_Date);
 
 		Step_End(7, "Click on the Arrival date search button and select the required date", test, test1);
 
@@ -162,9 +167,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 			clear(driver, PR_FilterInput);
 			sendKeys(driver, PR_FilterInput, columnname);
 
-			enter(driver);
-
-			wait(driver, "1");
+			jsClick(driver, PR_Deselect);
 		}
 
 		List<WebElement> PR_EqpType_Field = driver.findElements(By.xpath(
@@ -222,6 +225,14 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 
 			Step_Start(14, "Click on the global search option in the toolbar. A new window will be opened", test,
 					test1);
+			
+			Step_Start(15, "Enter the required Contract code in the Contract Code field", test, test1);
+
+			Step_End(16, "Enter the copied port code in the port field", test, test1);
+			
+			Step_Start(17, "Enter the copied terminal code in the terminal field", test, test1);
+			
+			Step_Start(18, "Click on the search option", test, test1);
 
 			waitForElement(driver, SearchButton_Toolbar);
 			click(driver, SearchButton_Toolbar);
@@ -235,49 +246,19 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 				System.out.println("New Search window not got opened");
 				Extent_fail(driver, "New Search window not got opened", test, test1);
 			}
+			
+			globalValueSearchWindow1(driver, Condition2, Select_ContractCode, GivenContract_Type, Select_Port, Port,
+					Select_Terminal, Terminal);
 
 			Step_End(14, "Click on the global search option in the toolbar. A new window will be opened", test, test1);
 
-			Step_Start(15, "Enter the required Contract code in the Contract Code field", test, test1);
-
-			waitForElement(driver, type_Select1);
-			click(driver, type_Select1);
-			selectByText(driver, type_Select1, Select_ContractCode);
-			click(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, Condition2);
-			clearAndType(driver, globalSearch_InputTextfield1, GivenContract_Type);
-
 			Step_End(15, "Enter the required Contract code in the Contract Code field", test, test1);
-
-			Step_Start(16, "Enter the copied port code in the port field", test, test1);
-
-			waitForElement(driver, type_Select2);
-			click(driver, type_Select2);
-			selectByText(driver, type_Select2, Select_Port);
-			click(driver, globalSearch_Condition_Dropdown2);
-			selectByText(driver, globalSearch_Condition_Dropdown2, Condition2);
-			clearAndType(driver, globalSearch_InputTextfield2, Port);
-
-			Step_End(16, "Enter the copied port code in the port field", test, test1);
-
-			Step_Start(17, "Enter the copied terminal code in the terminal field", test, test1);
-
-			waitForElement(driver, type_Select3);
-			click(driver, type_Select3);
-			selectByText(driver, type_Select3, Select_Terminal);
-			click(driver, globalSearch_Condition_Dropdown3);
-			selectByText(driver, globalSearch_Condition_Dropdown3, Condition2);
-			clearAndType(driver, globalSearch_InputTextfield3, Terminal);
 
 			Step_End(17, "Enter the copied terminal code in the terminal field", test, test1);
 
-			Step_Start(18, "Click on the search option", test, test1);
-
-			click(driver, globalSearch_Frame_SearchButton);
-
 			Step_End(18, "Click on the search option", test, test1);
 
-			if (isdisplayed(driver, Norecords)) {
+			if (isdisplayed(driver, CAR_Norecords)) {
 
 				Step_Start(21,
 						"If the records are not shown, clear the port and terminal codes in the port and terminal field and enter only the contract code in the contract code field in that new window.Click on the search option. Select the record where no port and terminal is given.Click on the select option",
@@ -474,9 +455,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 			clear(driver, UPR_FilterInput);
 			sendKeys(driver, UPR_FilterInput, columnname);
 
-			enter(driver);
-
-			wait(driver, "1");
+			jsClick(driver, UPR_Deselect);
 		}
 
 		List<WebElement> UPR_EqpType_Field = driver.findElements(By.xpath(
@@ -549,45 +528,49 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 			Step_End(14, "Click on the global search option in the toolbar. A new window will be opened", test, test1);
 
 			Step_Start(15, "Enter the required Contract code in the Contract Code field", test, test1);
+			
+			Step_Start(16, "Enter the copied port code in the port field", test, test1);
+			
+			Step_Start(17, "Enter the copied terminal code in the terminal field", test, test1);
 
-			waitForElement(driver, type_Select1);
-			click(driver, type_Select1);
-			selectByText(driver, type_Select1, Select_ContractCode);
-			click(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, Condition2);
-			clearAndType(driver, globalSearch_InputTextfield1, GivenContract_Type);
+			Step_Start(18, "Click on the search option", test, test1);
+			
+			globalValueSearchWindow1(driver, Condition2, Select_ContractCode, GivenContract_Type, Select_Port, Port,
+					Select_Terminal, Terminal);
+
+
+//			waitForElement(driver, type_Select1);
+//			click(driver, type_Select1);
+//			selectByText(driver, type_Select1, Select_ContractCode);
+//			click(driver, globalSearch_Condition_Dropdown1);
+//			selectByText(driver, globalSearch_Condition_Dropdown1, Condition2);
+//			clearAndType(driver, globalSearch_InputTextfield1, GivenContract_Type);
 
 			Step_End(15, "Enter the required Contract code in the Contract Code field", test, test1);
 
-			Step_Start(16, "Enter the copied port code in the port field", test, test1);
 
-			waitForElement(driver, type_Select2);
-			click(driver, type_Select2);
-			selectByText(driver, type_Select2, Select_Port);
-			click(driver, globalSearch_Condition_Dropdown2);
-			selectByText(driver, globalSearch_Condition_Dropdown2, Condition2);
-			clearAndType(driver, globalSearch_InputTextfield2, Port);
+//			waitForElement(driver, type_Select2);
+//			click(driver, type_Select2);
+//			selectByText(driver, type_Select2, Select_Port);
+//			click(driver, globalSearch_Condition_Dropdown2);
+//			selectByText(driver, globalSearch_Condition_Dropdown2, Condition2);
+//			clearAndType(driver, globalSearch_InputTextfield2, Port);
 
 			Step_End(16, "Enter the copied port code in the port field", test, test1);
 
-			Step_Start(17, "Enter the copied terminal code in the terminal field", test, test1);
-
-			waitForElement(driver, type_Select3);
-			click(driver, type_Select3);
-			selectByText(driver, type_Select3, Select_Terminal);
-			click(driver, globalSearch_Condition_Dropdown3);
-			selectByText(driver, globalSearch_Condition_Dropdown3, Condition2);
-			clearAndType(driver, globalSearch_InputTextfield3, Terminal);
+//			waitForElement(driver, type_Select3);
+//			click(driver, type_Select3);
+//			selectByText(driver, type_Select3, Select_Terminal);
+//			click(driver, globalSearch_Condition_Dropdown3);
+//			selectByText(driver, globalSearch_Condition_Dropdown3, Condition2);
+//			clearAndType(driver, globalSearch_InputTextfield3, Terminal);
 
 			Step_End(17, "Enter the copied terminal code in the terminal field", test, test1);
 
-			Step_Start(18, "Click on the search option", test, test1);
-
-			click(driver, globalSearch_Frame_SearchButton);
 
 			Step_End(18, "Click on the search option", test, test1);
 
-			if (isdisplayed(driver, Norecords)) {
+			if (isdisplayed(driver, CAR_Norecords)) {
 
 				Step_Start(21,
 						"If the records are not shown, clear the port and terminal codes in the port and terminal field and enter only the contract code in the contract code field in that new window.Click on the search option. Select the record where no port and terminal is given.Click on the select option",
@@ -629,9 +612,10 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 
 			waitForElement(driver, MappedEquipmentFilter);
 			click(driver, MappedEquipmentFilter);
-			sendKeys(driver, MappedEquipmentFilter, PR_EqpType.get(i));
+			sendKeys(driver, MappedEquipmentFilter, UPR_EqpType.get(i));
 
 			waitForElement(driver, Contract_Equipment_Value);
+			
 			String contract_equipment = getText(driver, Contract_Equipment_Value);
 
 			Step_End(20,
@@ -654,7 +638,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 
 			Step_Start(24, "Select the Contract No  which matches with the copied Contract No", test, test1);
 
-			String Contract = String.format(Select_Contract, PR_ContractNo.get(i));
+			String Contract = String.format(Select_Contract, UPR_ContractNo.get(i));
 
 			waitForElement(driver, Contract);
 			click(driver, Contract);
@@ -749,7 +733,7 @@ public class TC_Cost_Activity_Report_TS048 extends Keywords {
 
 			waitForElement(driver, Close_VendorTab);
 			click(driver, Close_VendorTab);
-			
+
 			Step_End(30,
 					"Check whether the copied amount from the vendor contracts matches with the charge rate in CAR screen",
 					test, test1);

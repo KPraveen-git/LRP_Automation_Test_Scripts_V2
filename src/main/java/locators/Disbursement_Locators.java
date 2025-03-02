@@ -1,6 +1,6 @@
 package locators;
 
-public interface Disbursement_Locators extends LoadConfirmation_Locators{
+public interface Disbursement_Locators extends Discharge_Confirmation_Locators{
 
 	
 	public static String Disbursement_input_="Disbursement input>//input[@id='WCR-WCR_txtMasDocNo']";

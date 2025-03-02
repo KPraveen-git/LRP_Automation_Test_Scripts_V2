@@ -66,7 +66,14 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 		String Height = Data.get("Height");
 		String Quantity = Data.get("Quantity");
 		String Package_Description = Data.get("Package_Description");
-
+		String OOG_Condition = Data.get("OOG_Condition");
+		
+		String Rate_Header = Data.get("Rate_Header");
+		String Package_Header = Data.get("Package_Header");
+		String DG_Header = Data.get("DG_Header");
+		String Origin_Header = Data.get("Origin_Header");
+		String Delivery_Header = Data.get("Delivery_Header");
+		
 		Extent_Start(testCaseName, test, test1);
 
 		navigateUrl(driver, url);
@@ -144,7 +151,8 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 
 		waitForElement(driver, RateCal);
 		click(driver, RateCal);
-		selectValue(driver, DG_Condition, Eqp_Type);
+		
+		twoColumnSearchWindow(driver, Rate_Header, DG_Condition, Eqp_Type);
 
 		Step_End(6, "Enter the equipment", test, test1);
 
@@ -153,15 +161,8 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 		waitForElement(driver, Contract_Management_System_Origin_seach);
 		click(driver, Contract_Management_System_Origin_seach);
 
-		waitForElement(driver, Contract_Management_System_Origin_seach_Input_field);
-		sendKeys(driver, Contract_Management_System_Origin_seach_Input_field, Origin);
-
-		waitForElement(driver, firstRow);
-		click(driver, firstRow);
-
-		waitForElement(driver, Contract_Management_System_Origin_select);
-		click(driver, Contract_Management_System_Origin_select);
-
+		twoColumnSearchWindow(driver, Origin_Header, Search_Condition, Origin);
+		
 		Step_End(7, "Enter the origin", test, test1);
 
 		Step_Start(8, "Enter the delivery", test, test1);
@@ -169,14 +170,7 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 		waitForElement(driver, Contract_Management_System_Delivery);
 		click(driver, Contract_Management_System_Delivery);
 
-		waitForElement(driver, Contract_Management_System_Delivery_seach_Input_field);
-		sendKeys(driver, Contract_Management_System_Delivery_seach_Input_field, Delivery);
-
-		waitForElement(driver, firstRow);
-		click(driver, firstRow);
-
-		waitForElement(driver, Contract_Management_System_Origin_select);
-		click(driver, Contract_Management_System_Origin_select);
+		twoColumnSearchWindow(driver, Delivery_Header, Search_Condition, Delivery);
 
 		Step_End(8, "Enter the delivery", test, test1);
 
@@ -235,7 +229,10 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 		waitForElement(driver, Package_description);
 		click(driver, Height_Input);
 		click(driver, Package_description);
-		selectValue(driver, DG_Condition, Package_Description);
+		
+//		selectValue(driver, DG_Condition, Package_Description);
+		
+		twoColumnSearchWindow(driver, Package_Header, DG_Condition, Package_Description);
 
 		waitForElement(driver, DimensionAdd);
 		click(driver, DimensionAdd);
@@ -268,8 +265,8 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 
 			waitForElement(driver, DG_Class);
 			click(driver, DG_Class);
-
-			selectValue(driver, Search_Condition, DGCLass_Value);
+			
+			twoColumnSearchWindow(driver, DG_Header, Search_Condition, DGCLass_Value);
 
 			waitForElement(driver, Add_DG_Class);
 			click(driver, Add_DG_Class);
@@ -296,13 +293,13 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 			click(driver, DG_Ok);
 		}
 
-//		if (OOG_Condition.equals("Yes")) {
-//
-//			scrollUsingElement(driver, OOG_Checkbox);
-//			waitForElement(driver, OOG_Checkbox);
-//			click(driver, OOG_Checkbox);
-//
-//		}
+		if (OOG_Condition.equals("Yes")) {
+
+			scrollUsingElement(driver, OOG_Checkbox);
+			waitForElement(driver, OOG_Checkbox);
+			click(driver, OOG_Checkbox);
+
+		}
 
 		scrollTop(driver);
 
@@ -353,24 +350,7 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 		waitForElement(driver, SearchButton_Toolbar);
 		click(driver, SearchButton_Toolbar);
 
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_field);
-
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Search_Condition2);
-
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, contract_number);
-		;
-
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, Search_Condition2, Select_field, contract_number, "", "", "", "");
 
 		Step_End(13, "Retrieve the contract in the global search", test, test1);
 
@@ -575,23 +555,7 @@ public class TC_Contract_Management_System_SC091 extends Keywords {
 		waitForElement(driver, SearchButton_Toolbar);
 		click(driver, SearchButton_Toolbar);
 
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, Select_field);
-
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Search_Condition2);
-
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, contract_number2);
-
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-
-		waitForElement(driver, BL_Number_select);
-		click(driver, BL_Number_select);
-
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		globalValueSearchWindow(driver, Search_Condition2, Select_field, contract_number, "", "", "", "");
 
 		Step_End(24, "retrieve the contract in the global search", test, test1);
 

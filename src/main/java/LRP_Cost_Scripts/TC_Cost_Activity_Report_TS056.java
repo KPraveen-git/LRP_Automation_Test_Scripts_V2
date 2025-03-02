@@ -25,28 +25,32 @@ public class TC_Cost_Activity_Report_TS056 extends Keywords {
 		String username = data.get("Username");
 		String password = data.get("Password");
 		String Cost_Activity_Report_Module = data.get("Cost_Activity_Report_Module");
-		String Contains = data.get("Contains_val");
-		String car_number = data.get("Car_No");
-		String car_value = data.get("Car_Number");
 		String Header_value = data.get("Header");
 		String AgencyUser = data.get("AgencyUser");
 		String Contract_No_Filter_Input = data.get("Contract_No_Filter_Input");
 		String Activity_Code_Filter_Input = data.get("Activity_Code_Filter_Input");
 		String Head = data.get("Head");
 		String Qty_val = data.get("Qty_Input");
+		String CAR_Retrieve_Type1 = data.get("CAR_Retrieve_Type1");
+		String CAR_Retrieve_Condition1 = data.get("CAR_Retrieve_Condition1");
+		String CAR_Number_Retrieve_Value1 = data.get("CAR_Number_Retrieve_Value1");
+		String CAR_Retrieve_Type2 = data.get("CAR_Retrieve_Type2");
+		String CAR_Number_Retrieve_Value2 = data.get("CAR_Number_Retrieve_Value2");
+		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
+		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
+		
+		
 
 		String Activity_Report_Updated = data.get("Activity_Report_Updated");
 
 		Extent_Start(tc_Name, test, test1);
 
 		Step_Start(1,
-				"Once login to the application and click on switch profile option and select the required agency.",
-				test, test1);
+				"Once login to the application and click on switch profile option and select the required agency.",test, test1);
 
 		navigateUrl(driver, url);
 
-		Step_End(1, "Once login to the application and click on switch profile option and select the required agency",
-				test, test1);
+		Step_End(1, "Once login to the application and click on switch profile option and select the required agency",test, test1);
 
 		Step_Start(2, "Enter the screen name as Cost Activity Report in module search field", test, test1);
 
@@ -69,58 +73,26 @@ public class TC_Cost_Activity_Report_TS056 extends Keywords {
 
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
 
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		click(driver, Ventor_Global_Seach_First_Field);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, car_number);
-
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
-
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-
+		
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, car_value);
-
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-
 		Step_Start(6, "Then click on the search button", test, test1);
-
-		waitForElement(driver, Search_button);
-		click(driver, Search_button);
-
-		Step_End(6, "Then click on the search button", test, test1);
-
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-
-		waitForElement(driver, column_Values);
-		click(driver, column_Values);
-
-		waitForElement(driver, Select_Option);
-		click(driver, Select_Option);
-
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition1,CAR_Retrieve_Type1,CAR_Number_Retrieve_Value1,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
+		
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(6, "Then click on the search button", test, test1);
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
-
 		Step_Start(8, "System will retrieve the CAR", test, test1);
+
+
 
 		waitForElement(driver, car_Number_val);
 		waitForElement(driver, car_Number_val);
 		String Carvalue = getAttribute(driver, car_Number_val, "value");
 
 		System.out.println("Carvalue :" + Carvalue);
-
-		if (car_value.equals(Carvalue)) {
-			System.out.println("matched exp value :" + car_value + "actual value :" + Carvalue);
-			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + car_value
-					+ " || Actual Report Activity is : " + Carvalue, test, test1);
-		} else {
-			System.out.println("Not matched exp value :" + car_value + "actual value :" + Carvalue);
-			Extent_fail(driver, "Matched || " + " Expected Report Activity is : " + car_value
-					+ " || Actual Report Activity is : " + Carvalue, test, test1);
-		}
 
 		Step_End(8, "System will retrieve the CAR", test, test1);
 
@@ -212,12 +184,10 @@ public class TC_Cost_Activity_Report_TS056 extends Keywords {
 		if (Activity_Report_Updated.equals(save_value)) {
 
 			System.out.println("matched exp value :" + Activity_Report_Updated + "actual value :" + save_value);
-			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + Activity_Report_Updated
-					+ " || Actual Report Activity is : " + save_value, test, test1);
+			Extent_pass(driver, "Matched || " + " Expected Report Activity is : " + Activity_Report_Updated+ " || Actual Report Activity is : " + save_value, test, test1);
 		} else {
 			System.out.println("Not matched exp value :" + Activity_Report_Updated + "actual value :" + save_value);
-			Extent_fail(driver, " NotMatched || " + " Expected Report Activity is : " + Activity_Report_Updated
-					+ " || Actual Report Activity is : " + save_value, test, test1);
+			Extent_fail(driver, " NotMatched || " + " Expected Report Activity is : " + Activity_Report_Updated+ " || Actual Report Activity is : " + save_value, test, test1);
 		}
 
 		waitForElement(driver, popup_Message_Ok_Button);
@@ -226,27 +196,9 @@ public class TC_Cost_Activity_Report_TS056 extends Keywords {
 		waitForElement(driver, seach_Filed);
 		click(driver, seach_Filed);
 
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		click(driver, Ventor_Global_Seach_First_Field);
-
-		waitForElement(driver, Ventor_Global_Seach_First_Field);
-		selectByText(driver, Ventor_Global_Seach_First_Field, car_number);
-
-		waitForElement(driver, Condition_field);
-		selectByText(driver, Condition_field, Contains);
-
-		waitForElement(driver, Global_Input_Filed);
-		sendKeys(driver, Global_Input_Filed, car_value);
-
-		waitForElement(driver, Search_button);
-		click(driver, Search_button);
-
-		waitForElement(driver, column_Values);
-		click(driver, column_Values);
-
-		waitForElement(driver, Select_Option);
-		click(driver, Select_Option);
-
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition1,CAR_Retrieve_Type1,CAR_Number_Retrieve_Value1,CAR_Retrieve_Type2,CAR_Number_Retrieve_Value2,CAR_Retrieve_Type3,CAR_Number_Retrieve_Value3);
+			
+		
 		waitForElement(driver, Car_Edit_Option);
 		click(driver, Car_Edit_Option);
 
@@ -291,8 +243,7 @@ public class TC_Cost_Activity_Report_TS056 extends Keywords {
 					+ " || Actual Report Activity is : " + TotalCostchargeValueAsDouble, test, test1);
 		}
 
-		Step_End(11,
-				"Select the required activity and change the quantity of that activity and ensure that cost also gets changed only if the activities",
+		Step_End(11,"Select the required activity and change the quantity of that activity and ensure that cost also gets changed only if the activities",
 				test, test1);
 		Extent_completed(tc_Name, test, test1);
 

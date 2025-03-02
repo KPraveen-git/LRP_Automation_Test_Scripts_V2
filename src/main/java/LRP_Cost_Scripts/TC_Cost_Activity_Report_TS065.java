@@ -32,6 +32,10 @@ public class TC_Cost_Activity_Report_TS065 extends Keywords {
 		String CAR_Number_Retrieve = data.get("CAR_Number_Retrieve");
 		String Select_Columns = data.get("Select_Columns");
 		String activity_Input = data.get("activity_Input");
+		String Contract_type_Search = data.get("Contract_type_Search");
+		String Contract_Type_Input = data.get("Contract_Type_Input");
+		String Carrier_Code_Search = data.get("Carrier_Code_Search");
+		String Carrier_Code_Input = data.get("Carrier_Code_Input");
 
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
@@ -56,28 +60,22 @@ public class TC_Cost_Activity_Report_TS065 extends Keywords {
 		Step_End(3, "Click on the global search option which is available in the tool bar", test, test1);
 
 		Step_Start(4, "Check whether it opens a new search window.", test, test1);
-		waitForElement(driver, type_Select1);
+		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_Start(6, "Then click on the search button", test, test1);
+		Step_Start(7, "System will show the CAR No", test, test1);
+		Step_Start(8, "Click on the select button", test, test1);
+
+
+		globalValueSearchWindow(driver, CAR_Retrieve_Condition, CAR_Retrieve_Type, CAR_Number_Retrieve, Carrier_Code_Search, Carrier_Code_Input, Contract_type_Search, Contract_Type_Input);
+
+
+		
 		Step_End(4, "Check whether it opens a new search window.", test, test1);
 
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
 		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
 
-		Step_Start(6, "Then click on the search button", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
 		Step_End(6, "Then click on the search button", test, test1);
-		Step_Start(7, "System will show the CAR No", test, test1);
-		waitForElement(driver, First_Row_click);
 		Step_End(7, "System will show the CAR No", test, test1);
-		Step_Start(8, "Click on the select button", test, test1);
-		click(driver, First_Row_click);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
 		Step_End(8, "Click on the select button", test, test1);
 
 		Step_Start(9, "System will retrieve the CAR", test, test1);

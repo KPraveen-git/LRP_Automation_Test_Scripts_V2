@@ -7,7 +7,7 @@ import com.aventstack.extentreports.ExtentTest;
 import commonMethods.Keywords;
 import commonMethods.TestNgXml;
 import commonMethods.Utils;
-import locators.on_off_hire_locators;
+import locators.On_Off_Hire_Locators;
 
 public class TC_On_Off_hire_status_TS037 extends Keywords{
 	
@@ -51,12 +51,12 @@ public class TC_On_Off_hire_status_TS037 extends Keywords{
 	String equipment_type_header = Excel_data.get("equipment_type_header");
 	String country_code_header = Excel_data.get("country_code_header");
 
-	String condt_input =String.format(on_off_hire_locators.condt_input, condt_input37);
-	String reportype_input =String.format(on_off_hire_locators.reportype_input, reportype_input37);
-	String leasekind_input =String.format(on_off_hire_locators.leasekind_input, leasekind_input37);
-	String sz_tp_btn =String.format(on_off_hire_locators.sz_tp_btn, sz_tp_buttons37);
-	String sum_det_btn =String.format(on_off_hire_locators.sum_det_btn, sum_det_button37);
-	String location_hierarchy_type1 =String.format(on_off_hire_locators.location_hierarchy_type1, Location_hierachy37);
+	String condt_input =String.format(On_Off_Hire_Locators.condt_input, condt_input37);
+	String reportype_input =String.format(On_Off_Hire_Locators.reportype_input, reportype_input37);
+	String leasekind_input =String.format(On_Off_Hire_Locators.leasekind_input, leasekind_input37);
+	String sz_tp_btn =String.format(On_Off_Hire_Locators.sz_tp_btn, sz_tp_buttons37);
+	String sum_det_btn =String.format(On_Off_Hire_Locators.sum_det_btn, sum_det_button37);
+	String location_hierarchy_type1 =String.format(On_Off_Hire_Locators.location_hierarchy_type1, Location_hierachy37);
 	
 	Extent_Start(tc_Name, test, test1);
 	
