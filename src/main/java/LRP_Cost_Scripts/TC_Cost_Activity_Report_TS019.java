@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -29,13 +29,23 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 		
 		String Select_Contract_type_Value = data.get("Select_Contract_type_Value");
 		String Select_Mode_type = data.get("Select_Mode_type");
+		
+		String Service_Header = data.get("Service_Header");
 		String Service_Code = data.get("Service_Code");
+		
+		String Vessel_Header = data.get("Vessel_Header");
 		String Vessel_Code = data.get("Vessel_Code");
+		
+		String Port_Header = data.get("Port_Header");
 		String Port_Code = data.get("Port_Code");
+		
+		String Terminal_Header = data.get("Terminal_Header");
 		String Terminal_Code = data.get("Terminal_Code");
 		String Service_details_Codition = data.get("Service_details_Codition");
+		String Arrival_Date_Header = data.get("Arrival_Date_Header");
 		String Arrival_Date_Condition = data.get("Arrival_Date_Condition");
 		String Arrival_Date_Value = data.get("Arrival_Date_Value");
+		
 		String UnPredictable_Table_Filter_Headers = data.get("UnPredictable_Table_Filter_Headers");
 
 		String Popup_Text_Exp = data.get("Popup_Text_Exp");
@@ -46,8 +56,8 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 		String Main_Activity_Name = data.get("Main_Activity_Name");
 		String Sub_Activity_Name = data.get("Sub_Activity_Name");
 		String Activity_Add_Condition = data.get("Activity_Add_Condition");
+		String Activity_Header_Predictable = data.get("Activity_Header_Predictable");
 
-		
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -79,31 +89,31 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 		Step_Start(3, "Click on the Service search button and select the required service code.   ", test, test1);
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Service_Code);
+		twoColumnSearchWindow(driver,Service_Header,Service_details_Codition,Service_Code);
 		Step_End(3, "Click on the Service search button and select the required service code.   ", test, test1);
 		
 		Step_Start(4, "Click on the Vessel search button and select the required vessel code.  ", test, test1);
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Vessel_Code);
+		twoColumnSearchWindow(driver,Vessel_Header,Service_details_Codition,Vessel_Code);
 		Step_End(4, "Click on the Vessel search button and select the required vessel code.  ", test, test1);
 		
 		Step_Start(5, "Click on the Port search button and select the required port code.", test, test1);
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Port_Code);
+		twoColumnSearchWindow(driver,Port_Header,Service_details_Codition,Port_Code);
 		Step_End(5, "Click on the Port search button and select the required port code.", test, test1);
 		
 		Step_Start(6, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Terminal_Code);
+		twoColumnSearchWindow(driver,Terminal_Header,Service_details_Codition,Terminal_Code);
 		Step_End(6, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		
 		Step_Start(7, ".Click on the Arrival date search button and select the required date.", test, test1);
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, Arrival_Date_Value);
+		twoColumnSearchWindow(driver,Arrival_Date_Header,Arrival_Date_Condition,Arrival_Date_Value);
 		Step_End(7, ".Click on the Arrival date search button and select the required date.", test, test1);
 		
 		Step_Start(8, "Click on the Show button and Click on the Predictable Reporting tab.", test, test1);
@@ -124,7 +134,9 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 		click(driver, Column_SelectMenu);
 		waitForElement(driver, Column_Search_Input);
 		jsClick(driver, SelectAll_Column_CheckBox);
-		
+		if(isdisplayed(driver, UnPredict_Activity_GridCell_CAR)) {
+			jsClick(driver, SelectAll_Column_CheckBox);
+		}
 		List<String> predictable_Headers=splitAndExpand(UnPredictable_Table_Filter_Headers);
 		for(String FilterHeader : predictable_Headers) {
 			waitForElement(driver, Column_Search_Input);
@@ -181,28 +193,15 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 		Step_End(11, "Then click the global search option in the toolbar, a new window will be poped out", test, test1);
 
 		Step_Start(12, "Enter the copied Template ID in the template number field.    ", test, test1);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, Predictable_Select_Type);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Predictable_Select_Codition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, Activity_ID_CAR);
-		
-		Step_End(12, "Enter the copied Template ID in the template number field.    ", test, test1);
-		
 		Step_Start(13, "Click on the search option.System will show the details    ", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(13, "Click on the search option.System will show the details    ", test, test1);
-		
 		Step_Start(14, "Then click select option.The template number will be retrieved and details will be shown in the AG grid.", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
-				
+
+		globalValueSearchWindow(driver,Predictable_Select_Codition,Predictable_Select_Type,Activity_ID_CAR,"","","","");
+		
 		waitForElement(driver, Predictable_Activity_Table_PAB);
 		Step_End(14, "Then click select option.The template number will be retrieved and details will be shown in the AG grid.", test, test1);
+		Step_End(13, "Click on the search option.System will show the details    ", test, test1);
+		Step_End(12, "Enter the copied Template ID in the template number field.    ", test, test1);
 		
 		Step_Start(15, "Click on the edit option in the toolbar. Then select the required main activty and right click on it and select the add item option. If main activity is required  click on the add main activity and select the required main activity. ", test, test1);
 		waitForElement(driver, Edit_Button_toolBar);
@@ -224,7 +223,7 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 				RightClick(driver, Activity_Column);
 				waitForElement(driver, Add_item_PAB);
 				click(driver,Add_item_PAB);
-				selectValue1(driver, Activity_Add_Condition, Activity_Code_Value);
+				twoColumnSearchWindow(driver,Activity_Header_Predictable,Activity_Add_Condition,Activity_Code_Value);
 				
 			}else {
 				String Activity_Column=String.format(Activity_Column_PAB, Main_Activity_Value);
@@ -232,7 +231,9 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 				
 				click(driver,Activity_Column);
 				RightClick(driver, Activity_Column);
-				selectValue1(driver, Activity_Add_Condition, Parent_Code_Value);
+				waitForElement(driver, Add_item_PAB);
+				click(driver,Add_item_PAB);
+				twoColumnSearchWindow(driver,Activity_Header_Predictable,Activity_Add_Condition,Parent_Code_Value);
 				
 				String Parent_Column=String.format(Activity_Column_PAB, Parent_Code_Value);
 				waitForElement(driver, Parent_Column);
@@ -241,8 +242,7 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 				
 				waitForElement(driver, Add_item_PAB);
 				click(driver,Add_item_PAB);
-				selectValue1(driver, Activity_Add_Condition, Activity_Code_Value);
-				
+				twoColumnSearchWindow(driver,Activity_Header_Predictable,Activity_Add_Condition,Activity_Code_Value);
 			}
 			
 		}else {
@@ -290,8 +290,8 @@ public class TC_Cost_Activity_Report_TS019 extends Keywords{
 			System.out.println("Activity Added successfully in the Predicatble Activity Table");
 			Extent_pass(driver, "Activity Added successfully in the Predicatble Activity Table", test, test1);
 		}else {
-			System.out.println("Activity Added successfully in the Predicatble Activity Table");
-			Extent_fail(driver, "Activity Added successfully in the Predicatble Activity Table", test, test1);
+			System.out.println("Activity Not Added successfully in the Predicatble Activity Table");
+			Extent_fail(driver, "Activity Not Added successfully in the Predicatble Activity Table", test, test1);
 		}
 		Step_End(18, "Ensure that mapped activty is shown in the predictable reporting tab.   ", test, test1);
 		

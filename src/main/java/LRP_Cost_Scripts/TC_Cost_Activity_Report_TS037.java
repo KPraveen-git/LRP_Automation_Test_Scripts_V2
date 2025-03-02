@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -56,36 +56,23 @@ public class TC_Cost_Activity_Report_TS037 extends Keywords{
 		Step_End(3, "Click on the global search option which is available in the tool bar", test, test1);
 		
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
-		waitForElement(driver, type_Select1);
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-		
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-		
 		Step_Start(6, "Then click on the search button", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(6, "Then click on the search button", test, test1);
-		
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
+
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
-		
+		Step_End(6, "Then click on the search button", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
+
 		Step_Start(8, "System will retrieve the CAR. ", test, test1);
 		waitForElement(driver, CAR_Number_Input_CAR);
 		Step_End(8, "System will retrieve the CAR. ", test, test1);
 		
 		Step_Start(9, "If the activities are invoiced, the activities will be shown in yellow colour. Then go to vendor invoice registration and click on the global search option. Select the vendor invoice number option.Then enter the required value and click on the search option.Then click on the select option. Ensure that the invoiced quantity,invoice amount in expense report matches with the invoice in the vendor invoice registration ", test, test1);
 		waitForElement(driver, MSC_Column_Filt_CAR);
-		
 		
 		click(driver, MSC_Column_Filt_CAR);
 		waitForElement(driver, MSC_Filter_input_CAR);
@@ -109,8 +96,6 @@ public class TC_Cost_Activity_Report_TS037 extends Keywords{
 		List<Map<String, String>> MSC_TableData = extractTableDataByColumnWithoutScroll(driver, MSC_Table_CAR);
 		System.out.println("MSC_TableData : "+MSC_TableData);
 		
-		
-		
 		if(isdisplayed(driver, MSC_Activity_Yellow_Row_CAR)) {
 			waitForElement(driver, MSC_Activity_Yellow_Row_CAR);
 			String Activity_Name_Yellow=getText(driver, MSC_ActvityName_table_CAR);
@@ -132,21 +117,8 @@ public class TC_Cost_Activity_Report_TS037 extends Keywords{
 			waitForElement(driver, SearchButton_Toolbar);
 			click(driver,SearchButton_Toolbar);
 			
-			waitForElement(driver, type_Select1);
-			click(driver,type_Select1);
-			waitForElement(driver, type_Select1);
-			selectByText(driver, type_Select1, Vendor_Code_Filter_Type);
-			waitForElement(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, Vendor_Code_Filter_Condition);
-			waitForElement(driver, globalSearch_InputTextfield1);
-			sendKeys(driver, globalSearch_InputTextfield1, VendorinvoiceNumber_MSC);
-			waitForElement(driver, globalSearch_Frame_SearchButton);
-			click(driver, globalSearch_Frame_SearchButton);
-			waitForElement(driver, First_Row_select);
-			click(driver, First_Row_select);
-			waitForElement(driver, SelectButton);
-			click(driver, SelectButton);
-	
+			globalValueSearchWindow(driver,Vendor_Code_Filter_Condition,Vendor_Code_Filter_Type,VendorinvoiceNumber_MSC,"","","","");
+
 			waitForElement(driver, Vendor_Invoice_input_VIR);
 			String Invoice_Amount_VIR=getAttribute(driver, Vendor_Invoice_input_VIR, "value");
 			

@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -35,6 +35,12 @@ public class TC_Cost_Activity_Report_TS072 extends Keywords{
 		String Service_details_Codition = data.get("Service_details_Codition");
 		String Arrival_Date_Condition = data.get("Arrival_Date_Condition");
 		String Arrival_Date_Value = data.get("Arrival_Date_Value");
+		
+		String Service_Header = data.get("Service_Header");
+		String Vessel_Header = data.get("Vessel_Header");
+		String Port_Header = data.get("Port_Header");
+		String Terminal_Header = data.get("Terminal_Header");
+		String Arrival_Date_Header = data.get("Arrival_Date_Header");
 		
 		String Select_Predicatble_Sub_Activity_Name = data.get("Select_Predicatble_Sub_Activity_Name");
 		String Un_Predictable_Table_Filter_Headers = data.get("Un_Predictable_Table_Filter_Headers");
@@ -83,31 +89,31 @@ public class TC_Cost_Activity_Report_TS072 extends Keywords{
 		Step_Start(3, "Click on the Service search button and select the required service code.   ", test, test1);
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Service_Code);
+		twoColumnSearchWindow(driver,Service_Header,Service_details_Codition,Service_Code);
 		Step_End(3, "Click on the Service search button and select the required service code.   ", test, test1);
 		
 		Step_Start(4, "Click on the Vessel search button and select the required vessel code.  ", test, test1);
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Vessel_Code);
+		twoColumnSearchWindow(driver,Vessel_Header,Service_details_Codition,Vessel_Code);
 		Step_End(4, "Click on the Vessel search button and select the required vessel code.  ", test, test1);
 		
 		Step_Start(5, "Click on the Port search button and select the required port code.", test, test1);
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Port_Code);
+		twoColumnSearchWindow(driver,Port_Header,Service_details_Codition,Port_Code);
 		Step_End(5, "Click on the Port search button and select the required port code.", test, test1);
 		
 		Step_Start(6, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Terminal_Code);
+		twoColumnSearchWindow(driver,Terminal_Header,Service_details_Codition,Terminal_Code);
 		Step_End(6, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		
 		Step_Start(7, ".Click on the Arrival date search button and select the required date.", test, test1);
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, Arrival_Date_Value);
+		twoColumnSearchWindow(driver,Arrival_Date_Header,Arrival_Date_Condition,Arrival_Date_Value);
 		Step_End(7, ".Click on the Arrival date search button and select the required date.", test, test1);
 		
 		Step_Start(8, "Click on the Show button ", test, test1);

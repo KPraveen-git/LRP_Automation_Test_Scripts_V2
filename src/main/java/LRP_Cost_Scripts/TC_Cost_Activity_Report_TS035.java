@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -54,29 +54,17 @@ public class TC_Cost_Activity_Report_TS035 extends Keywords{
 		Step_End(3, "Click on the global search option which is available in the tool bar.", test, test1);
 		
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
+		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_Start(6, "Then click on the search button. ", test, test1);
+		Step_Start(7, "System will show the CAR No. and Click on the select button ", test, test1);
+
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
+
+		Step_End(7, "System will show the CAR No. and Click on the select button ", test, test1);
+		Step_End(6, "Then click on the search button. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
 		Step_End(4, "Check whether it opens a new search window. ", test, test1);
 		
-		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-		
-		Step_Start(6, "Then click on the search button. ", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(6, "Then click on the search button. ", test, test1);
-		
-		Step_Start(7, "System will show the CAR No. and Click on the select button ", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
-		Step_End(7, "System will show the CAR No. and Click on the select button ", test, test1);
-
 		Step_Start(8, "System will retrieve the CAR", test, test1);
 		waitForElement(driver, MSC_Column_Filt_CAR);
 		Step_End(8, "System will retrieve the CAR", test, test1);

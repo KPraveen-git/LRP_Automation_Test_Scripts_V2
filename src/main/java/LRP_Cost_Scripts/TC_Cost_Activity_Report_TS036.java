@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -46,6 +46,7 @@ public class TC_Cost_Activity_Report_TS036 extends Keywords{
 		String File_uploaded_popup = data.get("File_uploaded_popup");
 		String Vendor_Invoice_Saved_Popup = data.get("Vendor_Invoice_Saved_Popup");
 		String Disbursement_Success_popup = data.get("Disbursement_Success_popup");
+		String CAR_ADD_Header_Name = data.get("CAR_ADD_Header_Name");
 		
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
@@ -67,28 +68,16 @@ public class TC_Cost_Activity_Report_TS036 extends Keywords{
 		Step_End(3, "Click on the global search option which is available in the tool bar.", test, test1);
 		
 		Step_Start(4, "Check whether it opens a new search window", test, test1);
-		waitForElement(driver, type_Select1);
-		Step_End(4, "Check whether it opens a new search window", test, test1);
-		
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
-		
 		Step_Start(6, "Then click on the search button.", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(6, "Then click on the search button.", test, test1);
-		
 		Step_Start(7, "System will show the CAR No. and Click on the select button", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
+
 		Step_End(7, "System will show the CAR No. and Click on the select button", test, test1);
+		Step_End(6, "Then click on the search button.", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field", test, test1);
+		Step_End(4, "Check whether it opens a new search window", test, test1);
 		
 		Step_Start(8, "System will retrieve the CAR", test, test1);
 		waitForElement(driver, CAR_Number_Input_CAR);
@@ -140,25 +129,13 @@ public class TC_Cost_Activity_Report_TS036 extends Keywords{
 			Step_End(12, "Click the global search option in the toolbar", test, test1);
 			
 			Step_Start(13, "Paste the disbursement number in search field and click on search", test, test1);
-			waitForElement(driver, type_Select1);
-			selectByText(driver, type_Select1, Disbursment_Retrieve_Type);
-			
-			waitForElement(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, Disbursment_Retrieve_Condition);
-			waitForElement(driver, globalSearch_InputTextfield1);
-			sendKeys(driver, globalSearch_InputTextfield1, Disbursment_Number_Expensive);
-			
-			waitForElement(driver, globalSearch_Frame_SearchButton);
-			click(driver, globalSearch_Frame_SearchButton);
-			Step_End(13, "Paste the disbursement number in search field and click on search", test, test1);
-			
 			Step_Start(14, "System will show the disbursement number. And click on the select button.", test, test1);
-			waitForElement(driver, First_Row_select);
-			click(driver, First_Row_select);
-			waitForElement(driver, SelectButton);
-			click(driver, SelectButton);
+
+			globalValueSearchWindow(driver,Disbursment_Retrieve_Condition,Disbursment_Retrieve_Type,Disbursment_Number_Expensive,"","","","");
+
 			Step_End(14, "System will show the disbursement number. And click on the select button.", test, test1);
-			
+			Step_End(13, "Paste the disbursement number in search field and click on search", test, test1);
+
 			Step_Start(15, "Ensure that the system retrieves the disbursement number and it is in confirmed and accepted status", test, test1);
 			waitForElement(driver, By_Date_button_Disbursement);
 			waitForElement(driver, Disbursement_input_);
@@ -192,18 +169,7 @@ public class TC_Cost_Activity_Report_TS036 extends Keywords{
 			waitForElement(driver, Vedor_Code_Search_Button_VIR);
 			click(driver,Vedor_Code_Search_Button_VIR);
 			
-			waitForElement(driver, type_Select1);
-			selectByText(driver, type_Select1, Vendor_Code_Filter_Type);
-			waitForElement(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, Vendor_Code_Filter_Condition);
-			waitForElement(driver, globalSearch_InputTextfield1);
-			sendKeys(driver, globalSearch_InputTextfield1, App_Exp_UserName_Value);
-			waitForElement(driver, globalSearch_Frame_SearchButton);
-			click(driver, globalSearch_Frame_SearchButton);
-			waitForElement(driver, First_Row_select);
-			click(driver, First_Row_select);
-			waitForElement(driver, SelectButton);
-			click(driver, SelectButton);
+			globalValueSearchWindow(driver,Vendor_Code_Filter_Condition,Vendor_Code_Filter_Type,App_Exp_UserName_Value,"","","","");
 			
 			waitForElement(driver, Vendor_Invoice_Number_Input_VIR);
 			clear(driver,Vendor_Invoice_Number_Input_VIR);
@@ -229,9 +195,7 @@ public class TC_Cost_Activity_Report_TS036 extends Keywords{
 			
 			waitForElement(driver, CAR_PLUS_button_VIR);
 			click(driver,CAR_PLUS_button_VIR);
-			
-			selectValue1(driver, CAR_ADD_Condition, CAR_Number_Retrieve);
-			
+			twoColumnSearchWindow(driver,CAR_ADD_Header_Name,CAR_ADD_Condition,CAR_Number_Retrieve);			
 			waitForElement(driver, ADD_button_VIR);
 			click(driver,ADD_button_VIR);
 			
@@ -345,19 +309,8 @@ public class TC_Cost_Activity_Report_TS036 extends Keywords{
 			waitForElement(driver, SearchButton_Toolbar);
 			click(driver,SearchButton_Toolbar);
 			
-			waitForElement(driver, type_Select1);
-			selectByText(driver, type_Select1, CAR_Retrieve_Type);
-			waitForElement(driver, globalSearch_Condition_Dropdown1);
-			selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-			waitForElement(driver, globalSearch_InputTextfield1);
-			sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-			waitForElement(driver, globalSearch_Frame_SearchButton);
-			click(driver, globalSearch_Frame_SearchButton);
-			waitForElement(driver, First_Row_select);
-			click(driver, First_Row_select);
-			waitForElement(driver, SelectButton);
-			click(driver, SelectButton);
-			
+			globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
+
 			waitForElement(driver, MSC_Table_CAR);
 			waitForElement(driver, MSC_Column_Filt_CAR);
 			click(driver, MSC_Column_Filt_CAR);

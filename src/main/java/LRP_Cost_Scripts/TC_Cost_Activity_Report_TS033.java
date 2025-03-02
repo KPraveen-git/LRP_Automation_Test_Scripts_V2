@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -38,9 +38,9 @@ public class TC_Cost_Activity_Report_TS033 extends Keywords{
 		String Approved_Head_Value = data.get("Approved_Head_Value");
 
 		String UserName_Exp = data.get("UserName_Exp");
-		String Date_Expected = data.get("Date_Expected");
-		
-		
+		String Open_Date_Expected = data.get("Open_Date_Expected");
+		String Approved_Date_Expected = data.get("Approved_Date_Expected");
+
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		
@@ -61,28 +61,16 @@ public class TC_Cost_Activity_Report_TS033 extends Keywords{
 		Step_End(3, "Click on the global search option which is available in the tool bar.", test, test1);
 		
 		Step_Start(4, "Check whether it opens a new search window.", test, test1);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-		Step_End(4, "Check whether it opens a new search window.", test, test1);
-		
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field.", test, test1);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-		Step_End(5, "Enter the required CAR No. in the CAR No search field.", test, test1);
-		
 		Step_Start(6, "Then click on the search button", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(6, "Then click on the search button", test, test1);
-		
 		Step_Start(7, "System will show the CAR No. and Click on the select button.   ", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
+		
 		Step_End(7, "System will show the CAR No. and Click on the select button.   ", test, test1);
+		Step_End(6, "Then click on the search button", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field.", test, test1);
+		Step_End(4, "Check whether it opens a new search window.", test, test1);
 		
 		Step_Start(8, "System will retrieve the CAR ", test, test1);
 		waitForElement(driver, Expensive_Report_Btn_CAR);
@@ -133,12 +121,12 @@ public class TC_Cost_Activity_Report_TS033 extends Keywords{
 				Extent_fail(driver, "User Name Not Matched for the Head : "+open_Exp_Head+" ||  Exp : "+UserName_Exp+"  ||  Act : "+Open_Exp_UserName_Value, test, test1);
 			}
 			
-			if(Open_Exp_Date_Value.contains(Date_Expected)) {
-				System.out.println("Date Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+Open_Exp_Date_Value);
-				Extent_pass(driver, "Date Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+Open_Exp_Date_Value, test, test1);
+			if(Open_Exp_Date_Value.contains(Open_Date_Expected)) {
+				System.out.println("Date Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Open_Date_Expected+"  ||  Act : "+Open_Exp_Date_Value);
+				Extent_pass(driver, "Date Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Open_Date_Expected+"  ||  Act : "+Open_Exp_Date_Value, test, test1);
 			}else {
-				System.out.println("Date Not Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+Open_Exp_Date_Value);
-				Extent_fail(driver, "Date Not Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+Open_Exp_Date_Value, test, test1);
+				System.out.println("Date Not Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Open_Date_Expected+"  ||  Act : "+Open_Exp_Date_Value);
+				Extent_fail(driver, "Date Not Matched for the Head : "+open_Exp_Head+" ||  Exp : "+Open_Date_Expected+"  ||  Act : "+Open_Exp_Date_Value, test, test1);
 			}
 		}
 		Step_End(11, "Check whether the submitted/rejected/approved by username and date column is present.And ensure that this column is present in both open expense and approved expenses tab.  ", test, test1);
@@ -194,12 +182,12 @@ public class TC_Cost_Activity_Report_TS033 extends Keywords{
 					Extent_fail(driver, "User Name Not Matched for the Head : "+App_Exp_Head+" ||  Exp : "+UserName_Exp+"  ||  Act : "+App_Exp_UserName_Value, test, test1);
 				}
 				
-				if(App_Exp_Date_Value.contains(Date_Expected)) {
-					System.out.println("Date Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+App_Exp_Date_Value);
-					Extent_pass(driver, "Date Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+App_Exp_Date_Value, test, test1);
+				if(App_Exp_Date_Value.contains(Approved_Date_Expected)) {
+					System.out.println("Date Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Approved_Date_Expected+"  ||  Act : "+App_Exp_Date_Value);
+					Extent_pass(driver, "Date Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Approved_Date_Expected+"  ||  Act : "+App_Exp_Date_Value, test, test1);
 				}else {
-					System.out.println("Date Not Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+App_Exp_Date_Value);
-					Extent_fail(driver, "Date Not Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Date_Expected+"  ||  Act : "+App_Exp_Date_Value, test, test1);
+					System.out.println("Date Not Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Approved_Date_Expected+"  ||  Act : "+App_Exp_Date_Value);
+					Extent_fail(driver, "Date Not Matched for the Head : "+App_Exp_Head+" ||  Exp : "+Approved_Date_Expected+"  ||  Act : "+App_Exp_Date_Value, test, test1);
 				}
 			}
 			Step_End(11, "Check whether the submitted/rejected/approved by username and date column is present.And ensure that this column is present in both open expense and approved expenses tab.  ", test, test1);

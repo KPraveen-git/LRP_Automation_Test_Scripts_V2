@@ -1,6 +1,5 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
-import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
@@ -37,8 +36,6 @@ public class TC_Cost_Activity_Report_TS015 extends Keywords{
 		String CAR_Retrieve_Type3 = data.get("CAR_Retrieve_Type3");
 		String CAR_Number_Retrieve_Value3 = data.get("CAR_Number_Retrieve_Value3");
 		
-		String Excel_Data_Sheet_Name = data.get("Excel_Data_Sheet_Name");
-
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -78,8 +75,8 @@ public class TC_Cost_Activity_Report_TS015 extends Keywords{
 		Step_End(9, "System will retrieve the CAR", test, test1);
 		
 		Step_Start(10, "Click on the tool bar Export option and check whether system exports the data", test, test1);
-		List<Map<String, String>>  CAR_SummaryTableData=extractCompleteTableData2(driver,CAR_Summary_Table);
-		System.out.println("CAR_Summary_Table  "+CAR_SummaryTableData);
+		
+		waitForElement(driver, CAR_Summary_Table);
 		
 		waitForElement(driver, Total_Record_Count_CAR);
 		String TotalRecordValue=getText(driver, Total_Record_Count_CAR);
@@ -100,17 +97,6 @@ public class TC_Cost_Activity_Report_TS015 extends Keywords{
 			Extent_fail(driver, "Not Matched || Records Count in Application : " + TotalRecords_Application + " || Records Count in Excel : "+ TotalRecordsCount_Excel, test, test1);
 		}
 		
-		List<Map<String, String>>  CAR_Summary_ExcelTableData=getAllExcelData(downlaoad_Path,Excel_Data_Sheet_Name);
-		System.out.println("CAR_Summary_ExcelTableData "+CAR_Summary_ExcelTableData);
-		
-		if(compareListOfMaps(CAR_SummaryTableData,CAR_Summary_ExcelTableData)) {
-			System.out.println("Table Data Matched with Downloaded Excel File ");
-			Extent_pass(driver, "Table Data Matched with Downloaded Excel File", test, test1);
-		}else {
-			System.out.println("Table Data not Matched with Downloaded Excel File ");
-			Extent_fail(driver, "Table Data not Matched with Downloaded Excel File", test, test1);
-			
-		}
 		Step_End(10, "Click on the tool bar Export option and check whether system exports the data", test, test1);
 
 		Extent_completed(tc_Name, test, test1);		

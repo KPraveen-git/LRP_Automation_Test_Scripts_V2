@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -29,13 +29,25 @@ public class TC_Cost_Activity_Report_TS018 extends Keywords{
 		String AgencyUser = data.get("AgencyUser");
 		String Select_Contract_type_Value = data.get("Select_Contract_type_Value");
 		String Select_Mode_type = data.get("Select_Mode_type");
+		
+		String Service_Header = data.get("Service_Header");
 		String Service_Code = data.get("Service_Code");
+		
+		String Vessel_Header = data.get("Vessel_Header");
 		String Vessel_Code = data.get("Vessel_Code");
+		
+		String Port_Header = data.get("Port_Header");
 		String Port_Code = data.get("Port_Code");
+		
+		String Terminal_Header = data.get("Terminal_Header");
 		String Terminal_Code = data.get("Terminal_Code");
+		
 		String Service_details_Codition = data.get("Service_details_Codition");
+		
+		String Arrival_Date_Header = data.get("Arrival_Date_Header");
 		String Arrival_Date_Condition = data.get("Arrival_Date_Condition");
 		String Arrival_Date_Value = data.get("Arrival_Date_Value");
+		
 		String Head_Name_Table = data.get("Head_Name_Table");
 		String Predictable_Table_Headers = data.get("Predictable_Table_Headers");
 
@@ -76,31 +88,32 @@ public class TC_Cost_Activity_Report_TS018 extends Keywords{
 		Step_Start(3, "Click on the Service search button and select the required service code.", test, test1);
 		waitForElement(driver, Service_Search_Btn_CAR);
 		click(driver,Service_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Service_Code);
+		
+		twoColumnSearchWindow(driver,Service_Header,Service_details_Codition,Service_Code);
 		Step_End(3, "Click on the Service search button and select the required service code.", test, test1);
 		
 		Step_Start(4, "Click on the Vessel search button and select the required vessel code.", test, test1);
 		waitForElement(driver, Vessel_Search_Btn_CAR);
 		click(driver,Vessel_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Vessel_Code);
+		twoColumnSearchWindow(driver,Vessel_Header,Service_details_Codition,Vessel_Code);
 		Step_End(4, "Click on the Vessel search button and select the required vessel code.", test, test1);
 		
 		Step_Start(5, "Click on the Port search button and select the required port code.", test, test1);
 		waitForElement(driver, Port_Search_Btn_CAR);
 		click(driver,Port_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Port_Code);
+		twoColumnSearchWindow(driver,Port_Header,Service_details_Codition,Port_Code);
 		Step_End(5, "Click on the Port search button and select the required port code.", test, test1);
 		
 		Step_Start(6, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		waitForElement(driver, Terminal_Search_Btn_CAR);
 		click(driver,Terminal_Search_Btn_CAR);
-		selectValue(driver, Service_details_Codition, Terminal_Code);
+		twoColumnSearchWindow(driver,Terminal_Header,Service_details_Codition,Terminal_Code);
 		Step_End(6, "Click on the Terminal search button and select the required terminal code.", test, test1);
 		
 		Step_Start(7, "Click on the Arrival date search button and select the required date. ", test, test1);
 		waitForElement(driver, Arrival_Date_Search_Btn_CAR);
 		click(driver,Arrival_Date_Search_Btn_CAR);
-		selectValue1(driver, Arrival_Date_Condition, Arrival_Date_Value);
+		twoColumnSearchWindow(driver,Arrival_Date_Header,Arrival_Date_Condition,Arrival_Date_Value);
 		Step_End(7, "Click on the Arrival date search button and select the required date. ", test, test1);
 		
 		Step_Start(8, "Click on the Show button. ", test, test1);
@@ -174,36 +187,24 @@ public class TC_Cost_Activity_Report_TS018 extends Keywords{
 		Step_End(15, "Click on the global search button", test, test1);
 		
 		Step_Start(16, "System opens a new window and paste the Template No. in the Template No. field.", test, test1);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, Predictable_Select_Type);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, Predictable_Select_Codition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, Activity_ID_CAR);
+		Step_Start(17, "Click on the search button.", test, test1);
+		Step_Start(18, "Select the respective template No. which we have copied.", test, test1);
+		Step_Start(19, "Click on the select button.", test, test1);
+
+		globalValueSearchWindow(driver,Predictable_Select_Codition,Predictable_Select_Type,Activity_ID_CAR,"","","","");
+		
+		Step_End(19, "Click on the select button.", test, test1);
+		Step_End(18, "Select the respective template No. which we have copied.", test, test1);
+		Step_End(17, "Click on the search button.", test, test1);
 		Step_End(16, "System opens a new window and paste the Template No. in the Template No. field.", test, test1);
 		
-		Step_Start(17, "Click on the search button.", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(17, "Click on the search button.", test, test1);
-		
-		Step_Start(18, "Select the respective template No. which we have copied.", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		Step_End(18, "Select the respective template No. which we have copied.", test, test1);
-		
-		Step_Start(19, "Click on the select button.", test, test1);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
-		Step_End(19, "Click on the select button.", test, test1);
-				
 		Step_Start(20, "Click on the AG grid condition filter option and search the copied Head from the CAR in the Head column", test, test1);
 		waitForElement(driver, Predictable_Activity_Table_PAB);
 		List<Map<String, String>> PredicatableActivity_Table = extractTableDataByColumnWithoutScroll(driver,Predictable_Activity_Table_PAB);
+		List<String>  GetHead_Values_Activity=getValuesByHeader(PredicatableActivity_Table,Head_Name_Activity_table);
 		Step_End(20, "Click on the AG grid condition filter option and search the copied Head from the CAR in the Head column", test, test1);
 
 		Step_Start(21, "Our copied Head should be avialable in the Predictable activity behaviour screen.", test, test1);
-		List<String>  GetHead_Values_Activity=getValuesByHeader(PredicatableActivity_Table,Head_Name_Activity_table);
 		if(containsAllValues(GetHead_Values_Predictable,GetHead_Values_Activity)) {
 			System.out.println("Predicatble Head Values Matched ||   Expected  : "+GetHead_Values_Predictable+"   ||   Actual   : "+GetHead_Values_Activity);
 			Extent_pass(driver, "Predicatble Head Values Matched ||   Expected  : "+GetHead_Values_Predictable+"   ||   Actual   : "+GetHead_Values_Activity, test, test1);

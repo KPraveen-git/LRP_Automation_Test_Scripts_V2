@@ -1,4 +1,4 @@
-package LRP_Comercial_V1_Rate_Request_Scripts;
+package Comercial_V1_Scripts;
 
 import java.util.List;
 import java.util.Map;
@@ -16,8 +16,6 @@ import locators.Rate_Request_Loactors;
 
 public class TC_Rate_Request_SC48 extends Keywords{
 
-	
-	
 	public void Rate_Request_SC48(WebDriver driver, ExtentTest test, ExtentTest test1, String selected_dataset) {
 		
 		String tc_Name="TC_Rate_Request_SC48";
@@ -69,6 +67,10 @@ public class TC_Rate_Request_SC48 extends Keywords{
 		String ofr_data_1=Data.get("ofr_data_1");
 		String remarks_txtfld_data=Data.get("remarks_txtfld_data");
 
+		String Cust_code2=Data.get("Cust_code2");
+		String Customer_code_Value2=Data.get("Customer_code_Value2");
+		String Cust_code3=Data.get("Cust_code3");
+		String Customer_code_Value3=Data.get("Customer_code_Value3");
 		
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
@@ -95,18 +97,16 @@ public class TC_Rate_Request_SC48 extends Keywords{
 			System.out.println("Rate Request Page is displayed");
 		} else {
 			System.out.println("Rate Request Page is not displayed");
-
 			Extent_fail(driver, "Rate Request Page is not displayed", test,test1);
 		}
 		Step_Start(1, "Click on the new button in the toolbar", test, test1);
 		
-		
-		waitForElement(driver, Rate_Newbutton);
-		
-		if(isElementEnabled(driver, Rate_Newbutton)) {
-		click(driver, Rate_Newbutton);
-		
+		waitForDisplay(driver, Rate_Newbutton);
+		if(isdisplayed(driver, Rate_Newbutton)&&isElementEnabled(driver, Rate_Newbutton)) {
+			waitForElement(driver, Rate_Newbutton);
+			click(driver, Rate_Newbutton);
 		}
+		
 		Step_End(1, "Click on the new button in the toolbar", test, test1);
 		waitForElement(driver, tService_Dropdown);
 		click(driver, tService_Dropdown);
@@ -136,31 +136,24 @@ public class TC_Rate_Request_SC48 extends Keywords{
 		}
 
 		Step_Start(2, " Enter the customer name", test, test1);
-
-
-
+	
 		waitForElement(driver, Customer_Name_search_button);
 		click(driver, Customer_Name_search_button);
-		waitForElement(driver, Customer_Code_Select_dropdown);
-		click(driver, Customer_Code_Select_dropdown);
-		selectByText(driver, Customer_Code_Select_dropdown, Cust_code);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-		sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-		click(driver, CustomerSearch_Frame_SearchButton);
-		waitForDisplay(driver, pop_up_exp);
+		
+		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2, Cust_code3, Customer_code_Value3);
+
 		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
 			Assert.fail("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 		}else {
-			waitForElement(driver, globale_Value_select);
-			click(driver, globale_Value_select);
+			waitForElement(driver, retrivedGlobalValue);
+			click(driver, retrivedGlobalValue);
 			waitForElement(driver, SelectButton);
 			click(driver, SelectButton);
-			waitForDisplay(driver, CustName_ExitBtn);
-			if(isDisplayed(driver, CustName_ExitBtn)) {
+			elementnotvisible(driver, SelectButton);
+			if(isdisplayed(driver, CustName_ExitBtn)) {
 				waitForElement(driver, CustName_ExitBtn);
 				click(driver, CustName_ExitBtn);
 			}
@@ -216,13 +209,12 @@ public class TC_Rate_Request_SC48 extends Keywords{
 
 			Step_Start(8, "Enter the Gross Weight", test, test1);
 
-			waitForElement(driver, Gross_Weight);
-			Newclear(driver, Gross_Weight);
-			Actionsendkeys(driver, Gross_Weight, grossWeight);
+			waitForElement(driver, Gross_Weight_RR);
+			Newclear(driver, Gross_Weight_RR);
+			Actionsendkeys(driver, Gross_Weight_RR, grossWeight);
 			Step_End(8, "Enter the Gross Weight", test, test1);
+			
 			//checkboxs
-
-
 			checkBox(driver, DG_checkbox, DG_checkboxs);
 
 			checkBox(driver, oog_checkbox, OOG_checkbox);
@@ -436,9 +428,10 @@ public class TC_Rate_Request_SC48 extends Keywords{
 
 				Step_Start(18, "Click counter button.", test, test1);
 			
+				scrollBottom(driver);
 				waitForElement(driver, counter_btn_Srr);
 				if(isElementEnabled(driver, counter_btn_Srr)) {
-				click(driver, counter_btn_Srr);
+					click(driver, counter_btn_Srr);
 				}else {
 					waitForElement(driver, SRR_Contribution);
 					click(driver, SRR_Contribution);
@@ -481,12 +474,7 @@ public class TC_Rate_Request_SC48 extends Keywords{
 			waitForElement(driver, surcharge_Amnt_Input);
 			clear(driver, surcharge_Amnt_Input);
             sendKeys(driver, surcharge_Amnt_Input, amount_data);
-            
-			
-//			clear(driver, surcharge_to_edit);
-//			sendKeys(driver, surcharge_to_edit, amount_data);
-	//		click(driver, surcharge_to_edit);
-			
+
 			Step_End(20, ".Enter the amount in the Agecncy Loc column.", test, test1);
 
 			Step_Start(21, ".Enter the OFR amount.", test, test1);
@@ -525,12 +513,6 @@ public class TC_Rate_Request_SC48 extends Keywords{
 		}
 
 		Extent_completed(tc_Name, test, test1);
-		
-		
-		
-		
-		
-		
 		
 	
 	

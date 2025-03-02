@@ -1,4 +1,4 @@
-package LRP_Cost_Scripts;
+package Cost_Scripts;
 
 import java.util.Map;
 
@@ -35,6 +35,9 @@ public class TC_Cost_Activity_Report_TS075 extends Keywords{
 		String Approve_Btn_Name_UserLevel_Table = data.get("Approve_Btn_Name_UserLevel_Table");
 		String User_Level_Updated_Popup = data.get("User_Level_Updated_Popup");
 
+		String User_Header_Name = data.get("User_Header_Name");
+		String Function_Previllage_Header = data.get("Function_Previllage_Header");
+		
 		Extent_Start(tc_Name, test, test1);
 		navigateUrl(driver, url);
 		LRP_Login(driver, username, password);
@@ -54,30 +57,18 @@ public class TC_Cost_Activity_Report_TS075 extends Keywords{
 		Step_End(3, "Click on the global search option which is available in the tool bar.    ", test, test1);
 		
 		Step_Start(4, "Check whether it opens a new search window. ", test, test1);
-		waitForElement(driver, type_Select1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-		Step_End(4, "Check whether it opens a new search window. ", test, test1);
-		
 		Step_Start(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-		
 		Step_Start(6, "Then click on the search button. ", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(6, "Then click on the search button. ", test, test1);
-		
 		Step_Start(7, "System will show the CAR No ", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
+
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
+		
 		Step_End(7, "System will show the CAR No ", test, test1);
+		Step_End(6, "Then click on the search button. ", test, test1);
+		Step_End(5, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(4, "Check whether it opens a new search window. ", test, test1);
 
 		Step_Start(8, "Click on the select button. Ensure that the system retrieves the saved CAR ", test, test1);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
 		waitForElement(driver, CAR_Number_Input_CAR);
 		Step_End(8, "Click on the select button. Ensure that the system retrieves the saved CAR ", test, test1);
 
@@ -95,7 +86,7 @@ public class TC_Cost_Activity_Report_TS075 extends Keywords{
 		Step_End(11, "Click on the global search option.Enter the required username and click on the select option", test, test1);
 
 		Step_Start(12, "Ensure that the given username gets retrieved. Click on the edit option", test, test1);
-		selectValue(driver, Select_User_Condition, username);
+		twoColumnSearchWindow(driver,User_Header_Name,Select_User_Condition,username);
 		
 		waitForElement(driver, UserName_Input_ULS);
 		String userNameSelected=getAttribute(driver, UserName_Input_ULS, "value");
@@ -148,9 +139,7 @@ public class TC_Cost_Activity_Report_TS075 extends Keywords{
 			
 			waitForElement(driver, Description_Add_button_ULS);
 			click(driver,Description_Add_button_ULS);
-			
-			selectValue2(driver,Select_User_Condition,Reject_Btn_Name_UserLevel_Table);
-			
+			twoColumnSearchWindow(driver,Function_Previllage_Header,Select_User_Condition,Reject_Btn_Name_UserLevel_Table);			
 		}
 		
 		
@@ -173,7 +162,7 @@ public class TC_Cost_Activity_Report_TS075 extends Keywords{
 			
 			waitForElement(driver, Description_Add_button_ULS);
 			click(driver,Description_Add_button_ULS);
-			selectValue2(driver,Select_User_Condition,Approve_Btn_Name_UserLevel_Table);
+			twoColumnSearchWindow(driver,Function_Previllage_Header,Select_User_Condition,Approve_Btn_Name_UserLevel_Table);		
 		}
 		Step_End(15, "Select the required privilege code and click the select option", test, test1);
 		
@@ -219,31 +208,19 @@ public class TC_Cost_Activity_Report_TS075 extends Keywords{
 		Step_End(19, "Click on the global search option which is available in the tool bar ", test, test1);
 		
 		Step_Start(20, "Check whether it opens a new search window. ", test, test1);
-		waitForElement(driver, type_Select1);
-		Step_End(20, "Check whether it opens a new search window. ", test, test1);
-		
 		Step_Start(21, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-		selectByText(driver, type_Select1, CAR_Retrieve_Type);
-		
-		waitForElement(driver, globalSearch_Condition_Dropdown1);
-		selectByText(driver, globalSearch_Condition_Dropdown1, CAR_Retrieve_Condition);
-		waitForElement(driver, globalSearch_InputTextfield1);
-		sendKeys(driver, globalSearch_InputTextfield1, CAR_Number_Retrieve);
-		Step_End(21, "Enter the required CAR No. in the CAR No search field. ", test, test1);
-		
 		Step_Start(22, "Then click on the search button ", test, test1);
-		waitForElement(driver, globalSearch_Frame_SearchButton);
-		click(driver, globalSearch_Frame_SearchButton);
-		Step_End(22, "Then click on the search button ", test, test1);
-		
 		Step_Start(23, "System will show the CAR No.  ", test, test1);
-		waitForElement(driver, First_Row_select);
-		click(driver, First_Row_select);
-		Step_End(23, "System will show the CAR No.  ", test, test1);
+
+		globalValueSearchWindow(driver,CAR_Retrieve_Condition,CAR_Retrieve_Type,CAR_Number_Retrieve,"","","","");
 		
+		Step_End(23, "System will show the CAR No.  ", test, test1);
+		Step_End(22, "Then click on the search button ", test, test1);
+		Step_End(21, "Enter the required CAR No. in the CAR No search field. ", test, test1);
+		Step_End(20, "Check whether it opens a new search window. ", test, test1);
+
 		Step_Start(24, "Click on the select button. Ensure that the system retrieves the saved CAR ", test, test1);
-		waitForElement(driver, SelectButton);
-		click(driver, SelectButton);
+		waitForElement(driver, CAR_Number_Input_CAR);
 		Step_End(24, "Click on the select button. Ensure that the system retrieves the saved CAR ", test, test1);
 		
 		Step_Start(25, "Ensure that required approve and reject option is shown below the added activities", test, test1);

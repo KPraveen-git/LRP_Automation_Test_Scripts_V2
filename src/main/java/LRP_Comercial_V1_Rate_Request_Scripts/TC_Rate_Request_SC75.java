@@ -1,4 +1,4 @@
-package LRP_Comercial_V1_Rate_Request_Scripts;
+package Comercial_V1_Scripts;
 
 import java.util.Map;
 
@@ -58,6 +58,10 @@ public class TC_Rate_Request_SC75 extends Keywords {
 		String TOS=Data.get("TOS_Option");
 		String srr_Status_exp_after=Data.get("srr_Status_exp_after");
 
+		String Cust_code2=Data.get("Cust_code2");
+		String Customer_code_Value2=Data.get("Customer_code_Value2");
+		String Cust_code3=Data.get("Cust_code3");
+		String Customer_code_Value3=Data.get("Customer_code_Value3");
 
 		String select_t_Service =  String.format(Rate_Request_Loactors.tService_Option,  tService); 
 		String tos =  String.format(Rate_Request_Loactors.TOS_Option,  TOS); 
@@ -113,19 +117,14 @@ public class TC_Rate_Request_SC75 extends Keywords {
 
 		Step_Start(2, " Enter the customer name", test, test1);
 
-
-
 		waitForElement(driver, Customer_Name_search_button);
 		click(driver, Customer_Name_search_button);
-		waitForElement(driver, Customer_Code_Select_dropdown);
-		click(driver, Customer_Code_Select_dropdown);
-		selectByText(driver, Customer_Code_Select_dropdown, Cust_code);
-		click(driver, CustomerSearch_Condition_Dropdown1);
-		selectByText(driver,CustomerSearch_Condition_Dropdown1, Condition_Value);
-		sendKeys(driver, CustomerSearch_InputTextfield1, Customer_code_Value);
-		click(driver, CustomerSearch_Frame_SearchButton);
-		waitForDisplay(driver, pop_up_exp);
-		if(isdisplayed(driver,pop_up_exp )) {
+		
+		
+		globalValueSearchWindow1(driver, Condition_Value, Cust_code, Customer_code_Value, Cust_code2, Customer_code_Value2, Cust_code3, Customer_code_Value3);
+
+		
+		if(isDisplayed(driver,pop_up_exp )) {
 			String actual_Popup = getText(driver, pop_up_exp);
 			System.out.println("The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup);
 			Extent_fail(driver, "The Customer Code is Invalid Tha Actual Popup value was : "+actual_Popup, test, test1);
@@ -191,9 +190,9 @@ public class TC_Rate_Request_SC75 extends Keywords {
 
 			Step_Start(8, "Enter the Gross Weight", test, test1);
 
-			waitForElement(driver, Gross_Weight);
-			Newclear(driver, Gross_Weight);
-			Actionsendkeys(driver, Gross_Weight, grossWeight);
+			waitForElement(driver, Gross_Weight_RR);
+			Newclear(driver, Gross_Weight_RR);
+			Actionsendkeys(driver, Gross_Weight_RR, grossWeight);
 			Step_End(8, "Enter the Gross Weight", test, test1);
 			//checkboxs
 
@@ -217,9 +216,8 @@ public class TC_Rate_Request_SC75 extends Keywords {
 			
 			waitForDisplay(driver, Imp_Days);
 			if(isdisplayed(driver, Imp_Days)&&isElementAccessible(driver, Imp_Days)) {
-				
 				clear(driver, Imp_Days);
-			sendKeys(driver, Imp_Days, Imp_Det_Days_Input);
+				sendKeys(driver, Imp_Days, Imp_Det_Days_Input);
 			}
 			
 			Step_End(11, "Enter the import detention days.", test, test1);
@@ -229,8 +227,7 @@ public class TC_Rate_Request_SC75 extends Keywords {
 			waitForDisplay(driver, Exp_Days);
 			if(isdisplayed(driver, Exp_Days)&&isElementAccessible(driver, Exp_Days)) {
 				clear(driver, Exp_Days);
-
-			sendKeys(driver, Exp_Days, Exp_Det_Days_Input);
+				sendKeys(driver, Exp_Days, Exp_Det_Days_Input);
 			}
 			
 			Step_End(12, "Enter the export deention days.", test, test1);
@@ -384,18 +381,14 @@ public class TC_Rate_Request_SC75 extends Keywords {
 				Extent_pass(driver, "Matched || Expected status -> "+srr_Status_exp_after+"|| Actual status -> "+status_actual, test, test1);
 				
 			}else {
-				
 				System.out.println("Matched || Expected status -> "+srr_Status_exp_after+"|| Actual status -> "+status_actual);
 				Extent_fail(driver, "Matched || Expected status -> "+srr_Status_exp_after+"|| Actual status -> "+status_actual, test, test1);
-				
 				
 			}
 			
 			waitForElement(driver, Mail_Cancel_button);
 			click(driver, Mail_Cancel_button);
-			
-			
-			
+						
 		}
 		Extent_completed(testCase_Name, test, test1);
 
